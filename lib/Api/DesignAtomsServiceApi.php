@@ -124,7 +124,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsServiceConvertColors($tenant_id = null, $convert_colors_model = null)
     {
@@ -142,7 +142,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceConvertColorsWithHttpInfo($tenant_id = null, $convert_colors_model = null)
     {
@@ -201,6 +201,18 @@ class DesignAtomsServiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -227,6 +239,14 @@ class DesignAtomsServiceApi
                     $e->setResponseObject($data);
                     break;
                 case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -398,6 +418,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -437,7 +474,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\DesignInfo
+     * @return \Aurigma\DesignAtoms\Model\DesignInfo|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsServiceCreateDesign($private_storage = null, $private_storage_owner = null, $tenant_id = null, $create_design_model = null)
     {
@@ -457,7 +494,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\DesignInfo, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\DesignInfo|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceCreateDesignWithHttpInfo($private_storage = null, $private_storage_owner = null, $tenant_id = null, $create_design_model = null)
     {
@@ -504,6 +541,18 @@ class DesignAtomsServiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\DesignAtoms\Model\DesignInfo';
@@ -525,6 +574,14 @@ class DesignAtomsServiceApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\DesignInfo',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -721,6 +778,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -756,13 +830,13 @@ class DesignAtomsServiceApi
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type source_type (optional)
-     * @param  string $source_id Item source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
-     * @param  string $source_owner_id Item source id, used if source type is &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39; (optional)
      * @param  \SplFileObject $source_file Source file, used if source type is &#39;File&#39; (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsServiceCreateItem($item_type = null, $tenant_id = null, $source_type = null, $source_id = null, $source_owner_id = null, $source_file = null)
     {
@@ -778,13 +852,13 @@ class DesignAtomsServiceApi
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type (optional)
-     * @param  string $source_id Item source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
-     * @param  string $source_owner_id Item source id, used if source type is &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39; (optional)
      * @param  \SplFileObject $source_file Source file, used if source type is &#39;File&#39; (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceCreateItemWithHttpInfo($item_type = null, $tenant_id = null, $source_type = null, $source_id = null, $source_owner_id = null, $source_file = null)
     {
@@ -843,6 +917,18 @@ class DesignAtomsServiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -876,6 +962,14 @@ class DesignAtomsServiceApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -889,8 +983,8 @@ class DesignAtomsServiceApi
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type (optional)
-     * @param  string $source_id Item source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
-     * @param  string $source_owner_id Item source id, used if source type is &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39; (optional)
      * @param  \SplFileObject $source_file Source file, used if source type is &#39;File&#39; (optional)
      *
      * @throws \InvalidArgumentException
@@ -914,8 +1008,8 @@ class DesignAtomsServiceApi
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type (optional)
-     * @param  string $source_id Item source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
-     * @param  string $source_owner_id Item source id, used if source type is &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39; (optional)
      * @param  \SplFileObject $source_file Source file, used if source type is &#39;File&#39; (optional)
      *
      * @throws \InvalidArgumentException
@@ -965,8 +1059,8 @@ class DesignAtomsServiceApi
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type (optional)
-     * @param  string $source_id Item source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
-     * @param  string $source_owner_id Item source id, used if source type is &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; (optional)
+     * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39; (optional)
      * @param  \SplFileObject $source_file Source file, used if source type is &#39;File&#39; (optional)
      *
      * @throws \InvalidArgumentException
@@ -1083,6 +1177,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1111,37 +1222,41 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceDeleteDataSchema
+     * Operation designAtomsServiceCreatePrivateDesignFromDesign
      *
-     * Deletes data schema from design file and updates design in storage.
+     * Creates a private design from a public design.
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $design_id Public design ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function designAtomsServiceDeleteDataSchema($id, $tenant_id = null)
+    public function designAtomsServiceCreatePrivateDesignFromDesign($design_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
     {
-        $this->designAtomsServiceDeleteDataSchemaWithHttpInfo($id, $tenant_id);
+        $this->designAtomsServiceCreatePrivateDesignFromDesignWithHttpInfo($design_id, $private_design_id, $private_storage_owner, $tenant_id);
     }
 
     /**
-     * Operation designAtomsServiceDeleteDataSchemaWithHttpInfo
+     * Operation designAtomsServiceCreatePrivateDesignFromDesignWithHttpInfo
      *
-     * Deletes data schema from design file and updates design in storage.
+     * Creates a private design from a public design.
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $design_id Public design ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsServiceDeleteDataSchemaWithHttpInfo($id, $tenant_id = null)
+    public function designAtomsServiceCreatePrivateDesignFromDesignWithHttpInfo($design_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
     {
-        $request = $this->designAtomsServiceDeleteDataSchemaRequest($id, $tenant_id);
+        $request = $this->designAtomsServiceCreatePrivateDesignFromDesignRequest($design_id, $private_design_id, $private_storage_owner, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1175,7 +1290,7 @@ class DesignAtomsServiceApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 409:
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -1189,19 +1304,21 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceDeleteDataSchemaAsync
+     * Operation designAtomsServiceCreatePrivateDesignFromDesignAsync
      *
-     * Deletes data schema from design file and updates design in storage.
+     * Creates a private design from a public design.
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $design_id Public design ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceDeleteDataSchemaAsync($id, $tenant_id = null)
+    public function designAtomsServiceCreatePrivateDesignFromDesignAsync($design_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
     {
-        return $this->designAtomsServiceDeleteDataSchemaAsyncWithHttpInfo($id, $tenant_id)
+        return $this->designAtomsServiceCreatePrivateDesignFromDesignAsyncWithHttpInfo($design_id, $private_design_id, $private_storage_owner, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1210,20 +1327,22 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceDeleteDataSchemaAsyncWithHttpInfo
+     * Operation designAtomsServiceCreatePrivateDesignFromDesignAsyncWithHttpInfo
      *
-     * Deletes data schema from design file and updates design in storage.
+     * Creates a private design from a public design.
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $design_id Public design ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceDeleteDataSchemaAsyncWithHttpInfo($id, $tenant_id = null)
+    public function designAtomsServiceCreatePrivateDesignFromDesignAsyncWithHttpInfo($design_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
     {
         $returnType = '';
-        $request = $this->designAtomsServiceDeleteDataSchemaRequest($id, $tenant_id);
+        $request = $this->designAtomsServiceCreatePrivateDesignFromDesignRequest($design_id, $private_design_id, $private_storage_owner, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1249,30 +1368,59 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Create request for operation 'designAtomsServiceDeleteDataSchema'
+     * Create request for operation 'designAtomsServiceCreatePrivateDesignFromDesign'
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $design_id Public design ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsServiceDeleteDataSchemaRequest($id, $tenant_id = null)
+    public function designAtomsServiceCreatePrivateDesignFromDesignRequest($design_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling designAtomsServiceDeleteDataSchema'
-            );
-        }
 
-        $resourcePath = '/api/atoms/v1/designs/{id}/schema';
+        $resourcePath = '/api/atoms/v1/private-designs/from-design';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($design_id !== null) {
+            if('form' === 'form' && is_array($design_id)) {
+                foreach($design_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['designId'] = $design_id;
+            }
+        }
+        // query params
+        if ($private_design_id !== null) {
+            if('form' === 'form' && is_array($private_design_id)) {
+                foreach($private_design_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateDesignId'] = $private_design_id;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
         // query params
         if ($tenant_id !== null) {
             if('form' === 'form' && is_array($tenant_id)) {
@@ -1286,14 +1434,6 @@ class DesignAtomsServiceApi
         }
 
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
 
 
         if ($multipart) {
@@ -1345,6 +1485,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1365,7 +1522,315 @@ class DesignAtomsServiceApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'DELETE',
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsServiceCreatePrivateDesignFromResource
+     *
+     * Creates a private design from a public resource.
+     *
+     * @param  string $resource_id Resource ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function designAtomsServiceCreatePrivateDesignFromResource($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        $this->designAtomsServiceCreatePrivateDesignFromResourceWithHttpInfo($resource_id, $private_design_id, $private_storage_owner, $tenant_id);
+    }
+
+    /**
+     * Operation designAtomsServiceCreatePrivateDesignFromResourceWithHttpInfo
+     *
+     * Creates a private design from a public resource.
+     *
+     * @param  string $resource_id Resource ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsServiceCreatePrivateDesignFromResourceWithHttpInfo($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        $request = $this->designAtomsServiceCreatePrivateDesignFromResourceRequest($resource_id, $private_design_id, $private_storage_owner, $tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsServiceCreatePrivateDesignFromResourceAsync
+     *
+     * Creates a private design from a public resource.
+     *
+     * @param  string $resource_id Resource ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceCreatePrivateDesignFromResourceAsync($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        return $this->designAtomsServiceCreatePrivateDesignFromResourceAsyncWithHttpInfo($resource_id, $private_design_id, $private_storage_owner, $tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsServiceCreatePrivateDesignFromResourceAsyncWithHttpInfo
+     *
+     * Creates a private design from a public resource.
+     *
+     * @param  string $resource_id Resource ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceCreatePrivateDesignFromResourceAsyncWithHttpInfo($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        $returnType = '';
+        $request = $this->designAtomsServiceCreatePrivateDesignFromResourceRequest($resource_id, $private_design_id, $private_storage_owner, $tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsServiceCreatePrivateDesignFromResource'
+     *
+     * @param  string $resource_id Resource ID. (optional)
+     * @param  string $private_design_id Private design ID. (optional)
+     * @param  string $private_storage_owner Private storage owner ID. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsServiceCreatePrivateDesignFromResourceRequest($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null)
+    {
+
+        $resourcePath = '/api/atoms/v1/private-designs/from-resource';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($resource_id !== null) {
+            if('form' === 'form' && is_array($resource_id)) {
+                foreach($resource_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['resourceId'] = $resource_id;
+            }
+        }
+        // query params
+        if ($private_design_id !== null) {
+            if('form' === 'form' && is_array($private_design_id)) {
+                foreach($private_design_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateDesignId'] = $private_design_id;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -1378,15 +1843,17 @@ class DesignAtomsServiceApi
      * Deletes variable data printing inforamtion from design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function designAtomsServiceDeleteVdpData($id, $tenant_id = null)
+    public function designAtomsServiceDeleteVdpData($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        $this->designAtomsServiceDeleteVdpDataWithHttpInfo($id, $tenant_id);
+        $this->designAtomsServiceDeleteVdpDataWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id);
     }
 
     /**
@@ -1395,15 +1862,17 @@ class DesignAtomsServiceApi
      * Deletes variable data printing inforamtion from design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsServiceDeleteVdpDataWithHttpInfo($id, $tenant_id = null)
+    public function designAtomsServiceDeleteVdpDataWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        $request = $this->designAtomsServiceDeleteVdpDataRequest($id, $tenant_id);
+        $request = $this->designAtomsServiceDeleteVdpDataRequest($id, $private_storage, $private_storage_owner, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1445,6 +1914,14 @@ class DesignAtomsServiceApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -1456,14 +1933,16 @@ class DesignAtomsServiceApi
      * Deletes variable data printing inforamtion from design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceDeleteVdpDataAsync($id, $tenant_id = null)
+    public function designAtomsServiceDeleteVdpDataAsync($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        return $this->designAtomsServiceDeleteVdpDataAsyncWithHttpInfo($id, $tenant_id)
+        return $this->designAtomsServiceDeleteVdpDataAsyncWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1477,15 +1956,17 @@ class DesignAtomsServiceApi
      * Deletes variable data printing inforamtion from design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceDeleteVdpDataAsyncWithHttpInfo($id, $tenant_id = null)
+    public function designAtomsServiceDeleteVdpDataAsyncWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
         $returnType = '';
-        $request = $this->designAtomsServiceDeleteVdpDataRequest($id, $tenant_id);
+        $request = $this->designAtomsServiceDeleteVdpDataRequest($id, $private_storage, $private_storage_owner, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1514,12 +1995,14 @@ class DesignAtomsServiceApi
      * Create request for operation 'designAtomsServiceDeleteVdpData'
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsServiceDeleteVdpDataRequest($id, $tenant_id = null)
+    public function designAtomsServiceDeleteVdpDataRequest($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -1535,6 +2018,28 @@ class DesignAtomsServiceApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($private_storage !== null) {
+            if('form' === 'form' && is_array($private_storage)) {
+                foreach($private_storage as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorage'] = $private_storage;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
         // query params
         if ($tenant_id !== null) {
             if('form' === 'form' && is_array($tenant_id)) {
@@ -1607,6 +2112,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1635,20 +2157,1146 @@ class DesignAtomsServiceApi
     }
 
     /**
+     * Operation designAtomsServiceExtractBackground
+     *
+     * Returns content of the background.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  int $surface_index Surface index. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\MissingDesignElementDto|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsServiceExtractBackground($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        list($response) = $this->designAtomsServiceExtractBackgroundWithHttpInfo($id, $surface_index, $private_storage_owner, $tenant_id);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsServiceExtractBackgroundWithHttpInfo
+     *
+     * Returns content of the background.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  int $surface_index Surface index. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\MissingDesignElementDto|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsServiceExtractBackgroundWithHttpInfo($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        $request = $this->designAtomsServiceExtractBackgroundRequest($id, $surface_index, $private_storage_owner, $tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SplFileObject' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\MissingDesignElementDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\MissingDesignElementDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\SplFileObject';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SplFileObject',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\MissingDesignElementDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsServiceExtractBackgroundAsync
+     *
+     * Returns content of the background.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  int $surface_index Surface index. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceExtractBackgroundAsync($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        return $this->designAtomsServiceExtractBackgroundAsyncWithHttpInfo($id, $surface_index, $private_storage_owner, $tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsServiceExtractBackgroundAsyncWithHttpInfo
+     *
+     * Returns content of the background.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  int $surface_index Surface index. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceExtractBackgroundAsyncWithHttpInfo($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        $returnType = '\SplFileObject';
+        $request = $this->designAtomsServiceExtractBackgroundRequest($id, $surface_index, $private_storage_owner, $tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsServiceExtractBackground'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  int $surface_index Surface index. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsServiceExtractBackgroundRequest($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsServiceExtractBackground'
+            );
+        }
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/background';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($surface_index !== null) {
+            if('form' === 'form' && is_array($surface_index)) {
+                foreach($surface_index as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['surfaceIndex'] = $surface_index;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/octet-stream', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/octet-stream', 'application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsServiceFlattenItems
+     *
+     * Flatten items.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed[] $request_body Items to flatten. (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsServiceFlattenItems($tenant_id = null, $request_body = null)
+    {
+        list($response) = $this->designAtomsServiceFlattenItemsWithHttpInfo($tenant_id, $request_body);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsServiceFlattenItemsWithHttpInfo
+     *
+     * Flatten items.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed[] $request_body Items to flatten. (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsServiceFlattenItemsWithHttpInfo($tenant_id = null, $request_body = null)
+    {
+        $request = $this->designAtomsServiceFlattenItemsRequest($tenant_id, $request_body);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsServiceFlattenItemsAsync
+     *
+     * Flatten items.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed[] $request_body Items to flatten. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceFlattenItemsAsync($tenant_id = null, $request_body = null)
+    {
+        return $this->designAtomsServiceFlattenItemsAsyncWithHttpInfo($tenant_id, $request_body)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsServiceFlattenItemsAsyncWithHttpInfo
+     *
+     * Flatten items.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed[] $request_body Items to flatten. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceFlattenItemsAsyncWithHttpInfo($tenant_id = null, $request_body = null)
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsServiceFlattenItemsRequest($tenant_id, $request_body);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsServiceFlattenItems'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed[] $request_body Items to flatten. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsServiceFlattenItemsRequest($tenant_id = null, $request_body = null)
+    {
+
+        $resourcePath = '/api/atoms/v1/flatten';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($request_body)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request_body));
+            } else {
+                $httpBody = $request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsServiceGetVariables
+     *
+     * Gets variable items information for design file taken from storage
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\DesignAtoms\Model\VariablesModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsServiceGetVariables($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        list($response) = $this->designAtomsServiceGetVariablesWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsServiceGetVariablesWithHttpInfo
+     *
+     * Gets variable items information for design file taken from storage
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\DesignAtoms\Model\VariablesModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsServiceGetVariablesWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        $request = $this->designAtomsServiceGetVariablesRequest($id, $private_storage, $private_storage_owner, $tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\DesignAtoms\Model\VariablesModel' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\VariablesModel', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\DesignAtoms\Model\VariablesModel';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\VariablesModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsServiceGetVariablesAsync
+     *
+     * Gets variable items information for design file taken from storage
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceGetVariablesAsync($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        return $this->designAtomsServiceGetVariablesAsyncWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsServiceGetVariablesAsyncWithHttpInfo
+     *
+     * Gets variable items information for design file taken from storage
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceGetVariablesAsyncWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        $returnType = '\Aurigma\DesignAtoms\Model\VariablesModel';
+        $request = $this->designAtomsServiceGetVariablesRequest($id, $private_storage, $private_storage_owner, $tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsServiceGetVariables'
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsServiceGetVariablesRequest($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsServiceGetVariables'
+            );
+        }
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/variables';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($private_storage !== null) {
+            if('form' === 'form' && is_array($private_storage)) {
+                foreach($private_storage as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorage'] = $private_storage;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsServiceLoadDataSchema
      *
      * Loads data schema from design file taken from storage
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsServiceLoadDataSchema($id, $tenant_id = null)
+    public function designAtomsServiceLoadDataSchema($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        list($response) = $this->designAtomsServiceLoadDataSchemaWithHttpInfo($id, $tenant_id);
+        list($response) = $this->designAtomsServiceLoadDataSchemaWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id);
         return $response;
     }
 
@@ -1658,15 +3306,17 @@ class DesignAtomsServiceApi
      * Loads data schema from design file taken from storage
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsServiceLoadDataSchemaWithHttpInfo($id, $tenant_id = null)
+    public function designAtomsServiceLoadDataSchemaWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        $request = $this->designAtomsServiceLoadDataSchemaRequest($id, $tenant_id);
+        $request = $this->designAtomsServiceLoadDataSchemaRequest($id, $private_storage, $private_storage_owner, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1733,6 +3383,18 @@ class DesignAtomsServiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -1774,6 +3436,14 @@ class DesignAtomsServiceApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -1785,14 +3455,16 @@ class DesignAtomsServiceApi
      * Loads data schema from design file taken from storage
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceLoadDataSchemaAsync($id, $tenant_id = null)
+    public function designAtomsServiceLoadDataSchemaAsync($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        return $this->designAtomsServiceLoadDataSchemaAsyncWithHttpInfo($id, $tenant_id)
+        return $this->designAtomsServiceLoadDataSchemaAsyncWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1806,15 +3478,17 @@ class DesignAtomsServiceApi
      * Loads data schema from design file taken from storage
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceLoadDataSchemaAsyncWithHttpInfo($id, $tenant_id = null)
+    public function designAtomsServiceLoadDataSchemaAsyncWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
         $returnType = '\SplFileObject';
-        $request = $this->designAtomsServiceLoadDataSchemaRequest($id, $tenant_id);
+        $request = $this->designAtomsServiceLoadDataSchemaRequest($id, $private_storage, $private_storage_owner, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1853,12 +3527,14 @@ class DesignAtomsServiceApi
      * Create request for operation 'designAtomsServiceLoadDataSchema'
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsServiceLoadDataSchemaRequest($id, $tenant_id = null)
+    public function designAtomsServiceLoadDataSchemaRequest($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -1874,6 +3550,28 @@ class DesignAtomsServiceApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($private_storage !== null) {
+            if('form' === 'form' && is_array($private_storage)) {
+                foreach($private_storage as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorage'] = $private_storage;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
         // query params
         if ($tenant_id !== null) {
             if('form' === 'form' && is_array($tenant_id)) {
@@ -1899,11 +3597,11 @@ class DesignAtomsServiceApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/octet-stream']
+                ['application/octet-stream', 'application/json']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/octet-stream'],
+                ['application/octet-stream', 'application/json'],
                 []
             );
         }
@@ -1946,6 +3644,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1976,7 +3691,7 @@ class DesignAtomsServiceApi
     /**
      * Operation designAtomsServiceLoadProduct
      *
-     * Loads product from design file taken from storage
+     * Loads product (design model) from design file taken from storage
      *
      * @param  string $id Design identifier (required)
      * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
@@ -1985,7 +3700,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsServiceLoadProduct($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
@@ -1996,7 +3711,7 @@ class DesignAtomsServiceApi
     /**
      * Operation designAtomsServiceLoadProductWithHttpInfo
      *
-     * Loads product from design file taken from storage
+     * Loads product (design model) from design file taken from storage
      *
      * @param  string $id Design identifier (required)
      * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
@@ -2005,7 +3720,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceLoadProductWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
@@ -2064,6 +3779,18 @@ class DesignAtomsServiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -2097,6 +3824,14 @@ class DesignAtomsServiceApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -2105,7 +3840,7 @@ class DesignAtomsServiceApi
     /**
      * Operation designAtomsServiceLoadProductAsync
      *
-     * Loads product from design file taken from storage
+     * Loads product (design model) from design file taken from storage
      *
      * @param  string $id Design identifier (required)
      * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
@@ -2128,7 +3863,7 @@ class DesignAtomsServiceApi
     /**
      * Operation designAtomsServiceLoadProductAsyncWithHttpInfo
      *
-     * Loads product from design file taken from storage
+     * Loads product (design model) from design file taken from storage
      *
      * @param  string $id Design identifier (required)
      * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
@@ -2297,6 +4032,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2325,38 +4077,42 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceLoadVdpData
+     * Operation designAtomsServiceLoadProductFromResource
      *
-     * Loads variable data printing information from design file taken from storage
+     * Loads product (design model) from resource file taken from storage
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Resource identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; resource will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\VdpDataModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsServiceLoadVdpData($id, $tenant_id = null)
+    public function designAtomsServiceLoadProductFromResource($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        list($response) = $this->designAtomsServiceLoadVdpDataWithHttpInfo($id, $tenant_id);
+        list($response) = $this->designAtomsServiceLoadProductFromResourceWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id);
         return $response;
     }
 
     /**
-     * Operation designAtomsServiceLoadVdpDataWithHttpInfo
+     * Operation designAtomsServiceLoadProductFromResourceWithHttpInfo
      *
-     * Loads variable data printing information from design file taken from storage
+     * Loads product (design model) from resource file taken from storage
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Resource identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; resource will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\VdpDataModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsServiceLoadVdpDataWithHttpInfo($id, $tenant_id = null)
+    public function designAtomsServiceLoadProductFromResourceWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        $request = $this->designAtomsServiceLoadVdpDataRequest($id, $tenant_id);
+        $request = $this->designAtomsServiceLoadProductFromResourceRequest($id, $private_storage, $private_storage_owner, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2388,14 +4144,14 @@ class DesignAtomsServiceApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Aurigma\DesignAtoms\Model\VdpDataModel' === '\SplFileObject') {
+                    if ('mixed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\VdpDataModel', []),
+                        ObjectSerializer::deserialize($content, 'mixed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2411,7 +4167,19 @@ class DesignAtomsServiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
+                case 422:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
                     if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2425,7 +4193,7 @@ class DesignAtomsServiceApi
                     ];
             }
 
-            $returnType = '\Aurigma\DesignAtoms\Model\VdpDataModel';
+            $returnType = 'mixed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2443,7 +4211,7 @@ class DesignAtomsServiceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\VdpDataModel',
+                        'mixed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2456,7 +4224,15 @@ class DesignAtomsServiceApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 409:
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -2470,19 +4246,21 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceLoadVdpDataAsync
+     * Operation designAtomsServiceLoadProductFromResourceAsync
      *
-     * Loads variable data printing information from design file taken from storage
+     * Loads product (design model) from resource file taken from storage
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Resource identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; resource will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceLoadVdpDataAsync($id, $tenant_id = null)
+    public function designAtomsServiceLoadProductFromResourceAsync($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        return $this->designAtomsServiceLoadVdpDataAsyncWithHttpInfo($id, $tenant_id)
+        return $this->designAtomsServiceLoadProductFromResourceAsyncWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2491,20 +4269,22 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceLoadVdpDataAsyncWithHttpInfo
+     * Operation designAtomsServiceLoadProductFromResourceAsyncWithHttpInfo
      *
-     * Loads variable data printing information from design file taken from storage
+     * Loads product (design model) from resource file taken from storage
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Resource identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; resource will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceLoadVdpDataAsyncWithHttpInfo($id, $tenant_id = null)
+    public function designAtomsServiceLoadProductFromResourceAsyncWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        $returnType = '\Aurigma\DesignAtoms\Model\VdpDataModel';
-        $request = $this->designAtomsServiceLoadVdpDataRequest($id, $tenant_id);
+        $returnType = 'mixed';
+        $request = $this->designAtomsServiceLoadProductFromResourceRequest($id, $private_storage, $private_storage_owner, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2540,30 +4320,54 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Create request for operation 'designAtomsServiceLoadVdpData'
+     * Create request for operation 'designAtomsServiceLoadProductFromResource'
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Resource identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; resource will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsServiceLoadVdpDataRequest($id, $tenant_id = null)
+    public function designAtomsServiceLoadProductFromResourceRequest($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling designAtomsServiceLoadVdpData'
+                'Missing the required parameter $id when calling designAtomsServiceLoadProductFromResource'
             );
         }
 
-        $resourcePath = '/api/atoms/v1/designs/{id}/vdpData';
+        $resourcePath = '/api/atoms/v1/resources/{id}/as-design/model';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($private_storage !== null) {
+            if('form' === 'form' && is_array($private_storage)) {
+                foreach($private_storage as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorage'] = $private_storage;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
         // query params
         if ($tenant_id !== null) {
             if('form' === 'form' && is_array($tenant_id)) {
@@ -2636,6 +4440,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2664,40 +4485,42 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceRenderProduct
+     * Operation designAtomsServiceLoadVdpData
      *
-     * Render product proof image with specified parameters.
+     * Loads variable data printing information from design file taken from storage
      *
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SplFileObject
+     * @return \Aurigma\DesignAtoms\Model\VdpDataModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsServiceRenderProduct($attachment = null, $tenant_id = null, $render_product_model = null)
+    public function designAtomsServiceLoadVdpData($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        list($response) = $this->designAtomsServiceRenderProductWithHttpInfo($attachment, $tenant_id, $render_product_model);
+        list($response) = $this->designAtomsServiceLoadVdpDataWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id);
         return $response;
     }
 
     /**
-     * Operation designAtomsServiceRenderProductWithHttpInfo
+     * Operation designAtomsServiceLoadVdpDataWithHttpInfo
      *
-     * Render product proof image with specified parameters.
+     * Loads variable data printing information from design file taken from storage
      *
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\VdpDataModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsServiceRenderProductWithHttpInfo($attachment = null, $tenant_id = null, $render_product_model = null)
+    public function designAtomsServiceLoadVdpDataWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        $request = $this->designAtomsServiceRenderProductRequest($attachment, $tenant_id, $render_product_model);
+        $request = $this->designAtomsServiceLoadVdpDataRequest($id, $private_storage, $private_storage_owner, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2729,20 +4552,56 @@ class DesignAtomsServiceApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\SplFileObject' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\VdpDataModel' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\VdpDataModel', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\SplFileObject';
+            $returnType = '\Aurigma\DesignAtoms\Model\VdpDataModel';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2760,7 +4619,31 @@ class DesignAtomsServiceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\SplFileObject',
+                        '\Aurigma\DesignAtoms\Model\VdpDataModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2771,20 +4654,21 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceRenderProductAsync
+     * Operation designAtomsServiceLoadVdpDataAsync
      *
-     * Render product proof image with specified parameters.
+     * Loads variable data printing information from design file taken from storage
      *
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceRenderProductAsync($attachment = null, $tenant_id = null, $render_product_model = null)
+    public function designAtomsServiceLoadVdpDataAsync($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        return $this->designAtomsServiceRenderProductAsyncWithHttpInfo($attachment, $tenant_id, $render_product_model)
+        return $this->designAtomsServiceLoadVdpDataAsyncWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2793,21 +4677,22 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceRenderProductAsyncWithHttpInfo
+     * Operation designAtomsServiceLoadVdpDataAsyncWithHttpInfo
      *
-     * Render product proof image with specified parameters.
+     * Loads variable data printing information from design file taken from storage
      *
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceRenderProductAsyncWithHttpInfo($attachment = null, $tenant_id = null, $render_product_model = null)
+    public function designAtomsServiceLoadVdpDataAsyncWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
-        $returnType = '\SplFileObject';
-        $request = $this->designAtomsServiceRenderProductRequest($attachment, $tenant_id, $render_product_model);
+        $returnType = '\Aurigma\DesignAtoms\Model\VdpDataModel';
+        $request = $this->designAtomsServiceLoadVdpDataRequest($id, $private_storage, $private_storage_owner, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2843,19 +4728,26 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Create request for operation 'designAtomsServiceRenderProduct'
+     * Create request for operation 'designAtomsServiceLoadVdpData'
      *
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsServiceRenderProductRequest($attachment = null, $tenant_id = null, $render_product_model = null)
+    public function designAtomsServiceLoadVdpDataRequest($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null)
     {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsServiceLoadVdpData'
+            );
+        }
 
-        $resourcePath = '/api/atoms/v1/renderer';
+        $resourcePath = '/api/atoms/v1/designs/{id}/vdpData';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2863,14 +4755,25 @@ class DesignAtomsServiceApi
         $multipart = false;
 
         // query params
-        if ($attachment !== null) {
-            if('form' === 'form' && is_array($attachment)) {
-                foreach($attachment as $key => $value) {
+        if ($private_storage !== null) {
+            if('form' === 'form' && is_array($private_storage)) {
+                foreach($private_storage as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['attachment'] = $attachment;
+                $queryParams['privateStorage'] = $private_storage;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
             }
         }
         // query params
@@ -2886,6 +4789,14 @@ class DesignAtomsServiceApi
         }
 
 
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
 
 
         if ($multipart) {
@@ -2895,18 +4806,12 @@ class DesignAtomsServiceApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                ['application/json']
+                []
             );
         }
 
         // for model (json/xml)
-        if (isset($render_product_model)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($render_product_model));
-            } else {
-                $httpBody = $render_product_model;
-            }
-        } elseif (count($formParams) > 0) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2943,6 +4848,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2963,7 +4885,7 @@ class DesignAtomsServiceApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'POST',
+            'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -2971,39 +4893,53 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceSaveDataSchema
+     * Operation designAtomsServicePatchProduct
      *
-     * Saves data schema to design file and updates design in storage.
+     * Patches product (design model) in design file.
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Design identifier. (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \SplFileObject $schema Data schema binary file (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type patch_type (optional)
+     * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
+     * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
+     * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function designAtomsServiceSaveDataSchema($id, $tenant_id = null, $schema = null)
+    public function designAtomsServicePatchProduct($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $patch_type = null, $replace_image_item_file_info_item_name = null, $replace_image_item_file_info_source_file = null, $replace_placeholder_item_content_info_placeholder_item_name = null, $replace_placeholder_item_content_info_new_content_type = null, $replace_placeholder_item_content_info_source_file = null)
     {
-        $this->designAtomsServiceSaveDataSchemaWithHttpInfo($id, $tenant_id, $schema);
+        $this->designAtomsServicePatchProductWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id, $patch_type, $replace_image_item_file_info_item_name, $replace_image_item_file_info_source_file, $replace_placeholder_item_content_info_placeholder_item_name, $replace_placeholder_item_content_info_new_content_type, $replace_placeholder_item_content_info_source_file);
     }
 
     /**
-     * Operation designAtomsServiceSaveDataSchemaWithHttpInfo
+     * Operation designAtomsServicePatchProductWithHttpInfo
      *
-     * Saves data schema to design file and updates design in storage.
+     * Patches product (design model) in design file.
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Design identifier. (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \SplFileObject $schema Data schema binary file (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
+     * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
+     * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsServiceSaveDataSchemaWithHttpInfo($id, $tenant_id = null, $schema = null)
+    public function designAtomsServicePatchProductWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $patch_type = null, $replace_image_item_file_info_item_name = null, $replace_image_item_file_info_source_file = null, $replace_placeholder_item_content_info_placeholder_item_name = null, $replace_placeholder_item_content_info_new_content_type = null, $replace_placeholder_item_content_info_source_file = null)
     {
-        $request = $this->designAtomsServiceSaveDataSchemaRequest($id, $tenant_id, $schema);
+        $request = $this->designAtomsServicePatchProductRequest($id, $private_storage, $private_storage_owner, $tenant_id, $patch_type, $replace_image_item_file_info_item_name, $replace_image_item_file_info_source_file, $replace_placeholder_item_content_info_placeholder_item_name, $replace_placeholder_item_content_info_new_content_type, $replace_placeholder_item_content_info_source_file);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3045,26 +4981,41 @@ class DesignAtomsServiceApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
     }
 
     /**
-     * Operation designAtomsServiceSaveDataSchemaAsync
+     * Operation designAtomsServicePatchProductAsync
      *
-     * Saves data schema to design file and updates design in storage.
+     * Patches product (design model) in design file.
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Design identifier. (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \SplFileObject $schema Data schema binary file (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
+     * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
+     * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceSaveDataSchemaAsync($id, $tenant_id = null, $schema = null)
+    public function designAtomsServicePatchProductAsync($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $patch_type = null, $replace_image_item_file_info_item_name = null, $replace_image_item_file_info_source_file = null, $replace_placeholder_item_content_info_placeholder_item_name = null, $replace_placeholder_item_content_info_new_content_type = null, $replace_placeholder_item_content_info_source_file = null)
     {
-        return $this->designAtomsServiceSaveDataSchemaAsyncWithHttpInfo($id, $tenant_id, $schema)
+        return $this->designAtomsServicePatchProductAsyncWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id, $patch_type, $replace_image_item_file_info_item_name, $replace_image_item_file_info_source_file, $replace_placeholder_item_content_info_placeholder_item_name, $replace_placeholder_item_content_info_new_content_type, $replace_placeholder_item_content_info_source_file)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3073,21 +5024,28 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Operation designAtomsServiceSaveDataSchemaAsyncWithHttpInfo
+     * Operation designAtomsServicePatchProductAsyncWithHttpInfo
      *
-     * Saves data schema to design file and updates design in storage.
+     * Patches product (design model) in design file.
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Design identifier. (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \SplFileObject $schema Data schema binary file (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
+     * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
+     * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceSaveDataSchemaAsyncWithHttpInfo($id, $tenant_id = null, $schema = null)
+    public function designAtomsServicePatchProductAsyncWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $patch_type = null, $replace_image_item_file_info_item_name = null, $replace_image_item_file_info_source_file = null, $replace_placeholder_item_content_info_placeholder_item_name = null, $replace_placeholder_item_content_info_new_content_type = null, $replace_placeholder_item_content_info_source_file = null)
     {
         $returnType = '';
-        $request = $this->designAtomsServiceSaveDataSchemaRequest($id, $tenant_id, $schema);
+        $request = $this->designAtomsServicePatchProductRequest($id, $private_storage, $private_storage_owner, $tenant_id, $patch_type, $replace_image_item_file_info_item_name, $replace_image_item_file_info_source_file, $replace_placeholder_item_content_info_placeholder_item_name, $replace_placeholder_item_content_info_new_content_type, $replace_placeholder_item_content_info_source_file);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3113,31 +5071,60 @@ class DesignAtomsServiceApi
     }
 
     /**
-     * Create request for operation 'designAtomsServiceSaveDataSchema'
+     * Create request for operation 'designAtomsServicePatchProduct'
      *
-     * @param  string $id Design identifier (required)
+     * @param  string $id Design identifier. (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \SplFileObject $schema Data schema binary file (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
+     * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
+     * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsServiceSaveDataSchemaRequest($id, $tenant_id = null, $schema = null)
+    public function designAtomsServicePatchProductRequest($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $patch_type = null, $replace_image_item_file_info_item_name = null, $replace_image_item_file_info_source_file = null, $replace_placeholder_item_content_info_placeholder_item_name = null, $replace_placeholder_item_content_info_new_content_type = null, $replace_placeholder_item_content_info_source_file = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling designAtomsServiceSaveDataSchema'
+                'Missing the required parameter $id when calling designAtomsServicePatchProduct'
             );
         }
 
-        $resourcePath = '/api/atoms/v1/designs/{id}/schema';
+        $resourcePath = '/api/atoms/v1/designs/{id}/model';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($private_storage !== null) {
+            if('form' === 'form' && is_array($private_storage)) {
+                foreach($private_storage as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorage'] = $private_storage;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
         // query params
         if ($tenant_id !== null) {
             if('form' === 'form' && is_array($tenant_id)) {
@@ -3160,15 +5147,45 @@ class DesignAtomsServiceApi
             );
         }
 
+        // form params
+        if ($patch_type !== null) {
+            $formParams['patchType'] = ObjectSerializer::toFormValue($patch_type);
+        }
+        // form params
+        if ($replace_image_item_file_info_item_name !== null) {
+            $formParams['replaceImageItemFileInfo.itemName'] = ObjectSerializer::toFormValue($replace_image_item_file_info_item_name);
+        }
         // aurigmafix 5
         $multipart = true;
         // form params
-        if ($schema !== null) {
+        if ($replace_image_item_file_info_source_file !== null) {
             $multipart = true;
-            $formParams['schema'] = [];
-            $paramFiles = is_array($schema) ? $schema : [$schema];
+            $formParams['replaceImageItemFileInfo.sourceFile'] = [];
+            $paramFiles = is_array($replace_image_item_file_info_source_file) ? $replace_image_item_file_info_source_file : [$replace_image_item_file_info_source_file];
             foreach ($paramFiles as $paramFile) {
-                $formParams['schema'][] = \GuzzleHttp\Psr7\try_fopen(
+                $formParams['replaceImageItemFileInfo.sourceFile'][] = \GuzzleHttp\Psr7\try_fopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
+        }
+        // form params
+        if ($replace_placeholder_item_content_info_placeholder_item_name !== null) {
+            $formParams['replacePlaceholderItemContentInfo.placeholderItemName'] = ObjectSerializer::toFormValue($replace_placeholder_item_content_info_placeholder_item_name);
+        }
+        // form params
+        if ($replace_placeholder_item_content_info_new_content_type !== null) {
+            $formParams['replacePlaceholderItemContentInfo.newContentType'] = ObjectSerializer::toFormValue($replace_placeholder_item_content_info_new_content_type);
+        }
+        // aurigmafix 5
+        $multipart = true;
+        // form params
+        if ($replace_placeholder_item_content_info_source_file !== null) {
+            $multipart = true;
+            $formParams['replacePlaceholderItemContentInfo.sourceFile'] = [];
+            $paramFiles = is_array($replace_placeholder_item_content_info_source_file) ? $replace_placeholder_item_content_info_source_file : [$replace_placeholder_item_content_info_source_file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['replacePlaceholderItemContentInfo.sourceFile'][] = \GuzzleHttp\Psr7\try_fopen(
                     ObjectSerializer::toFormValue($paramFile),
                     'rb'
                 );
@@ -3224,6 +5241,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3244,7 +5278,1039 @@ class DesignAtomsServiceApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'PUT',
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsServiceRenderDesignPreview
+     *
+     * Renders a design preview with the specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsServiceRenderDesignPreview($attachment = null, $tenant_id = null, $render_design_preview_model = null)
+    {
+        list($response) = $this->designAtomsServiceRenderDesignPreviewWithHttpInfo($attachment, $tenant_id, $render_design_preview_model);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsServiceRenderDesignPreviewWithHttpInfo
+     *
+     * Renders a design preview with the specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsServiceRenderDesignPreviewWithHttpInfo($attachment = null, $tenant_id = null, $render_design_preview_model = null)
+    {
+        $request = $this->designAtomsServiceRenderDesignPreviewRequest($attachment, $tenant_id, $render_design_preview_model);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SplFileObject' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\SplFileObject';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SplFileObject',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsServiceRenderDesignPreviewAsync
+     *
+     * Renders a design preview with the specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceRenderDesignPreviewAsync($attachment = null, $tenant_id = null, $render_design_preview_model = null)
+    {
+        return $this->designAtomsServiceRenderDesignPreviewAsyncWithHttpInfo($attachment, $tenant_id, $render_design_preview_model)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsServiceRenderDesignPreviewAsyncWithHttpInfo
+     *
+     * Renders a design preview with the specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceRenderDesignPreviewAsyncWithHttpInfo($attachment = null, $tenant_id = null, $render_design_preview_model = null)
+    {
+        $returnType = '\SplFileObject';
+        $request = $this->designAtomsServiceRenderDesignPreviewRequest($attachment, $tenant_id, $render_design_preview_model);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsServiceRenderDesignPreview'
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsServiceRenderDesignPreviewRequest($attachment = null, $tenant_id = null, $render_design_preview_model = null)
+    {
+
+        $resourcePath = '/api/atoms/v1/render-design-preview';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($attachment !== null) {
+            if('form' === 'form' && is_array($attachment)) {
+                foreach($attachment as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['attachment'] = $attachment;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/octet-stream', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/octet-stream', 'application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($render_design_preview_model)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($render_design_preview_model));
+            } else {
+                $httpBody = $render_design_preview_model;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsServiceRenderDesignProof
+     *
+     * Renders a design proof with the specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsServiceRenderDesignProof($attachment = null, $tenant_id = null, $render_design_proof_model = null)
+    {
+        list($response) = $this->designAtomsServiceRenderDesignProofWithHttpInfo($attachment, $tenant_id, $render_design_proof_model);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsServiceRenderDesignProofWithHttpInfo
+     *
+     * Renders a design proof with the specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsServiceRenderDesignProofWithHttpInfo($attachment = null, $tenant_id = null, $render_design_proof_model = null)
+    {
+        $request = $this->designAtomsServiceRenderDesignProofRequest($attachment, $tenant_id, $render_design_proof_model);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SplFileObject' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\SplFileObject';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SplFileObject',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsServiceRenderDesignProofAsync
+     *
+     * Renders a design proof with the specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceRenderDesignProofAsync($attachment = null, $tenant_id = null, $render_design_proof_model = null)
+    {
+        return $this->designAtomsServiceRenderDesignProofAsyncWithHttpInfo($attachment, $tenant_id, $render_design_proof_model)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsServiceRenderDesignProofAsyncWithHttpInfo
+     *
+     * Renders a design proof with the specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceRenderDesignProofAsyncWithHttpInfo($attachment = null, $tenant_id = null, $render_design_proof_model = null)
+    {
+        $returnType = '\SplFileObject';
+        $request = $this->designAtomsServiceRenderDesignProofRequest($attachment, $tenant_id, $render_design_proof_model);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsServiceRenderDesignProof'
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsServiceRenderDesignProofRequest($attachment = null, $tenant_id = null, $render_design_proof_model = null)
+    {
+
+        $resourcePath = '/api/atoms/v1/render-design-proof';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($attachment !== null) {
+            if('form' === 'form' && is_array($attachment)) {
+                foreach($attachment as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['attachment'] = $attachment;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/octet-stream', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/octet-stream', 'application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($render_design_proof_model)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($render_design_proof_model));
+            } else {
+                $httpBody = $render_design_proof_model;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsServiceRenderProduct
+     *
+     * Render product proof image with specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsServiceRenderProduct($attachment = null, $tenant_id = null, $render_product_model = null)
+    {
+        list($response) = $this->designAtomsServiceRenderProductWithHttpInfo($attachment, $tenant_id, $render_product_model);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsServiceRenderProductWithHttpInfo
+     *
+     * Render product proof image with specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsServiceRenderProductWithHttpInfo($attachment = null, $tenant_id = null, $render_product_model = null)
+    {
+        $request = $this->designAtomsServiceRenderProductRequest($attachment, $tenant_id, $render_product_model);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SplFileObject' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\SplFileObject';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SplFileObject',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsServiceRenderProductAsync
+     *
+     * Render product proof image with specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceRenderProductAsync($attachment = null, $tenant_id = null, $render_product_model = null)
+    {
+        return $this->designAtomsServiceRenderProductAsyncWithHttpInfo($attachment, $tenant_id, $render_product_model)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsServiceRenderProductAsyncWithHttpInfo
+     *
+     * Render product proof image with specified parameters.
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceRenderProductAsyncWithHttpInfo($attachment = null, $tenant_id = null, $render_product_model = null)
+    {
+        $returnType = '\SplFileObject';
+        $request = $this->designAtomsServiceRenderProductRequest($attachment, $tenant_id, $render_product_model);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsServiceRenderProduct'
+     *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsServiceRenderProductRequest($attachment = null, $tenant_id = null, $render_product_model = null)
+    {
+
+        $resourcePath = '/api/atoms/v1/renderer';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($attachment !== null) {
+            if('form' === 'form' && is_array($attachment)) {
+                foreach($attachment as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['attachment'] = $attachment;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/octet-stream', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/octet-stream', 'application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($render_product_model)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($render_product_model));
+            } else {
+                $httpBody = $render_product_model;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -3254,7 +6320,7 @@ class DesignAtomsServiceApi
     /**
      * Operation designAtomsServiceSaveProduct
      *
-     * Saves product to design file and updates design in storage.
+     * Saves product (design model) to design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
      * @param  bool $private_storage If set to &#39;true&#39; design will be saved to private storage (optional)
@@ -3274,7 +6340,7 @@ class DesignAtomsServiceApi
     /**
      * Operation designAtomsServiceSaveProductWithHttpInfo
      *
-     * Saves product to design file and updates design in storage.
+     * Saves product (design model) to design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
      * @param  bool $private_storage If set to &#39;true&#39; design will be saved to private storage (optional)
@@ -3330,6 +6396,14 @@ class DesignAtomsServiceApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -3338,7 +6412,7 @@ class DesignAtomsServiceApi
     /**
      * Operation designAtomsServiceSaveProductAsync
      *
-     * Saves product to design file and updates design in storage.
+     * Saves product (design model) to design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
      * @param  bool $private_storage If set to &#39;true&#39; design will be saved to private storage (optional)
@@ -3362,7 +6436,7 @@ class DesignAtomsServiceApi
     /**
      * Operation designAtomsServiceSaveProductAsyncWithHttpInfo
      *
-     * Saves product to design file and updates design in storage.
+     * Saves product (design model) to design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
      * @param  bool $private_storage If set to &#39;true&#39; design will be saved to private storage (optional)
@@ -3529,6 +6603,23 @@ class DesignAtomsServiceApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3562,6 +6653,8 @@ class DesignAtomsServiceApi
      * Saves variable data printing information to design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data (optional)
      *
@@ -3569,9 +6662,9 @@ class DesignAtomsServiceApi
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function designAtomsServiceSaveVdpData($id, $tenant_id = null, $vdp_data_model = null)
+    public function designAtomsServiceSaveVdpData($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $vdp_data_model = null)
     {
-        $this->designAtomsServiceSaveVdpDataWithHttpInfo($id, $tenant_id, $vdp_data_model);
+        $this->designAtomsServiceSaveVdpDataWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id, $vdp_data_model);
     }
 
     /**
@@ -3580,6 +6673,8 @@ class DesignAtomsServiceApi
      * Saves variable data printing information to design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data (optional)
      *
@@ -3587,9 +6682,9 @@ class DesignAtomsServiceApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsServiceSaveVdpDataWithHttpInfo($id, $tenant_id = null, $vdp_data_model = null)
+    public function designAtomsServiceSaveVdpDataWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $vdp_data_model = null)
     {
-        $request = $this->designAtomsServiceSaveVdpDataRequest($id, $tenant_id, $vdp_data_model);
+        $request = $this->designAtomsServiceSaveVdpDataRequest($id, $private_storage, $private_storage_owner, $tenant_id, $vdp_data_model);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3631,6 +6726,14 @@ class DesignAtomsServiceApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -3642,15 +6745,17 @@ class DesignAtomsServiceApi
      * Saves variable data printing information to design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceSaveVdpDataAsync($id, $tenant_id = null, $vdp_data_model = null)
+    public function designAtomsServiceSaveVdpDataAsync($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $vdp_data_model = null)
     {
-        return $this->designAtomsServiceSaveVdpDataAsyncWithHttpInfo($id, $tenant_id, $vdp_data_model)
+        return $this->designAtomsServiceSaveVdpDataAsyncWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id, $vdp_data_model)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3664,16 +6769,18 @@ class DesignAtomsServiceApi
      * Saves variable data printing information to design file and updates design in storage.
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsServiceSaveVdpDataAsyncWithHttpInfo($id, $tenant_id = null, $vdp_data_model = null)
+    public function designAtomsServiceSaveVdpDataAsyncWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $vdp_data_model = null)
     {
         $returnType = '';
-        $request = $this->designAtomsServiceSaveVdpDataRequest($id, $tenant_id, $vdp_data_model);
+        $request = $this->designAtomsServiceSaveVdpDataRequest($id, $private_storage, $private_storage_owner, $tenant_id, $vdp_data_model);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3702,13 +6809,15 @@ class DesignAtomsServiceApi
      * Create request for operation 'designAtomsServiceSaveVdpData'
      *
      * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsServiceSaveVdpDataRequest($id, $tenant_id = null, $vdp_data_model = null)
+    public function designAtomsServiceSaveVdpDataRequest($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $vdp_data_model = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -3724,6 +6833,28 @@ class DesignAtomsServiceApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($private_storage !== null) {
+            if('form' === 'form' && is_array($private_storage)) {
+                foreach($private_storage as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorage'] = $private_storage;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
         // query params
         if ($tenant_id !== null) {
             if('form' === 'form' && is_array($tenant_id)) {
@@ -3801,6 +6932,361 @@ class DesignAtomsServiceApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PUT',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsServiceSetVariables
+     *
+     * Sets variable items values for design file taken from storage
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function designAtomsServiceSetVariables($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $variables_model = null)
+    {
+        $this->designAtomsServiceSetVariablesWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id, $variables_model);
+    }
+
+    /**
+     * Operation designAtomsServiceSetVariablesWithHttpInfo
+     *
+     * Sets variable items values for design file taken from storage
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsServiceSetVariablesWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $variables_model = null)
+    {
+        $request = $this->designAtomsServiceSetVariablesRequest($id, $private_storage, $private_storage_owner, $tenant_id, $variables_model);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsServiceSetVariablesAsync
+     *
+     * Sets variable items values for design file taken from storage
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceSetVariablesAsync($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $variables_model = null)
+    {
+        return $this->designAtomsServiceSetVariablesAsyncWithHttpInfo($id, $private_storage, $private_storage_owner, $tenant_id, $variables_model)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsServiceSetVariablesAsyncWithHttpInfo
+     *
+     * Sets variable items values for design file taken from storage
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceSetVariablesAsyncWithHttpInfo($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $variables_model = null)
+    {
+        $returnType = '';
+        $request = $this->designAtomsServiceSetVariablesRequest($id, $private_storage, $private_storage_owner, $tenant_id, $variables_model);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsServiceSetVariables'
+     *
+     * @param  string $id Design identifier (required)
+     * @param  bool $private_storage If set to &#39;true&#39; design will be taken from private storage (optional)
+     * @param  string $private_storage_owner Private storage owner identifier (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsServiceSetVariablesRequest($id, $private_storage = null, $private_storage_owner = null, $tenant_id = null, $variables_model = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsServiceSetVariables'
+            );
+        }
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/variables';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($private_storage !== null) {
+            if('form' === 'form' && is_array($private_storage)) {
+                foreach($private_storage as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorage'] = $private_storage;
+            }
+        }
+        // query params
+        if ($private_storage_owner !== null) {
+            if('form' === 'form' && is_array($private_storage_owner)) {
+                foreach($private_storage_owner as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['privateStorageOwner'] = $private_storage_owner;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($variables_model)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($variables_model));
+            } else {
+                $httpBody = $variables_model;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodData
+ * UnprocessableDesignElementDto
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * FontsMethodData Class Doc Comment
+ * UnprocessableDesignElementDto Class Doc Comment
  *
  * @category Class
  * @package  Aurigma\DesignAtoms
@@ -42,7 +42,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
+class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FontsMethodData';
+    protected static $openAPIModelName = 'UnprocessableDesignElementDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +59,8 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'requested_fonts_by_ps_name' => 'string[]',
-        'advanced_mode' => 'bool',
-        'base_url' => 'string'
+        'description' => 'string',
+        'missing_element_type' => '\Aurigma\DesignAtoms\Model\DesignElementType'
     ];
 
     /**
@@ -72,9 +71,8 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'requested_fonts_by_ps_name' => null,
-        'advanced_mode' => null,
-        'base_url' => null
+        'description' => null,
+        'missing_element_type' => null
     ];
 
     /**
@@ -104,9 +102,8 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'requested_fonts_by_ps_name' => 'requestedFontsByPsName',
-        'advanced_mode' => 'advancedMode',
-        'base_url' => 'baseUrl'
+        'description' => 'description',
+        'missing_element_type' => 'missingElementType'
     ];
 
     /**
@@ -115,9 +112,8 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'requested_fonts_by_ps_name' => 'setRequestedFontsByPsName',
-        'advanced_mode' => 'setAdvancedMode',
-        'base_url' => 'setBaseUrl'
+        'description' => 'setDescription',
+        'missing_element_type' => 'setMissingElementType'
     ];
 
     /**
@@ -126,9 +122,8 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'requested_fonts_by_ps_name' => 'getRequestedFontsByPsName',
-        'advanced_mode' => 'getAdvancedMode',
-        'base_url' => 'getBaseUrl'
+        'description' => 'getDescription',
+        'missing_element_type' => 'getMissingElementType'
     ];
 
     /**
@@ -188,9 +183,8 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['requested_fonts_by_ps_name'] = $data['requested_fonts_by_ps_name'] ?? null;
-        $this->container['advanced_mode'] = $data['advanced_mode'] ?? null;
-        $this->container['base_url'] = $data['base_url'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['missing_element_type'] = $data['missing_element_type'] ?? null;
     }
 
     /**
@@ -218,73 +212,49 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets requested_fonts_by_ps_name
-     *
-     * @return string[]|null
-     */
-    public function getRequestedFontsByPsName()
-    {
-        return $this->container['requested_fonts_by_ps_name'];
-    }
-
-    /**
-     * Sets requested_fonts_by_ps_name
-     *
-     * @param string[]|null $requested_fonts_by_ps_name requested_fonts_by_ps_name
-     *
-     * @return self
-     */
-    public function setRequestedFontsByPsName($requested_fonts_by_ps_name)
-    {
-        $this->container['requested_fonts_by_ps_name'] = $requested_fonts_by_ps_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets advanced_mode
-     *
-     * @return bool|null
-     */
-    public function getAdvancedMode()
-    {
-        return $this->container['advanced_mode'];
-    }
-
-    /**
-     * Sets advanced_mode
-     *
-     * @param bool|null $advanced_mode advanced_mode
-     *
-     * @return self
-     */
-    public function setAdvancedMode($advanced_mode)
-    {
-        $this->container['advanced_mode'] = $advanced_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets base_url
+     * Gets description
      *
      * @return string|null
      */
-    public function getBaseUrl()
+    public function getDescription()
     {
-        return $this->container['base_url'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets base_url
+     * Sets description
      *
-     * @param string|null $base_url base_url
+     * @param string|null $description Problem description.
      *
      * @return self
      */
-    public function setBaseUrl($base_url)
+    public function setDescription($description)
     {
-        $this->container['base_url'] = $base_url;
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets missing_element_type
+     *
+     * @return \Aurigma\DesignAtoms\Model\DesignElementType|null
+     */
+    public function getMissingElementType()
+    {
+        return $this->container['missing_element_type'];
+    }
+
+    /**
+     * Sets missing_element_type
+     *
+     * @param \Aurigma\DesignAtoms\Model\DesignElementType|null $missing_element_type missing_element_type
+     *
+     * @return self
+     */
+    public function setMissingElementType($missing_element_type)
+    {
+        $this->container['missing_element_type'] = $missing_element_type;
 
         return $this;
     }

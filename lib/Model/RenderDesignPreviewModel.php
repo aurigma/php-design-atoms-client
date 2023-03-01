@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodData
+ * RenderDesignPreviewModel
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * FontsMethodData Class Doc Comment
+ * RenderDesignPreviewModel Class Doc Comment
  *
  * @category Class
  * @package  Aurigma\DesignAtoms
@@ -42,7 +42,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
+class RenderDesignPreviewModel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FontsMethodData';
+    protected static $openAPIModelName = 'RenderDesignPreviewModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +59,11 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'requested_fonts_by_ps_name' => 'string[]',
-        'advanced_mode' => 'bool',
-        'base_url' => 'string'
+        'design_id' => 'string',
+        'mockup_id' => 'string',
+        'owner_id' => 'string',
+        'rendering_config' => '\Aurigma\DesignAtoms\Model\ProductPreviewRenderingConfig',
+        'variable_data' => '\Aurigma\DesignAtoms\Model\VariableInfo[]'
     ];
 
     /**
@@ -72,9 +74,11 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'requested_fonts_by_ps_name' => null,
-        'advanced_mode' => null,
-        'base_url' => null
+        'design_id' => null,
+        'mockup_id' => null,
+        'owner_id' => null,
+        'rendering_config' => null,
+        'variable_data' => null
     ];
 
     /**
@@ -104,9 +108,11 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'requested_fonts_by_ps_name' => 'requestedFontsByPsName',
-        'advanced_mode' => 'advancedMode',
-        'base_url' => 'baseUrl'
+        'design_id' => 'designId',
+        'mockup_id' => 'mockupId',
+        'owner_id' => 'ownerId',
+        'rendering_config' => 'renderingConfig',
+        'variable_data' => 'variableData'
     ];
 
     /**
@@ -115,9 +121,11 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'requested_fonts_by_ps_name' => 'setRequestedFontsByPsName',
-        'advanced_mode' => 'setAdvancedMode',
-        'base_url' => 'setBaseUrl'
+        'design_id' => 'setDesignId',
+        'mockup_id' => 'setMockupId',
+        'owner_id' => 'setOwnerId',
+        'rendering_config' => 'setRenderingConfig',
+        'variable_data' => 'setVariableData'
     ];
 
     /**
@@ -126,9 +134,11 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'requested_fonts_by_ps_name' => 'getRequestedFontsByPsName',
-        'advanced_mode' => 'getAdvancedMode',
-        'base_url' => 'getBaseUrl'
+        'design_id' => 'getDesignId',
+        'mockup_id' => 'getMockupId',
+        'owner_id' => 'getOwnerId',
+        'rendering_config' => 'getRenderingConfig',
+        'variable_data' => 'getVariableData'
     ];
 
     /**
@@ -188,9 +198,11 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['requested_fonts_by_ps_name'] = $data['requested_fonts_by_ps_name'] ?? null;
-        $this->container['advanced_mode'] = $data['advanced_mode'] ?? null;
-        $this->container['base_url'] = $data['base_url'] ?? null;
+        $this->container['design_id'] = $data['design_id'] ?? null;
+        $this->container['mockup_id'] = $data['mockup_id'] ?? null;
+        $this->container['owner_id'] = $data['owner_id'] ?? null;
+        $this->container['rendering_config'] = $data['rendering_config'] ?? null;
+        $this->container['variable_data'] = $data['variable_data'] ?? null;
     }
 
     /**
@@ -218,73 +230,121 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets requested_fonts_by_ps_name
-     *
-     * @return string[]|null
-     */
-    public function getRequestedFontsByPsName()
-    {
-        return $this->container['requested_fonts_by_ps_name'];
-    }
-
-    /**
-     * Sets requested_fonts_by_ps_name
-     *
-     * @param string[]|null $requested_fonts_by_ps_name requested_fonts_by_ps_name
-     *
-     * @return self
-     */
-    public function setRequestedFontsByPsName($requested_fonts_by_ps_name)
-    {
-        $this->container['requested_fonts_by_ps_name'] = $requested_fonts_by_ps_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets advanced_mode
-     *
-     * @return bool|null
-     */
-    public function getAdvancedMode()
-    {
-        return $this->container['advanced_mode'];
-    }
-
-    /**
-     * Sets advanced_mode
-     *
-     * @param bool|null $advanced_mode advanced_mode
-     *
-     * @return self
-     */
-    public function setAdvancedMode($advanced_mode)
-    {
-        $this->container['advanced_mode'] = $advanced_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets base_url
+     * Gets design_id
      *
      * @return string|null
      */
-    public function getBaseUrl()
+    public function getDesignId()
     {
-        return $this->container['base_url'];
+        return $this->container['design_id'];
     }
 
     /**
-     * Sets base_url
+     * Sets design_id
      *
-     * @param string|null $base_url base_url
+     * @param string|null $design_id Design ID.  Used to get design file from public or private storage.
      *
      * @return self
      */
-    public function setBaseUrl($base_url)
+    public function setDesignId($design_id)
     {
-        $this->container['base_url'] = $base_url;
+        $this->container['design_id'] = $design_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets mockup_id
+     *
+     * @return string|null
+     */
+    public function getMockupId()
+    {
+        return $this->container['mockup_id'];
+    }
+
+    /**
+     * Sets mockup_id
+     *
+     * @param string|null $mockup_id Mockup ID.  Used to get mockup file from public storage.
+     *
+     * @return self
+     */
+    public function setMockupId($mockup_id)
+    {
+        $this->container['mockup_id'] = $mockup_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner_id
+     *
+     * @return string|null
+     */
+    public function getOwnerId()
+    {
+        return $this->container['owner_id'];
+    }
+
+    /**
+     * Sets owner_id
+     *
+     * @param string|null $owner_id ID of the design owner.
+     *
+     * @return self
+     */
+    public function setOwnerId($owner_id)
+    {
+        $this->container['owner_id'] = $owner_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets rendering_config
+     *
+     * @return \Aurigma\DesignAtoms\Model\ProductPreviewRenderingConfig|null
+     */
+    public function getRenderingConfig()
+    {
+        return $this->container['rendering_config'];
+    }
+
+    /**
+     * Sets rendering_config
+     *
+     * @param \Aurigma\DesignAtoms\Model\ProductPreviewRenderingConfig|null $rendering_config rendering_config
+     *
+     * @return self
+     */
+    public function setRenderingConfig($rendering_config)
+    {
+        $this->container['rendering_config'] = $rendering_config;
+
+        return $this;
+    }
+
+    /**
+     * Gets variable_data
+     *
+     * @return \Aurigma\DesignAtoms\Model\VariableInfo[]|null
+     */
+    public function getVariableData()
+    {
+        return $this->container['variable_data'];
+    }
+
+    /**
+     * Sets variable_data
+     *
+     * @param \Aurigma\DesignAtoms\Model\VariableInfo[]|null $variable_data Variable (user) data for design variable fields in the preview image.
+     *
+     * @return self
+     */
+    public function setVariableData($variable_data)
+    {
+        $this->container['variable_data'] = $variable_data;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodData
+ * ProductPreviewRenderingConfig
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * FontsMethodData Class Doc Comment
+ * ProductPreviewRenderingConfig Class Doc Comment
  *
  * @category Class
  * @package  Aurigma\DesignAtoms
@@ -42,7 +42,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProductPreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FontsMethodData';
+    protected static $openAPIModelName = 'ProductPreviewRenderingConfig';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +59,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'requested_fonts_by_ps_name' => 'string[]',
-        'advanced_mode' => 'bool',
-        'base_url' => 'string'
+        'surface_index' => 'int',
+        'width' => 'int',
+        'height' => 'int',
+        'file_format' => '\Aurigma\DesignAtoms\Model\ProductPreviewFormat'
     ];
 
     /**
@@ -72,9 +73,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'requested_fonts_by_ps_name' => null,
-        'advanced_mode' => null,
-        'base_url' => null
+        'surface_index' => 'int32',
+        'width' => 'int32',
+        'height' => 'int32',
+        'file_format' => null
     ];
 
     /**
@@ -104,9 +106,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'requested_fonts_by_ps_name' => 'requestedFontsByPsName',
-        'advanced_mode' => 'advancedMode',
-        'base_url' => 'baseUrl'
+        'surface_index' => 'surfaceIndex',
+        'width' => 'width',
+        'height' => 'height',
+        'file_format' => 'fileFormat'
     ];
 
     /**
@@ -115,9 +118,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'requested_fonts_by_ps_name' => 'setRequestedFontsByPsName',
-        'advanced_mode' => 'setAdvancedMode',
-        'base_url' => 'setBaseUrl'
+        'surface_index' => 'setSurfaceIndex',
+        'width' => 'setWidth',
+        'height' => 'setHeight',
+        'file_format' => 'setFileFormat'
     ];
 
     /**
@@ -126,9 +130,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'requested_fonts_by_ps_name' => 'getRequestedFontsByPsName',
-        'advanced_mode' => 'getAdvancedMode',
-        'base_url' => 'getBaseUrl'
+        'surface_index' => 'getSurfaceIndex',
+        'width' => 'getWidth',
+        'height' => 'getHeight',
+        'file_format' => 'getFileFormat'
     ];
 
     /**
@@ -188,9 +193,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['requested_fonts_by_ps_name'] = $data['requested_fonts_by_ps_name'] ?? null;
-        $this->container['advanced_mode'] = $data['advanced_mode'] ?? null;
-        $this->container['base_url'] = $data['base_url'] ?? null;
+        $this->container['surface_index'] = $data['surface_index'] ?? null;
+        $this->container['width'] = $data['width'] ?? null;
+        $this->container['height'] = $data['height'] ?? null;
+        $this->container['file_format'] = $data['file_format'] ?? null;
     }
 
     /**
@@ -218,73 +224,97 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets requested_fonts_by_ps_name
+     * Gets surface_index
      *
-     * @return string[]|null
+     * @return int|null
      */
-    public function getRequestedFontsByPsName()
+    public function getSurfaceIndex()
     {
-        return $this->container['requested_fonts_by_ps_name'];
+        return $this->container['surface_index'];
     }
 
     /**
-     * Sets requested_fonts_by_ps_name
+     * Sets surface_index
      *
-     * @param string[]|null $requested_fonts_by_ps_name requested_fonts_by_ps_name
+     * @param int|null $surface_index surface_index
      *
      * @return self
      */
-    public function setRequestedFontsByPsName($requested_fonts_by_ps_name)
+    public function setSurfaceIndex($surface_index)
     {
-        $this->container['requested_fonts_by_ps_name'] = $requested_fonts_by_ps_name;
+        $this->container['surface_index'] = $surface_index;
 
         return $this;
     }
 
     /**
-     * Gets advanced_mode
+     * Gets width
      *
-     * @return bool|null
+     * @return int|null
      */
-    public function getAdvancedMode()
+    public function getWidth()
     {
-        return $this->container['advanced_mode'];
+        return $this->container['width'];
     }
 
     /**
-     * Sets advanced_mode
+     * Sets width
      *
-     * @param bool|null $advanced_mode advanced_mode
+     * @param int|null $width width
      *
      * @return self
      */
-    public function setAdvancedMode($advanced_mode)
+    public function setWidth($width)
     {
-        $this->container['advanced_mode'] = $advanced_mode;
+        $this->container['width'] = $width;
 
         return $this;
     }
 
     /**
-     * Gets base_url
+     * Gets height
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getBaseUrl()
+    public function getHeight()
     {
-        return $this->container['base_url'];
+        return $this->container['height'];
     }
 
     /**
-     * Sets base_url
+     * Sets height
      *
-     * @param string|null $base_url base_url
+     * @param int|null $height height
      *
      * @return self
      */
-    public function setBaseUrl($base_url)
+    public function setHeight($height)
     {
-        $this->container['base_url'] = $base_url;
+        $this->container['height'] = $height;
+
+        return $this;
+    }
+
+    /**
+     * Gets file_format
+     *
+     * @return \Aurigma\DesignAtoms\Model\ProductPreviewFormat|null
+     */
+    public function getFileFormat()
+    {
+        return $this->container['file_format'];
+    }
+
+    /**
+     * Sets file_format
+     *
+     * @param \Aurigma\DesignAtoms\Model\ProductPreviewFormat|null $file_format file_format
+     *
+     * @return self
+     */
+    public function setFileFormat($file_format)
+    {
+        $this->container['file_format'] = $file_format;
 
         return $this;
     }

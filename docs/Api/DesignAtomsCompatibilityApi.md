@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**designAtomsCompatibilityCssFonts()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityCssFonts) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/cssfonts | 
 [**designAtomsCompatibilityFonts()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityFonts) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/fonts/{psName} | 
 [**designAtomsCompatibilityGetCssFont()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetCssFont) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetCssFont | 
+[**designAtomsCompatibilityGetFallbackFonts()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetFallbackFonts) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetFallbackFonts | 
 [**designAtomsCompatibilityGetImageSize()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetImageSize) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetImageSize | 
 [**designAtomsCompatibilityGetLicense()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetLicense) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/license | 
 [**designAtomsCompatibilityGetShapeBounds()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetShapeBounds) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetShapeBounds | 
@@ -16,7 +17,7 @@ Method | HTTP request | Description
 [**designAtomsCompatibilityResource()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityResource) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/resource | 
 [**designAtomsCompatibilitySvg()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilitySvg) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/svg | 
 [**designAtomsCompatibilityTxt()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityTxt) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/txt | 
-[**designAtomsCompatibilityUpdateArchedTextItemHandler()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityUpdateArchedTextItemHandler) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/api/ccviewer/UpdateArchedTextItemHandler | 
+[**designAtomsCompatibilityUpdateArchedTextItemHandler()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityUpdateArchedTextItemHandler) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/UpdateArchedTextItemHandler | 
 [**designAtomsCompatibilityUpdateAutoScaledTextItemHandler()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityUpdateAutoScaledTextItemHandler) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/UpdateAutoScaledTextItemHandler | 
 [**designAtomsCompatibilityUpdateBarcodeItemHandler()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityUpdateBarcodeItemHandler) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/UpdateBarcodeItemHandler | 
 [**designAtomsCompatibilityUpdateBoundedTextItemHandler()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityUpdateBoundedTextItemHandler) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/UpdateBoundedTextItemHandler | 
@@ -135,7 +136,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/octet-stream`
+- **Accept**: `application/octet-stream`, `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -179,6 +180,60 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **int**|  |
  **font_key** | **string**|  | [optional]
+
+### Return type
+
+[**\SplFileObject**](../Model/\SplFileObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsCompatibilityGetFallbackFonts()`
+
+```php
+designAtomsCompatibilityGetFallbackFonts($tenant_id): \SplFileObject
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$tenant_id = 56; // int
+
+try {
+    $result = $apiInstance->designAtomsCompatibilityGetFallbackFonts($tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsCompatibilityApi->designAtomsCompatibilityGetFallbackFonts: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **int**|  |
 
 ### Return type
 

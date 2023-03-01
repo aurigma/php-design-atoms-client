@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodData
+ * VariablesModel
  *
  * PHP version 7.2
  *
@@ -32,9 +32,10 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * FontsMethodData Class Doc Comment
+ * VariablesModel Class Doc Comment
  *
  * @category Class
+ * @description Variables information
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -42,7 +43,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
+class VariablesModel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +52,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FontsMethodData';
+    protected static $openAPIModelName = 'VariablesModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +60,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'requested_fonts_by_ps_name' => 'string[]',
-        'advanced_mode' => 'bool',
-        'base_url' => 'string'
+        'items' => '\Aurigma\DesignAtoms\Model\VariableInfo[]'
     ];
 
     /**
@@ -72,9 +71,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'requested_fonts_by_ps_name' => null,
-        'advanced_mode' => null,
-        'base_url' => null
+        'items' => null
     ];
 
     /**
@@ -104,9 +101,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'requested_fonts_by_ps_name' => 'requestedFontsByPsName',
-        'advanced_mode' => 'advancedMode',
-        'base_url' => 'baseUrl'
+        'items' => 'items'
     ];
 
     /**
@@ -115,9 +110,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'requested_fonts_by_ps_name' => 'setRequestedFontsByPsName',
-        'advanced_mode' => 'setAdvancedMode',
-        'base_url' => 'setBaseUrl'
+        'items' => 'setItems'
     ];
 
     /**
@@ -126,9 +119,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'requested_fonts_by_ps_name' => 'getRequestedFontsByPsName',
-        'advanced_mode' => 'getAdvancedMode',
-        'base_url' => 'getBaseUrl'
+        'items' => 'getItems'
     ];
 
     /**
@@ -188,9 +179,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['requested_fonts_by_ps_name'] = $data['requested_fonts_by_ps_name'] ?? null;
-        $this->container['advanced_mode'] = $data['advanced_mode'] ?? null;
-        $this->container['base_url'] = $data['base_url'] ?? null;
+        $this->container['items'] = $data['items'] ?? null;
     }
 
     /**
@@ -218,73 +207,25 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets requested_fonts_by_ps_name
+     * Gets items
      *
-     * @return string[]|null
+     * @return \Aurigma\DesignAtoms\Model\VariableInfo[]|null
      */
-    public function getRequestedFontsByPsName()
+    public function getItems()
     {
-        return $this->container['requested_fonts_by_ps_name'];
+        return $this->container['items'];
     }
 
     /**
-     * Sets requested_fonts_by_ps_name
+     * Sets items
      *
-     * @param string[]|null $requested_fonts_by_ps_name requested_fonts_by_ps_name
+     * @param \Aurigma\DesignAtoms\Model\VariableInfo[]|null $items List of variables
      *
      * @return self
      */
-    public function setRequestedFontsByPsName($requested_fonts_by_ps_name)
+    public function setItems($items)
     {
-        $this->container['requested_fonts_by_ps_name'] = $requested_fonts_by_ps_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets advanced_mode
-     *
-     * @return bool|null
-     */
-    public function getAdvancedMode()
-    {
-        return $this->container['advanced_mode'];
-    }
-
-    /**
-     * Sets advanced_mode
-     *
-     * @param bool|null $advanced_mode advanced_mode
-     *
-     * @return self
-     */
-    public function setAdvancedMode($advanced_mode)
-    {
-        $this->container['advanced_mode'] = $advanced_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets base_url
-     *
-     * @return string|null
-     */
-    public function getBaseUrl()
-    {
-        return $this->container['base_url'];
-    }
-
-    /**
-     * Sets base_url
-     *
-     * @param string|null $base_url base_url
-     *
-     * @return self
-     */
-    public function setBaseUrl($base_url)
-    {
-        $this->container['base_url'] = $base_url;
+        $this->container['items'] = $items;
 
         return $this;
     }

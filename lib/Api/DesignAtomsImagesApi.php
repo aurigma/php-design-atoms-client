@@ -1,6 +1,6 @@
 <?php
 /**
- * BuildInfoApi
+ * DesignAtomsImagesApi
  * PHP version 7.2
  *
  * @category Class
@@ -39,14 +39,14 @@ use Aurigma\DesignAtoms\HeaderSelector;
 use Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * BuildInfoApi Class Doc Comment
+ * DesignAtomsImagesApi Class Doc Comment
  *
  * @category Class
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class BuildInfoApi
+class DesignAtomsImagesApi
 {
     /**
      * @var ClientInterface
@@ -115,34 +115,40 @@ class BuildInfoApi
     }
 
     /**
-     * Operation buildInfoGetInfo
+     * Operation designAtomsImagesRenderImagePreview
      *
-     * Gets assembly build info
+     * Renders a web image preview with the specified parameters.
      *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\BuildInfoModel|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function buildInfoGetInfo()
+    public function designAtomsImagesRenderImagePreview($attachment = null, $tenant_id = null, $render_image_preview_model = null)
     {
-        list($response) = $this->buildInfoGetInfoWithHttpInfo();
+        list($response) = $this->designAtomsImagesRenderImagePreviewWithHttpInfo($attachment, $tenant_id, $render_image_preview_model);
         return $response;
     }
 
     /**
-     * Operation buildInfoGetInfoWithHttpInfo
+     * Operation designAtomsImagesRenderImagePreviewWithHttpInfo
      *
-     * Gets assembly build info
+     * Renders a web image preview with the specified parameters.
      *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\BuildInfoModel|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function buildInfoGetInfoWithHttpInfo()
+    public function designAtomsImagesRenderImagePreviewWithHttpInfo($attachment = null, $tenant_id = null, $render_image_preview_model = null)
     {
-        $request = $this->buildInfoGetInfoRequest();
+        $request = $this->designAtomsImagesRenderImagePreviewRequest($attachment, $tenant_id, $render_image_preview_model);
 
         try {
             $options = $this->createHttpClientOption();
@@ -174,14 +180,14 @@ class BuildInfoApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Aurigma\DesignAtoms\Model\BuildInfoModel' === '\SplFileObject') {
+                    if ('\SplFileObject' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\BuildInfoModel', []),
+                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -199,7 +205,7 @@ class BuildInfoApi
                     ];
             }
 
-            $returnType = '\Aurigma\DesignAtoms\Model\BuildInfoModel';
+            $returnType = '\SplFileObject';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -217,7 +223,7 @@ class BuildInfoApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\BuildInfoModel',
+                        '\SplFileObject',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -236,17 +242,20 @@ class BuildInfoApi
     }
 
     /**
-     * Operation buildInfoGetInfoAsync
+     * Operation designAtomsImagesRenderImagePreviewAsync
      *
-     * Gets assembly build info
+     * Renders a web image preview with the specified parameters.
      *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function buildInfoGetInfoAsync()
+    public function designAtomsImagesRenderImagePreviewAsync($attachment = null, $tenant_id = null, $render_image_preview_model = null)
     {
-        return $this->buildInfoGetInfoAsyncWithHttpInfo()
+        return $this->designAtomsImagesRenderImagePreviewAsyncWithHttpInfo($attachment, $tenant_id, $render_image_preview_model)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -255,18 +264,21 @@ class BuildInfoApi
     }
 
     /**
-     * Operation buildInfoGetInfoAsyncWithHttpInfo
+     * Operation designAtomsImagesRenderImagePreviewAsyncWithHttpInfo
      *
-     * Gets assembly build info
+     * Renders a web image preview with the specified parameters.
      *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function buildInfoGetInfoAsyncWithHttpInfo()
+    public function designAtomsImagesRenderImagePreviewAsyncWithHttpInfo($attachment = null, $tenant_id = null, $render_image_preview_model = null)
     {
-        $returnType = '\Aurigma\DesignAtoms\Model\BuildInfoModel';
-        $request = $this->buildInfoGetInfoRequest();
+        $returnType = '\SplFileObject';
+        $request = $this->designAtomsImagesRenderImagePreviewRequest($attachment, $tenant_id, $render_image_preview_model);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -302,39 +314,70 @@ class BuildInfoApi
     }
 
     /**
-     * Create request for operation 'buildInfoGetInfo'
+     * Create request for operation 'designAtomsImagesRenderImagePreview'
      *
+     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function buildInfoGetInfoRequest()
+    public function designAtomsImagesRenderImagePreviewRequest($attachment = null, $tenant_id = null, $render_image_preview_model = null)
     {
 
-        $resourcePath = '/api/atoms/v1/info';
+        $resourcePath = '/api/atoms/v1/images/render-image-preview';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($attachment !== null) {
+            if('form' === 'form' && is_array($attachment)) {
+                foreach($attachment as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['attachment'] = $attachment;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
 
 
 
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
+                ['application/octet-stream', 'application/json']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
+                ['application/octet-stream', 'application/json'],
+                ['application/json']
             );
         }
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($render_image_preview_model)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($render_image_preview_model));
+            } else {
+                $httpBody = $render_image_preview_model;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -366,6 +409,34 @@ class BuildInfoApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -380,223 +451,7 @@ class BuildInfoApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation buildInfoHeadInfo
-     *
-     * Gets assembly build info
-     *
-     *
-     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function buildInfoHeadInfo()
-    {
-        $this->buildInfoHeadInfoWithHttpInfo();
-    }
-
-    /**
-     * Operation buildInfoHeadInfoWithHttpInfo
-     *
-     * Gets assembly build info
-     *
-     *
-     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function buildInfoHeadInfoWithHttpInfo()
-    {
-        $request = $this->buildInfoHeadInfoRequest();
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation buildInfoHeadInfoAsync
-     *
-     * Gets assembly build info
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function buildInfoHeadInfoAsync()
-    {
-        return $this->buildInfoHeadInfoAsyncWithHttpInfo()
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation buildInfoHeadInfoAsyncWithHttpInfo
-     *
-     * Gets assembly build info
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function buildInfoHeadInfoAsyncWithHttpInfo()
-    {
-        $returnType = '';
-        $request = $this->buildInfoHeadInfoRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'buildInfoHeadInfo'
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function buildInfoHeadInfoRequest()
-    {
-
-        $resourcePath = '/api/atoms/v1/info';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        // aurigmafix 6
-                        if (gettype($formParamValueItem) === 'object') {
-                            if (!($formParamValueItem instanceof StreamInterface 
-                            || $formParamValueItem instanceof \Iterator 
-                            || method_exists($formParamValueItem, '__toString'))) {
-                                $formParamValueItem = json_encode($formParamValueItem);
-                            }
-                        } 
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'HEAD',
+            'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

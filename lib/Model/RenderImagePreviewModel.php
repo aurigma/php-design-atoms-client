@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodData
+ * RenderImagePreviewModel
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * FontsMethodData Class Doc Comment
+ * RenderImagePreviewModel Class Doc Comment
  *
  * @category Class
  * @package  Aurigma\DesignAtoms
@@ -42,7 +42,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
+class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FontsMethodData';
+    protected static $openAPIModelName = 'RenderImagePreviewModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +59,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'requested_fonts_by_ps_name' => 'string[]',
-        'advanced_mode' => 'bool',
-        'base_url' => 'string'
+        'image_url' => 'string',
+        'height' => 'int',
+        'width' => 'int',
+        'file_format' => '\Aurigma\DesignAtoms\Model\ImagePreviewFormat'
     ];
 
     /**
@@ -72,9 +73,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'requested_fonts_by_ps_name' => null,
-        'advanced_mode' => null,
-        'base_url' => null
+        'image_url' => null,
+        'height' => 'int32',
+        'width' => 'int32',
+        'file_format' => null
     ];
 
     /**
@@ -104,9 +106,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'requested_fonts_by_ps_name' => 'requestedFontsByPsName',
-        'advanced_mode' => 'advancedMode',
-        'base_url' => 'baseUrl'
+        'image_url' => 'imageUrl',
+        'height' => 'height',
+        'width' => 'width',
+        'file_format' => 'fileFormat'
     ];
 
     /**
@@ -115,9 +118,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'requested_fonts_by_ps_name' => 'setRequestedFontsByPsName',
-        'advanced_mode' => 'setAdvancedMode',
-        'base_url' => 'setBaseUrl'
+        'image_url' => 'setImageUrl',
+        'height' => 'setHeight',
+        'width' => 'setWidth',
+        'file_format' => 'setFileFormat'
     ];
 
     /**
@@ -126,9 +130,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'requested_fonts_by_ps_name' => 'getRequestedFontsByPsName',
-        'advanced_mode' => 'getAdvancedMode',
-        'base_url' => 'getBaseUrl'
+        'image_url' => 'getImageUrl',
+        'height' => 'getHeight',
+        'width' => 'getWidth',
+        'file_format' => 'getFileFormat'
     ];
 
     /**
@@ -188,9 +193,10 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['requested_fonts_by_ps_name'] = $data['requested_fonts_by_ps_name'] ?? null;
-        $this->container['advanced_mode'] = $data['advanced_mode'] ?? null;
-        $this->container['base_url'] = $data['base_url'] ?? null;
+        $this->container['image_url'] = $data['image_url'] ?? null;
+        $this->container['height'] = $data['height'] ?? null;
+        $this->container['width'] = $data['width'] ?? null;
+        $this->container['file_format'] = $data['file_format'] ?? null;
     }
 
     /**
@@ -218,73 +224,97 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets requested_fonts_by_ps_name
-     *
-     * @return string[]|null
-     */
-    public function getRequestedFontsByPsName()
-    {
-        return $this->container['requested_fonts_by_ps_name'];
-    }
-
-    /**
-     * Sets requested_fonts_by_ps_name
-     *
-     * @param string[]|null $requested_fonts_by_ps_name requested_fonts_by_ps_name
-     *
-     * @return self
-     */
-    public function setRequestedFontsByPsName($requested_fonts_by_ps_name)
-    {
-        $this->container['requested_fonts_by_ps_name'] = $requested_fonts_by_ps_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets advanced_mode
-     *
-     * @return bool|null
-     */
-    public function getAdvancedMode()
-    {
-        return $this->container['advanced_mode'];
-    }
-
-    /**
-     * Sets advanced_mode
-     *
-     * @param bool|null $advanced_mode advanced_mode
-     *
-     * @return self
-     */
-    public function setAdvancedMode($advanced_mode)
-    {
-        $this->container['advanced_mode'] = $advanced_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets base_url
+     * Gets image_url
      *
      * @return string|null
      */
-    public function getBaseUrl()
+    public function getImageUrl()
     {
-        return $this->container['base_url'];
+        return $this->container['image_url'];
     }
 
     /**
-     * Sets base_url
+     * Sets image_url
      *
-     * @param string|null $base_url base_url
+     * @param string|null $image_url External image URL.
      *
      * @return self
      */
-    public function setBaseUrl($base_url)
+    public function setImageUrl($image_url)
     {
-        $this->container['base_url'] = $base_url;
+        $this->container['image_url'] = $image_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets height
+     *
+     * @return int|null
+     */
+    public function getHeight()
+    {
+        return $this->container['height'];
+    }
+
+    /**
+     * Sets height
+     *
+     * @param int|null $height Height of preview image.
+     *
+     * @return self
+     */
+    public function setHeight($height)
+    {
+        $this->container['height'] = $height;
+
+        return $this;
+    }
+
+    /**
+     * Gets width
+     *
+     * @return int|null
+     */
+    public function getWidth()
+    {
+        return $this->container['width'];
+    }
+
+    /**
+     * Sets width
+     *
+     * @param int|null $width Width of preview image.
+     *
+     * @return self
+     */
+    public function setWidth($width)
+    {
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets file_format
+     *
+     * @return \Aurigma\DesignAtoms\Model\ImagePreviewFormat|null
+     */
+    public function getFileFormat()
+    {
+        return $this->container['file_format'];
+    }
+
+    /**
+     * Sets file_format
+     *
+     * @param \Aurigma\DesignAtoms\Model\ImagePreviewFormat|null $file_format file_format
+     *
+     * @return self
+     */
+    public function setFileFormat($file_format)
+    {
+        $this->container['file_format'] = $file_format;
 
         return $this;
     }

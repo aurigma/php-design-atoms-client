@@ -122,7 +122,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return string
+     * @return string|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityCssFonts($tenant_id, $fonts_method_data = null)
     {
@@ -138,7 +138,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of string, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityCssFontsWithHttpInfo($tenant_id, $fonts_method_data = null)
     {
@@ -185,6 +185,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'string';
@@ -206,6 +218,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -397,7 +417,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityFonts($tenant_id, $ps_name)
     {
@@ -413,7 +433,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityFontsWithHttpInfo($tenant_id, $ps_name)
     {
@@ -472,6 +492,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -498,6 +530,14 @@ class DesignAtomsCompatibilityApi
                     $e->setResponseObject($data);
                     break;
                 case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -629,11 +669,11 @@ class DesignAtomsCompatibilityApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/octet-stream']
+                ['application/octet-stream', 'application/json']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/octet-stream'],
+                ['application/octet-stream', 'application/json'],
                 []
             );
         }
@@ -700,7 +740,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityGetCssFont($tenant_id, $font_key = null)
     {
@@ -716,7 +756,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityGetCssFontWithHttpInfo($tenant_id, $font_key = null)
     {
@@ -775,6 +815,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -801,6 +853,14 @@ class DesignAtomsCompatibilityApi
                     $e->setResponseObject($data);
                     break;
                 case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -993,6 +1053,290 @@ class DesignAtomsCompatibilityApi
     }
 
     /**
+     * Operation designAtomsCompatibilityGetFallbackFonts
+     *
+     * @param  int $tenant_id tenant_id (required)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsCompatibilityGetFallbackFonts($tenant_id)
+    {
+        list($response) = $this->designAtomsCompatibilityGetFallbackFontsWithHttpInfo($tenant_id);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsCompatibilityGetFallbackFontsWithHttpInfo
+     *
+     * @param  int $tenant_id (required)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsCompatibilityGetFallbackFontsWithHttpInfo($tenant_id)
+    {
+        $request = $this->designAtomsCompatibilityGetFallbackFontsRequest($tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SplFileObject' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\SplFileObject';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SplFileObject',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsCompatibilityGetFallbackFontsAsync
+     *
+     * @param  int $tenant_id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsCompatibilityGetFallbackFontsAsync($tenant_id)
+    {
+        return $this->designAtomsCompatibilityGetFallbackFontsAsyncWithHttpInfo($tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsCompatibilityGetFallbackFontsAsyncWithHttpInfo
+     *
+     * @param  int $tenant_id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsCompatibilityGetFallbackFontsAsyncWithHttpInfo($tenant_id)
+    {
+        $returnType = '\SplFileObject';
+        $request = $this->designAtomsCompatibilityGetFallbackFontsRequest($tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsCompatibilityGetFallbackFonts'
+     *
+     * @param  int $tenant_id (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsCompatibilityGetFallbackFontsRequest($tenant_id)
+    {
+        // verify the required parameter 'tenant_id' is set
+        if ($tenant_id === null || (is_array($tenant_id) && count($tenant_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $tenant_id when calling designAtomsCompatibilityGetFallbackFonts'
+            );
+        }
+
+        $resourcePath = '/api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetFallbackFonts';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($tenant_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'tenantId' . '}',
+                ObjectSerializer::toPathValue($tenant_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsCompatibilityGetImageSize
      *
      * @param  int $tenant_id tenant_id (required)
@@ -1000,7 +1344,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\NullAbleSize
+     * @return \Aurigma\DesignAtoms\Model\NullAbleSize|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityGetImageSize($tenant_id, $get_image_size_request = null)
     {
@@ -1016,7 +1360,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\NullAbleSize, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\NullAbleSize|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityGetImageSizeWithHttpInfo($tenant_id, $get_image_size_request = null)
     {
@@ -1063,6 +1407,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\DesignAtoms\Model\NullAbleSize';
@@ -1084,6 +1440,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\NullAbleSize',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1274,7 +1638,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return string
+     * @return string|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityGetLicense($tenant_id)
     {
@@ -1289,7 +1653,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of string, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityGetLicenseWithHttpInfo($tenant_id)
     {
@@ -1336,6 +1700,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'string';
@@ -1357,6 +1733,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1539,7 +1923,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\RectangleF
+     * @return \Aurigma\DesignAtoms\Model\RectangleF|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityGetShapeBounds($tenant_id, $get_shape_bounds_request = null)
     {
@@ -1555,7 +1939,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\RectangleF, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\RectangleF|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityGetShapeBoundsWithHttpInfo($tenant_id, $get_shape_bounds_request = null)
     {
@@ -1602,6 +1986,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\DesignAtoms\Model\RectangleF';
@@ -1623,6 +2019,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\RectangleF',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1814,7 +2218,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityGetWatermarkItems($tenant_id, $body = null)
     {
@@ -1830,7 +2234,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityGetWatermarkItemsWithHttpInfo($tenant_id, $body = null)
     {
@@ -1877,6 +2281,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -1898,6 +2314,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2104,7 +2528,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityImg($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null)
     {
@@ -2135,7 +2559,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityImgWithHttpInfo($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null)
     {
@@ -2194,6 +2618,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -2220,6 +2656,14 @@ class DesignAtomsCompatibilityApi
                     $e->setResponseObject($data);
                     break;
                 case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -2629,7 +3073,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityPth($tenant_id, $f = null)
     {
@@ -2645,7 +3089,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityPthWithHttpInfo($tenant_id, $f = null)
     {
@@ -2704,6 +3148,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -2730,6 +3186,14 @@ class DesignAtomsCompatibilityApi
                     $e->setResponseObject($data);
                     break;
                 case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -2929,7 +3393,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityResource($tenant_id, $image = null)
     {
@@ -2945,7 +3409,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityResourceWithHttpInfo($tenant_id, $image = null)
     {
@@ -3004,6 +3468,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -3030,6 +3506,14 @@ class DesignAtomsCompatibilityApi
                     $e->setResponseObject($data);
                     break;
                 case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -3229,7 +3713,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilitySvg($tenant_id, $f = null)
     {
@@ -3245,7 +3729,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilitySvgWithHttpInfo($tenant_id, $f = null)
     {
@@ -3304,6 +3788,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -3330,6 +3826,14 @@ class DesignAtomsCompatibilityApi
                     $e->setResponseObject($data);
                     break;
                 case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -3529,7 +4033,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityTxt($tenant_id, $f = null)
     {
@@ -3545,7 +4049,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityTxtWithHttpInfo($tenant_id, $f = null)
     {
@@ -3604,6 +4108,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -3630,6 +4146,14 @@ class DesignAtomsCompatibilityApi
                     $e->setResponseObject($data);
                     break;
                 case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
@@ -3829,7 +4353,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdateArchedTextItemHandler($tenant_id, $update_handler_request = null)
     {
@@ -3845,7 +4369,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdateArchedTextItemHandlerWithHttpInfo($tenant_id, $update_handler_request = null)
     {
@@ -3892,6 +4416,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -3913,6 +4449,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4006,7 +4550,7 @@ class DesignAtomsCompatibilityApi
             );
         }
 
-        $resourcePath = '/api/atoms/v1/tenants/{tenantId}/api/ccviewer/api/ccviewer/UpdateArchedTextItemHandler';
+        $resourcePath = '/api/atoms/v1/tenants/{tenantId}/api/ccviewer/UpdateArchedTextItemHandler';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -4104,7 +4648,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdateAutoScaledTextItemHandler($tenant_id, $update_handler_request = null)
     {
@@ -4120,7 +4664,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdateAutoScaledTextItemHandlerWithHttpInfo($tenant_id, $update_handler_request = null)
     {
@@ -4167,6 +4711,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -4188,6 +4744,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4379,7 +4943,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdateBarcodeItemHandler($tenant_id, $update_handler_request = null)
     {
@@ -4395,7 +4959,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdateBarcodeItemHandlerWithHttpInfo($tenant_id, $update_handler_request = null)
     {
@@ -4442,6 +5006,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -4463,6 +5039,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4654,7 +5238,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdateBoundedTextItemHandler($tenant_id, $update_handler_request = null)
     {
@@ -4670,7 +5254,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdateBoundedTextItemHandlerWithHttpInfo($tenant_id, $update_handler_request = null)
     {
@@ -4717,6 +5301,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -4738,6 +5334,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4929,7 +5533,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return string
+     * @return string|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdateByColorData($tenant_id, $update_colors_request = null)
     {
@@ -4945,7 +5549,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of string, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdateByColorDataWithHttpInfo($tenant_id, $update_colors_request = null)
     {
@@ -4992,6 +5596,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'string';
@@ -5013,6 +5629,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5204,7 +5828,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdateByMultiCallRequest($tenant_id, $multi_call_request = null)
     {
@@ -5220,7 +5844,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdateByMultiCallRequestWithHttpInfo($tenant_id, $multi_call_request = null)
     {
@@ -5267,6 +5891,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -5288,6 +5924,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5479,7 +6123,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdateCurvedTextItemHandler($tenant_id, $update_handler_request = null)
     {
@@ -5495,7 +6139,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdateCurvedTextItemHandlerWithHttpInfo($tenant_id, $update_handler_request = null)
     {
@@ -5542,6 +6186,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -5563,6 +6219,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5754,7 +6418,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdateImageItemHandler($tenant_id, $update_image_handler_request = null)
     {
@@ -5770,7 +6434,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdateImageItemHandlerWithHttpInfo($tenant_id, $update_image_handler_request = null)
     {
@@ -5817,6 +6481,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -5838,6 +6514,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6029,7 +6713,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdatePathBoundedTextItemHandler($tenant_id, $update_handler_request = null)
     {
@@ -6045,7 +6729,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdatePathBoundedTextItemHandlerWithHttpInfo($tenant_id, $update_handler_request = null)
     {
@@ -6092,6 +6776,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -6113,6 +6809,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6304,7 +7008,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdatePlainTextItemHandler($tenant_id, $update_handler_request = null)
     {
@@ -6320,7 +7024,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdatePlainTextItemHandlerWithHttpInfo($tenant_id, $update_handler_request = null)
     {
@@ -6367,6 +7071,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -6388,6 +7104,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6579,7 +7303,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityUpdateShapeItemHandler($tenant_id, $update_handler_request = null)
     {
@@ -6595,7 +7319,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityUpdateShapeItemHandlerWithHttpInfo($tenant_id, $update_handler_request = null)
     {
@@ -6642,6 +7366,18 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -6663,6 +7399,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

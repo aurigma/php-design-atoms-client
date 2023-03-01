@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodData
+ * VariableInfo
  *
  * PHP version 7.2
  *
@@ -32,9 +32,10 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * FontsMethodData Class Doc Comment
+ * VariableInfo Class Doc Comment
  *
  * @category Class
+ * @description Variable information.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -42,7 +43,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
+class VariableInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +52,7 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FontsMethodData';
+    protected static $openAPIModelName = 'VariableInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +60,9 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'requested_fonts_by_ps_name' => 'string[]',
-        'advanced_mode' => 'bool',
-        'base_url' => 'string'
+        'name' => 'string',
+        'value' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -72,9 +73,9 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'requested_fonts_by_ps_name' => null,
-        'advanced_mode' => null,
-        'base_url' => null
+        'name' => null,
+        'value' => null,
+        'type' => null
     ];
 
     /**
@@ -104,9 +105,9 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'requested_fonts_by_ps_name' => 'requestedFontsByPsName',
-        'advanced_mode' => 'advancedMode',
-        'base_url' => 'baseUrl'
+        'name' => 'name',
+        'value' => 'value',
+        'type' => 'type'
     ];
 
     /**
@@ -115,9 +116,9 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'requested_fonts_by_ps_name' => 'setRequestedFontsByPsName',
-        'advanced_mode' => 'setAdvancedMode',
-        'base_url' => 'setBaseUrl'
+        'name' => 'setName',
+        'value' => 'setValue',
+        'type' => 'setType'
     ];
 
     /**
@@ -126,9 +127,9 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'requested_fonts_by_ps_name' => 'getRequestedFontsByPsName',
-        'advanced_mode' => 'getAdvancedMode',
-        'base_url' => 'getBaseUrl'
+        'name' => 'getName',
+        'value' => 'getValue',
+        'type' => 'getType'
     ];
 
     /**
@@ -188,9 +189,9 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['requested_fonts_by_ps_name'] = $data['requested_fonts_by_ps_name'] ?? null;
-        $this->container['advanced_mode'] = $data['advanced_mode'] ?? null;
-        $this->container['base_url'] = $data['base_url'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**
@@ -218,73 +219,73 @@ class FontsMethodData implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets requested_fonts_by_ps_name
-     *
-     * @return string[]|null
-     */
-    public function getRequestedFontsByPsName()
-    {
-        return $this->container['requested_fonts_by_ps_name'];
-    }
-
-    /**
-     * Sets requested_fonts_by_ps_name
-     *
-     * @param string[]|null $requested_fonts_by_ps_name requested_fonts_by_ps_name
-     *
-     * @return self
-     */
-    public function setRequestedFontsByPsName($requested_fonts_by_ps_name)
-    {
-        $this->container['requested_fonts_by_ps_name'] = $requested_fonts_by_ps_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets advanced_mode
-     *
-     * @return bool|null
-     */
-    public function getAdvancedMode()
-    {
-        return $this->container['advanced_mode'];
-    }
-
-    /**
-     * Sets advanced_mode
-     *
-     * @param bool|null $advanced_mode advanced_mode
-     *
-     * @return self
-     */
-    public function setAdvancedMode($advanced_mode)
-    {
-        $this->container['advanced_mode'] = $advanced_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets base_url
+     * Gets name
      *
      * @return string|null
      */
-    public function getBaseUrl()
+    public function getName()
     {
-        return $this->container['base_url'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets base_url
+     * Sets name
      *
-     * @param string|null $base_url base_url
+     * @param string|null $name Variable name.
      *
      * @return self
      */
-    public function setBaseUrl($base_url)
+    public function setName($name)
     {
-        $this->container['base_url'] = $base_url;
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return string|null
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param string|null $value Variable value.
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type Variable type.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }

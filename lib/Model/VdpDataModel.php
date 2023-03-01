@@ -35,6 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * VdpDataModel Class Doc Comment
  *
  * @category Class
+ * @description Variable data printing information
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -224,7 +225,7 @@ class VdpDataModel implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vdp_data_set
      *
-     * @param mixed|null $vdp_data_set vdp_data_set
+     * @param mixed|null $vdp_data_set Serialized vdp dataset
      *
      * @return self
      */
@@ -248,7 +249,7 @@ class VdpDataModel implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets vdp_items_data
      *
-     * @param mixed|null $vdp_items_data vdp_items_data
+     * @param mixed|null $vdp_items_data Serialized vdp items data
      *
      * @return self
      */

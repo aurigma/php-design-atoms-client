@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**designAtomsViewerCssFonts()**](DesignAtomsViewerApi.md#designAtomsViewerCssFonts) | **POST** /api/atoms/v1/ccviewer/cssfonts | 
 [**designAtomsViewerFonts()**](DesignAtomsViewerApi.md#designAtomsViewerFonts) | **GET** /api/atoms/v1/ccviewer/fonts/{psName} | 
 [**designAtomsViewerGetCssFont()**](DesignAtomsViewerApi.md#designAtomsViewerGetCssFont) | **GET** /api/atoms/v1/ccviewer/GetCssFont | 
+[**designAtomsViewerGetFallbackFonts()**](DesignAtomsViewerApi.md#designAtomsViewerGetFallbackFonts) | **GET** /api/atoms/v1/ccviewer/GetFallbackFonts | 
 [**designAtomsViewerGetImageSize()**](DesignAtomsViewerApi.md#designAtomsViewerGetImageSize) | **POST** /api/atoms/v1/ccviewer/GetImageSize | 
 [**designAtomsViewerGetLicense()**](DesignAtomsViewerApi.md#designAtomsViewerGetLicense) | **GET** /api/atoms/v1/ccviewer/license | 
 [**designAtomsViewerGetShapeBounds()**](DesignAtomsViewerApi.md#designAtomsViewerGetShapeBounds) | **POST** /api/atoms/v1/ccviewer/GetShapeBounds | 
@@ -16,7 +17,7 @@ Method | HTTP request | Description
 [**designAtomsViewerResource()**](DesignAtomsViewerApi.md#designAtomsViewerResource) | **GET** /api/atoms/v1/ccviewer/resource | 
 [**designAtomsViewerSvg()**](DesignAtomsViewerApi.md#designAtomsViewerSvg) | **GET** /api/atoms/v1/ccviewer/svg | 
 [**designAtomsViewerTxt()**](DesignAtomsViewerApi.md#designAtomsViewerTxt) | **GET** /api/atoms/v1/ccviewer/txt | 
-[**designAtomsViewerUpdateArchedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateArchedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/api/ccviewer/UpdateArchedTextItemHandler | 
+[**designAtomsViewerUpdateArchedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateArchedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateArchedTextItemHandler | 
 [**designAtomsViewerUpdateAutoScaledTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateAutoScaledTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateAutoScaledTextItemHandler | 
 [**designAtomsViewerUpdateBarcodeItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateBarcodeItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateBarcodeItemHandler | 
 [**designAtomsViewerUpdateBoundedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateBoundedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateBoundedTextItemHandler | 
@@ -135,7 +136,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/octet-stream`
+- **Accept**: `application/octet-stream`, `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -178,6 +179,60 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **font_key** | **string**|  | [optional]
+ **tenant_id** | **int**| Tenant identifier | [optional]
+
+### Return type
+
+[**\SplFileObject**](../Model/\SplFileObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsViewerGetFallbackFonts()`
+
+```php
+designAtomsViewerGetFallbackFonts($tenant_id): \SplFileObject
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$tenant_id = 56; // int | Tenant identifier
+
+try {
+    $result = $apiInstance->designAtomsViewerGetFallbackFonts($tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsViewerApi->designAtomsViewerGetFallbackFonts: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type

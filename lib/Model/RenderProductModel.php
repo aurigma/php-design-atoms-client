@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * RenderProductModel Class Doc Comment
  *
  * @category Class
- * @description Preview parameters
+ * @description Render product parameters
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
