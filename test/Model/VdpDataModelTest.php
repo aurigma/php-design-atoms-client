@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * VdpDataModelTest Class Doc Comment
  *
  * @category    Class
- * @description VdpDataModel
+ * @description Variable data printing information
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

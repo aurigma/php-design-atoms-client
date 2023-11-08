@@ -108,6 +108,18 @@ class DesignAtomsCompatibilityApiTest extends TestCase
     }
 
     /**
+     * Test case for designAtomsCompatibilityGetFallbackFonts
+     *
+     * .
+     *
+     */
+    public function testDesignAtomsCompatibilityGetFallbackFonts()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for designAtomsCompatibilityGetImageSize
      *
      * .

@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodDataTest
+ * RenderDesignProofModelTest
  *
  * PHP version 7.2
  *
@@ -31,15 +31,15 @@ namespace Aurigma\DesignAtoms\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FontsMethodDataTest Class Doc Comment
+ * RenderDesignProofModelTest Class Doc Comment
  *
  * @category    Class
- * @description FontsMethodData
+ * @description RenderDesignProofModel
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FontsMethodDataTest extends TestCase
+class RenderDesignProofModelTest extends TestCase
 {
 
     /**
@@ -71,36 +71,45 @@ class FontsMethodDataTest extends TestCase
     }
 
     /**
-     * Test "FontsMethodData"
+     * Test "RenderDesignProofModel"
      */
-    public function testFontsMethodData()
+    public function testRenderDesignProofModel()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "requested_fonts_by_ps_name"
+     * Test attribute "design_id"
      */
-    public function testPropertyRequestedFontsByPsName()
+    public function testPropertyDesignId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "advanced_mode"
+     * Test attribute "owner_id"
      */
-    public function testPropertyAdvancedMode()
+    public function testPropertyOwnerId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "base_url"
+     * Test attribute "rendering_config"
      */
-    public function testPropertyBaseUrl()
+    public function testPropertyRenderingConfig()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "variable_data"
+     */
+    public function testPropertyVariableData()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodDataTest
+ * GetColorPreviewsRequestTest
  *
  * PHP version 7.2
  *
@@ -31,15 +31,15 @@ namespace Aurigma\DesignAtoms\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FontsMethodDataTest Class Doc Comment
+ * GetColorPreviewsRequestTest Class Doc Comment
  *
  * @category    Class
- * @description FontsMethodData
+ * @description GetColorPreviewsRequest
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FontsMethodDataTest extends TestCase
+class GetColorPreviewsRequestTest extends TestCase
 {
 
     /**
@@ -71,36 +71,27 @@ class FontsMethodDataTest extends TestCase
     }
 
     /**
-     * Test "FontsMethodData"
+     * Test "GetColorPreviewsRequest"
      */
-    public function testFontsMethodData()
+    public function testGetColorPreviewsRequest()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "requested_fonts_by_ps_name"
+     * Test attribute "color_data"
      */
-    public function testPropertyRequestedFontsByPsName()
+    public function testPropertyColorData()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "advanced_mode"
+     * Test attribute "color_settings"
      */
-    public function testPropertyAdvancedMode()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "base_url"
-     */
-    public function testPropertyBaseUrl()
+    public function testPropertyColorSettings()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

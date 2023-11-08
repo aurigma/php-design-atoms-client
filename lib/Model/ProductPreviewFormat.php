@@ -45,8 +45,6 @@ class ProductPreviewFormat
      */
     const JPEG = 'Jpeg';
     const PNG = 'Png';
-    const TIFF = 'Tiff';
-    const PDF = 'Pdf';
     
     /**
      * Gets allowable values of the enum
@@ -57,8 +55,6 @@ class ProductPreviewFormat
         return [
             self::JPEG,
             self::PNG,
-            self::TIFF,
-            self::PDF,
         ];
     }
 }

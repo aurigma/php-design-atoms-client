@@ -60,9 +60,10 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPITypes = [
         'image_url' => 'string',
-        'height' => 'int',
-        'width' => 'int',
-        'file_format' => '\Aurigma\DesignAtoms\Model\ImagePreviewFormat'
+        'image_id' => 'string',
+        'owner_id' => 'string',
+        'mockup_id' => 'string',
+        'rendering_config' => '\Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig'
     ];
 
     /**
@@ -74,9 +75,10 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'image_url' => null,
-        'height' => 'int32',
-        'width' => 'int32',
-        'file_format' => null
+        'image_id' => null,
+        'owner_id' => null,
+        'mockup_id' => null,
+        'rendering_config' => null
     ];
 
     /**
@@ -107,9 +109,10 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $attributeMap = [
         'image_url' => 'imageUrl',
-        'height' => 'height',
-        'width' => 'width',
-        'file_format' => 'fileFormat'
+        'image_id' => 'imageId',
+        'owner_id' => 'ownerId',
+        'mockup_id' => 'mockupId',
+        'rendering_config' => 'renderingConfig'
     ];
 
     /**
@@ -119,9 +122,10 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $setters = [
         'image_url' => 'setImageUrl',
-        'height' => 'setHeight',
-        'width' => 'setWidth',
-        'file_format' => 'setFileFormat'
+        'image_id' => 'setImageId',
+        'owner_id' => 'setOwnerId',
+        'mockup_id' => 'setMockupId',
+        'rendering_config' => 'setRenderingConfig'
     ];
 
     /**
@@ -131,9 +135,10 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $getters = [
         'image_url' => 'getImageUrl',
-        'height' => 'getHeight',
-        'width' => 'getWidth',
-        'file_format' => 'getFileFormat'
+        'image_id' => 'getImageId',
+        'owner_id' => 'getOwnerId',
+        'mockup_id' => 'getMockupId',
+        'rendering_config' => 'getRenderingConfig'
     ];
 
     /**
@@ -194,9 +199,10 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
     public function __construct(array $data = null)
     {
         $this->container['image_url'] = $data['image_url'] ?? null;
-        $this->container['height'] = $data['height'] ?? null;
-        $this->container['width'] = $data['width'] ?? null;
-        $this->container['file_format'] = $data['file_format'] ?? null;
+        $this->container['image_id'] = $data['image_id'] ?? null;
+        $this->container['owner_id'] = $data['owner_id'] ?? null;
+        $this->container['mockup_id'] = $data['mockup_id'] ?? null;
+        $this->container['rendering_config'] = $data['rendering_config'] ?? null;
     }
 
     /**
@@ -248,73 +254,97 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets height
+     * Gets image_id
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getHeight()
+    public function getImageId()
     {
-        return $this->container['height'];
+        return $this->container['image_id'];
     }
 
     /**
-     * Sets height
+     * Sets image_id
      *
-     * @param int|null $height Height of preview image.
+     * @param string|null $image_id Storage image identifier.
      *
      * @return self
      */
-    public function setHeight($height)
+    public function setImageId($image_id)
     {
-        $this->container['height'] = $height;
+        $this->container['image_id'] = $image_id;
 
         return $this;
     }
 
     /**
-     * Gets width
+     * Gets owner_id
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getWidth()
+    public function getOwnerId()
     {
-        return $this->container['width'];
+        return $this->container['owner_id'];
     }
 
     /**
-     * Sets width
+     * Sets owner_id
      *
-     * @param int|null $width Width of preview image.
+     * @param string|null $owner_id Storage image owner identifier.
      *
      * @return self
      */
-    public function setWidth($width)
+    public function setOwnerId($owner_id)
     {
-        $this->container['width'] = $width;
+        $this->container['owner_id'] = $owner_id;
 
         return $this;
     }
 
     /**
-     * Gets file_format
+     * Gets mockup_id
      *
-     * @return \Aurigma\DesignAtoms\Model\ImagePreviewFormat|null
+     * @return string|null
      */
-    public function getFileFormat()
+    public function getMockupId()
     {
-        return $this->container['file_format'];
+        return $this->container['mockup_id'];
     }
 
     /**
-     * Sets file_format
+     * Sets mockup_id
      *
-     * @param \Aurigma\DesignAtoms\Model\ImagePreviewFormat|null $file_format file_format
+     * @param string|null $mockup_id Mockup identifier.
      *
      * @return self
      */
-    public function setFileFormat($file_format)
+    public function setMockupId($mockup_id)
     {
-        $this->container['file_format'] = $file_format;
+        $this->container['mockup_id'] = $mockup_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets rendering_config
+     *
+     * @return \Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig|null
+     */
+    public function getRenderingConfig()
+    {
+        return $this->container['rendering_config'];
+    }
+
+    /**
+     * Sets rendering_config
+     *
+     * @param \Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig|null $rendering_config rendering_config
+     *
+     * @return self
+     */
+    public function setRenderingConfig($rendering_config)
+    {
+        $this->container['rendering_config'] = $rendering_config;
 
         return $this;
     }

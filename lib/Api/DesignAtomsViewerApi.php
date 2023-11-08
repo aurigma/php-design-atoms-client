@@ -727,6 +727,590 @@ class DesignAtomsViewerApi
     }
 
     /**
+     * Operation designAtomsViewerGetColorPreview
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request get_color_preview_request (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsViewerGetColorPreview($tenant_id = null, $get_color_preview_request = null)
+    {
+        list($response) = $this->designAtomsViewerGetColorPreviewWithHttpInfo($tenant_id, $get_color_preview_request);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsViewerGetColorPreviewWithHttpInfo
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsViewerGetColorPreviewWithHttpInfo($tenant_id = null, $get_color_preview_request = null)
+    {
+        $request = $this->designAtomsViewerGetColorPreviewRequest($tenant_id, $get_color_preview_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsViewerGetColorPreviewAsync
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsViewerGetColorPreviewAsync($tenant_id = null, $get_color_preview_request = null)
+    {
+        return $this->designAtomsViewerGetColorPreviewAsyncWithHttpInfo($tenant_id, $get_color_preview_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsViewerGetColorPreviewAsyncWithHttpInfo
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsViewerGetColorPreviewAsyncWithHttpInfo($tenant_id = null, $get_color_preview_request = null)
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsViewerGetColorPreviewRequest($tenant_id, $get_color_preview_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsViewerGetColorPreview'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsViewerGetColorPreviewRequest($tenant_id = null, $get_color_preview_request = null)
+    {
+
+        $resourcePath = '/api/atoms/v1/ccviewer/GetColorPreview';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($get_color_preview_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($get_color_preview_request));
+            } else {
+                $httpBody = $get_color_preview_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsViewerGetColorPreviews
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request get_color_previews_request (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\DesignAtoms\Model\GetColorPreviewsResponse|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsViewerGetColorPreviews($tenant_id = null, $get_color_previews_request = null)
+    {
+        list($response) = $this->designAtomsViewerGetColorPreviewsWithHttpInfo($tenant_id, $get_color_previews_request);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsViewerGetColorPreviewsWithHttpInfo
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request (optional)
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\DesignAtoms\Model\GetColorPreviewsResponse|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsViewerGetColorPreviewsWithHttpInfo($tenant_id = null, $get_color_previews_request = null)
+    {
+        $request = $this->designAtomsViewerGetColorPreviewsRequest($tenant_id, $get_color_previews_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\DesignAtoms\Model\GetColorPreviewsResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GetColorPreviewsResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\DesignAtoms\Model\GetColorPreviewsResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GetColorPreviewsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsViewerGetColorPreviewsAsync
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsViewerGetColorPreviewsAsync($tenant_id = null, $get_color_previews_request = null)
+    {
+        return $this->designAtomsViewerGetColorPreviewsAsyncWithHttpInfo($tenant_id, $get_color_previews_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsViewerGetColorPreviewsAsyncWithHttpInfo
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsViewerGetColorPreviewsAsyncWithHttpInfo($tenant_id = null, $get_color_previews_request = null)
+    {
+        $returnType = '\Aurigma\DesignAtoms\Model\GetColorPreviewsResponse';
+        $request = $this->designAtomsViewerGetColorPreviewsRequest($tenant_id, $get_color_previews_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsViewerGetColorPreviews'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsViewerGetColorPreviewsRequest($tenant_id = null, $get_color_previews_request = null)
+    {
+
+        $resourcePath = '/api/atoms/v1/ccviewer/GetColorPreviews';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($get_color_previews_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($get_color_previews_request));
+            } else {
+                $httpBody = $get_color_previews_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsViewerGetCssFont
      *
      * @param  string $font_key font_key (optional)
@@ -2500,15 +3084,17 @@ class DesignAtomsViewerApi
      * @param  bool $alpha_mask alpha_mask (optional)
      * @param  int $page page (optional)
      * @param  string $colorize_color colorize_color (optional)
+     * @param  float $rw rw (optional)
+     * @param  float $rh rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsViewerImg($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $tenant_id = null)
+    public function designAtomsViewerImg($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
-        list($response) = $this->designAtomsViewerImgWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $tenant_id);
+        list($response) = $this->designAtomsViewerImgWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
         return $response;
     }
 
@@ -2531,15 +3117,17 @@ class DesignAtomsViewerApi
      * @param  bool $alpha_mask (optional)
      * @param  int $page (optional)
      * @param  string $colorize_color (optional)
+     * @param  float $rw (optional)
+     * @param  float $rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsViewerImgWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $tenant_id = null)
+    public function designAtomsViewerImgWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
-        $request = $this->designAtomsViewerImgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $tenant_id);
+        $request = $this->designAtomsViewerImgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2671,14 +3259,16 @@ class DesignAtomsViewerApi
      * @param  bool $alpha_mask (optional)
      * @param  int $page (optional)
      * @param  string $colorize_color (optional)
+     * @param  float $rw (optional)
+     * @param  float $rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsViewerImgAsync($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $tenant_id = null)
+    public function designAtomsViewerImgAsync($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
-        return $this->designAtomsViewerImgAsyncWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $tenant_id)
+        return $this->designAtomsViewerImgAsyncWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2705,15 +3295,17 @@ class DesignAtomsViewerApi
      * @param  bool $alpha_mask (optional)
      * @param  int $page (optional)
      * @param  string $colorize_color (optional)
+     * @param  float $rw (optional)
+     * @param  float $rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsViewerImgAsyncWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $tenant_id = null)
+    public function designAtomsViewerImgAsyncWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
         $returnType = '\SplFileObject';
-        $request = $this->designAtomsViewerImgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $tenant_id);
+        $request = $this->designAtomsViewerImgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2767,12 +3359,14 @@ class DesignAtomsViewerApi
      * @param  bool $alpha_mask (optional)
      * @param  int $page (optional)
      * @param  string $colorize_color (optional)
+     * @param  float $rw (optional)
+     * @param  float $rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsViewerImgRequest($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $tenant_id = null)
+    public function designAtomsViewerImgRequest($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
 
         $resourcePath = '/api/atoms/v1/ccviewer/img';
@@ -2956,6 +3550,28 @@ class DesignAtomsViewerApi
             }
             else {
                 $queryParams['colorizeColor'] = $colorize_color;
+            }
+        }
+        // query params
+        if ($rw !== null) {
+            if('form' === 'form' && is_array($rw)) {
+                foreach($rw as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['rw'] = $rw;
+            }
+        }
+        // query params
+        if ($rh !== null) {
+            if('form' === 'form' && is_array($rh)) {
+                foreach($rh as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['rh'] = $rh;
             }
         }
         // query params
@@ -3676,15 +4292,32 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerSvg
      *
      * @param  string $f f (optional)
+     * @param  int $w w (optional)
+     * @param  int $h h (optional)
+     * @param  string $cmyk cmyk (optional)
+     * @param  string $rgb rgb (optional)
+     * @param  string $grayscale grayscale (optional)
+     * @param  string $target target (optional)
+     * @param  bool $sq sq (optional)
+     * @param  string $effect effect (optional)
+     * @param  bool $kp kp (optional)
+     * @param  string $color color (optional)
+     * @param  string $obm obm (optional)
+     * @param  float $oo oo (optional)
+     * @param  bool $alpha_mask alpha_mask (optional)
+     * @param  int $page page (optional)
+     * @param  string $colorize_color colorize_color (optional)
+     * @param  float $rw rw (optional)
+     * @param  float $rh rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsViewerSvg($f = null, $tenant_id = null)
+    public function designAtomsViewerSvg($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
-        list($response) = $this->designAtomsViewerSvgWithHttpInfo($f, $tenant_id);
+        list($response) = $this->designAtomsViewerSvgWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
         return $response;
     }
 
@@ -3692,15 +4325,32 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerSvgWithHttpInfo
      *
      * @param  string $f (optional)
+     * @param  int $w (optional)
+     * @param  int $h (optional)
+     * @param  string $cmyk (optional)
+     * @param  string $rgb (optional)
+     * @param  string $grayscale (optional)
+     * @param  string $target (optional)
+     * @param  bool $sq (optional)
+     * @param  string $effect (optional)
+     * @param  bool $kp (optional)
+     * @param  string $color (optional)
+     * @param  string $obm (optional)
+     * @param  float $oo (optional)
+     * @param  bool $alpha_mask (optional)
+     * @param  int $page (optional)
+     * @param  string $colorize_color (optional)
+     * @param  float $rw (optional)
+     * @param  float $rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsViewerSvgWithHttpInfo($f = null, $tenant_id = null)
+    public function designAtomsViewerSvgWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
-        $request = $this->designAtomsViewerSvgRequest($f, $tenant_id);
+        $request = $this->designAtomsViewerSvgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3817,14 +4467,31 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerSvgAsync
      *
      * @param  string $f (optional)
+     * @param  int $w (optional)
+     * @param  int $h (optional)
+     * @param  string $cmyk (optional)
+     * @param  string $rgb (optional)
+     * @param  string $grayscale (optional)
+     * @param  string $target (optional)
+     * @param  bool $sq (optional)
+     * @param  string $effect (optional)
+     * @param  bool $kp (optional)
+     * @param  string $color (optional)
+     * @param  string $obm (optional)
+     * @param  float $oo (optional)
+     * @param  bool $alpha_mask (optional)
+     * @param  int $page (optional)
+     * @param  string $colorize_color (optional)
+     * @param  float $rw (optional)
+     * @param  float $rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsViewerSvgAsync($f = null, $tenant_id = null)
+    public function designAtomsViewerSvgAsync($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
-        return $this->designAtomsViewerSvgAsyncWithHttpInfo($f, $tenant_id)
+        return $this->designAtomsViewerSvgAsyncWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3836,15 +4503,32 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerSvgAsyncWithHttpInfo
      *
      * @param  string $f (optional)
+     * @param  int $w (optional)
+     * @param  int $h (optional)
+     * @param  string $cmyk (optional)
+     * @param  string $rgb (optional)
+     * @param  string $grayscale (optional)
+     * @param  string $target (optional)
+     * @param  bool $sq (optional)
+     * @param  string $effect (optional)
+     * @param  bool $kp (optional)
+     * @param  string $color (optional)
+     * @param  string $obm (optional)
+     * @param  float $oo (optional)
+     * @param  bool $alpha_mask (optional)
+     * @param  int $page (optional)
+     * @param  string $colorize_color (optional)
+     * @param  float $rw (optional)
+     * @param  float $rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsViewerSvgAsyncWithHttpInfo($f = null, $tenant_id = null)
+    public function designAtomsViewerSvgAsyncWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
         $returnType = '\SplFileObject';
-        $request = $this->designAtomsViewerSvgRequest($f, $tenant_id);
+        $request = $this->designAtomsViewerSvgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3883,12 +4567,29 @@ class DesignAtomsViewerApi
      * Create request for operation 'designAtomsViewerSvg'
      *
      * @param  string $f (optional)
+     * @param  int $w (optional)
+     * @param  int $h (optional)
+     * @param  string $cmyk (optional)
+     * @param  string $rgb (optional)
+     * @param  string $grayscale (optional)
+     * @param  string $target (optional)
+     * @param  bool $sq (optional)
+     * @param  string $effect (optional)
+     * @param  bool $kp (optional)
+     * @param  string $color (optional)
+     * @param  string $obm (optional)
+     * @param  float $oo (optional)
+     * @param  bool $alpha_mask (optional)
+     * @param  int $page (optional)
+     * @param  string $colorize_color (optional)
+     * @param  float $rw (optional)
+     * @param  float $rh (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsViewerSvgRequest($f = null, $tenant_id = null)
+    public function designAtomsViewerSvgRequest($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null)
     {
 
         $resourcePath = '/api/atoms/v1/ccviewer/svg';
@@ -3907,6 +4608,193 @@ class DesignAtomsViewerApi
             }
             else {
                 $queryParams['f'] = $f;
+            }
+        }
+        // query params
+        if ($w !== null) {
+            if('form' === 'form' && is_array($w)) {
+                foreach($w as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['w'] = $w;
+            }
+        }
+        // query params
+        if ($h !== null) {
+            if('form' === 'form' && is_array($h)) {
+                foreach($h as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['h'] = $h;
+            }
+        }
+        // query params
+        if ($cmyk !== null) {
+            if('form' === 'form' && is_array($cmyk)) {
+                foreach($cmyk as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['cmyk'] = $cmyk;
+            }
+        }
+        // query params
+        if ($rgb !== null) {
+            if('form' === 'form' && is_array($rgb)) {
+                foreach($rgb as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['rgb'] = $rgb;
+            }
+        }
+        // query params
+        if ($grayscale !== null) {
+            if('form' === 'form' && is_array($grayscale)) {
+                foreach($grayscale as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['grayscale'] = $grayscale;
+            }
+        }
+        // query params
+        if ($target !== null) {
+            if('form' === 'form' && is_array($target)) {
+                foreach($target as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['target'] = $target;
+            }
+        }
+        // query params
+        if ($sq !== null) {
+            if('form' === 'form' && is_array($sq)) {
+                foreach($sq as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['sq'] = $sq;
+            }
+        }
+        // query params
+        if ($effect !== null) {
+            if('form' === 'form' && is_array($effect)) {
+                foreach($effect as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['effect'] = $effect;
+            }
+        }
+        // query params
+        if ($kp !== null) {
+            if('form' === 'form' && is_array($kp)) {
+                foreach($kp as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['kp'] = $kp;
+            }
+        }
+        // query params
+        if ($color !== null) {
+            if('form' === 'form' && is_array($color)) {
+                foreach($color as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['color'] = $color;
+            }
+        }
+        // query params
+        if ($obm !== null) {
+            if('form' === 'form' && is_array($obm)) {
+                foreach($obm as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['obm'] = $obm;
+            }
+        }
+        // query params
+        if ($oo !== null) {
+            if('form' === 'form' && is_array($oo)) {
+                foreach($oo as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['oo'] = $oo;
+            }
+        }
+        // query params
+        if ($alpha_mask !== null) {
+            if('form' === 'form' && is_array($alpha_mask)) {
+                foreach($alpha_mask as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['alphaMask'] = $alpha_mask;
+            }
+        }
+        // query params
+        if ($page !== null) {
+            if('form' === 'form' && is_array($page)) {
+                foreach($page as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['page'] = $page;
+            }
+        }
+        // query params
+        if ($colorize_color !== null) {
+            if('form' === 'form' && is_array($colorize_color)) {
+                foreach($colorize_color as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['colorizeColor'] = $colorize_color;
+            }
+        }
+        // query params
+        if ($rw !== null) {
+            if('form' === 'form' && is_array($rw)) {
+                foreach($rw as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['rw'] = $rw;
+            }
+        }
+        // query params
+        if ($rh !== null) {
+            if('form' === 'form' && is_array($rh)) {
+                foreach($rh as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['rh'] = $rh;
             }
         }
         // query params

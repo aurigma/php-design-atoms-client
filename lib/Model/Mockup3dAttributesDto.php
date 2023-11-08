@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateImageHandlerRequest
+ * Mockup3dAttributesDto
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * UpdateImageHandlerRequest Class Doc Comment
+ * Mockup3dAttributesDto Class Doc Comment
  *
  * @category Class
  * @package  Aurigma\DesignAtoms
@@ -42,7 +42,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class Mockup3dAttributesDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateImageHandlerRequest';
+    protected static $openAPIModelName = 'Mockup3dAttributesDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,13 +59,7 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'actual_size' => 'bool',
-        'preserve_aspect_ratio' => 'bool',
-        'url' => 'string',
-        'canvas_data' => 'string',
-        'item_handler_data' => 'string',
-        'item_data' => 'mixed',
-        'color_settings' => '\Aurigma\DesignAtoms\Model\PreviewColorSettings'
+        'data' => 'array<string,string>'
     ];
 
     /**
@@ -76,13 +70,7 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'actual_size' => null,
-        'preserve_aspect_ratio' => null,
-        'url' => null,
-        'canvas_data' => null,
-        'item_handler_data' => null,
-        'item_data' => null,
-        'color_settings' => null
+        'data' => null
     ];
 
     /**
@@ -112,13 +100,7 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'actual_size' => 'actualSize',
-        'preserve_aspect_ratio' => 'preserveAspectRatio',
-        'url' => 'url',
-        'canvas_data' => 'canvasData',
-        'item_handler_data' => 'itemHandlerData',
-        'item_data' => 'itemData',
-        'color_settings' => 'colorSettings'
+        'data' => 'data'
     ];
 
     /**
@@ -127,13 +109,7 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'actual_size' => 'setActualSize',
-        'preserve_aspect_ratio' => 'setPreserveAspectRatio',
-        'url' => 'setUrl',
-        'canvas_data' => 'setCanvasData',
-        'item_handler_data' => 'setItemHandlerData',
-        'item_data' => 'setItemData',
-        'color_settings' => 'setColorSettings'
+        'data' => 'setData'
     ];
 
     /**
@@ -142,13 +118,7 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'actual_size' => 'getActualSize',
-        'preserve_aspect_ratio' => 'getPreserveAspectRatio',
-        'url' => 'getUrl',
-        'canvas_data' => 'getCanvasData',
-        'item_handler_data' => 'getItemHandlerData',
-        'item_data' => 'getItemData',
-        'color_settings' => 'getColorSettings'
+        'data' => 'getData'
     ];
 
     /**
@@ -208,13 +178,7 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['actual_size'] = $data['actual_size'] ?? null;
-        $this->container['preserve_aspect_ratio'] = $data['preserve_aspect_ratio'] ?? null;
-        $this->container['url'] = $data['url'] ?? null;
-        $this->container['canvas_data'] = $data['canvas_data'] ?? null;
-        $this->container['item_handler_data'] = $data['item_handler_data'] ?? null;
-        $this->container['item_data'] = $data['item_data'] ?? null;
-        $this->container['color_settings'] = $data['color_settings'] ?? null;
+        $this->container['data'] = $data['data'] ?? null;
     }
 
     /**
@@ -242,169 +206,25 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets actual_size
+     * Gets data
      *
-     * @return bool|null
+     * @return array<string,string>|null
      */
-    public function getActualSize()
+    public function getData()
     {
-        return $this->container['actual_size'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets actual_size
+     * Sets data
      *
-     * @param bool|null $actual_size actual_size
+     * @param array<string,string>|null $data data
      *
      * @return self
      */
-    public function setActualSize($actual_size)
+    public function setData($data)
     {
-        $this->container['actual_size'] = $actual_size;
-
-        return $this;
-    }
-
-    /**
-     * Gets preserve_aspect_ratio
-     *
-     * @return bool|null
-     */
-    public function getPreserveAspectRatio()
-    {
-        return $this->container['preserve_aspect_ratio'];
-    }
-
-    /**
-     * Sets preserve_aspect_ratio
-     *
-     * @param bool|null $preserve_aspect_ratio preserve_aspect_ratio
-     *
-     * @return self
-     */
-    public function setPreserveAspectRatio($preserve_aspect_ratio)
-    {
-        $this->container['preserve_aspect_ratio'] = $preserve_aspect_ratio;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url url
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
-     * Gets canvas_data
-     *
-     * @return string|null
-     */
-    public function getCanvasData()
-    {
-        return $this->container['canvas_data'];
-    }
-
-    /**
-     * Sets canvas_data
-     *
-     * @param string|null $canvas_data canvas_data
-     *
-     * @return self
-     */
-    public function setCanvasData($canvas_data)
-    {
-        $this->container['canvas_data'] = $canvas_data;
-
-        return $this;
-    }
-
-    /**
-     * Gets item_handler_data
-     *
-     * @return string|null
-     */
-    public function getItemHandlerData()
-    {
-        return $this->container['item_handler_data'];
-    }
-
-    /**
-     * Sets item_handler_data
-     *
-     * @param string|null $item_handler_data item_handler_data
-     *
-     * @return self
-     */
-    public function setItemHandlerData($item_handler_data)
-    {
-        $this->container['item_handler_data'] = $item_handler_data;
-
-        return $this;
-    }
-
-    /**
-     * Gets item_data
-     *
-     * @return mixed|null
-     */
-    public function getItemData()
-    {
-        return $this->container['item_data'];
-    }
-
-    /**
-     * Sets item_data
-     *
-     * @param mixed|null $item_data item_data
-     *
-     * @return self
-     */
-    public function setItemData($item_data)
-    {
-        $this->container['item_data'] = $item_data;
-
-        return $this;
-    }
-
-    /**
-     * Gets color_settings
-     *
-     * @return \Aurigma\DesignAtoms\Model\PreviewColorSettings|null
-     */
-    public function getColorSettings()
-    {
-        return $this->container['color_settings'];
-    }
-
-    /**
-     * Sets color_settings
-     *
-     * @param \Aurigma\DesignAtoms\Model\PreviewColorSettings|null $color_settings color_settings
-     *
-     * @return self
-     */
-    public function setColorSettings($color_settings)
-    {
-        $this->container['color_settings'] = $color_settings;
+        $this->container['data'] = $data;
 
         return $this;
     }

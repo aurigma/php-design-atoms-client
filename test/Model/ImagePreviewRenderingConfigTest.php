@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodDataTest
+ * ImagePreviewRenderingConfigTest
  *
  * PHP version 7.2
  *
@@ -31,15 +31,15 @@ namespace Aurigma\DesignAtoms\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FontsMethodDataTest Class Doc Comment
+ * ImagePreviewRenderingConfigTest Class Doc Comment
  *
  * @category    Class
- * @description FontsMethodData
+ * @description ImagePreviewRenderingConfig
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FontsMethodDataTest extends TestCase
+class ImagePreviewRenderingConfigTest extends TestCase
 {
 
     /**
@@ -71,36 +71,36 @@ class FontsMethodDataTest extends TestCase
     }
 
     /**
-     * Test "FontsMethodData"
+     * Test "ImagePreviewRenderingConfig"
      */
-    public function testFontsMethodData()
+    public function testImagePreviewRenderingConfig()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "requested_fonts_by_ps_name"
+     * Test attribute "width"
      */
-    public function testPropertyRequestedFontsByPsName()
+    public function testPropertyWidth()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "advanced_mode"
+     * Test attribute "height"
      */
-    public function testPropertyAdvancedMode()
+    public function testPropertyHeight()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "base_url"
+     * Test attribute "file_format"
      */
-    public function testPropertyBaseUrl()
+    public function testPropertyFileFormat()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

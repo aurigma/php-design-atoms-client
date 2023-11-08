@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodDataTest
+ * ProductPreviewRenderingConfigTest
  *
  * PHP version 7.2
  *
@@ -31,15 +31,15 @@ namespace Aurigma\DesignAtoms\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FontsMethodDataTest Class Doc Comment
+ * ProductPreviewRenderingConfigTest Class Doc Comment
  *
  * @category    Class
- * @description FontsMethodData
+ * @description ProductPreviewRenderingConfig
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FontsMethodDataTest extends TestCase
+class ProductPreviewRenderingConfigTest extends TestCase
 {
 
     /**
@@ -71,36 +71,45 @@ class FontsMethodDataTest extends TestCase
     }
 
     /**
-     * Test "FontsMethodData"
+     * Test "ProductPreviewRenderingConfig"
      */
-    public function testFontsMethodData()
+    public function testProductPreviewRenderingConfig()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "requested_fonts_by_ps_name"
+     * Test attribute "surface_index"
      */
-    public function testPropertyRequestedFontsByPsName()
+    public function testPropertySurfaceIndex()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "advanced_mode"
+     * Test attribute "width"
      */
-    public function testPropertyAdvancedMode()
+    public function testPropertyWidth()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "base_url"
+     * Test attribute "height"
      */
-    public function testPropertyBaseUrl()
+    public function testPropertyHeight()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "file_format"
+     */
+    public function testPropertyFileFormat()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

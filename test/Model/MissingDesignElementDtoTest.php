@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodDataTest
+ * MissingDesignElementDtoTest
  *
  * PHP version 7.2
  *
@@ -31,15 +31,15 @@ namespace Aurigma\DesignAtoms\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FontsMethodDataTest Class Doc Comment
+ * MissingDesignElementDtoTest Class Doc Comment
  *
  * @category    Class
- * @description FontsMethodData
+ * @description MissingDesignElementDto
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FontsMethodDataTest extends TestCase
+class MissingDesignElementDtoTest extends TestCase
 {
 
     /**
@@ -71,36 +71,27 @@ class FontsMethodDataTest extends TestCase
     }
 
     /**
-     * Test "FontsMethodData"
+     * Test "MissingDesignElementDto"
      */
-    public function testFontsMethodData()
+    public function testMissingDesignElementDto()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "requested_fonts_by_ps_name"
+     * Test attribute "description"
      */
-    public function testPropertyRequestedFontsByPsName()
+    public function testPropertyDescription()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "advanced_mode"
+     * Test attribute "missing_element_type"
      */
-    public function testPropertyAdvancedMode()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "base_url"
-     */
-    public function testPropertyBaseUrl()
+    public function testPropertyMissingElementType()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

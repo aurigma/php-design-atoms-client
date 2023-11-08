@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * RenderProductModelTest Class Doc Comment
  *
  * @category    Class
- * @description Preview parameters
+ * @description Render product parameters
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

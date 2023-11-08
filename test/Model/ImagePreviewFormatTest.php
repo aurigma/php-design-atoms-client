@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodDataTest
+ * ImagePreviewFormatTest
  *
  * PHP version 7.2
  *
@@ -31,15 +31,15 @@ namespace Aurigma\DesignAtoms\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FontsMethodDataTest Class Doc Comment
+ * ImagePreviewFormatTest Class Doc Comment
  *
  * @category    Class
- * @description FontsMethodData
+ * @description Image preview file format.
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FontsMethodDataTest extends TestCase
+class ImagePreviewFormatTest extends TestCase
 {
 
     /**
@@ -71,36 +71,9 @@ class FontsMethodDataTest extends TestCase
     }
 
     /**
-     * Test "FontsMethodData"
+     * Test "ImagePreviewFormat"
      */
-    public function testFontsMethodData()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "requested_fonts_by_ps_name"
-     */
-    public function testPropertyRequestedFontsByPsName()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "advanced_mode"
-     */
-    public function testPropertyAdvancedMode()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "base_url"
-     */
-    public function testPropertyBaseUrl()
+    public function testImagePreviewFormat()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

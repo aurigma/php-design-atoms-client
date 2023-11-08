@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**designAtomsCompatibilityCssFonts()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityCssFonts) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/cssfonts | 
 [**designAtomsCompatibilityFonts()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityFonts) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/fonts/{psName} | 
+[**designAtomsCompatibilityGetColorPreview()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetColorPreview) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetColorPreview | 
+[**designAtomsCompatibilityGetColorPreviews()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetColorPreviews) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetColorPreviews | 
 [**designAtomsCompatibilityGetCssFont()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetCssFont) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetCssFont | 
 [**designAtomsCompatibilityGetFallbackFonts()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetFallbackFonts) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetFallbackFonts | 
 [**designAtomsCompatibilityGetImageSize()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetImageSize) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetImageSize | 
@@ -137,6 +139,118 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: `application/octet-stream`, `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsCompatibilityGetColorPreview()`
+
+```php
+designAtomsCompatibilityGetColorPreview($tenant_id, $get_color_preview_request): mixed
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$tenant_id = 56; // int
+$get_color_preview_request = new \Aurigma\DesignAtoms\Model\GetColorPreviewRequest(); // \Aurigma\DesignAtoms\Model\GetColorPreviewRequest
+
+try {
+    $result = $apiInstance->designAtomsCompatibilityGetColorPreview($tenant_id, $get_color_preview_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsCompatibilityApi->designAtomsCompatibilityGetColorPreview: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **int**|  |
+ **get_color_preview_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewRequest**](../Model/GetColorPreviewRequest.md)|  | [optional]
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsCompatibilityGetColorPreviews()`
+
+```php
+designAtomsCompatibilityGetColorPreviews($tenant_id, $get_color_previews_request): \Aurigma\DesignAtoms\Model\GetColorPreviewsResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$tenant_id = 56; // int
+$get_color_previews_request = new \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest(); // \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest
+
+try {
+    $result = $apiInstance->designAtomsCompatibilityGetColorPreviews($tenant_id, $get_color_previews_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsCompatibilityApi->designAtomsCompatibilityGetColorPreviews: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **int**|  |
+ **get_color_previews_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewsRequest**](../Model/GetColorPreviewsRequest.md)|  | [optional]
+
+### Return type
+
+[**\Aurigma\DesignAtoms\Model\GetColorPreviewsResponse**](../Model/GetColorPreviewsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -477,7 +591,7 @@ No authorization required
 ## `designAtomsCompatibilityImg()`
 
 ```php
-designAtomsCompatibilityImg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color): \SplFileObject
+designAtomsCompatibilityImg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh): \SplFileObject
 ```
 
 
@@ -512,9 +626,11 @@ $oo = 3.4; // float
 $alpha_mask = True; // bool
 $page = 56; // int
 $colorize_color = 'colorize_color_example'; // string
+$rw = 3.4; // float
+$rh = 3.4; // float
 
 try {
-    $result = $apiInstance->designAtomsCompatibilityImg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color);
+    $result = $apiInstance->designAtomsCompatibilityImg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsCompatibilityApi->designAtomsCompatibilityImg: ', $e->getMessage(), PHP_EOL;
@@ -542,6 +658,8 @@ Name | Type | Description  | Notes
  **alpha_mask** | **bool**|  | [optional]
  **page** | **int**|  | [optional]
  **colorize_color** | **string**|  | [optional]
+ **rw** | **float**|  | [optional]
+ **rh** | **float**|  | [optional]
 
 ### Return type
 
@@ -675,7 +793,7 @@ No authorization required
 ## `designAtomsCompatibilitySvg()`
 
 ```php
-designAtomsCompatibilitySvg($tenant_id, $f): \SplFileObject
+designAtomsCompatibilitySvg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh): \SplFileObject
 ```
 
 
@@ -695,9 +813,26 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
 );
 $tenant_id = 56; // int
 $f = 'f_example'; // string
+$w = 56; // int
+$h = 56; // int
+$cmyk = 'cmyk_example'; // string
+$rgb = 'rgb_example'; // string
+$grayscale = 'grayscale_example'; // string
+$target = 'target_example'; // string
+$sq = True; // bool
+$effect = 'effect_example'; // string
+$kp = True; // bool
+$color = 'color_example'; // string
+$obm = 'obm_example'; // string
+$oo = 3.4; // float
+$alpha_mask = True; // bool
+$page = 56; // int
+$colorize_color = 'colorize_color_example'; // string
+$rw = 3.4; // float
+$rh = 3.4; // float
 
 try {
-    $result = $apiInstance->designAtomsCompatibilitySvg($tenant_id, $f);
+    $result = $apiInstance->designAtomsCompatibilitySvg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsCompatibilityApi->designAtomsCompatibilitySvg: ', $e->getMessage(), PHP_EOL;
@@ -710,6 +845,23 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **int**|  |
  **f** | **string**|  | [optional]
+ **w** | **int**|  | [optional]
+ **h** | **int**|  | [optional]
+ **cmyk** | **string**|  | [optional]
+ **rgb** | **string**|  | [optional]
+ **grayscale** | **string**|  | [optional]
+ **target** | **string**|  | [optional]
+ **sq** | **bool**|  | [optional]
+ **effect** | **string**|  | [optional]
+ **kp** | **bool**|  | [optional]
+ **color** | **string**|  | [optional]
+ **obm** | **string**|  | [optional]
+ **oo** | **float**|  | [optional]
+ **alpha_mask** | **bool**|  | [optional]
+ **page** | **int**|  | [optional]
+ **colorize_color** | **string**|  | [optional]
+ **rw** | **float**|  | [optional]
+ **rh** | **float**|  | [optional]
 
 ### Return type
 

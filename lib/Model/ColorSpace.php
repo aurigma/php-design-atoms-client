@@ -1,6 +1,6 @@
 <?php
 /**
- * ImagePreviewFormat
+ * ColorSpace
  *
  * PHP version 7.2
  *
@@ -30,21 +30,23 @@ namespace Aurigma\DesignAtoms\Model;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * ImagePreviewFormat Class Doc Comment
+ * ColorSpace Class Doc Comment
  *
  * @category Class
- * @description Image preview file format.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ImagePreviewFormat
+class ColorSpace
 {
     /**
      * Possible values of this enum
      */
-    const JPEG = 'Jpeg';
-    const PNG = 'Png';
+    const RGB = 'Rgb';
+    const CMYK = 'Cmyk';
+    const GRAYSCALE = 'Grayscale';
+    const LAB = 'Lab';
+    const SPOT = 'Spot';
     
     /**
      * Gets allowable values of the enum
@@ -53,8 +55,11 @@ class ImagePreviewFormat
     public static function getAllowableEnumValues()
     {
         return [
-            self::JPEG,
-            self::PNG,
+            self::RGB,
+            self::CMYK,
+            self::GRAYSCALE,
+            self::LAB,
+            self::SPOT,
         ];
     }
 }

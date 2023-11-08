@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodDataTest
+ * RgbColorTest
  *
  * PHP version 7.2
  *
@@ -31,15 +31,15 @@ namespace Aurigma\DesignAtoms\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FontsMethodDataTest Class Doc Comment
+ * RgbColorTest Class Doc Comment
  *
  * @category    Class
- * @description FontsMethodData
+ * @description RgbColor
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FontsMethodDataTest extends TestCase
+class RgbColorTest extends TestCase
 {
 
     /**
@@ -71,36 +71,63 @@ class FontsMethodDataTest extends TestCase
     }
 
     /**
-     * Test "FontsMethodData"
+     * Test "RgbColor"
      */
-    public function testFontsMethodData()
+    public function testRgbColor()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "requested_fonts_by_ps_name"
+     * Test attribute "color_space"
      */
-    public function testPropertyRequestedFontsByPsName()
+    public function testPropertyColorSpace()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "advanced_mode"
+     * Test attribute "r"
      */
-    public function testPropertyAdvancedMode()
+    public function testPropertyR()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "base_url"
+     * Test attribute "g"
      */
-    public function testPropertyBaseUrl()
+    public function testPropertyG()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "b"
+     */
+    public function testPropertyB()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "alpha"
+     */
+    public function testPropertyAlpha()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "profile"
+     */
+    public function testPropertyProfile()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -68,7 +68,8 @@ class MultiCallRequestItem implements ModelInterface, ArrayAccess, \JsonSerializ
         'image_id' => 'string',
         'page_index' => 'int',
         'method_name' => 'string',
-        'item_data' => 'mixed'
+        'item_data' => 'mixed',
+        'color_settings' => '\Aurigma\DesignAtoms\Model\PreviewColorSettings'
     ];
 
     /**
@@ -88,7 +89,8 @@ class MultiCallRequestItem implements ModelInterface, ArrayAccess, \JsonSerializ
         'image_id' => null,
         'page_index' => 'int32',
         'method_name' => null,
-        'item_data' => null
+        'item_data' => null,
+        'color_settings' => null
     ];
 
     /**
@@ -127,7 +129,8 @@ class MultiCallRequestItem implements ModelInterface, ArrayAccess, \JsonSerializ
         'image_id' => 'imageId',
         'page_index' => 'pageIndex',
         'method_name' => 'methodName',
-        'item_data' => 'itemData'
+        'item_data' => 'itemData',
+        'color_settings' => 'colorSettings'
     ];
 
     /**
@@ -145,7 +148,8 @@ class MultiCallRequestItem implements ModelInterface, ArrayAccess, \JsonSerializ
         'image_id' => 'setImageId',
         'page_index' => 'setPageIndex',
         'method_name' => 'setMethodName',
-        'item_data' => 'setItemData'
+        'item_data' => 'setItemData',
+        'color_settings' => 'setColorSettings'
     ];
 
     /**
@@ -163,7 +167,8 @@ class MultiCallRequestItem implements ModelInterface, ArrayAccess, \JsonSerializ
         'image_id' => 'getImageId',
         'page_index' => 'getPageIndex',
         'method_name' => 'getMethodName',
-        'item_data' => 'getItemData'
+        'item_data' => 'getItemData',
+        'color_settings' => 'getColorSettings'
     ];
 
     /**
@@ -233,6 +238,7 @@ class MultiCallRequestItem implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->container['page_index'] = $data['page_index'] ?? null;
         $this->container['method_name'] = $data['method_name'] ?? null;
         $this->container['item_data'] = $data['item_data'] ?? null;
+        $this->container['color_settings'] = $data['color_settings'] ?? null;
     }
 
     /**
@@ -495,6 +501,30 @@ class MultiCallRequestItem implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setItemData($item_data)
     {
         $this->container['item_data'] = $item_data;
+
+        return $this;
+    }
+
+    /**
+     * Gets color_settings
+     *
+     * @return \Aurigma\DesignAtoms\Model\PreviewColorSettings|null
+     */
+    public function getColorSettings()
+    {
+        return $this->container['color_settings'];
+    }
+
+    /**
+     * Sets color_settings
+     *
+     * @param \Aurigma\DesignAtoms\Model\PreviewColorSettings|null $color_settings color_settings
+     *
+     * @return self
+     */
+    public function setColorSettings($color_settings)
+    {
+        $this->container['color_settings'] = $color_settings;
 
         return $this;
     }

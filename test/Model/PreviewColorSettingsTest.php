@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodDataTest
+ * PreviewColorSettingsTest
  *
  * PHP version 7.2
  *
@@ -31,15 +31,15 @@ namespace Aurigma\DesignAtoms\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FontsMethodDataTest Class Doc Comment
+ * PreviewColorSettingsTest Class Doc Comment
  *
  * @category    Class
- * @description FontsMethodData
+ * @description PreviewColorSettings
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FontsMethodDataTest extends TestCase
+class PreviewColorSettingsTest extends TestCase
 {
 
     /**
@@ -71,36 +71,45 @@ class FontsMethodDataTest extends TestCase
     }
 
     /**
-     * Test "FontsMethodData"
+     * Test "PreviewColorSettings"
      */
-    public function testFontsMethodData()
+    public function testPreviewColorSettings()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "requested_fonts_by_ps_name"
+     * Test attribute "rgb_color_profile_name"
      */
-    public function testPropertyRequestedFontsByPsName()
+    public function testPropertyRgbColorProfileName()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "advanced_mode"
+     * Test attribute "cmyk_color_profile_name"
      */
-    public function testPropertyAdvancedMode()
+    public function testPropertyCmykColorProfileName()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "base_url"
+     * Test attribute "grayscale_color_profile_name"
      */
-    public function testPropertyBaseUrl()
+    public function testPropertyGrayscaleColorProfileName()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "hi_res_destination_color_profile_name"
+     */
+    public function testPropertyHiResDestinationColorProfileName()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

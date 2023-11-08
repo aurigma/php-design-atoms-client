@@ -61,7 +61,8 @@ class UpdateHandlerRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPITypes = [
         'canvas_data' => 'string',
         'item_handler_data' => 'string',
-        'item_data' => 'mixed'
+        'item_data' => 'mixed',
+        'color_settings' => '\Aurigma\DesignAtoms\Model\PreviewColorSettings'
     ];
 
     /**
@@ -74,7 +75,8 @@ class UpdateHandlerRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $openAPIFormats = [
         'canvas_data' => null,
         'item_handler_data' => null,
-        'item_data' => null
+        'item_data' => null,
+        'color_settings' => null
     ];
 
     /**
@@ -106,7 +108,8 @@ class UpdateHandlerRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $attributeMap = [
         'canvas_data' => 'canvasData',
         'item_handler_data' => 'itemHandlerData',
-        'item_data' => 'itemData'
+        'item_data' => 'itemData',
+        'color_settings' => 'colorSettings'
     ];
 
     /**
@@ -117,7 +120,8 @@ class UpdateHandlerRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $setters = [
         'canvas_data' => 'setCanvasData',
         'item_handler_data' => 'setItemHandlerData',
-        'item_data' => 'setItemData'
+        'item_data' => 'setItemData',
+        'color_settings' => 'setColorSettings'
     ];
 
     /**
@@ -128,7 +132,8 @@ class UpdateHandlerRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected static $getters = [
         'canvas_data' => 'getCanvasData',
         'item_handler_data' => 'getItemHandlerData',
-        'item_data' => 'getItemData'
+        'item_data' => 'getItemData',
+        'color_settings' => 'getColorSettings'
     ];
 
     /**
@@ -191,6 +196,7 @@ class UpdateHandlerRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->container['canvas_data'] = $data['canvas_data'] ?? null;
         $this->container['item_handler_data'] = $data['item_handler_data'] ?? null;
         $this->container['item_data'] = $data['item_data'] ?? null;
+        $this->container['color_settings'] = $data['color_settings'] ?? null;
     }
 
     /**
@@ -285,6 +291,30 @@ class UpdateHandlerRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setItemData($item_data)
     {
         $this->container['item_data'] = $item_data;
+
+        return $this;
+    }
+
+    /**
+     * Gets color_settings
+     *
+     * @return \Aurigma\DesignAtoms\Model\PreviewColorSettings|null
+     */
+    public function getColorSettings()
+    {
+        return $this->container['color_settings'];
+    }
+
+    /**
+     * Sets color_settings
+     *
+     * @param \Aurigma\DesignAtoms\Model\PreviewColorSettings|null $color_settings color_settings
+     *
+     * @return self
+     */
+    public function setColorSettings($color_settings)
+    {
+        $this->container['color_settings'] = $color_settings;
 
         return $this;
     }

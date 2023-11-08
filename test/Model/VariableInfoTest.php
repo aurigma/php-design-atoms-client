@@ -1,6 +1,6 @@
 <?php
 /**
- * FontsMethodDataTest
+ * VariableInfoTest
  *
  * PHP version 7.2
  *
@@ -31,15 +31,15 @@ namespace Aurigma\DesignAtoms\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FontsMethodDataTest Class Doc Comment
+ * VariableInfoTest Class Doc Comment
  *
  * @category    Class
- * @description FontsMethodData
+ * @description Variable information.
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FontsMethodDataTest extends TestCase
+class VariableInfoTest extends TestCase
 {
 
     /**
@@ -71,36 +71,36 @@ class FontsMethodDataTest extends TestCase
     }
 
     /**
-     * Test "FontsMethodData"
+     * Test "VariableInfo"
      */
-    public function testFontsMethodData()
+    public function testVariableInfo()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "requested_fonts_by_ps_name"
+     * Test attribute "name"
      */
-    public function testPropertyRequestedFontsByPsName()
+    public function testPropertyName()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "advanced_mode"
+     * Test attribute "value"
      */
-    public function testPropertyAdvancedMode()
+    public function testPropertyValue()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "base_url"
+     * Test attribute "type"
      */
-    public function testPropertyBaseUrl()
+    public function testPropertyType()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

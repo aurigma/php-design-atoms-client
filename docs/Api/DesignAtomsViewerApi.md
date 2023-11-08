@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**designAtomsViewerCssFonts()**](DesignAtomsViewerApi.md#designAtomsViewerCssFonts) | **POST** /api/atoms/v1/ccviewer/cssfonts | 
 [**designAtomsViewerFonts()**](DesignAtomsViewerApi.md#designAtomsViewerFonts) | **GET** /api/atoms/v1/ccviewer/fonts/{psName} | 
+[**designAtomsViewerGetColorPreview()**](DesignAtomsViewerApi.md#designAtomsViewerGetColorPreview) | **POST** /api/atoms/v1/ccviewer/GetColorPreview | 
+[**designAtomsViewerGetColorPreviews()**](DesignAtomsViewerApi.md#designAtomsViewerGetColorPreviews) | **POST** /api/atoms/v1/ccviewer/GetColorPreviews | 
 [**designAtomsViewerGetCssFont()**](DesignAtomsViewerApi.md#designAtomsViewerGetCssFont) | **GET** /api/atoms/v1/ccviewer/GetCssFont | 
 [**designAtomsViewerGetFallbackFonts()**](DesignAtomsViewerApi.md#designAtomsViewerGetFallbackFonts) | **GET** /api/atoms/v1/ccviewer/GetFallbackFonts | 
 [**designAtomsViewerGetImageSize()**](DesignAtomsViewerApi.md#designAtomsViewerGetImageSize) | **POST** /api/atoms/v1/ccviewer/GetImageSize | 
@@ -137,6 +139,118 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: `application/octet-stream`, `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsViewerGetColorPreview()`
+
+```php
+designAtomsViewerGetColorPreview($tenant_id, $get_color_preview_request): mixed
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$tenant_id = 56; // int | Tenant identifier
+$get_color_preview_request = new \Aurigma\DesignAtoms\Model\GetColorPreviewRequest(); // \Aurigma\DesignAtoms\Model\GetColorPreviewRequest
+
+try {
+    $result = $apiInstance->designAtomsViewerGetColorPreview($tenant_id, $get_color_preview_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsViewerApi->designAtomsViewerGetColorPreview: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **int**| Tenant identifier | [optional]
+ **get_color_preview_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewRequest**](../Model/GetColorPreviewRequest.md)|  | [optional]
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsViewerGetColorPreviews()`
+
+```php
+designAtomsViewerGetColorPreviews($tenant_id, $get_color_previews_request): \Aurigma\DesignAtoms\Model\GetColorPreviewsResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$tenant_id = 56; // int | Tenant identifier
+$get_color_previews_request = new \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest(); // \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest
+
+try {
+    $result = $apiInstance->designAtomsViewerGetColorPreviews($tenant_id, $get_color_previews_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsViewerApi->designAtomsViewerGetColorPreviews: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **int**| Tenant identifier | [optional]
+ **get_color_previews_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewsRequest**](../Model/GetColorPreviewsRequest.md)|  | [optional]
+
+### Return type
+
+[**\Aurigma\DesignAtoms\Model\GetColorPreviewsResponse**](../Model/GetColorPreviewsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -477,7 +591,7 @@ No authorization required
 ## `designAtomsViewerImg()`
 
 ```php
-designAtomsViewerImg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $tenant_id): \SplFileObject
+designAtomsViewerImg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id): \SplFileObject
 ```
 
 
@@ -511,10 +625,12 @@ $oo = 3.4; // float
 $alpha_mask = True; // bool
 $page = 56; // int
 $colorize_color = 'colorize_color_example'; // string
+$rw = 3.4; // float
+$rh = 3.4; // float
 $tenant_id = 56; // int | Tenant identifier
 
 try {
-    $result = $apiInstance->designAtomsViewerImg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $tenant_id);
+    $result = $apiInstance->designAtomsViewerImg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsViewerApi->designAtomsViewerImg: ', $e->getMessage(), PHP_EOL;
@@ -541,6 +657,8 @@ Name | Type | Description  | Notes
  **alpha_mask** | **bool**|  | [optional]
  **page** | **int**|  | [optional]
  **colorize_color** | **string**|  | [optional]
+ **rw** | **float**|  | [optional]
+ **rh** | **float**|  | [optional]
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -675,7 +793,7 @@ No authorization required
 ## `designAtomsViewerSvg()`
 
 ```php
-designAtomsViewerSvg($f, $tenant_id): \SplFileObject
+designAtomsViewerSvg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id): \SplFileObject
 ```
 
 
@@ -694,10 +812,27 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client()
 );
 $f = 'f_example'; // string
+$w = 56; // int
+$h = 56; // int
+$cmyk = 'cmyk_example'; // string
+$rgb = 'rgb_example'; // string
+$grayscale = 'grayscale_example'; // string
+$target = 'target_example'; // string
+$sq = True; // bool
+$effect = 'effect_example'; // string
+$kp = True; // bool
+$color = 'color_example'; // string
+$obm = 'obm_example'; // string
+$oo = 3.4; // float
+$alpha_mask = True; // bool
+$page = 56; // int
+$colorize_color = 'colorize_color_example'; // string
+$rw = 3.4; // float
+$rh = 3.4; // float
 $tenant_id = 56; // int | Tenant identifier
 
 try {
-    $result = $apiInstance->designAtomsViewerSvg($f, $tenant_id);
+    $result = $apiInstance->designAtomsViewerSvg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsViewerApi->designAtomsViewerSvg: ', $e->getMessage(), PHP_EOL;
@@ -709,6 +844,23 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **f** | **string**|  | [optional]
+ **w** | **int**|  | [optional]
+ **h** | **int**|  | [optional]
+ **cmyk** | **string**|  | [optional]
+ **rgb** | **string**|  | [optional]
+ **grayscale** | **string**|  | [optional]
+ **target** | **string**|  | [optional]
+ **sq** | **bool**|  | [optional]
+ **effect** | **string**|  | [optional]
+ **kp** | **bool**|  | [optional]
+ **color** | **string**|  | [optional]
+ **obm** | **string**|  | [optional]
+ **oo** | **float**|  | [optional]
+ **alpha_mask** | **bool**|  | [optional]
+ **page** | **int**|  | [optional]
+ **colorize_color** | **string**|  | [optional]
+ **rw** | **float**|  | [optional]
+ **rh** | **float**|  | [optional]
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type

@@ -108,12 +108,24 @@ class DesignAtomsServiceApiTest extends TestCase
     }
 
     /**
-     * Test case for designAtomsServiceDeleteDataSchema
+     * Test case for designAtomsServiceCreatePrivateDesignFromDesign
      *
-     * Deletes data schema from design file and updates design in storage..
+     * Creates a private design from a public design..
      *
      */
-    public function testDesignAtomsServiceDeleteDataSchema()
+    public function testDesignAtomsServiceCreatePrivateDesignFromDesign()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsServiceCreatePrivateDesignFromResource
+     *
+     * Creates a private design from a public resource..
+     *
+     */
+    public function testDesignAtomsServiceCreatePrivateDesignFromResource()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -126,6 +138,42 @@ class DesignAtomsServiceApiTest extends TestCase
      *
      */
     public function testDesignAtomsServiceDeleteVdpData()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsServiceExtractBackground
+     *
+     * Returns content of the background..
+     *
+     */
+    public function testDesignAtomsServiceExtractBackground()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsServiceFlattenItems
+     *
+     * Flatten items..
+     *
+     */
+    public function testDesignAtomsServiceFlattenItems()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsServiceGetVariables
+     *
+     * Gets variable items information for design file taken from storage.
+     *
+     */
+    public function testDesignAtomsServiceGetVariables()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -146,10 +194,22 @@ class DesignAtomsServiceApiTest extends TestCase
     /**
      * Test case for designAtomsServiceLoadProduct
      *
-     * Loads product from design file taken from storage.
+     * Loads product (design model) from design file taken from storage.
      *
      */
     public function testDesignAtomsServiceLoadProduct()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsServiceLoadProductFromResource
+     *
+     * Loads product (design model) from resource file taken from storage.
+     *
+     */
+    public function testDesignAtomsServiceLoadProductFromResource()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -168,6 +228,42 @@ class DesignAtomsServiceApiTest extends TestCase
     }
 
     /**
+     * Test case for designAtomsServicePatchProduct
+     *
+     * Patches product (design model) in design file..
+     *
+     */
+    public function testDesignAtomsServicePatchProduct()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsServiceRenderDesignPreview
+     *
+     * Renders a design preview with the specified parameters..
+     *
+     */
+    public function testDesignAtomsServiceRenderDesignPreview()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsServiceRenderDesignProof
+     *
+     * Renders a design proof with the specified parameters..
+     *
+     */
+    public function testDesignAtomsServiceRenderDesignProof()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for designAtomsServiceRenderProduct
      *
      * Render product proof image with specified parameters..
@@ -180,21 +276,9 @@ class DesignAtomsServiceApiTest extends TestCase
     }
 
     /**
-     * Test case for designAtomsServiceSaveDataSchema
-     *
-     * Saves data schema to design file and updates design in storage..
-     *
-     */
-    public function testDesignAtomsServiceSaveDataSchema()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for designAtomsServiceSaveProduct
      *
-     * Saves product to design file and updates design in storage..
+     * Saves product (design model) to design file and updates design in storage..
      *
      */
     public function testDesignAtomsServiceSaveProduct()
@@ -210,6 +294,18 @@ class DesignAtomsServiceApiTest extends TestCase
      *
      */
     public function testDesignAtomsServiceSaveVdpData()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsServiceSetVariables
+     *
+     * Sets variable items values for design file taken from storage.
+     *
+     */
+    public function testDesignAtomsServiceSetVariables()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

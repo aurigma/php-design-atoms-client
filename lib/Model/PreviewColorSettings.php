@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateImageHandlerRequest
+ * PreviewColorSettings
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * UpdateImageHandlerRequest Class Doc Comment
+ * PreviewColorSettings Class Doc Comment
  *
  * @category Class
  * @package  Aurigma\DesignAtoms
@@ -42,7 +42,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class PreviewColorSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateImageHandlerRequest';
+    protected static $openAPIModelName = 'PreviewColorSettings';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,13 +59,10 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'actual_size' => 'bool',
-        'preserve_aspect_ratio' => 'bool',
-        'url' => 'string',
-        'canvas_data' => 'string',
-        'item_handler_data' => 'string',
-        'item_data' => 'mixed',
-        'color_settings' => '\Aurigma\DesignAtoms\Model\PreviewColorSettings'
+        'rgb_color_profile_name' => 'string',
+        'cmyk_color_profile_name' => 'string',
+        'grayscale_color_profile_name' => 'string',
+        'hi_res_destination_color_profile_name' => 'string'
     ];
 
     /**
@@ -76,13 +73,10 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'actual_size' => null,
-        'preserve_aspect_ratio' => null,
-        'url' => null,
-        'canvas_data' => null,
-        'item_handler_data' => null,
-        'item_data' => null,
-        'color_settings' => null
+        'rgb_color_profile_name' => null,
+        'cmyk_color_profile_name' => null,
+        'grayscale_color_profile_name' => null,
+        'hi_res_destination_color_profile_name' => null
     ];
 
     /**
@@ -112,13 +106,10 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'actual_size' => 'actualSize',
-        'preserve_aspect_ratio' => 'preserveAspectRatio',
-        'url' => 'url',
-        'canvas_data' => 'canvasData',
-        'item_handler_data' => 'itemHandlerData',
-        'item_data' => 'itemData',
-        'color_settings' => 'colorSettings'
+        'rgb_color_profile_name' => 'rgbColorProfileName',
+        'cmyk_color_profile_name' => 'cmykColorProfileName',
+        'grayscale_color_profile_name' => 'grayscaleColorProfileName',
+        'hi_res_destination_color_profile_name' => 'hiResDestinationColorProfileName'
     ];
 
     /**
@@ -127,13 +118,10 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'actual_size' => 'setActualSize',
-        'preserve_aspect_ratio' => 'setPreserveAspectRatio',
-        'url' => 'setUrl',
-        'canvas_data' => 'setCanvasData',
-        'item_handler_data' => 'setItemHandlerData',
-        'item_data' => 'setItemData',
-        'color_settings' => 'setColorSettings'
+        'rgb_color_profile_name' => 'setRgbColorProfileName',
+        'cmyk_color_profile_name' => 'setCmykColorProfileName',
+        'grayscale_color_profile_name' => 'setGrayscaleColorProfileName',
+        'hi_res_destination_color_profile_name' => 'setHiResDestinationColorProfileName'
     ];
 
     /**
@@ -142,13 +130,10 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'actual_size' => 'getActualSize',
-        'preserve_aspect_ratio' => 'getPreserveAspectRatio',
-        'url' => 'getUrl',
-        'canvas_data' => 'getCanvasData',
-        'item_handler_data' => 'getItemHandlerData',
-        'item_data' => 'getItemData',
-        'color_settings' => 'getColorSettings'
+        'rgb_color_profile_name' => 'getRgbColorProfileName',
+        'cmyk_color_profile_name' => 'getCmykColorProfileName',
+        'grayscale_color_profile_name' => 'getGrayscaleColorProfileName',
+        'hi_res_destination_color_profile_name' => 'getHiResDestinationColorProfileName'
     ];
 
     /**
@@ -208,13 +193,10 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['actual_size'] = $data['actual_size'] ?? null;
-        $this->container['preserve_aspect_ratio'] = $data['preserve_aspect_ratio'] ?? null;
-        $this->container['url'] = $data['url'] ?? null;
-        $this->container['canvas_data'] = $data['canvas_data'] ?? null;
-        $this->container['item_handler_data'] = $data['item_handler_data'] ?? null;
-        $this->container['item_data'] = $data['item_data'] ?? null;
-        $this->container['color_settings'] = $data['color_settings'] ?? null;
+        $this->container['rgb_color_profile_name'] = $data['rgb_color_profile_name'] ?? null;
+        $this->container['cmyk_color_profile_name'] = $data['cmyk_color_profile_name'] ?? null;
+        $this->container['grayscale_color_profile_name'] = $data['grayscale_color_profile_name'] ?? null;
+        $this->container['hi_res_destination_color_profile_name'] = $data['hi_res_destination_color_profile_name'] ?? null;
     }
 
     /**
@@ -242,169 +224,97 @@ class UpdateImageHandlerRequest implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets actual_size
-     *
-     * @return bool|null
-     */
-    public function getActualSize()
-    {
-        return $this->container['actual_size'];
-    }
-
-    /**
-     * Sets actual_size
-     *
-     * @param bool|null $actual_size actual_size
-     *
-     * @return self
-     */
-    public function setActualSize($actual_size)
-    {
-        $this->container['actual_size'] = $actual_size;
-
-        return $this;
-    }
-
-    /**
-     * Gets preserve_aspect_ratio
-     *
-     * @return bool|null
-     */
-    public function getPreserveAspectRatio()
-    {
-        return $this->container['preserve_aspect_ratio'];
-    }
-
-    /**
-     * Sets preserve_aspect_ratio
-     *
-     * @param bool|null $preserve_aspect_ratio preserve_aspect_ratio
-     *
-     * @return self
-     */
-    public function setPreserveAspectRatio($preserve_aspect_ratio)
-    {
-        $this->container['preserve_aspect_ratio'] = $preserve_aspect_ratio;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
+     * Gets rgb_color_profile_name
      *
      * @return string|null
      */
-    public function getUrl()
+    public function getRgbColorProfileName()
     {
-        return $this->container['url'];
+        return $this->container['rgb_color_profile_name'];
     }
 
     /**
-     * Sets url
+     * Sets rgb_color_profile_name
      *
-     * @param string|null $url url
+     * @param string|null $rgb_color_profile_name rgb_color_profile_name
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setRgbColorProfileName($rgb_color_profile_name)
     {
-        $this->container['url'] = $url;
+        $this->container['rgb_color_profile_name'] = $rgb_color_profile_name;
 
         return $this;
     }
 
     /**
-     * Gets canvas_data
+     * Gets cmyk_color_profile_name
      *
      * @return string|null
      */
-    public function getCanvasData()
+    public function getCmykColorProfileName()
     {
-        return $this->container['canvas_data'];
+        return $this->container['cmyk_color_profile_name'];
     }
 
     /**
-     * Sets canvas_data
+     * Sets cmyk_color_profile_name
      *
-     * @param string|null $canvas_data canvas_data
+     * @param string|null $cmyk_color_profile_name cmyk_color_profile_name
      *
      * @return self
      */
-    public function setCanvasData($canvas_data)
+    public function setCmykColorProfileName($cmyk_color_profile_name)
     {
-        $this->container['canvas_data'] = $canvas_data;
+        $this->container['cmyk_color_profile_name'] = $cmyk_color_profile_name;
 
         return $this;
     }
 
     /**
-     * Gets item_handler_data
+     * Gets grayscale_color_profile_name
      *
      * @return string|null
      */
-    public function getItemHandlerData()
+    public function getGrayscaleColorProfileName()
     {
-        return $this->container['item_handler_data'];
+        return $this->container['grayscale_color_profile_name'];
     }
 
     /**
-     * Sets item_handler_data
+     * Sets grayscale_color_profile_name
      *
-     * @param string|null $item_handler_data item_handler_data
+     * @param string|null $grayscale_color_profile_name grayscale_color_profile_name
      *
      * @return self
      */
-    public function setItemHandlerData($item_handler_data)
+    public function setGrayscaleColorProfileName($grayscale_color_profile_name)
     {
-        $this->container['item_handler_data'] = $item_handler_data;
+        $this->container['grayscale_color_profile_name'] = $grayscale_color_profile_name;
 
         return $this;
     }
 
     /**
-     * Gets item_data
+     * Gets hi_res_destination_color_profile_name
      *
-     * @return mixed|null
+     * @return string|null
      */
-    public function getItemData()
+    public function getHiResDestinationColorProfileName()
     {
-        return $this->container['item_data'];
+        return $this->container['hi_res_destination_color_profile_name'];
     }
 
     /**
-     * Sets item_data
+     * Sets hi_res_destination_color_profile_name
      *
-     * @param mixed|null $item_data item_data
+     * @param string|null $hi_res_destination_color_profile_name hi_res_destination_color_profile_name
      *
      * @return self
      */
-    public function setItemData($item_data)
+    public function setHiResDestinationColorProfileName($hi_res_destination_color_profile_name)
     {
-        $this->container['item_data'] = $item_data;
-
-        return $this;
-    }
-
-    /**
-     * Gets color_settings
-     *
-     * @return \Aurigma\DesignAtoms\Model\PreviewColorSettings|null
-     */
-    public function getColorSettings()
-    {
-        return $this->container['color_settings'];
-    }
-
-    /**
-     * Sets color_settings
-     *
-     * @param \Aurigma\DesignAtoms\Model\PreviewColorSettings|null $color_settings color_settings
-     *
-     * @return self
-     */
-    public function setColorSettings($color_settings)
-    {
-        $this->container['color_settings'] = $color_settings;
+        $this->container['hi_res_destination_color_profile_name'] = $hi_res_destination_color_profile_name;
 
         return $this;
     }
