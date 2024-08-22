@@ -1,35 +1,35 @@
 # Aurigma\DesignAtoms\DesignAtomsViewerApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**designAtomsViewerCssFonts()**](DesignAtomsViewerApi.md#designAtomsViewerCssFonts) | **POST** /api/atoms/v1/ccviewer/cssfonts | 
-[**designAtomsViewerFonts()**](DesignAtomsViewerApi.md#designAtomsViewerFonts) | **GET** /api/atoms/v1/ccviewer/fonts/{psName} | 
-[**designAtomsViewerGetColorPreview()**](DesignAtomsViewerApi.md#designAtomsViewerGetColorPreview) | **POST** /api/atoms/v1/ccviewer/GetColorPreview | 
-[**designAtomsViewerGetColorPreviews()**](DesignAtomsViewerApi.md#designAtomsViewerGetColorPreviews) | **POST** /api/atoms/v1/ccviewer/GetColorPreviews | 
-[**designAtomsViewerGetCssFont()**](DesignAtomsViewerApi.md#designAtomsViewerGetCssFont) | **GET** /api/atoms/v1/ccviewer/GetCssFont | 
-[**designAtomsViewerGetFallbackFonts()**](DesignAtomsViewerApi.md#designAtomsViewerGetFallbackFonts) | **GET** /api/atoms/v1/ccviewer/GetFallbackFonts | 
-[**designAtomsViewerGetImageSize()**](DesignAtomsViewerApi.md#designAtomsViewerGetImageSize) | **POST** /api/atoms/v1/ccviewer/GetImageSize | 
-[**designAtomsViewerGetLicense()**](DesignAtomsViewerApi.md#designAtomsViewerGetLicense) | **GET** /api/atoms/v1/ccviewer/license | 
-[**designAtomsViewerGetShapeBounds()**](DesignAtomsViewerApi.md#designAtomsViewerGetShapeBounds) | **POST** /api/atoms/v1/ccviewer/GetShapeBounds | 
-[**designAtomsViewerGetWatermarkItems()**](DesignAtomsViewerApi.md#designAtomsViewerGetWatermarkItems) | **POST** /api/atoms/v1/ccviewer/GetWatermarkItems | 
-[**designAtomsViewerImg()**](DesignAtomsViewerApi.md#designAtomsViewerImg) | **GET** /api/atoms/v1/ccviewer/img | 
-[**designAtomsViewerPth()**](DesignAtomsViewerApi.md#designAtomsViewerPth) | **GET** /api/atoms/v1/ccviewer/pth | 
-[**designAtomsViewerResource()**](DesignAtomsViewerApi.md#designAtomsViewerResource) | **GET** /api/atoms/v1/ccviewer/resource | 
-[**designAtomsViewerSvg()**](DesignAtomsViewerApi.md#designAtomsViewerSvg) | **GET** /api/atoms/v1/ccviewer/svg | 
-[**designAtomsViewerTxt()**](DesignAtomsViewerApi.md#designAtomsViewerTxt) | **GET** /api/atoms/v1/ccviewer/txt | 
-[**designAtomsViewerUpdateArchedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateArchedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateArchedTextItemHandler | 
-[**designAtomsViewerUpdateAutoScaledTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateAutoScaledTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateAutoScaledTextItemHandler | 
-[**designAtomsViewerUpdateBarcodeItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateBarcodeItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateBarcodeItemHandler | 
-[**designAtomsViewerUpdateBoundedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateBoundedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateBoundedTextItemHandler | 
-[**designAtomsViewerUpdateByColorData()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateByColorData) | **POST** /api/atoms/v1/ccviewer/UpdateByColorData | 
-[**designAtomsViewerUpdateByMultiCallRequest()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateByMultiCallRequest) | **POST** /api/atoms/v1/ccviewer/UpdateByMultiCallRequest | 
-[**designAtomsViewerUpdateCurvedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateCurvedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateCurvedTextItemHandler | 
-[**designAtomsViewerUpdateImageItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateImageItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateImageItemHandler | 
-[**designAtomsViewerUpdatePathBoundedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdatePathBoundedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdatePathBoundedTextItemHandler | 
-[**designAtomsViewerUpdatePlainTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdatePlainTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdatePlainTextItemHandler | 
-[**designAtomsViewerUpdateShapeItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateShapeItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateShapeItemHandler | 
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**designAtomsViewerCssFonts()**](DesignAtomsViewerApi.md#designAtomsViewerCssFonts) | **POST** /api/atoms/v1/ccviewer/cssfonts |  |
+| [**designAtomsViewerFonts()**](DesignAtomsViewerApi.md#designAtomsViewerFonts) | **GET** /api/atoms/v1/ccviewer/fonts/{psName} |  |
+| [**designAtomsViewerGetColorPreview()**](DesignAtomsViewerApi.md#designAtomsViewerGetColorPreview) | **POST** /api/atoms/v1/ccviewer/GetColorPreview |  |
+| [**designAtomsViewerGetColorPreviews()**](DesignAtomsViewerApi.md#designAtomsViewerGetColorPreviews) | **POST** /api/atoms/v1/ccviewer/GetColorPreviews |  |
+| [**designAtomsViewerGetCssFont()**](DesignAtomsViewerApi.md#designAtomsViewerGetCssFont) | **GET** /api/atoms/v1/ccviewer/GetCssFont |  |
+| [**designAtomsViewerGetFallbackFonts()**](DesignAtomsViewerApi.md#designAtomsViewerGetFallbackFonts) | **GET** /api/atoms/v1/ccviewer/GetFallbackFonts |  |
+| [**designAtomsViewerGetImageSize()**](DesignAtomsViewerApi.md#designAtomsViewerGetImageSize) | **POST** /api/atoms/v1/ccviewer/GetImageSize |  |
+| [**designAtomsViewerGetLicense()**](DesignAtomsViewerApi.md#designAtomsViewerGetLicense) | **GET** /api/atoms/v1/ccviewer/license |  |
+| [**designAtomsViewerGetShapeBounds()**](DesignAtomsViewerApi.md#designAtomsViewerGetShapeBounds) | **POST** /api/atoms/v1/ccviewer/GetShapeBounds |  |
+| [**designAtomsViewerGetWatermarkItems()**](DesignAtomsViewerApi.md#designAtomsViewerGetWatermarkItems) | **POST** /api/atoms/v1/ccviewer/GetWatermarkItems |  |
+| [**designAtomsViewerImg()**](DesignAtomsViewerApi.md#designAtomsViewerImg) | **GET** /api/atoms/v1/ccviewer/img |  |
+| [**designAtomsViewerPth()**](DesignAtomsViewerApi.md#designAtomsViewerPth) | **GET** /api/atoms/v1/ccviewer/pth |  |
+| [**designAtomsViewerResource()**](DesignAtomsViewerApi.md#designAtomsViewerResource) | **GET** /api/atoms/v1/ccviewer/resource |  |
+| [**designAtomsViewerSvg()**](DesignAtomsViewerApi.md#designAtomsViewerSvg) | **GET** /api/atoms/v1/ccviewer/svg |  |
+| [**designAtomsViewerTxt()**](DesignAtomsViewerApi.md#designAtomsViewerTxt) | **GET** /api/atoms/v1/ccviewer/txt |  |
+| [**designAtomsViewerUpdateArchedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateArchedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateArchedTextItemHandler |  |
+| [**designAtomsViewerUpdateAutoScaledTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateAutoScaledTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateAutoScaledTextItemHandler |  |
+| [**designAtomsViewerUpdateBarcodeItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateBarcodeItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateBarcodeItemHandler |  |
+| [**designAtomsViewerUpdateBoundedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateBoundedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateBoundedTextItemHandler |  |
+| [**designAtomsViewerUpdateByColorData()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateByColorData) | **POST** /api/atoms/v1/ccviewer/UpdateByColorData |  |
+| [**designAtomsViewerUpdateByMultiCallRequest()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateByMultiCallRequest) | **POST** /api/atoms/v1/ccviewer/UpdateByMultiCallRequest |  |
+| [**designAtomsViewerUpdateCurvedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateCurvedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateCurvedTextItemHandler |  |
+| [**designAtomsViewerUpdateImageItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateImageItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateImageItemHandler |  |
+| [**designAtomsViewerUpdatePathBoundedTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdatePathBoundedTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdatePathBoundedTextItemHandler |  |
+| [**designAtomsViewerUpdatePlainTextItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdatePlainTextItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdatePlainTextItemHandler |  |
+| [**designAtomsViewerUpdateShapeItemHandler()**](DesignAtomsViewerApi.md#designAtomsViewerUpdateShapeItemHandler) | **POST** /api/atoms/v1/ccviewer/UpdateShapeItemHandler |  |
 
 
 ## `designAtomsViewerCssFonts()`
@@ -66,10 +66,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **fonts_method_data** | [**\Aurigma\DesignAtoms\Model\FontsMethodData**](../Model/FontsMethodData.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **fonts_method_data** | [**\Aurigma\DesignAtoms\Model\FontsMethodData**](../Model/FontsMethodData.md)|  | [optional] |
 
 ### Return type
 
@@ -122,14 +122,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ps_name** | **string**|  |
- **tenant_id** | **int**| Tenant identifier | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ps_name** | **string**|  | |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
 
-[**\SplFileObject**](../Model/\SplFileObject.md)
+**\SplFileObject**
 
 ### Authorization
 
@@ -178,10 +178,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **get_color_preview_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewRequest**](../Model/GetColorPreviewRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **get_color_preview_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewRequest**](../Model/GetColorPreviewRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -234,10 +234,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **get_color_previews_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewsRequest**](../Model/GetColorPreviewsRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **get_color_previews_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewsRequest**](../Model/GetColorPreviewsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -290,14 +290,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **font_key** | **string**|  | [optional]
- **tenant_id** | **int**| Tenant identifier | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **font_key** | **string**|  | [optional] |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
 
-[**\SplFileObject**](../Model/\SplFileObject.md)
+**\SplFileObject**
 
 ### Authorization
 
@@ -345,13 +345,13 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
 
-[**\SplFileObject**](../Model/\SplFileObject.md)
+**\SplFileObject**
 
 ### Authorization
 
@@ -400,10 +400,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **get_image_size_request** | [**\Aurigma\DesignAtoms\Model\GetImageSizeRequest**](../Model/GetImageSizeRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **get_image_size_request** | [**\Aurigma\DesignAtoms\Model\GetImageSizeRequest**](../Model/GetImageSizeRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -455,9 +455,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
 
@@ -510,10 +510,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **get_shape_bounds_request** | [**\Aurigma\DesignAtoms\Model\GetShapeBoundsRequest**](../Model/GetShapeBoundsRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **get_shape_bounds_request** | [**\Aurigma\DesignAtoms\Model\GetShapeBoundsRequest**](../Model/GetShapeBoundsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -566,10 +566,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **body** | **mixed**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **body** | **mixed**|  | [optional] |
 
 ### Return type
 
@@ -639,31 +639,31 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **f** | **string**|  | [optional]
- **w** | **int**|  | [optional]
- **h** | **int**|  | [optional]
- **cmyk** | **string**|  | [optional]
- **rgb** | **string**|  | [optional]
- **grayscale** | **string**|  | [optional]
- **target** | **string**|  | [optional]
- **sq** | **bool**|  | [optional]
- **effect** | **string**|  | [optional]
- **kp** | **bool**|  | [optional]
- **color** | **string**|  | [optional]
- **obm** | **string**|  | [optional]
- **oo** | **float**|  | [optional]
- **alpha_mask** | **bool**|  | [optional]
- **page** | **int**|  | [optional]
- **colorize_color** | **string**|  | [optional]
- **rw** | **float**|  | [optional]
- **rh** | **float**|  | [optional]
- **tenant_id** | **int**| Tenant identifier | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **f** | **string**|  | [optional] |
+| **w** | **int**|  | [optional] |
+| **h** | **int**|  | [optional] |
+| **cmyk** | **string**|  | [optional] |
+| **rgb** | **string**|  | [optional] |
+| **grayscale** | **string**|  | [optional] |
+| **target** | **string**|  | [optional] |
+| **sq** | **bool**|  | [optional] |
+| **effect** | **string**|  | [optional] |
+| **kp** | **bool**|  | [optional] |
+| **color** | **string**|  | [optional] |
+| **obm** | **string**|  | [optional] |
+| **oo** | **float**|  | [optional] |
+| **alpha_mask** | **bool**|  | [optional] |
+| **page** | **int**|  | [optional] |
+| **colorize_color** | **string**|  | [optional] |
+| **rw** | **float**|  | [optional] |
+| **rh** | **float**|  | [optional] |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
 
-[**\SplFileObject**](../Model/\SplFileObject.md)
+**\SplFileObject**
 
 ### Authorization
 
@@ -712,14 +712,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **f** | **string**|  | [optional]
- **tenant_id** | **int**| Tenant identifier | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **f** | **string**|  | [optional] |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
 
-[**\SplFileObject**](../Model/\SplFileObject.md)
+**\SplFileObject**
 
 ### Authorization
 
@@ -768,14 +768,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **image** | **string**|  | [optional]
- **tenant_id** | **int**| Tenant identifier | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **image** | **string**|  | [optional] |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
 
-[**\SplFileObject**](../Model/\SplFileObject.md)
+**\SplFileObject**
 
 ### Authorization
 
@@ -841,31 +841,31 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **f** | **string**|  | [optional]
- **w** | **int**|  | [optional]
- **h** | **int**|  | [optional]
- **cmyk** | **string**|  | [optional]
- **rgb** | **string**|  | [optional]
- **grayscale** | **string**|  | [optional]
- **target** | **string**|  | [optional]
- **sq** | **bool**|  | [optional]
- **effect** | **string**|  | [optional]
- **kp** | **bool**|  | [optional]
- **color** | **string**|  | [optional]
- **obm** | **string**|  | [optional]
- **oo** | **float**|  | [optional]
- **alpha_mask** | **bool**|  | [optional]
- **page** | **int**|  | [optional]
- **colorize_color** | **string**|  | [optional]
- **rw** | **float**|  | [optional]
- **rh** | **float**|  | [optional]
- **tenant_id** | **int**| Tenant identifier | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **f** | **string**|  | [optional] |
+| **w** | **int**|  | [optional] |
+| **h** | **int**|  | [optional] |
+| **cmyk** | **string**|  | [optional] |
+| **rgb** | **string**|  | [optional] |
+| **grayscale** | **string**|  | [optional] |
+| **target** | **string**|  | [optional] |
+| **sq** | **bool**|  | [optional] |
+| **effect** | **string**|  | [optional] |
+| **kp** | **bool**|  | [optional] |
+| **color** | **string**|  | [optional] |
+| **obm** | **string**|  | [optional] |
+| **oo** | **float**|  | [optional] |
+| **alpha_mask** | **bool**|  | [optional] |
+| **page** | **int**|  | [optional] |
+| **colorize_color** | **string**|  | [optional] |
+| **rw** | **float**|  | [optional] |
+| **rh** | **float**|  | [optional] |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
 
-[**\SplFileObject**](../Model/\SplFileObject.md)
+**\SplFileObject**
 
 ### Authorization
 
@@ -914,14 +914,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **f** | **string**|  | [optional]
- **tenant_id** | **int**| Tenant identifier | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **f** | **string**|  | [optional] |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
 
-[**\SplFileObject**](../Model/\SplFileObject.md)
+**\SplFileObject**
 
 ### Authorization
 
@@ -970,10 +970,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1026,10 +1026,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1082,10 +1082,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1138,10 +1138,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1194,10 +1194,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_colors_request** | [**\Aurigma\DesignAtoms\Model\UpdateColorsRequest**](../Model/UpdateColorsRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_colors_request** | [**\Aurigma\DesignAtoms\Model\UpdateColorsRequest**](../Model/UpdateColorsRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1250,10 +1250,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **multi_call_request** | [**\Aurigma\DesignAtoms\Model\MultiCallRequest**](../Model/MultiCallRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **multi_call_request** | [**\Aurigma\DesignAtoms\Model\MultiCallRequest**](../Model/MultiCallRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1306,10 +1306,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1362,10 +1362,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_image_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest**](../Model/UpdateImageHandlerRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_image_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest**](../Model/UpdateImageHandlerRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1418,10 +1418,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1474,10 +1474,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1530,10 +1530,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenant_id** | **int**| Tenant identifier | [optional]
- **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
 

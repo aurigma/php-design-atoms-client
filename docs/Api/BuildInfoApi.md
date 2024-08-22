@@ -1,11 +1,11 @@
 # Aurigma\DesignAtoms\BuildInfoApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**buildInfoGetInfo()**](BuildInfoApi.md#buildInfoGetInfo) | **GET** /api/atoms/v1/info | Gets assembly build info
-[**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/atoms/v1/info | Gets assembly build info
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**buildInfoGetInfo()**](BuildInfoApi.md#buildInfoGetInfo) | **GET** /api/atoms/v1/info | Gets assembly build info |
+| [**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/atoms/v1/info | Gets assembly build info |
 
 
 ## `buildInfoGetInfo()`

@@ -1,6 +1,6 @@
 <?php
 /**
- * DesignElementType
+ * ProductPatchType
  *
  * PHP version 7.4
  *
@@ -30,29 +30,24 @@ namespace Aurigma\DesignAtoms\Model;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * DesignElementType Class Doc Comment
+ * ProductPatchType Class Doc Comment
  *
  * @category Class
+ * @description Available patch type.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class DesignElementType
+class ProductPatchType
 {
     /**
      * Possible values of this enum
      */
-    public const PRODUCT = 'Product';
+    public const UNDEFINED = 'Undefined';
 
-    public const DESIGN = 'Design';
+    public const REPLACE_IMAGE_ITEM_FILE = 'ReplaceImageItemFile';
 
-    public const SURFACE = 'Surface';
-
-    public const CONTAINER = 'Container';
-
-    public const PRINT_AREA = 'PrintArea';
-
-    public const ITEM = 'Item';
+    public const REPLACE_PLACEHOLDER_ITEM_CONTENT = 'ReplacePlaceholderItemContent';
 
     /**
      * Gets allowable values of the enum
@@ -61,12 +56,9 @@ class DesignElementType
     public static function getAllowableEnumValues()
     {
         return [
-            self::PRODUCT,
-            self::DESIGN,
-            self::SURFACE,
-            self::CONTAINER,
-            self::PRINT_AREA,
-            self::ITEM
+            self::UNDEFINED,
+            self::REPLACE_IMAGE_ITEM_FILE,
+            self::REPLACE_PLACEHOLDER_ITEM_CONTENT
         ];
     }
 }

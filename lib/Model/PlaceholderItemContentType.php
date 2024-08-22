@@ -1,6 +1,6 @@
 <?php
 /**
- * DesignElementType
+ * PlaceholderItemContentType
  *
  * PHP version 7.4
  *
@@ -30,29 +30,20 @@ namespace Aurigma\DesignAtoms\Model;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * DesignElementType Class Doc Comment
+ * PlaceholderItemContentType Class Doc Comment
  *
  * @category Class
+ * @description Placeholder item content type.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class DesignElementType
+class PlaceholderItemContentType
 {
     /**
      * Possible values of this enum
      */
-    public const PRODUCT = 'Product';
-
-    public const DESIGN = 'Design';
-
-    public const SURFACE = 'Surface';
-
-    public const CONTAINER = 'Container';
-
-    public const PRINT_AREA = 'PrintArea';
-
-    public const ITEM = 'Item';
+    public const IMAGE = 'Image';
 
     /**
      * Gets allowable values of the enum
@@ -61,12 +52,7 @@ class DesignElementType
     public static function getAllowableEnumValues()
     {
         return [
-            self::PRODUCT,
-            self::DESIGN,
-            self::SURFACE,
-            self::CONTAINER,
-            self::PRINT_AREA,
-            self::ITEM
+            self::IMAGE
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * DesignElementType
+ * ItemSourceType
  *
  * PHP version 7.4
  *
@@ -30,29 +30,24 @@ namespace Aurigma\DesignAtoms\Model;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * DesignElementType Class Doc Comment
+ * ItemSourceType Class Doc Comment
  *
  * @category Class
+ * @description Item souce types
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class DesignElementType
+class ItemSourceType
 {
     /**
      * Possible values of this enum
      */
-    public const PRODUCT = 'Product';
+    public const FILE = 'File';
 
-    public const DESIGN = 'Design';
+    public const IMAGE_STORAGE = 'ImageStorage';
 
-    public const SURFACE = 'Surface';
-
-    public const CONTAINER = 'Container';
-
-    public const PRINT_AREA = 'PrintArea';
-
-    public const ITEM = 'Item';
+    public const PRIVATE_IMAGE_STORAGE = 'PrivateImageStorage';
 
     /**
      * Gets allowable values of the enum
@@ -61,12 +56,9 @@ class DesignElementType
     public static function getAllowableEnumValues()
     {
         return [
-            self::PRODUCT,
-            self::DESIGN,
-            self::SURFACE,
-            self::CONTAINER,
-            self::PRINT_AREA,
-            self::ITEM
+            self::FILE,
+            self::IMAGE_STORAGE,
+            self::PRIVATE_IMAGE_STORAGE
         ];
     }
 }
