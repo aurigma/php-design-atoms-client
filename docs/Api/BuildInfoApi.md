@@ -4,8 +4,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**buildInfoGetInfo()**](BuildInfoApi.md#buildInfoGetInfo) | **GET** /api/atoms/v1/info | Gets assembly build info |
-| [**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/atoms/v1/info | Gets assembly build info |
+| [**buildInfoGetInfo()**](BuildInfoApi.md#buildInfoGetInfo) | **GET** /api/atoms/v1/info | Get assembly build info. |
+| [**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/atoms/v1/info | Get assembly build info. |
 
 
 ## `buildInfoGetInfo()`
@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 buildInfoGetInfo(): \Aurigma\DesignAtoms\Model\BuildInfoModel
 ```
 
-Gets assembly build info
+Get assembly build info.
 
 ### Example
 
@@ -65,7 +65,7 @@ No authorization required
 buildInfoHeadInfo()
 ```
 
-Gets assembly build info
+Get assembly build info.
 
 ### Example
 
@@ -103,7 +103,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

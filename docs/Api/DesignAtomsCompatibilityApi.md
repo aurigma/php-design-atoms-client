@@ -47,11 +47,31 @@ designAtomsCompatibilityCssFonts($tenant_id, $fonts_method_data): string
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $fonts_method_data = new \Aurigma\DesignAtoms\Model\FontsMethodData(); // \Aurigma\DesignAtoms\Model\FontsMethodData
@@ -77,12 +97,12 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/json`
+- **Accept**: `text/css`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -103,11 +123,31 @@ designAtomsCompatibilityFonts($tenant_id, $ps_name): \SplFileObject
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $ps_name = 'ps_name_example'; // string
@@ -133,12 +173,12 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/octet-stream`, `application/json`
+- **Accept**: `application/octet-stream`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -159,11 +199,31 @@ designAtomsCompatibilityGetColorPreview($tenant_id, $get_color_preview_request):
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $get_color_preview_request = new \Aurigma\DesignAtoms\Model\GetColorPreviewRequest(); // \Aurigma\DesignAtoms\Model\GetColorPreviewRequest
@@ -189,7 +249,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -203,7 +263,7 @@ No authorization required
 ## `designAtomsCompatibilityGetColorPreviews()`
 
 ```php
-designAtomsCompatibilityGetColorPreviews($tenant_id, $get_color_previews_request): \Aurigma\DesignAtoms\Model\GetColorPreviewsResponse
+designAtomsCompatibilityGetColorPreviews($tenant_id, $get_color_previews_request): mixed
 ```
 
 
@@ -215,11 +275,31 @@ designAtomsCompatibilityGetColorPreviews($tenant_id, $get_color_previews_request
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $get_color_previews_request = new \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest(); // \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest
@@ -241,11 +321,11 @@ try {
 
 ### Return type
 
-[**\Aurigma\DesignAtoms\Model\GetColorPreviewsResponse**](../Model/GetColorPreviewsResponse.md)
+**mixed**
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -271,11 +351,31 @@ designAtomsCompatibilityGetCssFont($tenant_id, $font_key): \SplFileObject
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $font_key = 'font_key_example'; // string
@@ -301,7 +401,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -315,7 +415,7 @@ No authorization required
 ## `designAtomsCompatibilityGetFallbackFonts()`
 
 ```php
-designAtomsCompatibilityGetFallbackFonts($tenant_id): \SplFileObject
+designAtomsCompatibilityGetFallbackFonts($tenant_id): mixed
 ```
 
 
@@ -327,11 +427,31 @@ designAtomsCompatibilityGetFallbackFonts($tenant_id): \SplFileObject
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 
@@ -351,11 +471,11 @@ try {
 
 ### Return type
 
-**\SplFileObject**
+**mixed**
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -381,11 +501,31 @@ designAtomsCompatibilityGetImageSize($tenant_id, $get_image_size_request): \Auri
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $get_image_size_request = new \Aurigma\DesignAtoms\Model\GetImageSizeRequest(); // \Aurigma\DesignAtoms\Model\GetImageSizeRequest
@@ -411,7 +551,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -425,7 +565,7 @@ No authorization required
 ## `designAtomsCompatibilityGetLicense()`
 
 ```php
-designAtomsCompatibilityGetLicense($tenant_id): string
+designAtomsCompatibilityGetLicense($tenant_id): mixed
 ```
 
 
@@ -437,11 +577,31 @@ designAtomsCompatibilityGetLicense($tenant_id): string
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 
@@ -461,11 +621,11 @@ try {
 
 ### Return type
 
-**string**
+**mixed**
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -491,11 +651,31 @@ designAtomsCompatibilityGetShapeBounds($tenant_id, $get_shape_bounds_request): \
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $get_shape_bounds_request = new \Aurigma\DesignAtoms\Model\GetShapeBoundsRequest(); // \Aurigma\DesignAtoms\Model\GetShapeBoundsRequest
@@ -521,7 +701,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -547,11 +727,31 @@ designAtomsCompatibilityGetWatermarkItems($tenant_id, $body): mixed
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $body = NULL; // mixed
@@ -577,7 +777,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -603,11 +803,31 @@ designAtomsCompatibilityImg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $ta
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $f = 'f_example'; // string
@@ -667,7 +887,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -693,11 +913,31 @@ designAtomsCompatibilityPth($tenant_id, $f): \SplFileObject
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $f = 'f_example'; // string
@@ -723,7 +963,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -749,11 +989,31 @@ designAtomsCompatibilityResource($tenant_id, $image): \SplFileObject
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $image = 'image_example'; // string
@@ -779,7 +1039,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -805,11 +1065,31 @@ designAtomsCompatibilitySvg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $ta
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $f = 'f_example'; // string
@@ -869,7 +1149,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -895,11 +1175,31 @@ designAtomsCompatibilityTxt($tenant_id, $f): \SplFileObject
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $f = 'f_example'; // string
@@ -925,7 +1225,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -951,11 +1251,31 @@ designAtomsCompatibilityUpdateArchedTextItemHandler($tenant_id, $update_handler_
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
@@ -981,7 +1301,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1007,11 +1327,31 @@ designAtomsCompatibilityUpdateAutoScaledTextItemHandler($tenant_id, $update_hand
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
@@ -1037,7 +1377,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1063,11 +1403,31 @@ designAtomsCompatibilityUpdateBarcodeItemHandler($tenant_id, $update_handler_req
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
@@ -1093,7 +1453,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1119,11 +1479,31 @@ designAtomsCompatibilityUpdateBoundedTextItemHandler($tenant_id, $update_handler
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
@@ -1149,7 +1529,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1163,7 +1543,7 @@ No authorization required
 ## `designAtomsCompatibilityUpdateByColorData()`
 
 ```php
-designAtomsCompatibilityUpdateByColorData($tenant_id, $update_colors_request): string
+designAtomsCompatibilityUpdateByColorData($tenant_id, $update_colors_request): mixed
 ```
 
 
@@ -1175,11 +1555,31 @@ designAtomsCompatibilityUpdateByColorData($tenant_id, $update_colors_request): s
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_colors_request = new \Aurigma\DesignAtoms\Model\UpdateColorsRequest(); // \Aurigma\DesignAtoms\Model\UpdateColorsRequest
@@ -1201,11 +1601,11 @@ try {
 
 ### Return type
 
-**string**
+**mixed**
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1231,11 +1631,31 @@ designAtomsCompatibilityUpdateByMultiCallRequest($tenant_id, $multi_call_request
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $multi_call_request = new \Aurigma\DesignAtoms\Model\MultiCallRequest(); // \Aurigma\DesignAtoms\Model\MultiCallRequest
@@ -1261,7 +1681,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1287,11 +1707,31 @@ designAtomsCompatibilityUpdateCurvedTextItemHandler($tenant_id, $update_handler_
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
@@ -1317,7 +1757,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1343,11 +1783,31 @@ designAtomsCompatibilityUpdateImageItemHandler($tenant_id, $update_image_handler
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_image_handler_request = new \Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest
@@ -1373,7 +1833,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1399,11 +1859,31 @@ designAtomsCompatibilityUpdatePathBoundedTextItemHandler($tenant_id, $update_han
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
@@ -1429,7 +1909,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1455,11 +1935,31 @@ designAtomsCompatibilityUpdatePlainTextItemHandler($tenant_id, $update_handler_r
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
@@ -1485,7 +1985,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1511,11 +2011,31 @@ designAtomsCompatibilityUpdateShapeItemHandler($tenant_id, $update_handler_reque
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $tenant_id = 56; // int
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
@@ -1541,7 +2061,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 

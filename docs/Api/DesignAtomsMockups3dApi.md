@@ -24,24 +24,24 @@ Returns a 3D-Mockup attributes.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsMockups3dApi(
@@ -76,7 +76,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -102,24 +102,24 @@ Returns a 3D-Mockup content as protobuf binary stream.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsMockups3dApi(
@@ -154,12 +154,12 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/octet-stream`, `application/json`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -180,24 +180,24 @@ Returns a 3D-Mockup geometry as binary stream.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsMockups3dApi(
@@ -232,12 +232,12 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/octet-stream`, `application/json`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

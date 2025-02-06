@@ -4,26 +4,32 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**designAtomsServiceConvertColors()**](DesignAtomsServiceApi.md#designAtomsServiceConvertColors) | **POST** /api/atoms/v1/colorConverter | Converts colors |
+| [**designAtomsServiceConvertColors()**](DesignAtomsServiceApi.md#designAtomsServiceConvertColors) | **POST** /api/atoms/v1/designs/print-product/convert-colors | Converts colors for print-product item manipulations. |
 | [**designAtomsServiceCreateDesign()**](DesignAtomsServiceApi.md#designAtomsServiceCreateDesign) | **POST** /api/atoms/v1/designs | Creates new design file with specified parameters and saves it in storage. |
-| [**designAtomsServiceCreateItem()**](DesignAtomsServiceApi.md#designAtomsServiceCreateItem) | **POST** /api/atoms/v1/itemCreator | Creates product item |
+| [**designAtomsServiceCreateItem()**](DesignAtomsServiceApi.md#designAtomsServiceCreateItem) | **POST** /api/atoms/v1/designs/model/items | Creates print-product item. |
 | [**designAtomsServiceCreatePrivateDesignFromDesign()**](DesignAtomsServiceApi.md#designAtomsServiceCreatePrivateDesignFromDesign) | **POST** /api/atoms/v1/private-designs/from-design | Creates a private design from a public design. |
 | [**designAtomsServiceCreatePrivateDesignFromResource()**](DesignAtomsServiceApi.md#designAtomsServiceCreatePrivateDesignFromResource) | **POST** /api/atoms/v1/private-designs/from-resource | Creates a private design from a public resource. |
-| [**designAtomsServiceDeleteVdpData()**](DesignAtomsServiceApi.md#designAtomsServiceDeleteVdpData) | **DELETE** /api/atoms/v1/designs/{id}/vdpData | Deletes variable data printing inforamtion from design file and updates design in storage. |
-| [**designAtomsServiceExtractBackground()**](DesignAtomsServiceApi.md#designAtomsServiceExtractBackground) | **GET** /api/atoms/v1/designs/{id}/background | Returns content of the background. |
-| [**designAtomsServiceFlattenItems()**](DesignAtomsServiceApi.md#designAtomsServiceFlattenItems) | **POST** /api/atoms/v1/flatten | Flatten items. |
-| [**designAtomsServiceGetVariables()**](DesignAtomsServiceApi.md#designAtomsServiceGetVariables) | **GET** /api/atoms/v1/designs/{id}/variables | Gets variable items information for design file taken from storage |
-| [**designAtomsServiceLoadDataSchema()**](DesignAtomsServiceApi.md#designAtomsServiceLoadDataSchema) | **GET** /api/atoms/v1/designs/{id}/schema | Loads data schema from design file taken from storage |
-| [**designAtomsServiceLoadProduct()**](DesignAtomsServiceApi.md#designAtomsServiceLoadProduct) | **GET** /api/atoms/v1/designs/{id}/model | Loads product (design model) from design file taken from storage |
-| [**designAtomsServiceLoadProductFromResource()**](DesignAtomsServiceApi.md#designAtomsServiceLoadProductFromResource) | **GET** /api/atoms/v1/resources/{id}/as-design/model | Loads product (design model) from resource file taken from storage |
-| [**designAtomsServiceLoadVdpData()**](DesignAtomsServiceApi.md#designAtomsServiceLoadVdpData) | **GET** /api/atoms/v1/designs/{id}/vdpData | Loads variable data printing information from design file taken from storage |
-| [**designAtomsServicePatchProduct()**](DesignAtomsServiceApi.md#designAtomsServicePatchProduct) | **PATCH** /api/atoms/v1/designs/{id}/model | Patches product (design model) in design file. |
-| [**designAtomsServiceRenderDesignPreview()**](DesignAtomsServiceApi.md#designAtomsServiceRenderDesignPreview) | **POST** /api/atoms/v1/render-design-preview | Renders a design preview with the specified parameters. |
-| [**designAtomsServiceRenderDesignProof()**](DesignAtomsServiceApi.md#designAtomsServiceRenderDesignProof) | **POST** /api/atoms/v1/render-design-proof | Renders a design proof with the specified parameters. |
-| [**designAtomsServiceRenderProduct()**](DesignAtomsServiceApi.md#designAtomsServiceRenderProduct) | **POST** /api/atoms/v1/renderer | Render product proof image with specified parameters. |
-| [**designAtomsServiceSaveProduct()**](DesignAtomsServiceApi.md#designAtomsServiceSaveProduct) | **PUT** /api/atoms/v1/designs/{id}/model | Saves product (design model) to design file and updates design in storage. |
-| [**designAtomsServiceSaveVdpData()**](DesignAtomsServiceApi.md#designAtomsServiceSaveVdpData) | **PUT** /api/atoms/v1/designs/{id}/vdpData | Saves variable data printing information to design file and updates design in storage. |
-| [**designAtomsServiceSetVariables()**](DesignAtomsServiceApi.md#designAtomsServiceSetVariables) | **PUT** /api/atoms/v1/designs/{id}/variables | Sets variable items values for design file taken from storage |
+| [**designAtomsServiceDeleteVdpData()**](DesignAtomsServiceApi.md#designAtomsServiceDeleteVdpData) | **DELETE** /api/atoms/v1/designs/{id}/vdp-data | Deletes variable data printing information from design file and updates design file in storage. |
+| [**designAtomsServiceExtractBackground()**](DesignAtomsServiceApi.md#designAtomsServiceExtractBackground) | **GET** /api/atoms/v1/designs/{id}/background | Returns image content of the background. |
+| [**designAtomsServiceExtractItemImage()**](DesignAtomsServiceApi.md#designAtomsServiceExtractItemImage) | **POST** /api/atoms/v1/designs/model/items/extract-image | Extracts print-product item image. |
+| [**designAtomsServiceFlattenItems()**](DesignAtomsServiceApi.md#designAtomsServiceFlattenItems) | **POST** /api/atoms/v1/designs/model/items/flatten | Flattens print-product items. |
+| [**designAtomsServiceGetDesignParameters()**](DesignAtomsServiceApi.md#designAtomsServiceGetDesignParameters) | **GET** /api/atoms/v1/designs/{id}/parameters | Returns design parameters stored in product model. |
+| [**designAtomsServiceGetVariables()**](DesignAtomsServiceApi.md#designAtomsServiceGetVariables) | **GET** /api/atoms/v1/designs/{id}/variables | Returns variable items information for design file taken from storage. |
+| [**designAtomsServiceLoadDataSchema()**](DesignAtomsServiceApi.md#designAtomsServiceLoadDataSchema) | **GET** /api/atoms/v1/designs/{id}/schema | Loads a data schema from design file taken from storage. |
+| [**designAtomsServiceLoadProduct()**](DesignAtomsServiceApi.md#designAtomsServiceLoadProduct) | **GET** /api/atoms/v1/designs/{id}/model | Loads print-product from design file taken from storage. |
+| [**designAtomsServiceLoadProductFromResource()**](DesignAtomsServiceApi.md#designAtomsServiceLoadProductFromResource) | **GET** /api/atoms/v1/designs/print-product/from-resource/model | Loads print-product from resource file taken from storage. |
+| [**designAtomsServiceLoadToggleSet()**](DesignAtomsServiceApi.md#designAtomsServiceLoadToggleSet) | **GET** /api/atoms/v1/designs/{id}/toggle-set | Loads a toggle set from design file taken from storage. |
+| [**designAtomsServiceLoadVdpData()**](DesignAtomsServiceApi.md#designAtomsServiceLoadVdpData) | **GET** /api/atoms/v1/designs/{id}/vdp-data | Loads variable data printing information from design file taken from storage. |
+| [**designAtomsServicePatchProduct()**](DesignAtomsServiceApi.md#designAtomsServicePatchProduct) | **PATCH** /api/atoms/v1/designs/{id}/model | Patches print-product in design file. |
+| [**designAtomsServiceRenderDesignPreview()**](DesignAtomsServiceApi.md#designAtomsServiceRenderDesignPreview) | **POST** /api/atoms/v1/designs/render-preview | Renders a design preview with the specified parameters. |
+| [**designAtomsServiceRenderDesignPreviewToResource()**](DesignAtomsServiceApi.md#designAtomsServiceRenderDesignPreviewToResource) | **POST** /api/atoms/v1/designs/render-preview/to-resource | Renders a design preview with the specified parameters and saves rendering result as resource. |
+| [**designAtomsServiceRenderDesignProof()**](DesignAtomsServiceApi.md#designAtomsServiceRenderDesignProof) | **POST** /api/atoms/v1/designs/render-proof | Renders a design proof with the specified parameters. |
+| [**designAtomsServiceRenderDesignProofToResource()**](DesignAtomsServiceApi.md#designAtomsServiceRenderDesignProofToResource) | **POST** /api/atoms/v1/designs/render-proof/to-resource | Renders a design proof with the specified parameters and saves rendering result as resource. |
+| [**designAtomsServiceRenderProduct()**](DesignAtomsServiceApi.md#designAtomsServiceRenderProduct) | **POST** /api/atoms/v1/designs/print-product/render-proof | Renders a product proof image with specified parameters. |
+| [**designAtomsServiceSaveProduct()**](DesignAtomsServiceApi.md#designAtomsServiceSaveProduct) | **PUT** /api/atoms/v1/designs/{id}/model | Saves print-product to design file and updates design file in storage. |
+| [**designAtomsServiceSaveVdpData()**](DesignAtomsServiceApi.md#designAtomsServiceSaveVdpData) | **PUT** /api/atoms/v1/designs/{id}/vdp-data | Saves variable data printing information to design file and updates design in storage. |
+| [**designAtomsServiceSetEditorMockups()**](DesignAtomsServiceApi.md#designAtomsServiceSetEditorMockups) | **PUT** /api/atoms/v1/designs/{id}/editor-mockups | Sets specified editor-mockups for selected design surfaces. |
+| [**designAtomsServiceSetVariables()**](DesignAtomsServiceApi.md#designAtomsServiceSetVariables) | **PUT** /api/atoms/v1/designs/{id}/variables | Saves variable items values for design file taken from storage. |
 
 
 ## `designAtomsServiceConvertColors()`
@@ -32,7 +38,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 designAtomsServiceConvertColors($tenant_id, $convert_colors_model): mixed
 ```
 
-Converts colors
+Converts colors for print-product item manipulations.
 
 ### Example
 
@@ -41,24 +47,24 @@ Converts colors
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -68,7 +74,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     $config
 );
 $tenant_id = 56; // int | Tenant identifier
-$convert_colors_model = new \Aurigma\DesignAtoms\Model\ConvertColorsModel(); // \Aurigma\DesignAtoms\Model\ConvertColorsModel | Convert colors operation parameters
+$convert_colors_model = new \Aurigma\DesignAtoms\Model\ConvertColorsModel(); // \Aurigma\DesignAtoms\Model\ConvertColorsModel | Convert colors operation parameters.
 
 try {
     $result = $apiInstance->designAtomsServiceConvertColors($tenant_id, $convert_colors_model);
@@ -83,7 +89,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
-| **convert_colors_model** | [**\Aurigma\DesignAtoms\Model\ConvertColorsModel**](../Model/ConvertColorsModel.md)| Convert colors operation parameters | [optional] |
+| **convert_colors_model** | [**\Aurigma\DesignAtoms\Model\ConvertColorsModel**](../Model/ConvertColorsModel.md)| Convert colors operation parameters. | [optional] |
 
 ### Return type
 
@@ -91,7 +97,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -105,7 +111,7 @@ try {
 ## `designAtomsServiceCreateDesign()`
 
 ```php
-designAtomsServiceCreateDesign($private_storage, $private_storage_owner, $tenant_id, $create_design_model): \Aurigma\DesignAtoms\Model\DesignInfo
+designAtomsServiceCreateDesign($private_storage_owner, $tenant_id, $create_design_model): \Aurigma\DesignAtoms\Model\DesignInfo
 ```
 
 Creates new design file with specified parameters and saves it in storage.
@@ -117,24 +123,24 @@ Creates new design file with specified parameters and saves it in storage.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -143,13 +149,12 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$private_storage = True; // bool | If set to 'true' design will be saved to private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
-$create_design_model = new \Aurigma\DesignAtoms\Model\CreateDesignModel(); // \Aurigma\DesignAtoms\Model\CreateDesignModel | Design creation parameters
+$create_design_model = new \Aurigma\DesignAtoms\Model\CreateDesignModel(); // \Aurigma\DesignAtoms\Model\CreateDesignModel | Design creation parameters.
 
 try {
-    $result = $apiInstance->designAtomsServiceCreateDesign($private_storage, $private_storage_owner, $tenant_id, $create_design_model);
+    $result = $apiInstance->designAtomsServiceCreateDesign($private_storage_owner, $tenant_id, $create_design_model);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceCreateDesign: ', $e->getMessage(), PHP_EOL;
@@ -160,10 +165,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be saved to private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
-| **create_design_model** | [**\Aurigma\DesignAtoms\Model\CreateDesignModel**](../Model/CreateDesignModel.md)| Design creation parameters | [optional] |
+| **create_design_model** | [**\Aurigma\DesignAtoms\Model\CreateDesignModel**](../Model/CreateDesignModel.md)| Design creation parameters. | [optional] |
 
 ### Return type
 
@@ -171,7 +175,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -185,10 +189,10 @@ try {
 ## `designAtomsServiceCreateItem()`
 
 ```php
-designAtomsServiceCreateItem($item_type, $tenant_id, $source_type, $source_id, $source_owner_id, $source_file): mixed
+designAtomsServiceCreateItem($item_type, $tenant_id, $source_type, $source_id, $source_owner_id, $url, $source_file): mixed
 ```
 
-Creates product item
+Creates print-product item.
 
 ### Example
 
@@ -197,24 +201,24 @@ Creates product item
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -223,15 +227,16 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$item_type = new \Aurigma\DesignAtoms\Model\ItemType(); // ItemType | Desired item type
+$item_type = new \Aurigma\DesignAtoms\Model\ItemType(); // ItemType | Desired item type.
 $tenant_id = 56; // int | Tenant identifier
 $source_type = new \Aurigma\DesignAtoms\Model\ItemSourceType(); // \Aurigma\DesignAtoms\Model\ItemSourceType
-$source_id = 'source_id_example'; // string | Source id, used if source type is 'ImageStorage' or 'PrivateImageStorage'
-$source_owner_id = 'source_owner_id_example'; // string | Source owner id, used if source type is 'PrivateImageStorage'
-$source_file = "/path/to/file.txt"; // \SplFileObject | Source file, used if source type is 'File'
+$source_id = 'source_id_example'; // string | Source id, used if source type is 'ImageStorage' or 'PrivateImageStorage'.
+$source_owner_id = 'source_owner_id_example'; // string | Source owner id, used if source type is 'PrivateImageStorage'.
+$url = 'url_example'; // string | Source URL, used if source type is 'Url'.
+$source_file = "/path/to/file.txt"; // \SplFileObject | Source file, used if source type is 'File'.
 
 try {
-    $result = $apiInstance->designAtomsServiceCreateItem($item_type, $tenant_id, $source_type, $source_id, $source_owner_id, $source_file);
+    $result = $apiInstance->designAtomsServiceCreateItem($item_type, $tenant_id, $source_type, $source_id, $source_owner_id, $url, $source_file);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceCreateItem: ', $e->getMessage(), PHP_EOL;
@@ -242,12 +247,13 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **item_type** | [**ItemType**](../Model/.md)| Desired item type | [optional] |
+| **item_type** | [**ItemType**](../Model/.md)| Desired item type. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 | **source_type** | [**\Aurigma\DesignAtoms\Model\ItemSourceType**](../Model/ItemSourceType.md)|  | [optional] |
-| **source_id** | **string**| Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39; | [optional] |
-| **source_owner_id** | **string**| Source owner id, used if source type is &#39;PrivateImageStorage&#39; | [optional] |
-| **source_file** | **\SplFileObject****\SplFileObject**| Source file, used if source type is &#39;File&#39; | [optional] |
+| **source_id** | **string**| Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. | [optional] |
+| **source_owner_id** | **string**| Source owner id, used if source type is &#39;PrivateImageStorage&#39;. | [optional] |
+| **url** | **string**| Source URL, used if source type is &#39;Url&#39;. | [optional] |
+| **source_file** | **\SplFileObject****\SplFileObject**| Source file, used if source type is &#39;File&#39;. | [optional] |
 
 ### Return type
 
@@ -255,7 +261,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -281,24 +287,24 @@ Creates a private design from a public design.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -307,9 +313,9 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$design_id = 'design_id_example'; // string | Public design ID.
-$private_design_id = 'private_design_id_example'; // string | Private design ID.
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner ID.
+$design_id = 'design_id_example'; // string | Public design identifier.
+$private_design_id = 'private_design_id_example'; // string | Private design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -323,9 +329,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **design_id** | **string**| Public design ID. | [optional] |
-| **private_design_id** | **string**| Private design ID. | [optional] |
-| **private_storage_owner** | **string**| Private storage owner ID. | [optional] |
+| **design_id** | **string**| Public design identifier. | [optional] |
+| **private_design_id** | **string**| Private design identifier. | [optional] |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
@@ -334,12 +340,12 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -360,24 +366,24 @@ Creates a private design from a public resource.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -386,10 +392,10 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$resource_id = 'resource_id_example'; // string | Resource ID.
-$private_design_id = 'private_design_id_example'; // string | Private design ID.
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner ID.
-$tenant_id = 56; // int | Tenant identifier
+$resource_id = 'resource_id_example'; // string | Resource identifier.
+$private_design_id = 'private_design_id_example'; // string | Private design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
+$tenant_id = 0; // int | Tenant identifier.
 
 try {
     $apiInstance->designAtomsServiceCreatePrivateDesignFromResource($resource_id, $private_design_id, $private_storage_owner, $tenant_id);
@@ -402,10 +408,10 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **resource_id** | **string**| Resource ID. | [optional] |
-| **private_design_id** | **string**| Private design ID. | [optional] |
-| **private_storage_owner** | **string**| Private storage owner ID. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **resource_id** | **string**| Resource identifier. | [optional] |
+| **private_design_id** | **string**| Private design identifier. | [optional] |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] [default to 0] |
 
 ### Return type
 
@@ -413,12 +419,12 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -427,10 +433,10 @@ void (empty response body)
 ## `designAtomsServiceDeleteVdpData()`
 
 ```php
-designAtomsServiceDeleteVdpData($id, $private_storage, $private_storage_owner, $tenant_id)
+designAtomsServiceDeleteVdpData($id, $private_storage_owner, $tenant_id)
 ```
 
-Deletes variable data printing inforamtion from design file and updates design in storage.
+Deletes variable data printing information from design file and updates design file in storage.
 
 Design with specified identifier must exist at desired storage.
 
@@ -441,24 +447,24 @@ Design with specified identifier must exist at desired storage.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -467,13 +473,12 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Design identifier
-$private_storage = True; // bool | If set to 'true' design will be taken from private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
-    $apiInstance->designAtomsServiceDeleteVdpData($id, $private_storage, $private_storage_owner, $tenant_id);
+    $apiInstance->designAtomsServiceDeleteVdpData($id, $private_storage_owner, $tenant_id);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceDeleteVdpData: ', $e->getMessage(), PHP_EOL;
 }
@@ -483,9 +488,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Design identifier | |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be taken from private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
@@ -494,7 +498,7 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -511,7 +515,7 @@ void (empty response body)
 designAtomsServiceExtractBackground($id, $surface_index, $private_storage_owner, $tenant_id): \SplFileObject
 ```
 
-Returns content of the background.
+Returns image content of the background.
 
 ### Example
 
@@ -520,24 +524,24 @@ Returns content of the background.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -574,12 +578,88 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/octet-stream`, `application/json`
+- **Accept**: `application/octet-stream`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsServiceExtractItemImage()`
+
+```php
+designAtomsServiceExtractItemImage($tenant_id, $extract_item_image_model): \SplFileObject
+```
+
+Extracts print-product item image.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$tenant_id = 56; // int | Tenant identifier
+$extract_item_image_model = new \Aurigma\DesignAtoms\Model\ExtractItemImageModel(); // \Aurigma\DesignAtoms\Model\ExtractItemImageModel | Extraction parameters.
+
+try {
+    $result = $apiInstance->designAtomsServiceExtractItemImage($tenant_id, $extract_item_image_model);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceExtractItemImage: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **extract_item_image_model** | [**\Aurigma\DesignAtoms\Model\ExtractItemImageModel**](../Model/ExtractItemImageModel.md)| Extraction parameters. | [optional] |
+
+### Return type
+
+**\SplFileObject**
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/octet-stream`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -591,7 +671,7 @@ try {
 designAtomsServiceFlattenItems($tenant_id, $request_body): mixed
 ```
 
-Flatten items.
+Flattens print-product items.
 
 ### Example
 
@@ -600,24 +680,24 @@ Flatten items.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -650,7 +730,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -661,13 +741,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `designAtomsServiceGetVariables()`
+## `designAtomsServiceGetDesignParameters()`
 
 ```php
-designAtomsServiceGetVariables($id, $private_storage, $private_storage_owner, $tenant_id): \Aurigma\DesignAtoms\Model\VariablesModel
+designAtomsServiceGetDesignParameters($id, $private_storage_owner, $tenant_id): \Aurigma\DesignAtoms\Model\DesignParameters
 ```
 
-Gets variable items information for design file taken from storage
+Returns design parameters stored in product model.
 
 ### Example
 
@@ -676,24 +756,24 @@ Gets variable items information for design file taken from storage
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -702,13 +782,90 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Design identifier
-$private_storage = True; // bool | If set to 'true' design will be taken from private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
-    $result = $apiInstance->designAtomsServiceGetVariables($id, $private_storage, $private_storage_owner, $tenant_id);
+    $result = $apiInstance->designAtomsServiceGetDesignParameters($id, $private_storage_owner, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceGetDesignParameters: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+
+### Return type
+
+[**\Aurigma\DesignAtoms\Model\DesignParameters**](../Model/DesignParameters.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsServiceGetVariables()`
+
+```php
+designAtomsServiceGetVariables($id, $private_storage_owner, $tenant_id): \Aurigma\DesignAtoms\Model\VariablesModel
+```
+
+Returns variable items information for design file taken from storage.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
+$tenant_id = 56; // int | Tenant identifier
+
+try {
+    $result = $apiInstance->designAtomsServiceGetVariables($id, $private_storage_owner, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceGetVariables: ', $e->getMessage(), PHP_EOL;
@@ -719,9 +876,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Design identifier | |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be taken from private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
@@ -730,7 +886,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -744,10 +900,10 @@ try {
 ## `designAtomsServiceLoadDataSchema()`
 
 ```php
-designAtomsServiceLoadDataSchema($id, $private_storage, $private_storage_owner, $tenant_id): \SplFileObject
+designAtomsServiceLoadDataSchema($id, $private_storage_owner, $tenant_id): \SplFileObject
 ```
 
-Loads data schema from design file taken from storage
+Loads a data schema from design file taken from storage.
 
 ### Example
 
@@ -756,24 +912,24 @@ Loads data schema from design file taken from storage
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -782,13 +938,12 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Design identifier
-$private_storage = True; // bool | If set to 'true' design will be taken from private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
-    $result = $apiInstance->designAtomsServiceLoadDataSchema($id, $private_storage, $private_storage_owner, $tenant_id);
+    $result = $apiInstance->designAtomsServiceLoadDataSchema($id, $private_storage_owner, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceLoadDataSchema: ', $e->getMessage(), PHP_EOL;
@@ -799,9 +954,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Design identifier | |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be taken from private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
@@ -810,12 +964,12 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/octet-stream`, `application/json`
+- **Accept**: `application/octet-stream`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -824,12 +978,10 @@ try {
 ## `designAtomsServiceLoadProduct()`
 
 ```php
-designAtomsServiceLoadProduct($id, $private_storage, $private_storage_owner, $tenant_id): mixed
+designAtomsServiceLoadProduct($id, $private_storage_owner, $tenant_id): mixed
 ```
 
-Loads product (design model) from design file taken from storage
-
-If privateStorage is not set then special design search procedure activated.  It tries to get specified design from public storage, and if design is not found then checks private storage
+Loads print-product from design file taken from storage.
 
 ### Example
 
@@ -838,24 +990,24 @@ If privateStorage is not set then special design search procedure activated.  It
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -864,13 +1016,12 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Design identifier
-$private_storage = True; // bool | If set to 'true' design will be taken from private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
-    $result = $apiInstance->designAtomsServiceLoadProduct($id, $private_storage, $private_storage_owner, $tenant_id);
+    $result = $apiInstance->designAtomsServiceLoadProduct($id, $private_storage_owner, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceLoadProduct: ', $e->getMessage(), PHP_EOL;
@@ -881,9 +1032,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Design identifier | |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be taken from private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
@@ -892,7 +1042,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -906,12 +1056,10 @@ try {
 ## `designAtomsServiceLoadProductFromResource()`
 
 ```php
-designAtomsServiceLoadProductFromResource($id, $private_storage, $private_storage_owner, $tenant_id): mixed
+designAtomsServiceLoadProductFromResource($id, $private_storage_owner, $tenant_id): mixed
 ```
 
-Loads product (design model) from resource file taken from storage
-
-If privateStorage is not set then special resource search procedure activated.  It tries to get specified resource from public storage, and if resource is not found then checks private storage
+Loads print-product from resource file taken from storage.
 
 ### Example
 
@@ -920,24 +1068,24 @@ If privateStorage is not set then special resource search procedure activated.  
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -946,13 +1094,12 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Resource identifier
-$private_storage = True; // bool | If set to 'true' resource will be taken from private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$id = 'id_example'; // string | Resource identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
-    $result = $apiInstance->designAtomsServiceLoadProductFromResource($id, $private_storage, $private_storage_owner, $tenant_id);
+    $result = $apiInstance->designAtomsServiceLoadProductFromResource($id, $private_storage_owner, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceLoadProductFromResource: ', $e->getMessage(), PHP_EOL;
@@ -963,9 +1110,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Resource identifier | |
-| **private_storage** | **bool**| If set to &#39;true&#39; resource will be taken from private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **id** | **string**| Resource identifier. | [optional] |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
@@ -974,7 +1120,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -985,13 +1131,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `designAtomsServiceLoadVdpData()`
+## `designAtomsServiceLoadToggleSet()`
 
 ```php
-designAtomsServiceLoadVdpData($id, $private_storage, $private_storage_owner, $tenant_id): \Aurigma\DesignAtoms\Model\VdpDataModel
+designAtomsServiceLoadToggleSet($id, $private_storage_owner, $tenant_id): \SplFileObject
 ```
 
-Loads variable data printing information from design file taken from storage
+Loads a toggle set from design file taken from storage.
 
 ### Example
 
@@ -1000,24 +1146,24 @@ Loads variable data printing information from design file taken from storage
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -1026,13 +1172,90 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Design identifier
-$private_storage = True; // bool | If set to 'true' design will be taken from private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
-    $result = $apiInstance->designAtomsServiceLoadVdpData($id, $private_storage, $private_storage_owner, $tenant_id);
+    $result = $apiInstance->designAtomsServiceLoadToggleSet($id, $private_storage_owner, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceLoadToggleSet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+
+### Return type
+
+**\SplFileObject**
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/octet-stream`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsServiceLoadVdpData()`
+
+```php
+designAtomsServiceLoadVdpData($id, $private_storage_owner, $tenant_id): \Aurigma\DesignAtoms\Model\VdpDataModel
+```
+
+Loads variable data printing information from design file taken from storage.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
+$tenant_id = 56; // int | Tenant identifier
+
+try {
+    $result = $apiInstance->designAtomsServiceLoadVdpData($id, $private_storage_owner, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceLoadVdpData: ', $e->getMessage(), PHP_EOL;
@@ -1043,9 +1266,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Design identifier | |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be taken from private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 
 ### Return type
@@ -1054,7 +1276,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1068,10 +1290,10 @@ try {
 ## `designAtomsServicePatchProduct()`
 
 ```php
-designAtomsServicePatchProduct($id, $private_storage, $private_storage_owner, $tenant_id, $patch_type, $replace_image_item_file_info_item_name, $replace_image_item_file_info_source_file, $replace_placeholder_item_content_info_placeholder_item_name, $replace_placeholder_item_content_info_new_content_type, $replace_placeholder_item_content_info_source_file)
+designAtomsServicePatchProduct($id, $private_storage_owner, $tenant_id, $patch_type, $replace_image_item_file_info_item_name, $replace_image_item_file_info_source_file, $replace_placeholder_item_content_info_placeholder_item_name, $replace_placeholder_item_content_info_new_content_type, $replace_placeholder_item_content_info_source_file)
 ```
 
-Patches product (design model) in design file.
+Patches print-product in design file.
 
 Design with specified identifier must exist at desired storage.
 
@@ -1082,24 +1304,24 @@ Design with specified identifier must exist at desired storage.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -1109,7 +1331,6 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     $config
 );
 $id = 'id_example'; // string | Design identifier.
-$private_storage = True; // bool | If set to 'true' design will be taken from private storage.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
 $patch_type = new \Aurigma\DesignAtoms\Model\ProductPatchType(); // \Aurigma\DesignAtoms\Model\ProductPatchType
@@ -1120,7 +1341,7 @@ $replace_placeholder_item_content_info_new_content_type = new \Aurigma\DesignAto
 $replace_placeholder_item_content_info_source_file = "/path/to/file.txt"; // \SplFileObject | Patch source file.
 
 try {
-    $apiInstance->designAtomsServicePatchProduct($id, $private_storage, $private_storage_owner, $tenant_id, $patch_type, $replace_image_item_file_info_item_name, $replace_image_item_file_info_source_file, $replace_placeholder_item_content_info_placeholder_item_name, $replace_placeholder_item_content_info_new_content_type, $replace_placeholder_item_content_info_source_file);
+    $apiInstance->designAtomsServicePatchProduct($id, $private_storage_owner, $tenant_id, $patch_type, $replace_image_item_file_info_item_name, $replace_image_item_file_info_source_file, $replace_placeholder_item_content_info_placeholder_item_name, $replace_placeholder_item_content_info_new_content_type, $replace_placeholder_item_content_info_source_file);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServicePatchProduct: ', $e->getMessage(), PHP_EOL;
 }
@@ -1131,7 +1352,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be taken from private storage. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 | **patch_type** | [**\Aurigma\DesignAtoms\Model\ProductPatchType**](../Model/ProductPatchType.md)|  | [optional] |
@@ -1147,7 +1367,7 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1173,24 +1393,24 @@ Renders a design preview with the specified parameters.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -1225,12 +1445,88 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/octet-stream`, `application/json`
+- **Accept**: `application/octet-stream`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsServiceRenderDesignPreviewToResource()`
+
+```php
+designAtomsServiceRenderDesignPreviewToResource($tenant_id, $render_design_preview_to_resource_model): \Aurigma\DesignAtoms\Model\ResourceInfoDto
+```
+
+Renders a design preview with the specified parameters and saves rendering result as resource.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$tenant_id = 56; // int | Tenant identifier
+$render_design_preview_to_resource_model = new \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel(); // \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel | Render model with preview parameters.
+
+try {
+    $result = $apiInstance->designAtomsServiceRenderDesignPreviewToResource($tenant_id, $render_design_preview_to_resource_model);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceRenderDesignPreviewToResource: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **render_design_preview_to_resource_model** | [**\Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel**](../Model/RenderDesignPreviewToResourceModel.md)| Render model with preview parameters. | [optional] |
+
+### Return type
+
+[**\Aurigma\DesignAtoms\Model\ResourceInfoDto**](../Model/ResourceInfoDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1251,24 +1547,24 @@ Renders a design proof with the specified parameters.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -1303,12 +1599,88 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/octet-stream`, `application/json`
+- **Accept**: `application/octet-stream`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsServiceRenderDesignProofToResource()`
+
+```php
+designAtomsServiceRenderDesignProofToResource($tenant_id, $render_design_proof_to_resource_model): \Aurigma\DesignAtoms\Model\ResourceInfoDto
+```
+
+Renders a design proof with the specified parameters and saves rendering result as resource.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$tenant_id = 56; // int | Tenant identifier
+$render_design_proof_to_resource_model = new \Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel(); // \Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel | Render model with preview parameters.
+
+try {
+    $result = $apiInstance->designAtomsServiceRenderDesignProofToResource($tenant_id, $render_design_proof_to_resource_model);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceRenderDesignProofToResource: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **render_design_proof_to_resource_model** | [**\Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel**](../Model/RenderDesignProofToResourceModel.md)| Render model with preview parameters. | [optional] |
+
+### Return type
+
+[**\Aurigma\DesignAtoms\Model\ResourceInfoDto**](../Model/ResourceInfoDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1320,7 +1692,7 @@ try {
 designAtomsServiceRenderProduct($attachment, $tenant_id, $render_product_model): \SplFileObject
 ```
 
-Render product proof image with specified parameters.
+Renders a product proof image with specified parameters.
 
 ### Example
 
@@ -1329,24 +1701,24 @@ Render product proof image with specified parameters.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -1355,7 +1727,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$attachment = True; // bool | If set to 'true', file will be provided as an attachment with unique filename supplied (default value is 'false').
+$attachment = True; // bool | If set to 'true', file will be provided as an attachment with unique filename supplied  (default value is 'false').
 $tenant_id = 56; // int | Tenant identifier
 $render_product_model = new \Aurigma\DesignAtoms\Model\RenderProductModel(); // \Aurigma\DesignAtoms\Model\RenderProductModel | Preview parameters.
 
@@ -1371,7 +1743,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **attachment** | **bool**| If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied (default value is &#39;false&#39;). | [optional] |
+| **attachment** | **bool**| If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 | **render_product_model** | [**\Aurigma\DesignAtoms\Model\RenderProductModel**](../Model/RenderProductModel.md)| Preview parameters. | [optional] |
 
@@ -1381,12 +1753,12 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `application/octet-stream`, `application/json`
+- **Accept**: `application/octet-stream`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1395,12 +1767,10 @@ try {
 ## `designAtomsServiceSaveProduct()`
 
 ```php
-designAtomsServiceSaveProduct($id, $private_storage, $private_storage_owner, $tenant_id, $body)
+designAtomsServiceSaveProduct($id, $private_storage_owner, $tenant_id, $body)
 ```
 
-Saves product (design model) to design file and updates design in storage.
-
-Design with specified identifier must exist at desired storage.  If 'privateStorage' parameter is not set, then special design search procedure activated.  It tries to find design with specified identifier in public storage, and if it is not there, then checks private storage  If design found anywhere, it will be updated
+Saves print-product to design file and updates design file in storage.
 
 ### Example
 
@@ -1409,24 +1779,24 @@ Design with specified identifier must exist at desired storage.  If 'privateStor
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -1435,14 +1805,13 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Design identifier
-$private_storage = True; // bool | If set to 'true' design will be saved to private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
-$body = NULL; // mixed | Serialized product description
+$body = NULL; // mixed | Serialized product description.
 
 try {
-    $apiInstance->designAtomsServiceSaveProduct($id, $private_storage, $private_storage_owner, $tenant_id, $body);
+    $apiInstance->designAtomsServiceSaveProduct($id, $private_storage_owner, $tenant_id, $body);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceSaveProduct: ', $e->getMessage(), PHP_EOL;
 }
@@ -1452,11 +1821,10 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Design identifier | |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be saved to private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
-| **body** | **mixed**| Serialized product description | [optional] |
+| **body** | **mixed**| Serialized product description. | [optional] |
 
 ### Return type
 
@@ -1464,7 +1832,7 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1478,7 +1846,7 @@ void (empty response body)
 ## `designAtomsServiceSaveVdpData()`
 
 ```php
-designAtomsServiceSaveVdpData($id, $private_storage, $private_storage_owner, $tenant_id, $vdp_data_model)
+designAtomsServiceSaveVdpData($id, $private_storage_owner, $tenant_id, $vdp_data_model)
 ```
 
 Saves variable data printing information to design file and updates design in storage.
@@ -1492,24 +1860,24 @@ Design with specified identifier must exist at desired storage.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -1518,14 +1886,13 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Design identifier
-$private_storage = True; // bool | If set to 'true' design will be taken from private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
-$vdp_data_model = new \Aurigma\DesignAtoms\Model\VdpDataModel(); // \Aurigma\DesignAtoms\Model\VdpDataModel | Serialized vdp data
+$vdp_data_model = new \Aurigma\DesignAtoms\Model\VdpDataModel(); // \Aurigma\DesignAtoms\Model\VdpDataModel | Serialized vdp data.
 
 try {
-    $apiInstance->designAtomsServiceSaveVdpData($id, $private_storage, $private_storage_owner, $tenant_id, $vdp_data_model);
+    $apiInstance->designAtomsServiceSaveVdpData($id, $private_storage_owner, $tenant_id, $vdp_data_model);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceSaveVdpData: ', $e->getMessage(), PHP_EOL;
 }
@@ -1535,11 +1902,10 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Design identifier | |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be taken from private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
-| **vdp_data_model** | [**\Aurigma\DesignAtoms\Model\VdpDataModel**](../Model/VdpDataModel.md)| Serialized vdp data | [optional] |
+| **vdp_data_model** | [**\Aurigma\DesignAtoms\Model\VdpDataModel**](../Model/VdpDataModel.md)| Serialized vdp data. | [optional] |
 
 ### Return type
 
@@ -1547,7 +1913,86 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsServiceSetEditorMockups()`
+
+```php
+designAtomsServiceSetEditorMockups($id, $private_storage_owner, $tenant_id, $set_editor_mockups_model)
+```
+
+Sets specified editor-mockups for selected design surfaces.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
+$tenant_id = 56; // int | Tenant identifier
+$set_editor_mockups_model = new \Aurigma\DesignAtoms\Model\SetEditorMockupsModel(); // \Aurigma\DesignAtoms\Model\SetEditorMockupsModel | Operation parameters.
+
+try {
+    $apiInstance->designAtomsServiceSetEditorMockups($id, $private_storage_owner, $tenant_id, $set_editor_mockups_model);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceSetEditorMockups: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
+| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **set_editor_mockups_model** | [**\Aurigma\DesignAtoms\Model\SetEditorMockupsModel**](../Model/SetEditorMockupsModel.md)| Operation parameters. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -1561,10 +2006,10 @@ void (empty response body)
 ## `designAtomsServiceSetVariables()`
 
 ```php
-designAtomsServiceSetVariables($id, $private_storage, $private_storage_owner, $tenant_id, $variables_model)
+designAtomsServiceSetVariables($id, $private_storage_owner, $tenant_id, $variables_model)
 ```
 
-Sets variable items values for design file taken from storage
+Saves variable items values for design file taken from storage.
 
 ### Example
 
@@ -1573,24 +2018,24 @@ Sets variable items values for design file taken from storage
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
@@ -1599,14 +2044,13 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Design identifier
-$private_storage = True; // bool | If set to 'true' design will be taken from private storage
-$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
-$variables_model = new \Aurigma\DesignAtoms\Model\VariablesModel(); // \Aurigma\DesignAtoms\Model\VariablesModel | Design variable values
+$variables_model = new \Aurigma\DesignAtoms\Model\VariablesModel(); // \Aurigma\DesignAtoms\Model\VariablesModel | Design variable values.
 
 try {
-    $apiInstance->designAtomsServiceSetVariables($id, $private_storage, $private_storage_owner, $tenant_id, $variables_model);
+    $apiInstance->designAtomsServiceSetVariables($id, $private_storage_owner, $tenant_id, $variables_model);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceSetVariables: ', $e->getMessage(), PHP_EOL;
 }
@@ -1616,11 +2060,10 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Design identifier | |
-| **private_storage** | **bool**| If set to &#39;true&#39; design will be taken from private storage | [optional] |
-| **private_storage_owner** | **string**| Private storage owner identifier | [optional] |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
-| **variables_model** | [**\Aurigma\DesignAtoms\Model\VariablesModel**](../Model/VariablesModel.md)| Design variable values | [optional] |
+| **variables_model** | [**\Aurigma\DesignAtoms\Model\VariablesModel**](../Model/VariablesModel.md)| Design variable values. | [optional] |
 
 ### Return type
 
@@ -1628,7 +2071,7 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **image_url** | **string** | External image URL. | [optional]
 **image_id** | **string** | Storage image identifier. | [optional]
 **owner_id** | **string** | Storage image owner identifier. | [optional]
+**mockup_owner_id** | **string** | Mockup owner identifier. | [optional]
 **mockup_id** | **string** | Mockup identifier. | [optional]
 **rendering_config** | [**\Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig**](ImagePreviewRenderingConfig.md) |  | [optional]
 
