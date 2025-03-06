@@ -58,7 +58,10 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'urls' => 'string[]'
+        'urls' => 'string[]',
+        'palette_uid' => 'string',
+        'headers' => 'array<string,string>',
+        'preserve_original_file' => 'bool'
     ];
 
     /**
@@ -69,7 +72,10 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'urls' => null
+        'urls' => null,
+        'palette_uid' => null,
+        'headers' => null,
+        'preserve_original_file' => null
     ];
 
     /**
@@ -78,7 +84,10 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'urls' => true
+        'urls' => true,
+        'palette_uid' => true,
+        'headers' => true,
+        'preserve_original_file' => false
     ];
 
     /**
@@ -167,7 +176,10 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'urls' => 'urls'
+        'urls' => 'urls',
+        'palette_uid' => 'paletteUID',
+        'headers' => 'headers',
+        'preserve_original_file' => 'preserveOriginalFile'
     ];
 
     /**
@@ -176,7 +188,10 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'urls' => 'setUrls'
+        'urls' => 'setUrls',
+        'palette_uid' => 'setPaletteUid',
+        'headers' => 'setHeaders',
+        'preserve_original_file' => 'setPreserveOriginalFile'
     ];
 
     /**
@@ -185,7 +200,10 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'urls' => 'getUrls'
+        'urls' => 'getUrls',
+        'palette_uid' => 'getPaletteUid',
+        'headers' => 'getHeaders',
+        'preserve_original_file' => 'getPreserveOriginalFile'
     ];
 
     /**
@@ -246,6 +264,9 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('urls', $data ?? [], null);
+        $this->setIfExists('palette_uid', $data ?? [], null);
+        $this->setIfExists('headers', $data ?? [], null);
+        $this->setIfExists('preserve_original_file', $data ?? [], null);
     }
 
     /**
@@ -320,6 +341,101 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
             }
         }
         $this->container['urls'] = $urls;
+
+        return $this;
+    }
+
+    /**
+     * Gets palette_uid
+     *
+     * @return string|null
+     */
+    public function getPaletteUid()
+    {
+        return $this->container['palette_uid'];
+    }
+
+    /**
+     * Sets palette_uid
+     *
+     * @param string|null $palette_uid Target palette UID.
+     *
+     * @return self
+     */
+    public function setPaletteUid($palette_uid)
+    {
+        if (is_null($palette_uid)) {
+            array_push($this->openAPINullablesSetToNull, 'palette_uid');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('palette_uid', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['palette_uid'] = $palette_uid;
+
+        return $this;
+    }
+
+    /**
+     * Gets headers
+     *
+     * @return array<string,string>|null
+     */
+    public function getHeaders()
+    {
+        return $this->container['headers'];
+    }
+
+    /**
+     * Sets headers
+     *
+     * @param array<string,string>|null $headers Headers that will be used to download remote image by URL.  For example, `Authorization` header can be placed here to provide access to images.
+     *
+     * @return self
+     */
+    public function setHeaders($headers)
+    {
+        if (is_null($headers)) {
+            array_push($this->openAPINullablesSetToNull, 'headers');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('headers', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['headers'] = $headers;
+
+        return $this;
+    }
+
+    /**
+     * Gets preserve_original_file
+     *
+     * @return bool|null
+     */
+    public function getPreserveOriginalFile()
+    {
+        return $this->container['preserve_original_file'];
+    }
+
+    /**
+     * Sets preserve_original_file
+     *
+     * @param bool|null $preserve_original_file Indicates if resulting item should store original source file.
+     *
+     * @return self
+     */
+    public function setPreserveOriginalFile($preserve_original_file)
+    {
+        if (is_null($preserve_original_file)) {
+            throw new \InvalidArgumentException('non-nullable preserve_original_file cannot be null');
+        }
+        $this->container['preserve_original_file'] = $preserve_original_file;
 
         return $this;
     }

@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * SizeDto Class Doc Comment
  *
  * @category Class
- * @description Design item size.
+ * @description Print-product element size.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -310,7 +310,7 @@ class SizeDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets width
      *
-     * @param float|null $width Design item width.
+     * @param float|null $width Print-product element width.
      *
      * @return self
      */
@@ -337,7 +337,7 @@ class SizeDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets height
      *
-     * @param float|null $height Design item height.
+     * @param float|null $height Print-product element height.
      *
      * @return self
      */

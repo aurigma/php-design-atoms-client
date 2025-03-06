@@ -63,7 +63,7 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
         'owner_id' => 'string',
         'mockup_owner_id' => 'string',
         'mockup_id' => 'string',
-        'rendering_config' => '\Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig'
+        'rendering_config' => '\Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModelRenderingConfig'
     ];
 
     /**
@@ -93,7 +93,7 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
         'owner_id' => true,
         'mockup_owner_id' => true,
         'mockup_id' => true,
-        'rendering_config' => false
+        'rendering_config' => true
     ];
 
     /**
@@ -500,7 +500,7 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets rendering_config
      *
-     * @return \Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig|null
+     * @return \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModelRenderingConfig|null
      */
     public function getRenderingConfig()
     {
@@ -510,14 +510,21 @@ class RenderImagePreviewModel implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets rendering_config
      *
-     * @param \Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig|null $rendering_config rendering_config
+     * @param \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModelRenderingConfig|null $rendering_config rendering_config
      *
      * @return self
      */
     public function setRenderingConfig($rendering_config)
     {
         if (is_null($rendering_config)) {
-            throw new \InvalidArgumentException('non-nullable rendering_config cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'rendering_config');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rendering_config', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['rendering_config'] = $rendering_config;
 

@@ -57,9 +57,9 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'description' => 'string',
         'missing_element_type' => '\Aurigma\DesignAtoms\Model\DesignElementType',
-        'unprocessed_element_type' => '\Aurigma\DesignAtoms\Model\DesignElementType'
+        'unprocessed_element_type' => '\Aurigma\DesignAtoms\Model\DesignElementType',
+        'description' => 'string'
     ];
 
     /**
@@ -70,9 +70,9 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'description' => null,
         'missing_element_type' => null,
-        'unprocessed_element_type' => null
+        'unprocessed_element_type' => null,
+        'description' => null
     ];
 
     /**
@@ -81,9 +81,9 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'description' => true,
-        'missing_element_type' => false,
-        'unprocessed_element_type' => false
+        'missing_element_type' => true,
+        'unprocessed_element_type' => true,
+        'description' => true
     ];
 
     /**
@@ -172,9 +172,9 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
         'missing_element_type' => 'missingElementType',
-        'unprocessed_element_type' => 'unprocessedElementType'
+        'unprocessed_element_type' => 'unprocessedElementType',
+        'description' => 'description'
     ];
 
     /**
@@ -183,9 +183,9 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
         'missing_element_type' => 'setMissingElementType',
-        'unprocessed_element_type' => 'setUnprocessedElementType'
+        'unprocessed_element_type' => 'setUnprocessedElementType',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -194,9 +194,9 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
         'missing_element_type' => 'getMissingElementType',
-        'unprocessed_element_type' => 'getUnprocessedElementType'
+        'unprocessed_element_type' => 'getUnprocessedElementType',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -256,9 +256,9 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('missing_element_type', $data ?? [], null);
         $this->setIfExists('unprocessed_element_type', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
     }
 
     /**
@@ -304,6 +304,74 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
+     * Gets missing_element_type
+     *
+     * @return \Aurigma\DesignAtoms\Model\DesignElementType|null
+     */
+    public function getMissingElementType()
+    {
+        return $this->container['missing_element_type'];
+    }
+
+    /**
+     * Sets missing_element_type
+     *
+     * @param \Aurigma\DesignAtoms\Model\DesignElementType|null $missing_element_type Missing element type.
+     *
+     * @return self
+     */
+    public function setMissingElementType($missing_element_type)
+    {
+        if (is_null($missing_element_type)) {
+            array_push($this->openAPINullablesSetToNull, 'missing_element_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('missing_element_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['missing_element_type'] = $missing_element_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets unprocessed_element_type
+     *
+     * @return \Aurigma\DesignAtoms\Model\DesignElementType|null
+     */
+    public function getUnprocessedElementType()
+    {
+        return $this->container['unprocessed_element_type'];
+    }
+
+    /**
+     * Sets unprocessed_element_type
+     *
+     * @param \Aurigma\DesignAtoms\Model\DesignElementType|null $unprocessed_element_type Missing element type.
+     *
+     * @return self
+     */
+    public function setUnprocessedElementType($unprocessed_element_type)
+    {
+        if (is_null($unprocessed_element_type)) {
+            array_push($this->openAPINullablesSetToNull, 'unprocessed_element_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('unprocessed_element_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['unprocessed_element_type'] = $unprocessed_element_type;
+
+        return $this;
+    }
+
+    /**
      * Gets description
      *
      * @return string|null
@@ -333,60 +401,6 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets missing_element_type
-     *
-     * @return \Aurigma\DesignAtoms\Model\DesignElementType|null
-     */
-    public function getMissingElementType()
-    {
-        return $this->container['missing_element_type'];
-    }
-
-    /**
-     * Sets missing_element_type
-     *
-     * @param \Aurigma\DesignAtoms\Model\DesignElementType|null $missing_element_type missing_element_type
-     *
-     * @return self
-     */
-    public function setMissingElementType($missing_element_type)
-    {
-        if (is_null($missing_element_type)) {
-            throw new \InvalidArgumentException('non-nullable missing_element_type cannot be null');
-        }
-        $this->container['missing_element_type'] = $missing_element_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets unprocessed_element_type
-     *
-     * @return \Aurigma\DesignAtoms\Model\DesignElementType|null
-     */
-    public function getUnprocessedElementType()
-    {
-        return $this->container['unprocessed_element_type'];
-    }
-
-    /**
-     * Sets unprocessed_element_type
-     *
-     * @param \Aurigma\DesignAtoms\Model\DesignElementType|null $unprocessed_element_type unprocessed_element_type
-     *
-     * @return self
-     */
-    public function setUnprocessedElementType($unprocessed_element_type)
-    {
-        if (is_null($unprocessed_element_type)) {
-            throw new \InvalidArgumentException('non-nullable unprocessed_element_type cannot be null');
-        }
-        $this->container['unprocessed_element_type'] = $unprocessed_element_type;
 
         return $this;
     }

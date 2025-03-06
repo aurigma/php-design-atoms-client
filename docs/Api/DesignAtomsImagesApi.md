@@ -138,8 +138,8 @@ $mockup_owner_id = 'mockup_owner_id_example'; // string | Mockup owner identifie
 $mockup_id = 'mockup_id_example'; // string | Mockup identifier.
 $width = 56; // int | Image preview width.
 $height = 56; // int | Image preview height.
-$file_format = new \Aurigma\DesignAtoms\Model\ImagePreviewFormat(); // \Aurigma\DesignAtoms\Model\ImagePreviewFormat
-$fit_mode = new \Aurigma\DesignAtoms\Model\ImagePreviewFitMode(); // \Aurigma\DesignAtoms\Model\ImagePreviewFitMode
+$file_format = new \Aurigma\DesignAtoms\Model\ImagePreviewFormat(); // \Aurigma\DesignAtoms\Model\ImagePreviewFormat | Image preview file format.
+$fit_mode = new \Aurigma\DesignAtoms\Model\ImagePreviewFitMode(); // \Aurigma\DesignAtoms\Model\ImagePreviewFitMode | Image preview fit mode.
 
 try {
     $result = $apiInstance->designAtomsImagesRenderImagePreviewFromFile($attachment, $tenant_id, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode);
@@ -160,8 +160,8 @@ try {
 | **mockup_id** | **string**| Mockup identifier. | [optional] |
 | **width** | **int**| Image preview width. | [optional] |
 | **height** | **int**| Image preview height. | [optional] |
-| **file_format** | [**\Aurigma\DesignAtoms\Model\ImagePreviewFormat**](../Model/ImagePreviewFormat.md)|  | [optional] |
-| **fit_mode** | [**\Aurigma\DesignAtoms\Model\ImagePreviewFitMode**](../Model/ImagePreviewFitMode.md)|  | [optional] |
+| **file_format** | [**\Aurigma\DesignAtoms\Model\ImagePreviewFormat**](../Model/ImagePreviewFormat.md)| Image preview file format. | [optional] |
+| **fit_mode** | [**\Aurigma\DesignAtoms\Model\ImagePreviewFitMode**](../Model/ImagePreviewFitMode.md)| Image preview fit mode. | [optional] |
 
 ### Return type
 
@@ -234,8 +234,8 @@ $mockup_owner_id = 'mockup_owner_id_example'; // string | Mockup owner identifie
 $mockup_id = 'mockup_id_example'; // string | Mockup identifier.
 $width = 56; // int | Image preview width.
 $height = 56; // int | Image preview height.
-$file_format = new \Aurigma\DesignAtoms\Model\ImagePreviewFormat(); // \Aurigma\DesignAtoms\Model\ImagePreviewFormat
-$fit_mode = new \Aurigma\DesignAtoms\Model\ImagePreviewFitMode(); // \Aurigma\DesignAtoms\Model\ImagePreviewFitMode
+$file_format = new \Aurigma\DesignAtoms\Model\ImagePreviewFormat(); // \Aurigma\DesignAtoms\Model\ImagePreviewFormat | Image preview file format.
+$fit_mode = new \Aurigma\DesignAtoms\Model\ImagePreviewFitMode(); // \Aurigma\DesignAtoms\Model\ImagePreviewFitMode | Image preview fit mode.
 
 try {
     $result = $apiInstance->designAtomsImagesRenderImagePreviewFromFileToResource($tenant_id, $resource_owner_id, $resource_namespace, $resource_name, $resource_source_id, $resource_type, $anonymous_access, $overwrite_existing_resource, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode);
@@ -262,8 +262,8 @@ try {
 | **mockup_id** | **string**| Mockup identifier. | [optional] |
 | **width** | **int**| Image preview width. | [optional] |
 | **height** | **int**| Image preview height. | [optional] |
-| **file_format** | [**\Aurigma\DesignAtoms\Model\ImagePreviewFormat**](../Model/ImagePreviewFormat.md)|  | [optional] |
-| **fit_mode** | [**\Aurigma\DesignAtoms\Model\ImagePreviewFitMode**](../Model/ImagePreviewFitMode.md)|  | [optional] |
+| **file_format** | [**\Aurigma\DesignAtoms\Model\ImagePreviewFormat**](../Model/ImagePreviewFormat.md)| Image preview file format. | [optional] |
+| **fit_mode** | [**\Aurigma\DesignAtoms\Model\ImagePreviewFitMode**](../Model/ImagePreviewFitMode.md)| Image preview fit mode. | [optional] |
 
 ### Return type
 

@@ -581,7 +581,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\DesignInfo
+     * @return \Aurigma\DesignAtoms\Model\DesignInfo|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsServiceCreateDesign($private_storage_owner = null, $tenant_id = null, $create_design_model = null, string $contentType = self::contentTypes['designAtomsServiceCreateDesign'][0])
     {
@@ -601,7 +601,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\DesignInfo, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\DesignInfo|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceCreateDesignWithHttpInfo($private_storage_owner = null, $tenant_id = null, $create_design_model = null, string $contentType = self::contentTypes['designAtomsServiceCreateDesign'][0])
     {
@@ -670,6 +670,33 @@ class DesignAtomsServiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\DesignAtoms\Model\DesignInfo';
@@ -706,6 +733,14 @@ class DesignAtomsServiceApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\DesignInfo',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -926,9 +961,9 @@ class DesignAtomsServiceApi
      *
      * Creates print-product item.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type source_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $url Source URL, used if source type is &#39;Url&#39;. (optional)
@@ -951,9 +986,9 @@ class DesignAtomsServiceApi
      *
      * Creates print-product item.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $url Source URL, used if source type is &#39;Url&#39;. (optional)
@@ -1117,9 +1152,9 @@ class DesignAtomsServiceApi
      *
      * Creates print-product item.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $url Source URL, used if source type is &#39;Url&#39;. (optional)
@@ -1145,9 +1180,9 @@ class DesignAtomsServiceApi
      *
      * Creates print-product item.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $url Source URL, used if source type is &#39;Url&#39;. (optional)
@@ -1202,9 +1237,9 @@ class DesignAtomsServiceApi
     /**
      * Create request for operation 'designAtomsServiceCreateItem'
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $url Source URL, used if source type is &#39;Url&#39;. (optional)
@@ -2029,7 +2064,7 @@ class DesignAtomsServiceApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2252,7 +2287,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\MissingDesignElementDto|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
      */
     public function designAtomsServiceExtractBackground($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceExtractBackground'][0])
     {
@@ -2273,7 +2308,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\MissingDesignElementDto|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceExtractBackgroundWithHttpInfo($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceExtractBackground'][0])
     {
@@ -2343,11 +2378,11 @@ class DesignAtomsServiceApi
                         $response->getHeaders()
                     ];
                 case 404:
-                    if ('\Aurigma\DesignAtoms\Model\MissingDesignElementDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\MissingDesignElementDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2365,7 +2400,7 @@ class DesignAtomsServiceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\MissingDesignElementDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2439,7 +2474,7 @@ class DesignAtomsServiceApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\MissingDesignElementDto',
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4167,7 +4202,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsServiceLoadDataSchema($id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadDataSchema'][0])
     {
@@ -4187,7 +4222,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceLoadDataSchemaWithHttpInfo($id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadDataSchema'][0])
     {
@@ -4284,11 +4319,11 @@ class DesignAtomsServiceApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4306,7 +4341,7 @@ class DesignAtomsServiceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4361,7 +4396,7 @@ class DesignAtomsServiceApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4995,7 +5030,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
      */
     public function designAtomsServiceLoadProductFromResource($id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadProductFromResource'][0])
     {
@@ -5015,7 +5050,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceLoadProductFromResourceWithHttpInfo($id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadProductFromResource'][0])
     {
@@ -5112,11 +5147,11 @@ class DesignAtomsServiceApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5134,7 +5169,7 @@ class DesignAtomsServiceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5189,7 +5224,7 @@ class DesignAtomsServiceApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5419,7 +5454,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsServiceLoadToggleSet($id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadToggleSet'][0])
     {
@@ -5439,7 +5474,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceLoadToggleSetWithHttpInfo($id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadToggleSet'][0])
     {
@@ -5536,11 +5571,11 @@ class DesignAtomsServiceApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5558,7 +5593,7 @@ class DesignAtomsServiceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5613,7 +5648,7 @@ class DesignAtomsServiceApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5848,7 +5883,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\VdpDataModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \Aurigma\DesignAtoms\Model\VdpDataModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsServiceLoadVdpData($id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadVdpData'][0])
     {
@@ -5868,7 +5903,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\VdpDataModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\VdpDataModel|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceLoadVdpDataWithHttpInfo($id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadVdpData'][0])
     {
@@ -5965,11 +6000,11 @@ class DesignAtomsServiceApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5987,7 +6022,7 @@ class DesignAtomsServiceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -6042,7 +6077,7 @@ class DesignAtomsServiceApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6273,11 +6308,11 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServicePatchProduct'] to see the possible values for this operation
      *
@@ -6299,11 +6334,11 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServicePatchProduct'] to see the possible values for this operation
      *
@@ -6376,11 +6411,11 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServicePatchProduct'] to see the possible values for this operation
      *
@@ -6406,11 +6441,11 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServicePatchProduct'] to see the possible values for this operation
      *
@@ -6452,11 +6487,11 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServicePatchProduct'] to see the possible values for this operation
      *
@@ -6998,7 +7033,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsServiceRenderDesignPreviewToResource($tenant_id = null, $render_design_preview_to_resource_model = null, string $contentType = self::contentTypes['designAtomsServiceRenderDesignPreviewToResource'][0])
     {
@@ -7017,7 +7052,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceRenderDesignPreviewToResourceWithHttpInfo($tenant_id = null, $render_design_preview_to_resource_model = null, string $contentType = self::contentTypes['designAtomsServiceRenderDesignPreviewToResource'][0])
     {
@@ -7086,7 +7121,7 @@ class DesignAtomsServiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
+                case 404:
                     if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -7110,6 +7145,33 @@ class DesignAtomsServiceApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7153,10 +7215,18 @@ class DesignAtomsServiceApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 409:
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7371,7 +7441,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsServiceRenderDesignProof($attachment = null, $tenant_id = null, $render_design_proof_model = null, string $contentType = self::contentTypes['designAtomsServiceRenderDesignProof'][0])
     {
@@ -7391,7 +7461,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceRenderDesignProofWithHttpInfo($attachment = null, $tenant_id = null, $render_design_proof_model = null, string $contentType = self::contentTypes['designAtomsServiceRenderDesignProof'][0])
     {
@@ -7460,6 +7530,33 @@ class DesignAtomsServiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -7496,6 +7593,14 @@ class DesignAtomsServiceApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SplFileObject',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7722,7 +7827,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsServiceRenderDesignProofToResource($tenant_id = null, $render_design_proof_to_resource_model = null, string $contentType = self::contentTypes['designAtomsServiceRenderDesignProofToResource'][0])
     {
@@ -7741,7 +7846,7 @@ class DesignAtomsServiceApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceRenderDesignProofToResourceWithHttpInfo($tenant_id = null, $render_design_proof_to_resource_model = null, string $contentType = self::contentTypes['designAtomsServiceRenderDesignProofToResource'][0])
     {
@@ -7811,11 +7916,11 @@ class DesignAtomsServiceApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7833,7 +7938,7 @@ class DesignAtomsServiceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7880,7 +7985,7 @@ class DesignAtomsServiceApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -9443,7 +9548,7 @@ class DesignAtomsServiceApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

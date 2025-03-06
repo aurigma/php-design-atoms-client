@@ -916,7 +916,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityGetColorPreview($tenant_id, $get_color_preview_request = null, string $contentType = self::contentTypes['designAtomsCompatibilityGetColorPreview'][0])
     {
@@ -933,7 +933,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityGetColorPreviewWithHttpInfo($tenant_id, $get_color_preview_request = null, string $contentType = self::contentTypes['designAtomsCompatibilityGetColorPreview'][0])
     {
@@ -1002,6 +1002,33 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -1038,6 +1065,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1250,7 +1285,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsCompatibilityGetColorPreviews($tenant_id, $get_color_previews_request = null, string $contentType = self::contentTypes['designAtomsCompatibilityGetColorPreviews'][0])
     {
@@ -1267,7 +1302,7 @@ class DesignAtomsCompatibilityApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsCompatibilityGetColorPreviewsWithHttpInfo($tenant_id, $get_color_previews_request = null, string $contentType = self::contentTypes['designAtomsCompatibilityGetColorPreviews'][0])
     {
@@ -1336,6 +1371,33 @@ class DesignAtomsCompatibilityApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -1372,6 +1434,14 @@ class DesignAtomsCompatibilityApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

@@ -61,8 +61,10 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'string',
         'name' => 'string',
         'surface_id' => 'string',
-        'size' => '\Aurigma\DesignAtoms\Model\SizeDto',
-        'position' => '\Aurigma\DesignAtoms\Model\PositionDto'
+        'size' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSize',
+        'position' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoPosition',
+        'bleed' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoBleed',
+        'slug' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSlug'
     ];
 
     /**
@@ -77,7 +79,9 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
         'name' => null,
         'surface_id' => null,
         'size' => null,
-        'position' => null
+        'position' => null,
+        'bleed' => null,
+        'slug' => null
     ];
 
     /**
@@ -89,8 +93,10 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => true,
         'name' => true,
         'surface_id' => true,
-        'size' => false,
-        'position' => false
+        'size' => true,
+        'position' => true,
+        'bleed' => true,
+        'slug' => true
     ];
 
     /**
@@ -183,7 +189,9 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
         'name' => 'name',
         'surface_id' => 'surfaceId',
         'size' => 'size',
-        'position' => 'position'
+        'position' => 'position',
+        'bleed' => 'bleed',
+        'slug' => 'slug'
     ];
 
     /**
@@ -196,7 +204,9 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
         'name' => 'setName',
         'surface_id' => 'setSurfaceId',
         'size' => 'setSize',
-        'position' => 'setPosition'
+        'position' => 'setPosition',
+        'bleed' => 'setBleed',
+        'slug' => 'setSlug'
     ];
 
     /**
@@ -209,7 +219,9 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
         'name' => 'getName',
         'surface_id' => 'getSurfaceId',
         'size' => 'getSize',
-        'position' => 'getPosition'
+        'position' => 'getPosition',
+        'bleed' => 'getBleed',
+        'slug' => 'getSlug'
     ];
 
     /**
@@ -274,6 +286,8 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('surface_id', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('position', $data ?? [], null);
+        $this->setIfExists('bleed', $data ?? [], null);
+        $this->setIfExists('slug', $data ?? [], null);
     }
 
     /**
@@ -423,7 +437,7 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets size
      *
-     * @return \Aurigma\DesignAtoms\Model\SizeDto|null
+     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSize|null
      */
     public function getSize()
     {
@@ -433,14 +447,21 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets size
      *
-     * @param \Aurigma\DesignAtoms\Model\SizeDto|null $size size
+     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSize|null $size size
      *
      * @return self
      */
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'size');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('size', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['size'] = $size;
 
@@ -450,7 +471,7 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets position
      *
-     * @return \Aurigma\DesignAtoms\Model\PositionDto|null
+     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoPosition|null
      */
     public function getPosition()
     {
@@ -460,16 +481,91 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets position
      *
-     * @param \Aurigma\DesignAtoms\Model\PositionDto|null $position position
+     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoPosition|null $position position
      *
      * @return self
      */
     public function setPosition($position)
     {
         if (is_null($position)) {
-            throw new \InvalidArgumentException('non-nullable position cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'position');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('position', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['position'] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Gets bleed
+     *
+     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoBleed|null
+     */
+    public function getBleed()
+    {
+        return $this->container['bleed'];
+    }
+
+    /**
+     * Sets bleed
+     *
+     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoBleed|null $bleed bleed
+     *
+     * @return self
+     */
+    public function setBleed($bleed)
+    {
+        if (is_null($bleed)) {
+            array_push($this->openAPINullablesSetToNull, 'bleed');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('bleed', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['bleed'] = $bleed;
+
+        return $this;
+    }
+
+    /**
+     * Gets slug
+     *
+     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSlug|null
+     */
+    public function getSlug()
+    {
+        return $this->container['slug'];
+    }
+
+    /**
+     * Sets slug
+     *
+     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSlug|null $slug slug
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        if (is_null($slug)) {
+            array_push($this->openAPINullablesSetToNull, 'slug');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('slug', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['slug'] = $slug;
 
         return $this;
     }

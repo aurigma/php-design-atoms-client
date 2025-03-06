@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**position** | [**\Aurigma\DesignAtoms\Model\PositionDto**](PositionDto.md) |  | [optional]
-**size** | [**\Aurigma\DesignAtoms\Model\SizeDto**](SizeDto.md) |  | [optional]
+**position** | [**\Aurigma\DesignAtoms\Model\DesignSurfaceMockupDtoPosition**](DesignSurfaceMockupDtoPosition.md) |  | [optional]
+**size** | [**\Aurigma\DesignAtoms\Model\DesignSurfaceMockupDtoSize**](DesignSurfaceMockupDtoSize.md) |  | [optional]
 **surface_id** | **string** | Parent surface identifier. | [optional]
 **resolution** | **int** | Mockup image resolution (DPI). | [optional]
 

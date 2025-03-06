@@ -71,7 +71,16 @@ class DesignAtomsPrintProductApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'designAtomsPrintProductAddDesignPrintArea' => [
+            'application/json',
+        ],
         'designAtomsPrintProductAddDesignPrintAreaModel' => [
+            'application/json',
+        ],
+        'designAtomsPrintProductAddDesignSurfaceContainerModel' => [
+            'application/json',
+        ],
+        'designAtomsPrintProductAddDesignSurfaceItemModel' => [
             'application/json',
         ],
         'designAtomsPrintProductAddDesignSurfaceModel' => [
@@ -83,6 +92,12 @@ class DesignAtomsPrintProductApi
         'designAtomsPrintProductDeleteDesignSurface' => [
             'application/json',
         ],
+        'designAtomsPrintProductDeleteDesignSurfaceContainer' => [
+            'application/json',
+        ],
+        'designAtomsPrintProductDeleteDesignSurfaceItem' => [
+            'application/json',
+        ],
         'designAtomsPrintProductGetDesignPrintAreaModel' => [
             'application/json',
         ],
@@ -92,10 +107,22 @@ class DesignAtomsPrintProductApi
         'designAtomsPrintProductGetDesignProductModel' => [
             'application/json',
         ],
+        'designAtomsPrintProductGetDesignSurfaceContainerModel' => [
+            'application/json',
+        ],
+        'designAtomsPrintProductGetDesignSurfaceContainers' => [
+            'application/json',
+        ],
         'designAtomsPrintProductGetDesignSurfaceDownMockup' => [
             'application/json',
         ],
         'designAtomsPrintProductGetDesignSurfaceDownMockupContent' => [
+            'application/json',
+        ],
+        'designAtomsPrintProductGetDesignSurfaceItemModel' => [
+            'application/json',
+        ],
+        'designAtomsPrintProductGetDesignSurfaceItems' => [
             'application/json',
         ],
         'designAtomsPrintProductGetDesignSurfaceModel' => [
@@ -116,14 +143,23 @@ class DesignAtomsPrintProductApi
         'designAtomsPrintProductReplaceDesignSurfaceModel' => [
             'application/json',
         ],
+        'designAtomsPrintProductUpdateDesignPrintArea' => [
+            'application/json',
+        ],
         'designAtomsPrintProductUpdateDesignPrintAreaModel' => [
             'application/json',
         ],
         'designAtomsPrintProductUpdateDesignProductModel' => [
             'application/json',
         ],
+        'designAtomsPrintProductUpdateDesignSurfaceContainerModel' => [
+            'application/json',
+        ],
         'designAtomsPrintProductUpdateDesignSurfaceDownMockup' => [
             'multipart/form-data',
+        ],
+        'designAtomsPrintProductUpdateDesignSurfaceItemModel' => [
+            'application/json',
         ],
         'designAtomsPrintProductUpdateDesignSurfaceUpMockup' => [
             'multipart/form-data',
@@ -177,6 +213,448 @@ class DesignAtomsPrintProductApi
     }
 
     /**
+     * Operation designAtomsPrintProductAddDesignPrintArea
+     *
+     * Inserts a new print-area created by the description at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsPrintProductAddDesignPrintArea($id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignPrintArea'][0])
+    {
+        list($response) = $this->designAtomsPrintProductAddDesignPrintAreaWithHttpInfo($id, $private_storage_owner, $tenant_id, $design_print_area_model, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignPrintAreaWithHttpInfo
+     *
+     * Inserts a new print-area created by the description at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductAddDesignPrintAreaWithHttpInfo($id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignPrintArea'][0])
+    {
+        $request = $this->designAtomsPrintProductAddDesignPrintAreaRequest($id, $private_storage_owner, $tenant_id, $design_print_area_model, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignPrintAreaAsync
+     *
+     * Inserts a new print-area created by the description at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductAddDesignPrintAreaAsync($id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignPrintArea'][0])
+    {
+        return $this->designAtomsPrintProductAddDesignPrintAreaAsyncWithHttpInfo($id, $private_storage_owner, $tenant_id, $design_print_area_model, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignPrintAreaAsyncWithHttpInfo
+     *
+     * Inserts a new print-area created by the description at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductAddDesignPrintAreaAsyncWithHttpInfo($id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignPrintArea'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsPrintProductAddDesignPrintAreaRequest($id, $private_storage_owner, $tenant_id, $design_print_area_model, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductAddDesignPrintArea'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductAddDesignPrintAreaRequest($id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignPrintArea'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductAddDesignPrintArea'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/print-areas';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($design_print_area_model)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($design_print_area_model));
+            } else {
+                $httpBody = $design_print_area_model;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsPrintProductAddDesignPrintAreaModel
      *
      * Inserts a new print-area provided as a json-serialized model at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions.
@@ -185,7 +663,7 @@ class DesignAtomsPrintProductApi
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New print-area model. (optional)
+     * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -207,7 +685,7 @@ class DesignAtomsPrintProductApi
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New print-area model. (optional)
+     * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -405,7 +883,7 @@ class DesignAtomsPrintProductApi
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New print-area model. (optional)
+     * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -430,7 +908,7 @@ class DesignAtomsPrintProductApi
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New print-area model. (optional)
+     * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -484,7 +962,7 @@ class DesignAtomsPrintProductApi
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New print-area model. (optional)
+     * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -634,46 +1112,1050 @@ class DesignAtomsPrintProductApi
     }
 
     /**
-     * Operation designAtomsPrintProductAddDesignSurfaceModel
+     * Operation designAtomsPrintProductAddDesignSurfaceContainerModel
      *
-     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
+     * Inserts a new print-product container provided as a json-serialized model to the certain surface in an existing design file.  Print-product container identifier will be reset by auto-generated value to prevent identifiers collisions.
      *
      * @param  string $id Design identifier. (required)
-     * @param  int $surface_index New surface index. (optional)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  int $index Container index within the conatiners list of a surface. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New surface model. (optional)
+     * @param  mixed $body Json-serialized model of a new print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsPrintProductAddDesignSurfaceContainerModel($id, $surface_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'][0])
+    {
+        list($response) = $this->designAtomsPrintProductAddDesignSurfaceContainerModelWithHttpInfo($id, $surface_id, $index, $top, $left, $private_storage_owner, $tenant_id, $body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignSurfaceContainerModelWithHttpInfo
+     *
+     * Inserts a new print-product container provided as a json-serialized model to the certain surface in an existing design file.  Print-product container identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  int $index Container index within the conatiners list of a surface. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a new print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductAddDesignSurfaceContainerModelWithHttpInfo($id, $surface_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'][0])
+    {
+        $request = $this->designAtomsPrintProductAddDesignSurfaceContainerModelRequest($id, $surface_id, $index, $top, $left, $private_storage_owner, $tenant_id, $body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignSurfaceContainerModelAsync
+     *
+     * Inserts a new print-product container provided as a json-serialized model to the certain surface in an existing design file.  Print-product container identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  int $index Container index within the conatiners list of a surface. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a new print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductAddDesignSurfaceContainerModelAsync($id, $surface_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'][0])
+    {
+        return $this->designAtomsPrintProductAddDesignSurfaceContainerModelAsyncWithHttpInfo($id, $surface_id, $index, $top, $left, $private_storage_owner, $tenant_id, $body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignSurfaceContainerModelAsyncWithHttpInfo
+     *
+     * Inserts a new print-product container provided as a json-serialized model to the certain surface in an existing design file.  Print-product container identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  int $index Container index within the conatiners list of a surface. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a new print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductAddDesignSurfaceContainerModelAsyncWithHttpInfo($id, $surface_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsPrintProductAddDesignSurfaceContainerModelRequest($id, $surface_id, $index, $top, $left, $private_storage_owner, $tenant_id, $body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductAddDesignSurfaceContainerModel'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  int $index Container index within the conatiners list of a surface. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a new print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductAddDesignSurfaceContainerModelRequest($id, $surface_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductAddDesignSurfaceContainerModel'
+            );
+        }
+
+
+
+
+
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/containers/model';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $surface_id,
+            'surfaceId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $index,
+            'index', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $top,
+            'top', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $left,
+            'left', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignSurfaceItemModel
+     *
+     * Inserts a new print-product item provided as a json-serialized model to the specified surface in an existing design file.  Item identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Parent surface identifier. (optional)
+     * @param  int $index Item index within the items list of a container. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a new print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsPrintProductAddDesignSurfaceItemModel($id, $container_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'][0])
+    {
+        list($response) = $this->designAtomsPrintProductAddDesignSurfaceItemModelWithHttpInfo($id, $container_id, $index, $top, $left, $private_storage_owner, $tenant_id, $body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignSurfaceItemModelWithHttpInfo
+     *
+     * Inserts a new print-product item provided as a json-serialized model to the specified surface in an existing design file.  Item identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Parent surface identifier. (optional)
+     * @param  int $index Item index within the items list of a container. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a new print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductAddDesignSurfaceItemModelWithHttpInfo($id, $container_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'][0])
+    {
+        $request = $this->designAtomsPrintProductAddDesignSurfaceItemModelRequest($id, $container_id, $index, $top, $left, $private_storage_owner, $tenant_id, $body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignSurfaceItemModelAsync
+     *
+     * Inserts a new print-product item provided as a json-serialized model to the specified surface in an existing design file.  Item identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Parent surface identifier. (optional)
+     * @param  int $index Item index within the items list of a container. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a new print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductAddDesignSurfaceItemModelAsync($id, $container_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'][0])
+    {
+        return $this->designAtomsPrintProductAddDesignSurfaceItemModelAsyncWithHttpInfo($id, $container_id, $index, $top, $left, $private_storage_owner, $tenant_id, $body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignSurfaceItemModelAsyncWithHttpInfo
+     *
+     * Inserts a new print-product item provided as a json-serialized model to the specified surface in an existing design file.  Item identifier will be reset by auto-generated value to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Parent surface identifier. (optional)
+     * @param  int $index Item index within the items list of a container. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a new print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductAddDesignSurfaceItemModelAsyncWithHttpInfo($id, $container_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsPrintProductAddDesignSurfaceItemModelRequest($id, $container_id, $index, $top, $left, $private_storage_owner, $tenant_id, $body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductAddDesignSurfaceItemModel'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Parent surface identifier. (optional)
+     * @param  int $index Item index within the items list of a container. (optional)
+     * @param  float $top Y axis position. (optional)
+     * @param  float $left X axis position. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a new print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductAddDesignSurfaceItemModelRequest($id, $container_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductAddDesignSurfaceItemModel'
+            );
+        }
+
+
+
+
+
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/items/model';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $container_id,
+            'containerId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $index,
+            'index', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $top,
+            'top', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $left,
+            'left', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsPrintProductAddDesignSurfaceModel
+     *
+     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  int $index Surface index within the surfaces list of a design. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsPrintProductAddDesignSurfaceModel($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
+    public function designAtomsPrintProductAddDesignSurfaceModel($id, $index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
     {
-        list($response) = $this->designAtomsPrintProductAddDesignSurfaceModelWithHttpInfo($id, $surface_index, $private_storage_owner, $tenant_id, $body, $contentType);
+        list($response) = $this->designAtomsPrintProductAddDesignSurfaceModelWithHttpInfo($id, $index, $private_storage_owner, $tenant_id, $body, $contentType);
         return $response;
     }
 
     /**
      * Operation designAtomsPrintProductAddDesignSurfaceModelWithHttpInfo
      *
-     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
+     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
      *
      * @param  string $id Design identifier. (required)
-     * @param  int $surface_index New surface index. (optional)
+     * @param  int $index Surface index within the surfaces list of a design. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New surface model. (optional)
+     * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsPrintProductAddDesignSurfaceModelWithHttpInfo($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
+    public function designAtomsPrintProductAddDesignSurfaceModelWithHttpInfo($id, $index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
     {
-        $request = $this->designAtomsPrintProductAddDesignSurfaceModelRequest($id, $surface_index, $private_storage_owner, $tenant_id, $body, $contentType);
+        $request = $this->designAtomsPrintProductAddDesignSurfaceModelRequest($id, $index, $private_storage_owner, $tenant_id, $body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -856,21 +2338,21 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductAddDesignSurfaceModelAsync
      *
-     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
+     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
      *
      * @param  string $id Design identifier. (required)
-     * @param  int $surface_index New surface index. (optional)
+     * @param  int $index Surface index within the surfaces list of a design. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New surface model. (optional)
+     * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductAddDesignSurfaceModelAsync($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
+    public function designAtomsPrintProductAddDesignSurfaceModelAsync($id, $index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
     {
-        return $this->designAtomsPrintProductAddDesignSurfaceModelAsyncWithHttpInfo($id, $surface_index, $private_storage_owner, $tenant_id, $body, $contentType)
+        return $this->designAtomsPrintProductAddDesignSurfaceModelAsyncWithHttpInfo($id, $index, $private_storage_owner, $tenant_id, $body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -881,22 +2363,22 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductAddDesignSurfaceModelAsyncWithHttpInfo
      *
-     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
+     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
      *
      * @param  string $id Design identifier. (required)
-     * @param  int $surface_index New surface index. (optional)
+     * @param  int $index Surface index within the surfaces list of a design. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New surface model. (optional)
+     * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductAddDesignSurfaceModelAsyncWithHttpInfo($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
+    public function designAtomsPrintProductAddDesignSurfaceModelAsyncWithHttpInfo($id, $index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
     {
         $returnType = 'mixed';
-        $request = $this->designAtomsPrintProductAddDesignSurfaceModelRequest($id, $surface_index, $private_storage_owner, $tenant_id, $body, $contentType);
+        $request = $this->designAtomsPrintProductAddDesignSurfaceModelRequest($id, $index, $private_storage_owner, $tenant_id, $body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -938,16 +2420,16 @@ class DesignAtomsPrintProductApi
      * Create request for operation 'designAtomsPrintProductAddDesignSurfaceModel'
      *
      * @param  string $id Design identifier. (required)
-     * @param  int $surface_index New surface index. (optional)
+     * @param  int $index Surface index within the surfaces list of a design. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body New surface model. (optional)
+     * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsPrintProductAddDesignSurfaceModelRequest($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
+    public function designAtomsPrintProductAddDesignSurfaceModelRequest($id, $index = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -971,8 +2453,8 @@ class DesignAtomsPrintProductApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $surface_index,
-            'surfaceIndex', // param base name
+            $index,
+            'index', // param base name
             'integer', // openApiType
             'form', // style
             true, // explode
@@ -1179,7 +2661,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1413,7 +2895,7 @@ class DesignAtomsPrintProductApi
      * Deletes a specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
@@ -1433,7 +2915,7 @@ class DesignAtomsPrintProductApi
      * Deletes a specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
@@ -1496,7 +2978,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1512,7 +2994,7 @@ class DesignAtomsPrintProductApi
      * Deletes a specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
@@ -1536,7 +3018,7 @@ class DesignAtomsPrintProductApi
      * Deletes a specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
@@ -1576,7 +3058,7 @@ class DesignAtomsPrintProductApi
      * Create request for operation 'designAtomsPrintProductDeleteDesignSurface'
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
@@ -1725,6 +3207,640 @@ class DesignAtomsPrintProductApi
     }
 
     /**
+     * Operation designAtomsPrintProductDeleteDesignSurfaceContainer
+     *
+     * Deletes a specified print-product container in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceContainer($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'][0])
+    {
+        $this->designAtomsPrintProductDeleteDesignSurfaceContainerWithHttpInfo($id, $container_id, $private_storage_owner, $tenant_id, $contentType);
+    }
+
+    /**
+     * Operation designAtomsPrintProductDeleteDesignSurfaceContainerWithHttpInfo
+     *
+     * Deletes a specified print-product container in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceContainerWithHttpInfo($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'][0])
+    {
+        $request = $this->designAtomsPrintProductDeleteDesignSurfaceContainerRequest($id, $container_id, $private_storage_owner, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductDeleteDesignSurfaceContainerAsync
+     *
+     * Deletes a specified print-product container in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceContainerAsync($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'][0])
+    {
+        return $this->designAtomsPrintProductDeleteDesignSurfaceContainerAsyncWithHttpInfo($id, $container_id, $private_storage_owner, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductDeleteDesignSurfaceContainerAsyncWithHttpInfo
+     *
+     * Deletes a specified print-product container in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceContainerAsyncWithHttpInfo($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'][0])
+    {
+        $returnType = '';
+        $request = $this->designAtomsPrintProductDeleteDesignSurfaceContainerRequest($id, $container_id, $private_storage_owner, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductDeleteDesignSurfaceContainer'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceContainerRequest($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductDeleteDesignSurfaceContainer'
+            );
+        }
+
+        // verify the required parameter 'container_id' is set
+        if ($container_id === null || (is_array($container_id) && count($container_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $container_id when calling designAtomsPrintProductDeleteDesignSurfaceContainer'
+            );
+        }
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/containers/{containerId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($container_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'containerId' . '}',
+                ObjectSerializer::toPathValue($container_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsPrintProductDeleteDesignSurfaceItem
+     *
+     * Deletes a specified print-product item in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceItem($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'][0])
+    {
+        $this->designAtomsPrintProductDeleteDesignSurfaceItemWithHttpInfo($id, $item_id, $private_storage_owner, $tenant_id, $contentType);
+    }
+
+    /**
+     * Operation designAtomsPrintProductDeleteDesignSurfaceItemWithHttpInfo
+     *
+     * Deletes a specified print-product item in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceItemWithHttpInfo($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'][0])
+    {
+        $request = $this->designAtomsPrintProductDeleteDesignSurfaceItemRequest($id, $item_id, $private_storage_owner, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductDeleteDesignSurfaceItemAsync
+     *
+     * Deletes a specified print-product item in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceItemAsync($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'][0])
+    {
+        return $this->designAtomsPrintProductDeleteDesignSurfaceItemAsyncWithHttpInfo($id, $item_id, $private_storage_owner, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductDeleteDesignSurfaceItemAsyncWithHttpInfo
+     *
+     * Deletes a specified print-product item in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceItemAsyncWithHttpInfo($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'][0])
+    {
+        $returnType = '';
+        $request = $this->designAtomsPrintProductDeleteDesignSurfaceItemRequest($id, $item_id, $private_storage_owner, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductDeleteDesignSurfaceItem'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductDeleteDesignSurfaceItemRequest($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductDeleteDesignSurfaceItem'
+            );
+        }
+
+        // verify the required parameter 'item_id' is set
+        if ($item_id === null || (is_array($item_id) && count($item_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $item_id when calling designAtomsPrintProductDeleteDesignSurfaceItem'
+            );
+        }
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/items/{itemId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($item_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'itemId' . '}',
+                ObjectSerializer::toPathValue($item_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsPrintProductGetDesignPrintAreaModel
      *
      * Returns a print-area of the specified design file as a json-serialized model.
@@ -1737,7 +3853,7 @@ class DesignAtomsPrintProductApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductGetDesignPrintAreaModel($id, $print_area_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignPrintAreaModel'][0])
     {
@@ -1758,7 +3874,7 @@ class DesignAtomsPrintProductApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductGetDesignPrintAreaModelWithHttpInfo($id, $print_area_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignPrintAreaModel'][0])
     {
@@ -1855,11 +3971,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1877,7 +3993,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1932,7 +4048,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2977,19 +5093,877 @@ class DesignAtomsPrintProductApi
     }
 
     /**
-     * Operation designAtomsPrintProductGetDesignSurfaceDownMockup
+     * Operation designAtomsPrintProductGetDesignSurfaceContainerModel
      *
-     * Returns a down-mockup description of the specified surface in an existing design file.
+     * Returns a print-product container of the specified design file as a json-serialized model.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainerModel($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'][0])
+    {
+        list($response) = $this->designAtomsPrintProductGetDesignSurfaceContainerModelWithHttpInfo($id, $container_id, $private_storage_owner, $tenant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceContainerModelWithHttpInfo
+     *
+     * Returns a print-product container of the specified design file as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainerModelWithHttpInfo($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'][0])
+    {
+        $request = $this->designAtomsPrintProductGetDesignSurfaceContainerModelRequest($id, $container_id, $private_storage_owner, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceContainerModelAsync
+     *
+     * Returns a print-product container of the specified design file as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainerModelAsync($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'][0])
+    {
+        return $this->designAtomsPrintProductGetDesignSurfaceContainerModelAsyncWithHttpInfo($id, $container_id, $private_storage_owner, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceContainerModelAsyncWithHttpInfo
+     *
+     * Returns a print-product container of the specified design file as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainerModelAsyncWithHttpInfo($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsPrintProductGetDesignSurfaceContainerModelRequest($id, $container_id, $private_storage_owner, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductGetDesignSurfaceContainerModel'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainerModelRequest($id, $container_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductGetDesignSurfaceContainerModel'
+            );
+        }
+
+        // verify the required parameter 'container_id' is set
+        if ($container_id === null || (is_array($container_id) && count($container_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $container_id when calling designAtomsPrintProductGetDesignSurfaceContainerModel'
+            );
+        }
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/containers/{containerId}/model';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($container_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'containerId' . '}',
+                ObjectSerializer::toPathValue($container_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceContainers
+     *
+     * Returns a list of print-product container descriptions of the specified design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainers($id, $surface_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'][0])
+    {
+        list($response) = $this->designAtomsPrintProductGetDesignSurfaceContainersWithHttpInfo($id, $surface_id, $private_storage_owner, $tenant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceContainersWithHttpInfo
+     *
+     * Returns a list of print-product container descriptions of the specified design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainersWithHttpInfo($id, $surface_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'][0])
+    {
+        $request = $this->designAtomsPrintProductGetDesignSurfaceContainersRequest($id, $surface_id, $private_storage_owner, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceContainersAsync
+     *
+     * Returns a list of print-product container descriptions of the specified design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainersAsync($id, $surface_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'][0])
+    {
+        return $this->designAtomsPrintProductGetDesignSurfaceContainersAsyncWithHttpInfo($id, $surface_id, $private_storage_owner, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceContainersAsyncWithHttpInfo
+     *
+     * Returns a list of print-product container descriptions of the specified design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainersAsyncWithHttpInfo($id, $surface_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'][0])
+    {
+        $returnType = '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]';
+        $request = $this->designAtomsPrintProductGetDesignSurfaceContainersRequest($id, $surface_id, $private_storage_owner, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductGetDesignSurfaceContainers'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductGetDesignSurfaceContainersRequest($id, $surface_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductGetDesignSurfaceContainers'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/containers';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $surface_id,
+            'surfaceId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceDownMockup
+     *
+     * Returns a down-mockup description of the specified print-product surface in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductGetDesignSurfaceDownMockup($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'][0])
     {
@@ -3000,17 +5974,17 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceDownMockupWithHttpInfo
      *
-     * Returns a down-mockup description of the specified surface in an existing design file.
+     * Returns a down-mockup description of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductGetDesignSurfaceDownMockupWithHttpInfo($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'][0])
     {
@@ -3134,11 +6108,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3156,7 +6130,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3219,7 +6193,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3232,10 +6206,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceDownMockupAsync
      *
-     * Returns a down-mockup description of the specified surface in an existing design file.
+     * Returns a down-mockup description of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
@@ -3256,10 +6230,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceDownMockupAsyncWithHttpInfo
      *
-     * Returns a down-mockup description of the specified surface in an existing design file.
+     * Returns a down-mockup description of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
@@ -3312,7 +6286,7 @@ class DesignAtomsPrintProductApi
      * Create request for operation 'designAtomsPrintProductGetDesignSurfaceDownMockup'
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
@@ -3463,17 +6437,17 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceDownMockupContent
      *
-     * Returns a content file for down-mockup of the specified surface in an existing design file.
+     * Returns a content file for down-mockup of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductGetDesignSurfaceDownMockupContent($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'][0])
     {
@@ -3484,17 +6458,17 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceDownMockupContentWithHttpInfo
      *
-     * Returns a content file for down-mockup of the specified surface in an existing design file.
+     * Returns a content file for down-mockup of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductGetDesignSurfaceDownMockupContentWithHttpInfo($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'][0])
     {
@@ -3618,11 +6592,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3640,7 +6614,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3703,7 +6677,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3716,10 +6690,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceDownMockupContentAsync
      *
-     * Returns a content file for down-mockup of the specified surface in an existing design file.
+     * Returns a content file for down-mockup of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
@@ -3740,10 +6714,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceDownMockupContentAsyncWithHttpInfo
      *
-     * Returns a content file for down-mockup of the specified surface in an existing design file.
+     * Returns a content file for down-mockup of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
@@ -3796,7 +6770,7 @@ class DesignAtomsPrintProductApi
      * Create request for operation 'designAtomsPrintProductGetDesignSurfaceDownMockupContent'
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
@@ -3945,6 +6919,879 @@ class DesignAtomsPrintProductApi
     }
 
     /**
+     * Operation designAtomsPrintProductGetDesignSurfaceItemModel
+     *
+     * Returns a print-product item of the specified design file as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItemModel($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'][0])
+    {
+        list($response) = $this->designAtomsPrintProductGetDesignSurfaceItemModelWithHttpInfo($id, $item_id, $private_storage_owner, $tenant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceItemModelWithHttpInfo
+     *
+     * Returns a print-product item of the specified design file as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItemModelWithHttpInfo($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'][0])
+    {
+        $request = $this->designAtomsPrintProductGetDesignSurfaceItemModelRequest($id, $item_id, $private_storage_owner, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceItemModelAsync
+     *
+     * Returns a print-product item of the specified design file as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItemModelAsync($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'][0])
+    {
+        return $this->designAtomsPrintProductGetDesignSurfaceItemModelAsyncWithHttpInfo($id, $item_id, $private_storage_owner, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceItemModelAsyncWithHttpInfo
+     *
+     * Returns a print-product item of the specified design file as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItemModelAsyncWithHttpInfo($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsPrintProductGetDesignSurfaceItemModelRequest($id, $item_id, $private_storage_owner, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductGetDesignSurfaceItemModel'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItemModelRequest($id, $item_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductGetDesignSurfaceItemModel'
+            );
+        }
+
+        // verify the required parameter 'item_id' is set
+        if ($item_id === null || (is_array($item_id) && count($item_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $item_id when calling designAtomsPrintProductGetDesignSurfaceItemModel'
+            );
+        }
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/items/{itemId}/model';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($item_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'itemId' . '}',
+                ObjectSerializer::toPathValue($item_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceItems
+     *
+     * Returns a list of print-product items descriptions of the specified design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $container_id Print-product container identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItems($id, $surface_id = null, $container_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'][0])
+    {
+        list($response) = $this->designAtomsPrintProductGetDesignSurfaceItemsWithHttpInfo($id, $surface_id, $container_id, $private_storage_owner, $tenant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceItemsWithHttpInfo
+     *
+     * Returns a list of print-product items descriptions of the specified design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $container_id Print-product container identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItemsWithHttpInfo($id, $surface_id = null, $container_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'][0])
+    {
+        $request = $this->designAtomsPrintProductGetDesignSurfaceItemsRequest($id, $surface_id, $container_id, $private_storage_owner, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceItemsAsync
+     *
+     * Returns a list of print-product items descriptions of the specified design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $container_id Print-product container identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItemsAsync($id, $surface_id = null, $container_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'][0])
+    {
+        return $this->designAtomsPrintProductGetDesignSurfaceItemsAsyncWithHttpInfo($id, $surface_id, $container_id, $private_storage_owner, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductGetDesignSurfaceItemsAsyncWithHttpInfo
+     *
+     * Returns a list of print-product items descriptions of the specified design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $container_id Print-product container identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItemsAsyncWithHttpInfo($id, $surface_id = null, $container_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'][0])
+    {
+        $returnType = '\Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]';
+        $request = $this->designAtomsPrintProductGetDesignSurfaceItemsRequest($id, $surface_id, $container_id, $private_storage_owner, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductGetDesignSurfaceItems'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (optional)
+     * @param  string $container_id Print-product container identifier. (optional)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductGetDesignSurfaceItemsRequest($id, $surface_id = null, $container_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductGetDesignSurfaceItems'
+            );
+        }
+
+
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/items';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $surface_id,
+            'surfaceId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $container_id,
+            'containerId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsPrintProductGetDesignSurfaceModel
      *
      * Returns a print-product surface of the specified design file as a json-serialized model.
@@ -3957,7 +7804,7 @@ class DesignAtomsPrintProductApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductGetDesignSurfaceModel($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceModel'][0])
     {
@@ -3978,7 +7825,7 @@ class DesignAtomsPrintProductApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductGetDesignSurfaceModelWithHttpInfo($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceModel'][0])
     {
@@ -4075,11 +7922,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4097,7 +7944,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4152,7 +7999,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4396,17 +8243,17 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceUpMockup
      *
-     * Returns an up-mockup description of the specified surface in an existing design file.
+     * Returns an up-mockup description of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductGetDesignSurfaceUpMockup($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'][0])
     {
@@ -4417,17 +8264,17 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceUpMockupWithHttpInfo
      *
-     * Returns an up-mockup description of the specified surface in an existing design file.
+     * Returns an up-mockup description of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductGetDesignSurfaceUpMockupWithHttpInfo($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'][0])
     {
@@ -4551,11 +8398,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4573,7 +8420,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4636,7 +8483,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4649,10 +8496,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceUpMockupAsync
      *
-     * Returns an up-mockup description of the specified surface in an existing design file.
+     * Returns an up-mockup description of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
@@ -4673,10 +8520,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceUpMockupAsyncWithHttpInfo
      *
-     * Returns an up-mockup description of the specified surface in an existing design file.
+     * Returns an up-mockup description of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
@@ -4729,7 +8576,7 @@ class DesignAtomsPrintProductApi
      * Create request for operation 'designAtomsPrintProductGetDesignSurfaceUpMockup'
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
@@ -4880,17 +8727,17 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceUpMockupContent
      *
-     * Returns a content file for up-mockup of the specified surface in an existing design file.
+     * Returns a content file for up-mockup of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductGetDesignSurfaceUpMockupContent($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'][0])
     {
@@ -4901,17 +8748,17 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceUpMockupContentWithHttpInfo
      *
-     * Returns a content file for up-mockup of the specified surface in an existing design file.
+     * Returns a content file for up-mockup of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductGetDesignSurfaceUpMockupContentWithHttpInfo($id, $surface_id, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'][0])
     {
@@ -5035,11 +8882,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5057,7 +8904,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5120,7 +8967,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5133,10 +8980,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceUpMockupContentAsync
      *
-     * Returns a content file for up-mockup of the specified surface in an existing design file.
+     * Returns a content file for up-mockup of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
@@ -5157,10 +9004,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductGetDesignSurfaceUpMockupContentAsyncWithHttpInfo
      *
-     * Returns a content file for up-mockup of the specified surface in an existing design file.
+     * Returns a content file for up-mockup of the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
@@ -5213,7 +9060,7 @@ class DesignAtomsPrintProductApi
      * Create request for operation 'designAtomsPrintProductGetDesignSurfaceUpMockupContent'
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
@@ -5763,11 +9610,11 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductPatchDesignProduct'] to see the possible values for this operation
      *
@@ -5788,11 +9635,11 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductPatchDesignProduct'] to see the possible values for this operation
      *
@@ -5864,11 +9711,11 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductPatchDesignProduct'] to see the possible values for this operation
      *
@@ -5893,11 +9740,11 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductPatchDesignProduct'] to see the possible values for this operation
      *
@@ -5938,11 +9785,11 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
      * @param  string $replace_placeholder_item_content_info_placeholder_item_name Item Name. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type (optional)
+     * @param  \Aurigma\DesignAtoms\Model\PlaceholderItemContentType $replace_placeholder_item_content_info_new_content_type New content type. (optional)
      * @param  \SplFileObject $replace_placeholder_item_content_info_source_file Patch source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductPatchDesignProduct'] to see the possible values for this operation
      *
@@ -6123,18 +9970,18 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductReplaceDesignSurfaceModel
      *
-     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
+     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated surface model. (optional)
+     * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductReplaceDesignSurfaceModel($id, $surface_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'][0])
     {
@@ -6145,18 +9992,18 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductReplaceDesignSurfaceModelWithHttpInfo
      *
-     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
+     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated surface model. (optional)
+     * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductReplaceDesignSurfaceModelWithHttpInfo($id, $surface_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'][0])
     {
@@ -6280,11 +10127,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6302,7 +10149,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -6365,7 +10212,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6378,13 +10225,13 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductReplaceDesignSurfaceModelAsync
      *
-     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
+     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated surface model. (optional)
+     * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6403,13 +10250,13 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductReplaceDesignSurfaceModelAsyncWithHttpInfo
      *
-     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
+     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated surface model. (optional)
+     * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6460,10 +10307,10 @@ class DesignAtomsPrintProductApi
      * Create request for operation 'designAtomsPrintProductReplaceDesignSurfaceModel'
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated surface model. (optional)
+     * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6618,6 +10465,503 @@ class DesignAtomsPrintProductApi
     }
 
     /**
+     * Operation designAtomsPrintProductUpdateDesignPrintArea
+     *
+     * Updates a specified print-area using a description in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $print_area_id Design print-area identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     */
+    public function designAtomsPrintProductUpdateDesignPrintArea($id, $print_area_id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'][0])
+    {
+        list($response) = $this->designAtomsPrintProductUpdateDesignPrintAreaWithHttpInfo($id, $print_area_id, $private_storage_owner, $tenant_id, $design_print_area_model, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignPrintAreaWithHttpInfo
+     *
+     * Updates a specified print-area using a description in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $print_area_id Design print-area identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductUpdateDesignPrintAreaWithHttpInfo($id, $print_area_id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'][0])
+    {
+        $request = $this->designAtomsPrintProductUpdateDesignPrintAreaRequest($id, $print_area_id, $private_storage_owner, $tenant_id, $design_print_area_model, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignPrintAreaAsync
+     *
+     * Updates a specified print-area using a description in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $print_area_id Design print-area identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductUpdateDesignPrintAreaAsync($id, $print_area_id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'][0])
+    {
+        return $this->designAtomsPrintProductUpdateDesignPrintAreaAsyncWithHttpInfo($id, $print_area_id, $private_storage_owner, $tenant_id, $design_print_area_model, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignPrintAreaAsyncWithHttpInfo
+     *
+     * Updates a specified print-area using a description in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $print_area_id Design print-area identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductUpdateDesignPrintAreaAsyncWithHttpInfo($id, $print_area_id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsPrintProductUpdateDesignPrintAreaRequest($id, $print_area_id, $private_storage_owner, $tenant_id, $design_print_area_model, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductUpdateDesignPrintArea'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $print_area_id Design print-area identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaModel $design_print_area_model Print-area description model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductUpdateDesignPrintAreaRequest($id, $print_area_id, $private_storage_owner = null, $tenant_id = null, $design_print_area_model = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductUpdateDesignPrintArea'
+            );
+        }
+
+        // verify the required parameter 'print_area_id' is set
+        if ($print_area_id === null || (is_array($print_area_id) && count($print_area_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $print_area_id when calling designAtomsPrintProductUpdateDesignPrintArea'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/print-areas/{printAreaId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($print_area_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'printAreaId' . '}',
+                ObjectSerializer::toPathValue($print_area_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($design_print_area_model)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($design_print_area_model));
+            } else {
+                $httpBody = $design_print_area_model;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsPrintProductUpdateDesignPrintAreaModel
      *
      * Updates a specified print-area in an existing design file with the data provided as a json-serialized print-area model.
@@ -6626,12 +10970,12 @@ class DesignAtomsPrintProductApi
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated print-area model. (optional)
+     * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductUpdateDesignPrintAreaModel($id, $print_area_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'][0])
     {
@@ -6648,12 +10992,12 @@ class DesignAtomsPrintProductApi
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated print-area model. (optional)
+     * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductUpdateDesignPrintAreaModelWithHttpInfo($id, $print_area_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'][0])
     {
@@ -6777,11 +11121,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6799,7 +11143,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -6862,7 +11206,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6881,7 +11225,7 @@ class DesignAtomsPrintProductApi
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated print-area model. (optional)
+     * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6906,7 +11250,7 @@ class DesignAtomsPrintProductApi
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated print-area model. (optional)
+     * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6960,7 +11304,7 @@ class DesignAtomsPrintProductApi
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Updated print-area model. (optional)
+     * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7117,12 +11461,12 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignProductModel
      *
-     * Saves a print-product provided as a json-serialized model to the specified design file.
+     * Updates a print-product provided as a json-serialized model is the specified design file.
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Serialized print-product description. (optional)
+     * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -7137,12 +11481,12 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignProductModelWithHttpInfo
      *
-     * Saves a print-product provided as a json-serialized model to the specified design file.
+     * Updates a print-product provided as a json-serialized model is the specified design file.
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Serialized print-product description. (optional)
+     * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -7208,12 +11552,12 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignProductModelAsync
      *
-     * Saves a print-product provided as a json-serialized model to the specified design file.
+     * Updates a print-product provided as a json-serialized model is the specified design file.
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Serialized print-product description. (optional)
+     * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7232,12 +11576,12 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignProductModelAsyncWithHttpInfo
      *
-     * Saves a print-product provided as a json-serialized model to the specified design file.
+     * Updates a print-product provided as a json-serialized model is the specified design file.
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Serialized print-product description. (optional)
+     * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7277,7 +11621,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  mixed $body Serialized print-product description. (optional)
+     * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7417,12 +11761,509 @@ class DesignAtomsPrintProductApi
     }
 
     /**
-     * Operation designAtomsPrintProductUpdateDesignSurfaceDownMockup
+     * Operation designAtomsPrintProductUpdateDesignSurfaceContainerModel
      *
-     * Updates a content file of down-mockup for the specified surface in an existing design file.
+     * Updates a specified print-product container in an existing design file with the data provided as a json-serialized model.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceContainerModel($id, $container_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'][0])
+    {
+        list($response) = $this->designAtomsPrintProductUpdateDesignSurfaceContainerModelWithHttpInfo($id, $container_id, $private_storage_owner, $tenant_id, $body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignSurfaceContainerModelWithHttpInfo
+     *
+     * Updates a specified print-product container in an existing design file with the data provided as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceContainerModelWithHttpInfo($id, $container_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'][0])
+    {
+        $request = $this->designAtomsPrintProductUpdateDesignSurfaceContainerModelRequest($id, $container_id, $private_storage_owner, $tenant_id, $body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignSurfaceContainerModelAsync
+     *
+     * Updates a specified print-product container in an existing design file with the data provided as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceContainerModelAsync($id, $container_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'][0])
+    {
+        return $this->designAtomsPrintProductUpdateDesignSurfaceContainerModelAsyncWithHttpInfo($id, $container_id, $private_storage_owner, $tenant_id, $body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignSurfaceContainerModelAsyncWithHttpInfo
+     *
+     * Updates a specified print-product container in an existing design file with the data provided as a json-serialized model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceContainerModelAsyncWithHttpInfo($id, $container_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsPrintProductUpdateDesignSurfaceContainerModelRequest($id, $container_id, $private_storage_owner, $tenant_id, $body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductUpdateDesignSurfaceContainerModel'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $container_id Print-product container identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product container. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceContainerModelRequest($id, $container_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductUpdateDesignSurfaceContainerModel'
+            );
+        }
+
+        // verify the required parameter 'container_id' is set
+        if ($container_id === null || (is_array($container_id) && count($container_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $container_id when calling designAtomsPrintProductUpdateDesignSurfaceContainerModel'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/containers/{containerId}/model';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($container_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'containerId' . '}',
+                ObjectSerializer::toPathValue($container_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignSurfaceDownMockup
+     *
+     * Updates a content file of down-mockup for the specified print-product surface in an existing design file.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)
@@ -7432,7 +12273,7 @@ class DesignAtomsPrintProductApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductUpdateDesignSurfaceDownMockup($id, $surface_id, $private_storage_owner = null, $tenant_id = null, $position_top = null, $position_left = null, $source_file = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceDownMockup'][0])
     {
@@ -7443,10 +12284,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignSurfaceDownMockupWithHttpInfo
      *
-     * Updates a content file of down-mockup for the specified surface in an existing design file.
+     * Updates a content file of down-mockup for the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)
@@ -7456,7 +12297,7 @@ class DesignAtomsPrintProductApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductUpdateDesignSurfaceDownMockupWithHttpInfo($id, $surface_id, $private_storage_owner = null, $tenant_id = null, $position_top = null, $position_left = null, $source_file = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceDownMockup'][0])
     {
@@ -7580,11 +12421,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7602,7 +12443,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7665,7 +12506,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7678,10 +12519,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignSurfaceDownMockupAsync
      *
-     * Updates a content file of down-mockup for the specified surface in an existing design file.
+     * Updates a content file of down-mockup for the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)
@@ -7705,10 +12546,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignSurfaceDownMockupAsyncWithHttpInfo
      *
-     * Updates a content file of down-mockup for the specified surface in an existing design file.
+     * Updates a content file of down-mockup for the specified print-product surface in an existing design file.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)
@@ -7764,7 +12605,7 @@ class DesignAtomsPrintProductApi
      * Create request for operation 'designAtomsPrintProductUpdateDesignSurfaceDownMockup'
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)
@@ -7939,12 +12780,509 @@ class DesignAtomsPrintProductApi
     }
 
     /**
-     * Operation designAtomsPrintProductUpdateDesignSurfaceUpMockup
+     * Operation designAtomsPrintProductUpdateDesignSurfaceItemModel
      *
-     * Updates a content file of up-mockup for the specified surface in an existing design.
+     * Updates a specified print-product surface item in an existing design file with the data provided as a json-serialized item model.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceItemModel($id, $item_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'][0])
+    {
+        list($response) = $this->designAtomsPrintProductUpdateDesignSurfaceItemModelWithHttpInfo($id, $item_id, $private_storage_owner, $tenant_id, $body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignSurfaceItemModelWithHttpInfo
+     *
+     * Updates a specified print-product surface item in an existing design file with the data provided as a json-serialized item model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceItemModelWithHttpInfo($id, $item_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'][0])
+    {
+        $request = $this->designAtomsPrintProductUpdateDesignSurfaceItemModelRequest($id, $item_id, $private_storage_owner, $tenant_id, $body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignSurfaceItemModelAsync
+     *
+     * Updates a specified print-product surface item in an existing design file with the data provided as a json-serialized item model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceItemModelAsync($id, $item_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'][0])
+    {
+        return $this->designAtomsPrintProductUpdateDesignSurfaceItemModelAsyncWithHttpInfo($id, $item_id, $private_storage_owner, $tenant_id, $body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignSurfaceItemModelAsyncWithHttpInfo
+     *
+     * Updates a specified print-product surface item in an existing design file with the data provided as a json-serialized item model.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceItemModelAsyncWithHttpInfo($id, $item_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsPrintProductUpdateDesignSurfaceItemModelRequest($id, $item_id, $private_storage_owner, $tenant_id, $body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductUpdateDesignSurfaceItemModel'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $item_id Print-product item identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body Json-serialized model of a print-product item. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductUpdateDesignSurfaceItemModelRequest($id, $item_id, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsPrintProductUpdateDesignSurfaceItemModel'
+            );
+        }
+
+        // verify the required parameter 'item_id' is set
+        if ($item_id === null || (is_array($item_id) && count($item_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $item_id when calling designAtomsPrintProductUpdateDesignSurfaceItemModel'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/print-product/items/{itemId}/model';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($item_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'itemId' . '}',
+                ObjectSerializer::toPathValue($item_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designAtomsPrintProductUpdateDesignSurfaceUpMockup
+     *
+     * Updates a content file of up-mockup for the specified print-product surface in an existing design.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)
@@ -7954,7 +13292,7 @@ class DesignAtomsPrintProductApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsPrintProductUpdateDesignSurfaceUpMockup($id, $surface_id, $private_storage_owner = null, $tenant_id = null, $position_top = null, $position_left = null, $source_file = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceUpMockup'][0])
     {
@@ -7965,10 +13303,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignSurfaceUpMockupWithHttpInfo
      *
-     * Updates a content file of up-mockup for the specified surface in an existing design.
+     * Updates a content file of up-mockup for the specified print-product surface in an existing design.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)
@@ -7978,7 +13316,7 @@ class DesignAtomsPrintProductApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductUpdateDesignSurfaceUpMockupWithHttpInfo($id, $surface_id, $private_storage_owner = null, $tenant_id = null, $position_top = null, $position_left = null, $source_file = null, string $contentType = self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceUpMockup'][0])
     {
@@ -8102,11 +13440,11 @@ class DesignAtomsPrintProductApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -8124,7 +13462,7 @@ class DesignAtomsPrintProductApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -8187,7 +13525,7 @@ class DesignAtomsPrintProductApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -8200,10 +13538,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignSurfaceUpMockupAsync
      *
-     * Updates a content file of up-mockup for the specified surface in an existing design.
+     * Updates a content file of up-mockup for the specified print-product surface in an existing design.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)
@@ -8227,10 +13565,10 @@ class DesignAtomsPrintProductApi
     /**
      * Operation designAtomsPrintProductUpdateDesignSurfaceUpMockupAsyncWithHttpInfo
      *
-     * Updates a content file of up-mockup for the specified surface in an existing design.
+     * Updates a content file of up-mockup for the specified print-product surface in an existing design.
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)
@@ -8286,7 +13624,7 @@ class DesignAtomsPrintProductApi
      * Create request for operation 'designAtomsPrintProductUpdateDesignSurfaceUpMockup'
      *
      * @param  string $id Design identifier. (required)
-     * @param  string $surface_id Design surface identifier. (required)
+     * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  float $position_top Y axis position. (optional)

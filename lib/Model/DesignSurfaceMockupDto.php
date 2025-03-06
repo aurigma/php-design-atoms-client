@@ -58,8 +58,8 @@ class DesignSurfaceMockupDto implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'position' => '\Aurigma\DesignAtoms\Model\PositionDto',
-        'size' => '\Aurigma\DesignAtoms\Model\SizeDto',
+        'position' => '\Aurigma\DesignAtoms\Model\DesignSurfaceMockupDtoPosition',
+        'size' => '\Aurigma\DesignAtoms\Model\DesignSurfaceMockupDtoSize',
         'surface_id' => 'string',
         'resolution' => 'int'
     ];
@@ -84,8 +84,8 @@ class DesignSurfaceMockupDto implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'position' => false,
-        'size' => false,
+        'position' => true,
+        'size' => true,
         'surface_id' => true,
         'resolution' => false
     ];
@@ -314,7 +314,7 @@ class DesignSurfaceMockupDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets position
      *
-     * @return \Aurigma\DesignAtoms\Model\PositionDto|null
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDtoPosition|null
      */
     public function getPosition()
     {
@@ -324,14 +324,21 @@ class DesignSurfaceMockupDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets position
      *
-     * @param \Aurigma\DesignAtoms\Model\PositionDto|null $position position
+     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDtoPosition|null $position position
      *
      * @return self
      */
     public function setPosition($position)
     {
         if (is_null($position)) {
-            throw new \InvalidArgumentException('non-nullable position cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'position');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('position', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['position'] = $position;
 
@@ -341,7 +348,7 @@ class DesignSurfaceMockupDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets size
      *
-     * @return \Aurigma\DesignAtoms\Model\SizeDto|null
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDtoSize|null
      */
     public function getSize()
     {
@@ -351,14 +358,21 @@ class DesignSurfaceMockupDto implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets size
      *
-     * @param \Aurigma\DesignAtoms\Model\SizeDto|null $size size
+     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceMockupDtoSize|null $size size
      *
      * @return self
      */
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'size');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('size', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['size'] = $size;
 

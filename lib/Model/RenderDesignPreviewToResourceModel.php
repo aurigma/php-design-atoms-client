@@ -57,13 +57,13 @@ class RenderDesignPreviewToResourceModel implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'preview_resource_params' => '\Aurigma\DesignAtoms\Model\ResourceParams',
+        'preview_resource_params' => '\Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams',
         'overwrite_existing_resource' => 'bool',
         'design_id' => 'string',
         'mockup_id' => 'string',
         'owner_id' => 'string',
         'mockup_owner_id' => 'string',
-        'rendering_config' => '\Aurigma\DesignAtoms\Model\ProductPreviewRenderingConfig',
+        'rendering_config' => '\Aurigma\DesignAtoms\Model\RenderDesignPreviewModelRenderingConfig',
         'variable_data' => '\Aurigma\DesignAtoms\Model\VariableInfo[]'
     ];
 
@@ -91,13 +91,13 @@ class RenderDesignPreviewToResourceModel implements ModelInterface, ArrayAccess,
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'preview_resource_params' => false,
+        'preview_resource_params' => true,
         'overwrite_existing_resource' => false,
         'design_id' => true,
         'mockup_id' => true,
         'owner_id' => true,
         'mockup_owner_id' => true,
-        'rendering_config' => false,
+        'rendering_config' => true,
         'variable_data' => true
     ];
 
@@ -341,7 +341,7 @@ class RenderDesignPreviewToResourceModel implements ModelInterface, ArrayAccess,
     /**
      * Gets preview_resource_params
      *
-     * @return \Aurigma\DesignAtoms\Model\ResourceParams|null
+     * @return \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams|null
      */
     public function getPreviewResourceParams()
     {
@@ -351,14 +351,21 @@ class RenderDesignPreviewToResourceModel implements ModelInterface, ArrayAccess,
     /**
      * Sets preview_resource_params
      *
-     * @param \Aurigma\DesignAtoms\Model\ResourceParams|null $preview_resource_params preview_resource_params
+     * @param \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams|null $preview_resource_params preview_resource_params
      *
      * @return self
      */
     public function setPreviewResourceParams($preview_resource_params)
     {
         if (is_null($preview_resource_params)) {
-            throw new \InvalidArgumentException('non-nullable preview_resource_params cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'preview_resource_params');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('preview_resource_params', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['preview_resource_params'] = $preview_resource_params;
 
@@ -531,7 +538,7 @@ class RenderDesignPreviewToResourceModel implements ModelInterface, ArrayAccess,
     /**
      * Gets rendering_config
      *
-     * @return \Aurigma\DesignAtoms\Model\ProductPreviewRenderingConfig|null
+     * @return \Aurigma\DesignAtoms\Model\RenderDesignPreviewModelRenderingConfig|null
      */
     public function getRenderingConfig()
     {
@@ -541,14 +548,21 @@ class RenderDesignPreviewToResourceModel implements ModelInterface, ArrayAccess,
     /**
      * Sets rendering_config
      *
-     * @param \Aurigma\DesignAtoms\Model\ProductPreviewRenderingConfig|null $rendering_config rendering_config
+     * @param \Aurigma\DesignAtoms\Model\RenderDesignPreviewModelRenderingConfig|null $rendering_config rendering_config
      *
      * @return self
      */
     public function setRenderingConfig($rendering_config)
     {
         if (is_null($rendering_config)) {
-            throw new \InvalidArgumentException('non-nullable rendering_config cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'rendering_config');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rendering_config', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['rendering_config'] = $rendering_config;
 

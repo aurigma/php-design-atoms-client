@@ -71,6 +71,9 @@ class DesignAtomsPrintProductItemsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'designAtomsPrintProductItemsApplyItemEffects' => [
+            'application/json',
+        ],
         'designAtomsPrintProductItemsBatchCreateItemsFromFile' => [
             'multipart/form-data',
         ],
@@ -144,22 +147,361 @@ class DesignAtomsPrintProductItemsApi
     }
 
     /**
+     * Operation designAtomsPrintProductItemsApplyItemEffects
+     *
+     * Apply effects to print-product item image.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return mixed
+     */
+    public function designAtomsPrintProductItemsApplyItemEffects($tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'][0])
+    {
+        list($response) = $this->designAtomsPrintProductItemsApplyItemEffectsWithHttpInfo($tenant_id, $body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductItemsApplyItemEffectsWithHttpInfo
+     *
+     * Apply effects to print-product item image.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductItemsApplyItemEffectsWithHttpInfo($tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'][0])
+    {
+        $request = $this->designAtomsPrintProductItemsApplyItemEffectsRequest($tenant_id, $body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('mixed' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('mixed' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'mixed';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'mixed',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductItemsApplyItemEffectsAsync
+     *
+     * Apply effects to print-product item image.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductItemsApplyItemEffectsAsync($tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'][0])
+    {
+        return $this->designAtomsPrintProductItemsApplyItemEffectsAsyncWithHttpInfo($tenant_id, $body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductItemsApplyItemEffectsAsyncWithHttpInfo
+     *
+     * Apply effects to print-product item image.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductItemsApplyItemEffectsAsyncWithHttpInfo($tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'][0])
+    {
+        $returnType = 'mixed';
+        $request = $this->designAtomsPrintProductItemsApplyItemEffectsRequest($tenant_id, $body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductItemsApplyItemEffects'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  mixed $body (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductItemsApplyItemEffectsRequest($tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'][0])
+    {
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/print-product/items/apply-effects';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsPrintProductItemsBatchCreateItemsFromFile
      *
      * Creates multiple print-product items from input image files.
      *
-     * @param  ItemType $item_type Desired print-product items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
      */
-    public function designAtomsPrintProductItemsBatchCreateItemsFromFile($item_type = null, $tenant_id = null, $source_files = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
+    public function designAtomsPrintProductItemsBatchCreateItemsFromFile($item_type = null, $tenant_id = null, $source_files = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
     {
-        list($response) = $this->designAtomsPrintProductItemsBatchCreateItemsFromFileWithHttpInfo($item_type, $tenant_id, $source_files, $contentType);
+        list($response) = $this->designAtomsPrintProductItemsBatchCreateItemsFromFileWithHttpInfo($item_type, $tenant_id, $source_files, $palette_uid, $preserve_original_file, $contentType);
         return $response;
     }
 
@@ -168,18 +510,20 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from input image files.
      *
-     * @param  ItemType $item_type Desired print-product items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsPrintProductItemsBatchCreateItemsFromFileWithHttpInfo($item_type = null, $tenant_id = null, $source_files = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
+    public function designAtomsPrintProductItemsBatchCreateItemsFromFileWithHttpInfo($item_type = null, $tenant_id = null, $source_files = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
     {
-        $request = $this->designAtomsPrintProductItemsBatchCreateItemsFromFileRequest($item_type, $tenant_id, $source_files, $contentType);
+        $request = $this->designAtomsPrintProductItemsBatchCreateItemsFromFileRequest($item_type, $tenant_id, $source_files, $palette_uid, $preserve_original_file, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -364,17 +708,19 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from input image files.
      *
-     * @param  ItemType $item_type Desired print-product items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductItemsBatchCreateItemsFromFileAsync($item_type = null, $tenant_id = null, $source_files = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
+    public function designAtomsPrintProductItemsBatchCreateItemsFromFileAsync($item_type = null, $tenant_id = null, $source_files = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
     {
-        return $this->designAtomsPrintProductItemsBatchCreateItemsFromFileAsyncWithHttpInfo($item_type, $tenant_id, $source_files, $contentType)
+        return $this->designAtomsPrintProductItemsBatchCreateItemsFromFileAsyncWithHttpInfo($item_type, $tenant_id, $source_files, $palette_uid, $preserve_original_file, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -387,18 +733,20 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from input image files.
      *
-     * @param  ItemType $item_type Desired print-product items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductItemsBatchCreateItemsFromFileAsyncWithHttpInfo($item_type = null, $tenant_id = null, $source_files = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
+    public function designAtomsPrintProductItemsBatchCreateItemsFromFileAsyncWithHttpInfo($item_type = null, $tenant_id = null, $source_files = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
     {
         $returnType = 'mixed';
-        $request = $this->designAtomsPrintProductItemsBatchCreateItemsFromFileRequest($item_type, $tenant_id, $source_files, $contentType);
+        $request = $this->designAtomsPrintProductItemsBatchCreateItemsFromFileRequest($item_type, $tenant_id, $source_files, $palette_uid, $preserve_original_file, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -439,16 +787,20 @@ class DesignAtomsPrintProductItemsApi
     /**
      * Create request for operation 'designAtomsPrintProductItemsBatchCreateItemsFromFile'
      *
-     * @param  ItemType $item_type Desired print-product items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsPrintProductItemsBatchCreateItemsFromFileRequest($item_type = null, $tenant_id = null, $source_files = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
+    public function designAtomsPrintProductItemsBatchCreateItemsFromFileRequest($item_type = null, $tenant_id = null, $source_files = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
     {
+
+
 
 
 
@@ -493,6 +845,14 @@ class DesignAtomsPrintProductItemsApi
                     'rb'
                 );
             }
+        }
+        // form params
+        if ($palette_uid !== null) {
+            $formParams['paletteUID'] = ObjectSerializer::toFormValue($palette_uid);
+        }
+        // form params
+        if ($preserve_original_file !== null) {
+            $formParams['preserveOriginalFile'] = ObjectSerializer::toFormValue($preserve_original_file);
         }
 
         $headers = $this->headerSelector->selectHeaders(
@@ -575,7 +935,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from the specified image files in storage.
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
@@ -595,7 +955,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from the specified image files in storage.
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
@@ -791,7 +1151,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from the specified image files in storage.
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
@@ -814,7 +1174,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from the specified image files in storage.
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
@@ -866,7 +1226,7 @@ class DesignAtomsPrintProductItemsApi
     /**
      * Create request for operation 'designAtomsPrintProductItemsBatchCreateItemsFromStorage'
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
@@ -997,7 +1357,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from remote web images provided by URLs list.
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
@@ -1017,7 +1377,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from remote web images provided by URLs list.
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
@@ -1213,7 +1573,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from remote web images provided by URLs list.
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
@@ -1236,7 +1596,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates multiple print-product items from remote web images provided by URLs list.
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
@@ -1288,7 +1648,7 @@ class DesignAtomsPrintProductItemsApi
     /**
      * Create request for operation 'designAtomsPrintProductItemsBatchCreateItemsFromUrl'
      *
-     * @param  ItemType $item_type Desired items type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
@@ -1419,18 +1779,20 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from input image file.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
      */
-    public function designAtomsPrintProductItemsCreateItemFromFile($item_type = null, $tenant_id = null, $source_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFile($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
-        list($response) = $this->designAtomsPrintProductItemsCreateItemFromFileWithHttpInfo($item_type, $tenant_id, $source_file, $contentType);
+        list($response) = $this->designAtomsPrintProductItemsCreateItemFromFileWithHttpInfo($item_type, $tenant_id, $source_file, $palette_uid, $preserve_original_file, $contentType);
         return $response;
     }
 
@@ -1439,18 +1801,20 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from input image file.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsPrintProductItemsCreateItemFromFileWithHttpInfo($item_type = null, $tenant_id = null, $source_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFileWithHttpInfo($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
-        $request = $this->designAtomsPrintProductItemsCreateItemFromFileRequest($item_type, $tenant_id, $source_file, $contentType);
+        $request = $this->designAtomsPrintProductItemsCreateItemFromFileRequest($item_type, $tenant_id, $source_file, $palette_uid, $preserve_original_file, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1635,17 +1999,19 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from input image file.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductItemsCreateItemFromFileAsync($item_type = null, $tenant_id = null, $source_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFileAsync($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
-        return $this->designAtomsPrintProductItemsCreateItemFromFileAsyncWithHttpInfo($item_type, $tenant_id, $source_file, $contentType)
+        return $this->designAtomsPrintProductItemsCreateItemFromFileAsyncWithHttpInfo($item_type, $tenant_id, $source_file, $palette_uid, $preserve_original_file, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1658,18 +2024,20 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from input image file.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductItemsCreateItemFromFileAsyncWithHttpInfo($item_type = null, $tenant_id = null, $source_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFileAsyncWithHttpInfo($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
         $returnType = 'mixed';
-        $request = $this->designAtomsPrintProductItemsCreateItemFromFileRequest($item_type, $tenant_id, $source_file, $contentType);
+        $request = $this->designAtomsPrintProductItemsCreateItemFromFileRequest($item_type, $tenant_id, $source_file, $palette_uid, $preserve_original_file, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1710,16 +2078,20 @@ class DesignAtomsPrintProductItemsApi
     /**
      * Create request for operation 'designAtomsPrintProductItemsCreateItemFromFile'
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
+     * @param  string $palette_uid Target palette UID. (optional)
+     * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsPrintProductItemsCreateItemFromFileRequest($item_type = null, $tenant_id = null, $source_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFileRequest($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
+
+
 
 
 
@@ -1764,6 +2136,14 @@ class DesignAtomsPrintProductItemsApi
                     'rb'
                 );
             }
+        }
+        // form params
+        if ($palette_uid !== null) {
+            $formParams['paletteUID'] = ObjectSerializer::toFormValue($palette_uid);
+        }
+        // form params
+        if ($preserve_original_file !== null) {
+            $formParams['preserveOriginalFile'] = ObjectSerializer::toFormValue($preserve_original_file);
         }
 
         $headers = $this->headerSelector->selectHeaders(
@@ -1846,7 +2226,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from image file taken from storage.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
@@ -1866,7 +2246,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from image file taken from storage.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
@@ -2062,7 +2442,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from image file taken from storage.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
@@ -2085,7 +2465,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from image file taken from storage.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
@@ -2137,7 +2517,7 @@ class DesignAtomsPrintProductItemsApi
     /**
      * Create request for operation 'designAtomsPrintProductItemsCreateItemFromStorage'
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
@@ -2268,7 +2648,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from remote web image provided by URL.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
@@ -2288,7 +2668,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from remote web image provided by URL.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
@@ -2484,7 +2864,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from remote web image provided by URL.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
@@ -2507,7 +2887,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Creates print-product item from remote web image provided by URL.
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
@@ -2559,7 +2939,7 @@ class DesignAtomsPrintProductItemsApi
     /**
      * Create request for operation 'designAtomsPrintProductItemsCreateItemFromUrl'
      *
-     * @param  ItemType $item_type Desired item type. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
@@ -3027,6 +3407,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Flattens print-product items.
      *
+     * @param  string $palette_uid palette_uid (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
@@ -3035,9 +3416,9 @@ class DesignAtomsPrintProductItemsApi
      * @throws \InvalidArgumentException
      * @return mixed
      */
-    public function designAtomsPrintProductItemsFlattenItems($tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
+    public function designAtomsPrintProductItemsFlattenItems($palette_uid = null, $tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
     {
-        list($response) = $this->designAtomsPrintProductItemsFlattenItemsWithHttpInfo($tenant_id, $request_body, $contentType);
+        list($response) = $this->designAtomsPrintProductItemsFlattenItemsWithHttpInfo($palette_uid, $tenant_id, $request_body, $contentType);
         return $response;
     }
 
@@ -3046,6 +3427,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Flattens print-product items.
      *
+     * @param  string $palette_uid (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
@@ -3054,9 +3436,9 @@ class DesignAtomsPrintProductItemsApi
      * @throws \InvalidArgumentException
      * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsPrintProductItemsFlattenItemsWithHttpInfo($tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
+    public function designAtomsPrintProductItemsFlattenItemsWithHttpInfo($palette_uid = null, $tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
     {
-        $request = $this->designAtomsPrintProductItemsFlattenItemsRequest($tenant_id, $request_body, $contentType);
+        $request = $this->designAtomsPrintProductItemsFlattenItemsRequest($palette_uid, $tenant_id, $request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3171,6 +3553,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Flattens print-product items.
      *
+     * @param  string $palette_uid (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
@@ -3178,9 +3561,9 @@ class DesignAtomsPrintProductItemsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductItemsFlattenItemsAsync($tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
+    public function designAtomsPrintProductItemsFlattenItemsAsync($palette_uid = null, $tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
     {
-        return $this->designAtomsPrintProductItemsFlattenItemsAsyncWithHttpInfo($tenant_id, $request_body, $contentType)
+        return $this->designAtomsPrintProductItemsFlattenItemsAsyncWithHttpInfo($palette_uid, $tenant_id, $request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3193,6 +3576,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Flattens print-product items.
      *
+     * @param  string $palette_uid (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
@@ -3200,10 +3584,10 @@ class DesignAtomsPrintProductItemsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductItemsFlattenItemsAsyncWithHttpInfo($tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
+    public function designAtomsPrintProductItemsFlattenItemsAsyncWithHttpInfo($palette_uid = null, $tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
     {
         $returnType = 'mixed';
-        $request = $this->designAtomsPrintProductItemsFlattenItemsRequest($tenant_id, $request_body, $contentType);
+        $request = $this->designAtomsPrintProductItemsFlattenItemsRequest($palette_uid, $tenant_id, $request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3244,6 +3628,7 @@ class DesignAtomsPrintProductItemsApi
     /**
      * Create request for operation 'designAtomsPrintProductItemsFlattenItems'
      *
+     * @param  string $palette_uid (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
@@ -3251,8 +3636,9 @@ class DesignAtomsPrintProductItemsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsPrintProductItemsFlattenItemsRequest($tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
+    public function designAtomsPrintProductItemsFlattenItemsRequest($palette_uid = null, $tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
     {
+
 
 
 
@@ -3264,6 +3650,15 @@ class DesignAtomsPrintProductItemsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $palette_uid,
+            'paletteUID', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $tenant_id,

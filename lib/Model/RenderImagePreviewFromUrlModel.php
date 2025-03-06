@@ -61,7 +61,8 @@ class RenderImagePreviewFromUrlModel implements ModelInterface, ArrayAccess, \Js
         'image_url' => 'string',
         'mockup_owner_id' => 'string',
         'mockup_id' => 'string',
-        'rendering_config' => '\Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig'
+        'rendering_config' => '\Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModelRenderingConfig',
+        'headers' => 'array<string,string>'
     ];
 
     /**
@@ -75,7 +76,8 @@ class RenderImagePreviewFromUrlModel implements ModelInterface, ArrayAccess, \Js
         'image_url' => null,
         'mockup_owner_id' => null,
         'mockup_id' => null,
-        'rendering_config' => null
+        'rendering_config' => null,
+        'headers' => null
     ];
 
     /**
@@ -87,7 +89,8 @@ class RenderImagePreviewFromUrlModel implements ModelInterface, ArrayAccess, \Js
         'image_url' => true,
         'mockup_owner_id' => true,
         'mockup_id' => true,
-        'rendering_config' => false
+        'rendering_config' => true,
+        'headers' => true
     ];
 
     /**
@@ -179,7 +182,8 @@ class RenderImagePreviewFromUrlModel implements ModelInterface, ArrayAccess, \Js
         'image_url' => 'imageUrl',
         'mockup_owner_id' => 'mockupOwnerId',
         'mockup_id' => 'mockupId',
-        'rendering_config' => 'renderingConfig'
+        'rendering_config' => 'renderingConfig',
+        'headers' => 'headers'
     ];
 
     /**
@@ -191,7 +195,8 @@ class RenderImagePreviewFromUrlModel implements ModelInterface, ArrayAccess, \Js
         'image_url' => 'setImageUrl',
         'mockup_owner_id' => 'setMockupOwnerId',
         'mockup_id' => 'setMockupId',
-        'rendering_config' => 'setRenderingConfig'
+        'rendering_config' => 'setRenderingConfig',
+        'headers' => 'setHeaders'
     ];
 
     /**
@@ -203,7 +208,8 @@ class RenderImagePreviewFromUrlModel implements ModelInterface, ArrayAccess, \Js
         'image_url' => 'getImageUrl',
         'mockup_owner_id' => 'getMockupOwnerId',
         'mockup_id' => 'getMockupId',
-        'rendering_config' => 'getRenderingConfig'
+        'rendering_config' => 'getRenderingConfig',
+        'headers' => 'getHeaders'
     ];
 
     /**
@@ -267,6 +273,7 @@ class RenderImagePreviewFromUrlModel implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('mockup_owner_id', $data ?? [], null);
         $this->setIfExists('mockup_id', $data ?? [], null);
         $this->setIfExists('rendering_config', $data ?? [], null);
+        $this->setIfExists('headers', $data ?? [], null);
     }
 
     /**
@@ -416,7 +423,7 @@ class RenderImagePreviewFromUrlModel implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets rendering_config
      *
-     * @return \Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig|null
+     * @return \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModelRenderingConfig|null
      */
     public function getRenderingConfig()
     {
@@ -426,16 +433,57 @@ class RenderImagePreviewFromUrlModel implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets rendering_config
      *
-     * @param \Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig|null $rendering_config rendering_config
+     * @param \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModelRenderingConfig|null $rendering_config rendering_config
      *
      * @return self
      */
     public function setRenderingConfig($rendering_config)
     {
         if (is_null($rendering_config)) {
-            throw new \InvalidArgumentException('non-nullable rendering_config cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'rendering_config');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rendering_config', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['rendering_config'] = $rendering_config;
+
+        return $this;
+    }
+
+    /**
+     * Gets headers
+     *
+     * @return array<string,string>|null
+     */
+    public function getHeaders()
+    {
+        return $this->container['headers'];
+    }
+
+    /**
+     * Sets headers
+     *
+     * @param array<string,string>|null $headers Headers that will be used to download remote image by URL.  For example, `Authorization` header can be placed here to provide access to image.
+     *
+     * @return self
+     */
+    public function setHeaders($headers)
+    {
+        if (is_null($headers)) {
+            array_push($this->openAPINullablesSetToNull, 'headers');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('headers', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['headers'] = $headers;
 
         return $this;
     }

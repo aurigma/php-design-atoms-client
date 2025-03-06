@@ -86,7 +86,7 @@ class ProductPreviewRenderingConfig implements ModelInterface, ArrayAccess, \Jso
         'surface_index' => true,
         'width' => false,
         'height' => false,
-        'file_format' => false
+        'file_format' => true
     ];
 
     /**
@@ -418,7 +418,14 @@ class ProductPreviewRenderingConfig implements ModelInterface, ArrayAccess, \Jso
     public function setFileFormat($file_format)
     {
         if (is_null($file_format)) {
-            throw new \InvalidArgumentException('non-nullable file_format cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'file_format');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('file_format', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['file_format'] = $file_format;
 

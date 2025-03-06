@@ -61,7 +61,7 @@ class DesignSurfaceDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'name' => 'string',
         'index' => 'int',
-        'size' => '\Aurigma\DesignAtoms\Model\SizeDto'
+        'size' => '\Aurigma\DesignAtoms\Model\DesignSurfaceDtoSize'
     ];
 
     /**
@@ -87,7 +87,7 @@ class DesignSurfaceDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => true,
         'name' => true,
         'index' => false,
-        'size' => false
+        'size' => true
     ];
 
     /**
@@ -409,7 +409,7 @@ class DesignSurfaceDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets size
      *
-     * @return \Aurigma\DesignAtoms\Model\SizeDto|null
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceDtoSize|null
      */
     public function getSize()
     {
@@ -419,14 +419,21 @@ class DesignSurfaceDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets size
      *
-     * @param \Aurigma\DesignAtoms\Model\SizeDto|null $size size
+     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceDtoSize|null $size size
      *
      * @return self
      */
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'size');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('size', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['size'] = $size;
 

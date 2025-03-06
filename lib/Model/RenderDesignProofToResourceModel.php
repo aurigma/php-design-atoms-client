@@ -57,11 +57,11 @@ class RenderDesignProofToResourceModel implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'proof_resource_params' => '\Aurigma\DesignAtoms\Model\ResourceParams',
+        'proof_resource_params' => '\Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams',
         'overwrite_existing_resource' => 'bool',
         'design_id' => 'string',
         'owner_id' => 'string',
-        'rendering_config' => '\Aurigma\DesignAtoms\Model\ProductProofRenderingConfig',
+        'rendering_config' => '\Aurigma\DesignAtoms\Model\RenderDesignProofModelRenderingConfig',
         'variable_data' => '\Aurigma\DesignAtoms\Model\VariableInfo[]'
     ];
 
@@ -87,11 +87,11 @@ class RenderDesignProofToResourceModel implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'proof_resource_params' => false,
+        'proof_resource_params' => true,
         'overwrite_existing_resource' => false,
         'design_id' => true,
         'owner_id' => true,
-        'rendering_config' => false,
+        'rendering_config' => true,
         'variable_data' => true
     ];
 
@@ -327,7 +327,7 @@ class RenderDesignProofToResourceModel implements ModelInterface, ArrayAccess, \
     /**
      * Gets proof_resource_params
      *
-     * @return \Aurigma\DesignAtoms\Model\ResourceParams|null
+     * @return \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams|null
      */
     public function getProofResourceParams()
     {
@@ -337,14 +337,21 @@ class RenderDesignProofToResourceModel implements ModelInterface, ArrayAccess, \
     /**
      * Sets proof_resource_params
      *
-     * @param \Aurigma\DesignAtoms\Model\ResourceParams|null $proof_resource_params proof_resource_params
+     * @param \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams|null $proof_resource_params proof_resource_params
      *
      * @return self
      */
     public function setProofResourceParams($proof_resource_params)
     {
         if (is_null($proof_resource_params)) {
-            throw new \InvalidArgumentException('non-nullable proof_resource_params cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'proof_resource_params');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('proof_resource_params', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['proof_resource_params'] = $proof_resource_params;
 
@@ -449,7 +456,7 @@ class RenderDesignProofToResourceModel implements ModelInterface, ArrayAccess, \
     /**
      * Gets rendering_config
      *
-     * @return \Aurigma\DesignAtoms\Model\ProductProofRenderingConfig|null
+     * @return \Aurigma\DesignAtoms\Model\RenderDesignProofModelRenderingConfig|null
      */
     public function getRenderingConfig()
     {
@@ -459,14 +466,21 @@ class RenderDesignProofToResourceModel implements ModelInterface, ArrayAccess, \
     /**
      * Sets rendering_config
      *
-     * @param \Aurigma\DesignAtoms\Model\ProductProofRenderingConfig|null $rendering_config rendering_config
+     * @param \Aurigma\DesignAtoms\Model\RenderDesignProofModelRenderingConfig|null $rendering_config rendering_config
      *
      * @return self
      */
     public function setRenderingConfig($rendering_config)
     {
         if (is_null($rendering_config)) {
-            throw new \InvalidArgumentException('non-nullable rendering_config cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'rendering_config');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rendering_config', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['rendering_config'] = $rendering_config;
 

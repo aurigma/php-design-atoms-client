@@ -59,7 +59,7 @@ class RenderProductModel implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPITypes = [
         'product' => 'mixed',
-        'rendering_config' => '\Aurigma\DesignAtoms\Model\ProductProofRenderingConfig'
+        'rendering_config' => '\Aurigma\DesignAtoms\Model\RenderProductModelRenderingConfig'
     ];
 
     /**
@@ -81,7 +81,7 @@ class RenderProductModel implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'product' => true,
-        'rendering_config' => false
+        'rendering_config' => true
     ];
 
     /**
@@ -337,7 +337,7 @@ class RenderProductModel implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets rendering_config
      *
-     * @return \Aurigma\DesignAtoms\Model\ProductProofRenderingConfig|null
+     * @return \Aurigma\DesignAtoms\Model\RenderProductModelRenderingConfig|null
      */
     public function getRenderingConfig()
     {
@@ -347,14 +347,21 @@ class RenderProductModel implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets rendering_config
      *
-     * @param \Aurigma\DesignAtoms\Model\ProductProofRenderingConfig|null $rendering_config rendering_config
+     * @param \Aurigma\DesignAtoms\Model\RenderProductModelRenderingConfig|null $rendering_config rendering_config
      *
      * @return self
      */
     public function setRenderingConfig($rendering_config)
     {
         if (is_null($rendering_config)) {
-            throw new \InvalidArgumentException('non-nullable rendering_config cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'rendering_config');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rendering_config', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['rendering_config'] = $rendering_config;
 

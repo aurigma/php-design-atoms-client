@@ -227,9 +227,9 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$item_type = new \Aurigma\DesignAtoms\Model\ItemType(); // ItemType | Desired item type.
+$item_type = new \Aurigma\DesignAtoms\Model\\Aurigma\DesignAtoms\Model\ItemType(); // \Aurigma\DesignAtoms\Model\ItemType | Desired item type.
 $tenant_id = 56; // int | Tenant identifier
-$source_type = new \Aurigma\DesignAtoms\Model\ItemSourceType(); // \Aurigma\DesignAtoms\Model\ItemSourceType
+$source_type = new \Aurigma\DesignAtoms\Model\ItemSourceType(); // \Aurigma\DesignAtoms\Model\ItemSourceType | Source type.
 $source_id = 'source_id_example'; // string | Source id, used if source type is 'ImageStorage' or 'PrivateImageStorage'.
 $source_owner_id = 'source_owner_id_example'; // string | Source owner id, used if source type is 'PrivateImageStorage'.
 $url = 'url_example'; // string | Source URL, used if source type is 'Url'.
@@ -247,9 +247,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **item_type** | [**ItemType**](../Model/.md)| Desired item type. | [optional] |
+| **item_type** | [**\Aurigma\DesignAtoms\Model\ItemType**](../Model/.md)| Desired item type. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
-| **source_type** | [**\Aurigma\DesignAtoms\Model\ItemSourceType**](../Model/ItemSourceType.md)|  | [optional] |
+| **source_type** | [**\Aurigma\DesignAtoms\Model\ItemSourceType**](../Model/ItemSourceType.md)| Source type. | [optional] |
 | **source_id** | **string**| Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. | [optional] |
 | **source_owner_id** | **string**| Source owner id, used if source type is &#39;PrivateImageStorage&#39;. | [optional] |
 | **url** | **string**| Source URL, used if source type is &#39;Url&#39;. | [optional] |
@@ -1333,11 +1333,11 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
-$patch_type = new \Aurigma\DesignAtoms\Model\ProductPatchType(); // \Aurigma\DesignAtoms\Model\ProductPatchType
+$patch_type = new \Aurigma\DesignAtoms\Model\ProductPatchType(); // \Aurigma\DesignAtoms\Model\ProductPatchType | Patch operation type.
 $replace_image_item_file_info_item_name = 'replace_image_item_file_info_item_name_example'; // string | Item Name.
 $replace_image_item_file_info_source_file = "/path/to/file.txt"; // \SplFileObject | Patch source file.
 $replace_placeholder_item_content_info_placeholder_item_name = 'replace_placeholder_item_content_info_placeholder_item_name_example'; // string | Item Name.
-$replace_placeholder_item_content_info_new_content_type = new \Aurigma\DesignAtoms\Model\PlaceholderItemContentType(); // \Aurigma\DesignAtoms\Model\PlaceholderItemContentType
+$replace_placeholder_item_content_info_new_content_type = new \Aurigma\DesignAtoms\Model\PlaceholderItemContentType(); // \Aurigma\DesignAtoms\Model\PlaceholderItemContentType | New content type.
 $replace_placeholder_item_content_info_source_file = "/path/to/file.txt"; // \SplFileObject | Patch source file.
 
 try {
@@ -1354,11 +1354,11 @@ try {
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
-| **patch_type** | [**\Aurigma\DesignAtoms\Model\ProductPatchType**](../Model/ProductPatchType.md)|  | [optional] |
+| **patch_type** | [**\Aurigma\DesignAtoms\Model\ProductPatchType**](../Model/ProductPatchType.md)| Patch operation type. | [optional] |
 | **replace_image_item_file_info_item_name** | **string**| Item Name. | [optional] |
 | **replace_image_item_file_info_source_file** | **\SplFileObject****\SplFileObject**| Patch source file. | [optional] |
 | **replace_placeholder_item_content_info_placeholder_item_name** | **string**| Item Name. | [optional] |
-| **replace_placeholder_item_content_info_new_content_type** | [**\Aurigma\DesignAtoms\Model\PlaceholderItemContentType**](../Model/PlaceholderItemContentType.md)|  | [optional] |
+| **replace_placeholder_item_content_info_new_content_type** | [**\Aurigma\DesignAtoms\Model\PlaceholderItemContentType**](../Model/PlaceholderItemContentType.md)| New content type. | [optional] |
 | **replace_placeholder_item_content_info_source_file** | **\SplFileObject****\SplFileObject**| Patch source file. | [optional] |
 
 ### Return type

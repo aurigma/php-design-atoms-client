@@ -59,7 +59,9 @@ class BatchCreateItemsFromStorageModel implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPITypes = [
         'source_owner_id' => 'string',
-        'source_ids' => 'string[]'
+        'source_ids' => 'string[]',
+        'palette_uid' => 'string',
+        'preserve_original_file' => 'bool'
     ];
 
     /**
@@ -71,7 +73,9 @@ class BatchCreateItemsFromStorageModel implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPIFormats = [
         'source_owner_id' => null,
-        'source_ids' => null
+        'source_ids' => null,
+        'palette_uid' => null,
+        'preserve_original_file' => null
     ];
 
     /**
@@ -81,7 +85,9 @@ class BatchCreateItemsFromStorageModel implements ModelInterface, ArrayAccess, \
       */
     protected static array $openAPINullables = [
         'source_owner_id' => true,
-        'source_ids' => true
+        'source_ids' => true,
+        'palette_uid' => true,
+        'preserve_original_file' => false
     ];
 
     /**
@@ -171,7 +177,9 @@ class BatchCreateItemsFromStorageModel implements ModelInterface, ArrayAccess, \
      */
     protected static $attributeMap = [
         'source_owner_id' => 'sourceOwnerId',
-        'source_ids' => 'sourceIds'
+        'source_ids' => 'sourceIds',
+        'palette_uid' => 'paletteUID',
+        'preserve_original_file' => 'preserveOriginalFile'
     ];
 
     /**
@@ -181,7 +189,9 @@ class BatchCreateItemsFromStorageModel implements ModelInterface, ArrayAccess, \
      */
     protected static $setters = [
         'source_owner_id' => 'setSourceOwnerId',
-        'source_ids' => 'setSourceIds'
+        'source_ids' => 'setSourceIds',
+        'palette_uid' => 'setPaletteUid',
+        'preserve_original_file' => 'setPreserveOriginalFile'
     ];
 
     /**
@@ -191,7 +201,9 @@ class BatchCreateItemsFromStorageModel implements ModelInterface, ArrayAccess, \
      */
     protected static $getters = [
         'source_owner_id' => 'getSourceOwnerId',
-        'source_ids' => 'getSourceIds'
+        'source_ids' => 'getSourceIds',
+        'palette_uid' => 'getPaletteUid',
+        'preserve_original_file' => 'getPreserveOriginalFile'
     ];
 
     /**
@@ -253,6 +265,8 @@ class BatchCreateItemsFromStorageModel implements ModelInterface, ArrayAccess, \
     {
         $this->setIfExists('source_owner_id', $data ?? [], null);
         $this->setIfExists('source_ids', $data ?? [], null);
+        $this->setIfExists('palette_uid', $data ?? [], null);
+        $this->setIfExists('preserve_original_file', $data ?? [], null);
     }
 
     /**
@@ -361,6 +375,67 @@ class BatchCreateItemsFromStorageModel implements ModelInterface, ArrayAccess, \
             }
         }
         $this->container['source_ids'] = $source_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets palette_uid
+     *
+     * @return string|null
+     */
+    public function getPaletteUid()
+    {
+        return $this->container['palette_uid'];
+    }
+
+    /**
+     * Sets palette_uid
+     *
+     * @param string|null $palette_uid Target palette UID.
+     *
+     * @return self
+     */
+    public function setPaletteUid($palette_uid)
+    {
+        if (is_null($palette_uid)) {
+            array_push($this->openAPINullablesSetToNull, 'palette_uid');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('palette_uid', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['palette_uid'] = $palette_uid;
+
+        return $this;
+    }
+
+    /**
+     * Gets preserve_original_file
+     *
+     * @return bool|null
+     */
+    public function getPreserveOriginalFile()
+    {
+        return $this->container['preserve_original_file'];
+    }
+
+    /**
+     * Sets preserve_original_file
+     *
+     * @param bool|null $preserve_original_file Indicates if resulting item should store original source file.
+     *
+     * @return self
+     */
+    public function setPreserveOriginalFile($preserve_original_file)
+    {
+        if (is_null($preserve_original_file)) {
+            throw new \InvalidArgumentException('non-nullable preserve_original_file cannot be null');
+        }
+        $this->container['preserve_original_file'] = $preserve_original_file;
 
         return $this;
     }

@@ -149,7 +149,7 @@ class DesignAtomsImagesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsImagesRenderImagePreview($attachment = null, $tenant_id = null, $render_image_preview_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreview'][0])
     {
@@ -169,7 +169,7 @@ class DesignAtomsImagesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsImagesRenderImagePreviewWithHttpInfo($attachment = null, $tenant_id = null, $render_image_preview_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreview'][0])
     {
@@ -238,6 +238,33 @@ class DesignAtomsImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -274,6 +301,14 @@ class DesignAtomsImagesApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SplFileObject',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -501,13 +536,13 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsImagesRenderImagePreviewFromFile($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
     {
@@ -527,13 +562,13 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsImagesRenderImagePreviewFromFileWithHttpInfo($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
     {
@@ -602,6 +637,33 @@ class DesignAtomsImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -642,6 +704,14 @@ class DesignAtomsImagesApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -659,8 +729,8 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -688,8 +758,8 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -746,8 +816,8 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -924,13 +994,13 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsImagesRenderImagePreviewFromFileToResource($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
     {
@@ -956,13 +1026,13 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsImagesRenderImagePreviewFromFileToResourceWithHttpInfo($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
     {
@@ -1031,7 +1101,7 @@ class DesignAtomsImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
+                case 404:
                     if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1055,6 +1125,33 @@ class DesignAtomsImagesApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1098,10 +1195,18 @@ class DesignAtomsImagesApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 409:
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1129,8 +1234,8 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1164,8 +1269,8 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1228,8 +1333,8 @@ class DesignAtomsImagesApi
      * @param  string $mockup_id Mockup identifier. (optional)
      * @param  int $width Image preview width. (optional)
      * @param  int $height Image preview height. (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format (optional)
-     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1425,7 +1530,7 @@ class DesignAtomsImagesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsImagesRenderImagePreviewFromUrl($attachment = null, $tenant_id = null, $render_image_preview_from_url_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromUrl'][0])
     {
@@ -1445,7 +1550,7 @@ class DesignAtomsImagesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsImagesRenderImagePreviewFromUrlWithHttpInfo($attachment = null, $tenant_id = null, $render_image_preview_from_url_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromUrl'][0])
     {
@@ -1514,6 +1619,33 @@ class DesignAtomsImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 404:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -1550,6 +1682,14 @@ class DesignAtomsImagesApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\SplFileObject',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1776,7 +1916,7 @@ class DesignAtomsImagesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsImagesRenderImagePreviewFromUrlToResource($tenant_id = null, $render_image_preview_from_url_to_resource_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromUrlToResource'][0])
     {
@@ -1795,7 +1935,7 @@ class DesignAtomsImagesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsImagesRenderImagePreviewFromUrlToResourceWithHttpInfo($tenant_id = null, $render_image_preview_from_url_to_resource_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromUrlToResource'][0])
     {
@@ -1864,7 +2004,7 @@ class DesignAtomsImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
+                case 404:
                     if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1888,6 +2028,33 @@ class DesignAtomsImagesApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1931,10 +2098,18 @@ class DesignAtomsImagesApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 409:
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2148,7 +2323,7 @@ class DesignAtomsImagesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
      */
     public function designAtomsImagesRenderImagePreviewToResource($tenant_id = null, $render_image_preview_to_resource_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewToResource'][0])
     {
@@ -2167,7 +2342,7 @@ class DesignAtomsImagesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsImagesRenderImagePreviewToResourceWithHttpInfo($tenant_id = null, $render_image_preview_to_resource_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewToResource'][0])
     {
@@ -2236,7 +2411,7 @@ class DesignAtomsImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
+                case 404:
                     if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2260,6 +2435,33 @@ class DesignAtomsImagesApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2303,10 +2505,18 @@ class DesignAtomsImagesApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 409:
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

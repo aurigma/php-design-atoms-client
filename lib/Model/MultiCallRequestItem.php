@@ -107,7 +107,7 @@ class MultiCallRequestItem implements ModelInterface, ArrayAccess, \JsonSerializ
         'page_index' => true,
         'method_name' => true,
         'item_data' => true,
-        'color_settings' => false
+        'color_settings' => true
     ];
 
     /**
@@ -719,7 +719,14 @@ class MultiCallRequestItem implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setColorSettings($color_settings)
     {
         if (is_null($color_settings)) {
-            throw new \InvalidArgumentException('non-nullable color_settings cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'color_settings');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('color_settings', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['color_settings'] = $color_settings;
 

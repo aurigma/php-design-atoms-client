@@ -96,8 +96,8 @@ class ProductProofRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
         'surface_index' => true,
         'width' => false,
         'height' => false,
-        'format' => false,
-        'interpolation_mode' => false,
+        'format' => true,
+        'interpolation_mode' => true,
         'safety_lines_enabled' => true,
         'watermark_enabled' => true,
         'watermark_opacity' => true,
@@ -446,14 +446,21 @@ class ProductProofRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets format
      *
-     * @param \Aurigma\DesignAtoms\Model\ProductProofFormat|null $format format
+     * @param \Aurigma\DesignAtoms\Model\ProductProofFormat|null $format Desired proof image format.
      *
      * @return self
      */
     public function setFormat($format)
     {
         if (is_null($format)) {
-            throw new \InvalidArgumentException('non-nullable format cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'format');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('format', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['format'] = $format;
 
@@ -473,14 +480,21 @@ class ProductProofRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets interpolation_mode
      *
-     * @param \Aurigma\DesignAtoms\Model\ProductProofInterpolationMode|null $interpolation_mode interpolation_mode
+     * @param \Aurigma\DesignAtoms\Model\ProductProofInterpolationMode|null $interpolation_mode Desired proof image interpolation.
      *
      * @return self
      */
     public function setInterpolationMode($interpolation_mode)
     {
         if (is_null($interpolation_mode)) {
-            throw new \InvalidArgumentException('non-nullable interpolation_mode cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'interpolation_mode');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('interpolation_mode', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['interpolation_mode'] = $interpolation_mode;
 

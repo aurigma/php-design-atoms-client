@@ -58,7 +58,7 @@ class DesignParameters implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'measure_unit' => '\Aurigma\DesignAtoms\Model\MeasureUnitInfo',
+        'measure_unit' => '\Aurigma\DesignAtoms\Model\DesignParametersMeasureUnit',
         'design_atoms_version' => 'string'
     ];
 
@@ -80,7 +80,7 @@ class DesignParameters implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'measure_unit' => false,
+        'measure_unit' => true,
         'design_atoms_version' => true
     ];
 
@@ -300,7 +300,7 @@ class DesignParameters implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets measure_unit
      *
-     * @return \Aurigma\DesignAtoms\Model\MeasureUnitInfo|null
+     * @return \Aurigma\DesignAtoms\Model\DesignParametersMeasureUnit|null
      */
     public function getMeasureUnit()
     {
@@ -310,14 +310,21 @@ class DesignParameters implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets measure_unit
      *
-     * @param \Aurigma\DesignAtoms\Model\MeasureUnitInfo|null $measure_unit measure_unit
+     * @param \Aurigma\DesignAtoms\Model\DesignParametersMeasureUnit|null $measure_unit measure_unit
      *
      * @return self
      */
     public function setMeasureUnit($measure_unit)
     {
         if (is_null($measure_unit)) {
-            throw new \InvalidArgumentException('non-nullable measure_unit cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'measure_unit');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('measure_unit', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['measure_unit'] = $measure_unit;
 

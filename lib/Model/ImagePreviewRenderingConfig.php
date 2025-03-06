@@ -86,8 +86,8 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
     protected static array $openAPINullables = [
         'width' => false,
         'height' => false,
-        'file_format' => false,
-        'fit_mode' => false
+        'file_format' => true,
+        'fit_mode' => true
     ];
 
     /**
@@ -378,14 +378,21 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets file_format
      *
-     * @param \Aurigma\DesignAtoms\Model\ImagePreviewFormat|null $file_format file_format
+     * @param \Aurigma\DesignAtoms\Model\ImagePreviewFormat|null $file_format Image preview file format.
      *
      * @return self
      */
     public function setFileFormat($file_format)
     {
         if (is_null($file_format)) {
-            throw new \InvalidArgumentException('non-nullable file_format cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'file_format');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('file_format', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['file_format'] = $file_format;
 
@@ -405,14 +412,21 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets fit_mode
      *
-     * @param \Aurigma\DesignAtoms\Model\ImagePreviewFitMode|null $fit_mode fit_mode
+     * @param \Aurigma\DesignAtoms\Model\ImagePreviewFitMode|null $fit_mode Image preview fit mode.
      *
      * @return self
      */
     public function setFitMode($fit_mode)
     {
         if (is_null($fit_mode)) {
-            throw new \InvalidArgumentException('non-nullable fit_mode cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'fit_mode');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('fit_mode', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['fit_mode'] = $fit_mode;
 

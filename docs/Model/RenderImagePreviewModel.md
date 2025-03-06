@@ -9,6 +9,6 @@ Name | Type | Description | Notes
 **owner_id** | **string** | Storage image owner identifier. | [optional]
 **mockup_owner_id** | **string** | Mockup owner identifier. | [optional]
 **mockup_id** | **string** | Mockup identifier. | [optional]
-**rendering_config** | [**\Aurigma\DesignAtoms\Model\ImagePreviewRenderingConfig**](ImagePreviewRenderingConfig.md) |  | [optional]
+**rendering_config** | [**\Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModelRenderingConfig**](RenderImagePreviewFromUrlModelRenderingConfig.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
