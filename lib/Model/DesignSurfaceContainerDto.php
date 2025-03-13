@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * DesignSurfaceContainerDto Class Doc Comment
  *
  * @category Class
- * @description Design surface container parameters.
+ * @description Print-product container description.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -61,6 +61,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
         'id' => 'string',
         'name' => 'string',
         'surface_id' => 'string',
+        'index' => 'int',
         'size' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoSize',
         'position' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoPosition'
     ];
@@ -76,6 +77,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
         'id' => null,
         'name' => null,
         'surface_id' => null,
+        'index' => 'int32',
         'size' => null,
         'position' => null
     ];
@@ -89,6 +91,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
         'id' => true,
         'name' => true,
         'surface_id' => true,
+        'index' => false,
         'size' => true,
         'position' => true
     ];
@@ -182,6 +185,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
         'id' => 'id',
         'name' => 'name',
         'surface_id' => 'surfaceId',
+        'index' => 'index',
         'size' => 'size',
         'position' => 'position'
     ];
@@ -195,6 +199,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
         'id' => 'setId',
         'name' => 'setName',
         'surface_id' => 'setSurfaceId',
+        'index' => 'setIndex',
         'size' => 'setSize',
         'position' => 'setPosition'
     ];
@@ -208,6 +213,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
         'id' => 'getId',
         'name' => 'getName',
         'surface_id' => 'getSurfaceId',
+        'index' => 'getIndex',
         'size' => 'getSize',
         'position' => 'getPosition'
     ];
@@ -272,6 +278,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('surface_id', $data ?? [], null);
+        $this->setIfExists('index', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('position', $data ?? [], null);
     }
@@ -331,7 +338,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets id
      *
-     * @param string|null $id Surface container identifier.
+     * @param string|null $id Container identifier.
      *
      * @return self
      */
@@ -365,7 +372,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets name
      *
-     * @param string|null $name Surface container name.
+     * @param string|null $name Container name.
      *
      * @return self
      */
@@ -416,6 +423,33 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['surface_id'] = $surface_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets index
+     *
+     * @return int|null
+     */
+    public function getIndex()
+    {
+        return $this->container['index'];
+    }
+
+    /**
+     * Sets index
+     *
+     * @param int|null $index Container index within containers list of a surface (0-based).
+     *
+     * @return self
+     */
+    public function setIndex($index)
+    {
+        if (is_null($index)) {
+            throw new \InvalidArgumentException('non-nullable index cannot be null');
+        }
+        $this->container['index'] = $index;
 
         return $this;
     }

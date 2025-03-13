@@ -40,7 +40,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `designAtomsPrintProductAddDesignPrintArea()`
 
 ```php
-designAtomsPrintProductAddDesignPrintArea($id, $private_storage_owner, $tenant_id, $design_print_area_model): mixed
+designAtomsPrintProductAddDesignPrintArea($id, $private_storage_owner, $tenant_id, $design_print_area_params): mixed
 ```
 
 Inserts a new print-area created by the description at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions.
@@ -81,10 +81,10 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
-$design_print_area_model = new \Aurigma\DesignAtoms\Model\DesignPrintAreaModel(); // \Aurigma\DesignAtoms\Model\DesignPrintAreaModel | Print-area description model.
+$design_print_area_params = new \Aurigma\DesignAtoms\Model\DesignPrintAreaParams(); // \Aurigma\DesignAtoms\Model\DesignPrintAreaParams | Print-area description model.
 
 try {
-    $result = $apiInstance->designAtomsPrintProductAddDesignPrintArea($id, $private_storage_owner, $tenant_id, $design_print_area_model);
+    $result = $apiInstance->designAtomsPrintProductAddDesignPrintArea($id, $private_storage_owner, $tenant_id, $design_print_area_params);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsPrintProductApi->designAtomsPrintProductAddDesignPrintArea: ', $e->getMessage(), PHP_EOL;
@@ -98,7 +98,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
-| **design_print_area_model** | [**\Aurigma\DesignAtoms\Model\DesignPrintAreaModel**](../Model/DesignPrintAreaModel.md)| Print-area description model. | [optional] |
+| **design_print_area_params** | [**\Aurigma\DesignAtoms\Model\DesignPrintAreaParams**](../Model/DesignPrintAreaParams.md)| Print-area description model. | [optional] |
 
 ### Return type
 
@@ -1325,7 +1325,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: `application/octet-stream`, `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1414,7 +1414,7 @@ try {
 ## `designAtomsPrintProductGetDesignSurfaceItems()`
 
 ```php
-designAtomsPrintProductGetDesignSurfaceItems($id, $surface_id, $container_id, $private_storage_owner, $tenant_id): \Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]
+designAtomsPrintProductGetDesignSurfaceItems($id, $surface_id, $container_id, $parent_item_id, $private_storage_owner, $tenant_id): \Aurigma\DesignAtoms\Model\DesignSurfaceItemDto[]
 ```
 
 Returns a list of print-product items descriptions of the specified design file.
@@ -1455,11 +1455,12 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print-product surface identifier.
 $container_id = 'container_id_example'; // string | Print-product container identifier.
+$parent_item_id = 'parent_item_id_example'; // string | Print-product item identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
-    $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceItems($id, $surface_id, $container_id, $private_storage_owner, $tenant_id);
+    $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceItems($id, $surface_id, $container_id, $parent_item_id, $private_storage_owner, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsPrintProductApi->designAtomsPrintProductGetDesignSurfaceItems: ', $e->getMessage(), PHP_EOL;
@@ -1473,6 +1474,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print-product surface identifier. | [optional] |
 | **container_id** | **string**| Print-product container identifier. | [optional] |
+| **parent_item_id** | **string**| Print-product item identifier. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
 
@@ -1727,7 +1729,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: `application/octet-stream`, `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1987,7 +1989,7 @@ try {
 ## `designAtomsPrintProductUpdateDesignPrintArea()`
 
 ```php
-designAtomsPrintProductUpdateDesignPrintArea($id, $print_area_id, $private_storage_owner, $tenant_id, $design_print_area_model): mixed
+designAtomsPrintProductUpdateDesignPrintArea($id, $print_area_id, $private_storage_owner, $tenant_id, $design_print_area_params): mixed
 ```
 
 Updates a specified print-area using a description in an existing design file.
@@ -2029,10 +2031,10 @@ $id = 'id_example'; // string | Design identifier.
 $print_area_id = 'print_area_id_example'; // string | Design print-area identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
 $tenant_id = 56; // int | Tenant identifier
-$design_print_area_model = new \Aurigma\DesignAtoms\Model\DesignPrintAreaModel(); // \Aurigma\DesignAtoms\Model\DesignPrintAreaModel | Print-area description model.
+$design_print_area_params = new \Aurigma\DesignAtoms\Model\DesignPrintAreaParams(); // \Aurigma\DesignAtoms\Model\DesignPrintAreaParams | Print-area description model.
 
 try {
-    $result = $apiInstance->designAtomsPrintProductUpdateDesignPrintArea($id, $print_area_id, $private_storage_owner, $tenant_id, $design_print_area_model);
+    $result = $apiInstance->designAtomsPrintProductUpdateDesignPrintArea($id, $print_area_id, $private_storage_owner, $tenant_id, $design_print_area_params);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsPrintProductApi->designAtomsPrintProductUpdateDesignPrintArea: ', $e->getMessage(), PHP_EOL;
@@ -2047,7 +2049,7 @@ try {
 | **print_area_id** | **string**| Design print-area identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
 | **tenant_id** | **int**| Tenant identifier | [optional] |
-| **design_print_area_model** | [**\Aurigma\DesignAtoms\Model\DesignPrintAreaModel**](../Model/DesignPrintAreaModel.md)| Print-area description model. | [optional] |
+| **design_print_area_params** | [**\Aurigma\DesignAtoms\Model\DesignPrintAreaParams**](../Model/DesignPrintAreaParams.md)| Print-area description model. | [optional] |
 
 ### Return type
 

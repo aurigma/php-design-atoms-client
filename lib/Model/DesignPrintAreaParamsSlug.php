@@ -1,6 +1,6 @@
 <?php
 /**
- * PositionDto
+ * DesignPrintAreaParamsSlug
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * PositionDto Class Doc Comment
+ * DesignPrintAreaParamsSlug Class Doc Comment
  *
  * @category Class
- * @description Position of the print-product element top left point on surface.
+ * @description Print area slug.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class DesignPrintAreaParamsSlug implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PositionDto';
+    protected static $openAPIModelName = 'DesignPrintAreaParams_slug';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,9 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'top' => 'float',
-        'left' => 'float'
+        'left' => 'float',
+        'right' => 'float',
+        'bottom' => 'float'
     ];
 
     /**
@@ -71,7 +73,9 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'top' => 'float',
-        'left' => 'float'
+        'left' => 'float',
+        'right' => 'float',
+        'bottom' => 'float'
     ];
 
     /**
@@ -81,7 +85,9 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'top' => false,
-        'left' => false
+        'left' => false,
+        'right' => false,
+        'bottom' => false
     ];
 
     /**
@@ -171,7 +177,9 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'top' => 'top',
-        'left' => 'left'
+        'left' => 'left',
+        'right' => 'right',
+        'bottom' => 'bottom'
     ];
 
     /**
@@ -181,7 +189,9 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'top' => 'setTop',
-        'left' => 'setLeft'
+        'left' => 'setLeft',
+        'right' => 'setRight',
+        'bottom' => 'setBottom'
     ];
 
     /**
@@ -191,7 +201,9 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'top' => 'getTop',
-        'left' => 'getLeft'
+        'left' => 'getLeft',
+        'right' => 'getRight',
+        'bottom' => 'getBottom'
     ];
 
     /**
@@ -253,6 +265,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('top', $data ?? [], null);
         $this->setIfExists('left', $data ?? [], null);
+        $this->setIfExists('right', $data ?? [], null);
+        $this->setIfExists('bottom', $data ?? [], null);
     }
 
     /**
@@ -310,7 +324,7 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets top
      *
-     * @param float|null $top Print-product element Y axis position.
+     * @param float|null $top Top margin.
      *
      * @return self
      */
@@ -337,7 +351,7 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets left
      *
-     * @param float|null $left Print-product element X axis position.
+     * @param float|null $left Left margin.
      *
      * @return self
      */
@@ -347,6 +361,60 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable left cannot be null');
         }
         $this->container['left'] = $left;
+
+        return $this;
+    }
+
+    /**
+     * Gets right
+     *
+     * @return float|null
+     */
+    public function getRight()
+    {
+        return $this->container['right'];
+    }
+
+    /**
+     * Sets right
+     *
+     * @param float|null $right Right margin.
+     *
+     * @return self
+     */
+    public function setRight($right)
+    {
+        if (is_null($right)) {
+            throw new \InvalidArgumentException('non-nullable right cannot be null');
+        }
+        $this->container['right'] = $right;
+
+        return $this;
+    }
+
+    /**
+     * Gets bottom
+     *
+     * @return float|null
+     */
+    public function getBottom()
+    {
+        return $this->container['bottom'];
+    }
+
+    /**
+     * Sets bottom
+     *
+     * @param float|null $bottom Bottom margin.
+     *
+     * @return self
+     */
+    public function setBottom($bottom)
+    {
+        if (is_null($bottom)) {
+            throw new \InvalidArgumentException('non-nullable bottom cannot be null');
+        }
+        $this->container['bottom'] = $bottom;
 
         return $this;
     }

@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * SizeDto Class Doc Comment
  *
  * @category Class
- * @description Print-product element size.
+ * @description Size of the print-product element.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

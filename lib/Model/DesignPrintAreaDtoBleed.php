@@ -324,7 +324,7 @@ class DesignPrintAreaDtoBleed implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets top
      *
-     * @param float|null $top Top margin.
+     * @param float|null $top Print-product element top margin.
      *
      * @return self
      */
@@ -351,7 +351,7 @@ class DesignPrintAreaDtoBleed implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets left
      *
-     * @param float|null $left Left margin.
+     * @param float|null $left Print-product element left margin.
      *
      * @return self
      */
@@ -378,7 +378,7 @@ class DesignPrintAreaDtoBleed implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets right
      *
-     * @param float|null $right Right margin.
+     * @param float|null $right Print-product element right margin.
      *
      * @return self
      */
@@ -405,7 +405,7 @@ class DesignPrintAreaDtoBleed implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets bottom
      *
-     * @param float|null $bottom Bottom margin.
+     * @param float|null $bottom Print-product element bottom margin.
      *
      * @return self
      */

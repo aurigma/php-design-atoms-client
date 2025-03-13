@@ -1,6 +1,6 @@
 <?php
 /**
- * PositionDto
+ * GeneralConflictDto
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * PositionDto Class Doc Comment
+ * GeneralConflictDto Class Doc Comment
  *
  * @category Class
- * @description Position of the print-product element top left point on surface.
+ * @description Information about operation conflict.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class GeneralConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PositionDto';
+    protected static $openAPIModelName = 'GeneralConflictDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'top' => 'float',
-        'left' => 'float'
+        'description' => 'string',
+        'type' => '\Aurigma\DesignAtoms\Model\ConflictType'
     ];
 
     /**
@@ -70,8 +70,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'top' => 'float',
-        'left' => 'float'
+        'description' => null,
+        'type' => null
     ];
 
     /**
@@ -80,8 +80,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'top' => false,
-        'left' => false
+        'description' => true,
+        'type' => false
     ];
 
     /**
@@ -170,8 +170,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'top' => 'top',
-        'left' => 'left'
+        'description' => 'description',
+        'type' => 'type'
     ];
 
     /**
@@ -180,8 +180,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'top' => 'setTop',
-        'left' => 'setLeft'
+        'description' => 'setDescription',
+        'type' => 'setType'
     ];
 
     /**
@@ -190,8 +190,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'top' => 'getTop',
-        'left' => 'getLeft'
+        'description' => 'getDescription',
+        'type' => 'getType'
     ];
 
     /**
@@ -251,8 +251,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('top', $data ?? [], null);
-        $this->setIfExists('left', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -298,55 +298,62 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets top
+     * Gets description
      *
-     * @return float|null
+     * @return string|null
      */
-    public function getTop()
+    public function getDescription()
     {
-        return $this->container['top'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets top
+     * Sets description
      *
-     * @param float|null $top Print-product element Y axis position.
+     * @param string|null $description Problem description.
      *
      * @return self
      */
-    public function setTop($top)
+    public function setDescription($description)
     {
-        if (is_null($top)) {
-            throw new \InvalidArgumentException('non-nullable top cannot be null');
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['top'] = $top;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets left
+     * Gets type
      *
-     * @return float|null
+     * @return \Aurigma\DesignAtoms\Model\ConflictType|null
      */
-    public function getLeft()
+    public function getType()
     {
-        return $this->container['left'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets left
+     * Sets type
      *
-     * @param float|null $left Print-product element X axis position.
+     * @param \Aurigma\DesignAtoms\Model\ConflictType|null $type Coflict type.
      *
      * @return self
      */
-    public function setLeft($left)
+    public function setType($type)
     {
-        if (is_null($left)) {
-            throw new \InvalidArgumentException('non-nullable left cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['left'] = $left;
+        $this->container['type'] = $type;
 
         return $this;
     }

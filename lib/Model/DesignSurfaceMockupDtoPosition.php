@@ -310,7 +310,7 @@ class DesignSurfaceMockupDtoPosition implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets top
      *
-     * @param float|null $top Y axis position.
+     * @param float|null $top Print-product element Y axis position.
      *
      * @return self
      */
@@ -337,7 +337,7 @@ class DesignSurfaceMockupDtoPosition implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets left
      *
-     * @param float|null $left X axis position.
+     * @param float|null $left Print-product element X axis position.
      *
      * @return self
      */

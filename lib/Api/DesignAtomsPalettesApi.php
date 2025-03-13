@@ -137,7 +137,7 @@ class DesignAtomsPalettesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\Palette|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     * @return \Aurigma\DesignAtoms\Model\Palette|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsPalettesFindPaletteColor($palette_uid = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPalettesFindPaletteColor'][0])
     {
@@ -157,7 +157,7 @@ class DesignAtomsPalettesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\Palette|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\Palette|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPalettesFindPaletteColorWithHttpInfo($palette_uid = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPalettesFindPaletteColor'][0])
     {
@@ -281,11 +281,11 @@ class DesignAtomsPalettesApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -303,7 +303,7 @@ class DesignAtomsPalettesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -366,7 +366,7 @@ class DesignAtomsPalettesApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -594,7 +594,7 @@ class DesignAtomsPalettesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsPalettesGetPaletteModel($id = null, $uid = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPalettesGetPaletteModel'][0])
     {
@@ -614,7 +614,7 @@ class DesignAtomsPalettesApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPalettesGetPaletteModelWithHttpInfo($id = null, $uid = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPalettesGetPaletteModel'][0])
     {
@@ -738,11 +738,11 @@ class DesignAtomsPalettesApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -760,7 +760,7 @@ class DesignAtomsPalettesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -823,7 +823,7 @@ class DesignAtomsPalettesApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

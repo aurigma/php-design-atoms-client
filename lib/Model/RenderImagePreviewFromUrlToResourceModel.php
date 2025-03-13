@@ -91,7 +91,7 @@ class RenderImagePreviewFromUrlToResourceModel implements ModelInterface, ArrayA
       */
     protected static array $openAPINullables = [
         'preview_resource_params' => true,
-        'overwrite_existing_resource' => false,
+        'overwrite_existing_resource' => true,
         'image_url' => true,
         'mockup_owner_id' => true,
         'mockup_id' => true,
@@ -386,7 +386,14 @@ class RenderImagePreviewFromUrlToResourceModel implements ModelInterface, ArrayA
     public function setOverwriteExistingResource($overwrite_existing_resource)
     {
         if (is_null($overwrite_existing_resource)) {
-            throw new \InvalidArgumentException('non-nullable overwrite_existing_resource cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'overwrite_existing_resource');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('overwrite_existing_resource', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['overwrite_existing_resource'] = $overwrite_existing_resource;
 

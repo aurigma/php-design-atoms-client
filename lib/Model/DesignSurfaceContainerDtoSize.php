@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * DesignSurfaceContainerDtoSize Class Doc Comment
  *
  * @category Class
- * @description Surface container size.
+ * @description Container size.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

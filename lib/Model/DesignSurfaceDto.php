@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * DesignSurfaceDto Class Doc Comment
  *
  * @category Class
- * @description Design surface parameters.
+ * @description Print-product surface description.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -392,7 +392,7 @@ class DesignSurfaceDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets index
      *
-     * @param int|null $index Surface index (0-based).
+     * @param int|null $index Surface index within surface list of a design (0-based).
      *
      * @return self
      */

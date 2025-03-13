@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * DesignSurfaceContainerDtoPosition Class Doc Comment
  *
  * @category Class
- * @description Surface container position.
+ * @description Container position.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -310,7 +310,7 @@ class DesignSurfaceContainerDtoPosition implements ModelInterface, ArrayAccess, 
     /**
      * Sets top
      *
-     * @param float|null $top Y axis position.
+     * @param float|null $top Print-product element Y axis position.
      *
      * @return self
      */
@@ -337,7 +337,7 @@ class DesignSurfaceContainerDtoPosition implements ModelInterface, ArrayAccess, 
     /**
      * Sets left
      *
-     * @param float|null $left X axis position.
+     * @param float|null $left Print-product element X axis position.
      *
      * @return self
      */

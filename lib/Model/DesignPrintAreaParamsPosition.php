@@ -1,6 +1,6 @@
 <?php
 /**
- * PositionDto
+ * DesignPrintAreaParamsPosition
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * PositionDto Class Doc Comment
+ * DesignPrintAreaParamsPosition Class Doc Comment
  *
  * @category Class
- * @description Position of the print-product element top left point on surface.
+ * @description Print area position.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class DesignPrintAreaParamsPosition implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PositionDto';
+    protected static $openAPIModelName = 'DesignPrintAreaParams_position';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -310,7 +310,7 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets top
      *
-     * @param float|null $top Print-product element Y axis position.
+     * @param float|null $top Y axis position.
      *
      * @return self
      */
@@ -337,7 +337,7 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets left
      *
-     * @param float|null $left Print-product element X axis position.
+     * @param float|null $left X axis position.
      *
      * @return self
      */

@@ -87,7 +87,7 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
         'urls' => true,
         'palette_uid' => true,
         'headers' => true,
-        'preserve_original_file' => false
+        'preserve_original_file' => true
     ];
 
     /**
@@ -433,7 +433,14 @@ class BatchCreateItemsFromUrlModel implements ModelInterface, ArrayAccess, \Json
     public function setPreserveOriginalFile($preserve_original_file)
     {
         if (is_null($preserve_original_file)) {
-            throw new \InvalidArgumentException('non-nullable preserve_original_file cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'preserve_original_file');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('preserve_original_file', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['preserve_original_file'] = $preserve_original_file;
 

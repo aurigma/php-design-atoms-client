@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** | Surface container identifier. | [optional]
-**name** | **string** | Surface container name. | [optional]
+**id** | **string** | Container identifier. | [optional]
+**name** | **string** | Container name. | [optional]
 **surface_id** | **string** | Parent surface identifier. | [optional]
+**index** | **int** | Container index within containers list of a surface (0-based). | [optional]
 **size** | [**\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoSize**](DesignSurfaceContainerDtoSize.md) |  | [optional]
 **position** | [**\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoPosition**](DesignSurfaceContainerDtoPosition.md) |  | [optional]
 

@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * MarginDto Class Doc Comment
  *
  * @category Class
- * @description Print-product element margin.
+ * @description Margins of the print-product element.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -324,7 +324,7 @@ class MarginDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets top
      *
-     * @param float|null $top Top margin.
+     * @param float|null $top Print-product element top margin.
      *
      * @return self
      */
@@ -351,7 +351,7 @@ class MarginDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets left
      *
-     * @param float|null $left Left margin.
+     * @param float|null $left Print-product element left margin.
      *
      * @return self
      */
@@ -378,7 +378,7 @@ class MarginDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets right
      *
-     * @param float|null $right Right margin.
+     * @param float|null $right Print-product element right margin.
      *
      * @return self
      */
@@ -405,7 +405,7 @@ class MarginDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bottom
      *
-     * @param float|null $bottom Bottom margin.
+     * @param float|null $bottom Print-product element bottom margin.
      *
      * @return self
      */

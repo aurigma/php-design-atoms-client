@@ -140,7 +140,7 @@ class DesignAtomsMockups3dApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\Mockup3dAttributesDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     * @return \Aurigma\DesignAtoms\Model\Mockup3dAttributesDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsMockups3dGetAttributes($id, $owner_id = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsMockups3dGetAttributes'][0])
     {
@@ -160,7 +160,7 @@ class DesignAtomsMockups3dApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\Mockup3dAttributesDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\Mockup3dAttributesDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsMockups3dGetAttributesWithHttpInfo($id, $owner_id = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsMockups3dGetAttributes'][0])
     {
@@ -257,11 +257,11 @@ class DesignAtomsMockups3dApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -279,7 +279,7 @@ class DesignAtomsMockups3dApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -334,7 +334,7 @@ class DesignAtomsMockups3dApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -569,7 +569,7 @@ class DesignAtomsMockups3dApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsMockups3dGetContentAsProtobuf($id, $owner_id = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsMockups3dGetContentAsProtobuf'][0])
     {
@@ -589,7 +589,7 @@ class DesignAtomsMockups3dApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsMockups3dGetContentAsProtobufWithHttpInfo($id, $owner_id = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsMockups3dGetContentAsProtobuf'][0])
     {
@@ -686,11 +686,11 @@ class DesignAtomsMockups3dApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -708,7 +708,7 @@ class DesignAtomsMockups3dApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -763,7 +763,7 @@ class DesignAtomsMockups3dApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -912,7 +912,7 @@ class DesignAtomsMockups3dApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/octet-stream', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -998,7 +998,7 @@ class DesignAtomsMockups3dApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsMockups3dGetGeometryFile($id, $owner_id = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsMockups3dGetGeometryFile'][0])
     {
@@ -1018,7 +1018,7 @@ class DesignAtomsMockups3dApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsMockups3dGetGeometryFileWithHttpInfo($id, $owner_id = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsMockups3dGetGeometryFile'][0])
     {
@@ -1115,11 +1115,11 @@ class DesignAtomsMockups3dApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\ConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\ConflictDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1137,7 +1137,7 @@ class DesignAtomsMockups3dApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1192,7 +1192,7 @@ class DesignAtomsMockups3dApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\ConflictDto',
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1341,7 +1341,7 @@ class DesignAtomsMockups3dApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            ['application/octet-stream', 'application/json', ],
             $contentType,
             $multipart
         );

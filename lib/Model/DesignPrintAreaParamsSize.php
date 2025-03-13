@@ -1,6 +1,6 @@
 <?php
 /**
- * PositionDto
+ * DesignPrintAreaParamsSize
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * PositionDto Class Doc Comment
+ * DesignPrintAreaParamsSize Class Doc Comment
  *
  * @category Class
- * @description Position of the print-product element top left point on surface.
+ * @description Print area size.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class DesignPrintAreaParamsSize implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PositionDto';
+    protected static $openAPIModelName = 'DesignPrintAreaParams_size';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'top' => 'float',
-        'left' => 'float'
+        'width' => 'float',
+        'height' => 'float'
     ];
 
     /**
@@ -70,8 +70,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'top' => 'float',
-        'left' => 'float'
+        'width' => 'float',
+        'height' => 'float'
     ];
 
     /**
@@ -80,8 +80,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'top' => false,
-        'left' => false
+        'width' => false,
+        'height' => false
     ];
 
     /**
@@ -170,8 +170,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'top' => 'top',
-        'left' => 'left'
+        'width' => 'width',
+        'height' => 'height'
     ];
 
     /**
@@ -180,8 +180,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'top' => 'setTop',
-        'left' => 'setLeft'
+        'width' => 'setWidth',
+        'height' => 'setHeight'
     ];
 
     /**
@@ -190,8 +190,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'top' => 'getTop',
-        'left' => 'getLeft'
+        'width' => 'getWidth',
+        'height' => 'getHeight'
     ];
 
     /**
@@ -251,8 +251,8 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('top', $data ?? [], null);
-        $this->setIfExists('left', $data ?? [], null);
+        $this->setIfExists('width', $data ?? [], null);
+        $this->setIfExists('height', $data ?? [], null);
     }
 
     /**
@@ -298,55 +298,55 @@ class PositionDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets top
+     * Gets width
      *
      * @return float|null
      */
-    public function getTop()
+    public function getWidth()
     {
-        return $this->container['top'];
+        return $this->container['width'];
     }
 
     /**
-     * Sets top
+     * Sets width
      *
-     * @param float|null $top Print-product element Y axis position.
+     * @param float|null $width Design item width.
      *
      * @return self
      */
-    public function setTop($top)
+    public function setWidth($width)
     {
-        if (is_null($top)) {
-            throw new \InvalidArgumentException('non-nullable top cannot be null');
+        if (is_null($width)) {
+            throw new \InvalidArgumentException('non-nullable width cannot be null');
         }
-        $this->container['top'] = $top;
+        $this->container['width'] = $width;
 
         return $this;
     }
 
     /**
-     * Gets left
+     * Gets height
      *
      * @return float|null
      */
-    public function getLeft()
+    public function getHeight()
     {
-        return $this->container['left'];
+        return $this->container['height'];
     }
 
     /**
-     * Sets left
+     * Sets height
      *
-     * @param float|null $left Print-product element X axis position.
+     * @param float|null $height Design item height.
      *
      * @return self
      */
-    public function setLeft($left)
+    public function setHeight($height)
     {
-        if (is_null($left)) {
-            throw new \InvalidArgumentException('non-nullable left cannot be null');
+        if (is_null($height)) {
+            throw new \InvalidArgumentException('non-nullable height cannot be null');
         }
-        $this->container['left'] = $left;
+        $this->container['height'] = $height;
 
         return $this;
     }

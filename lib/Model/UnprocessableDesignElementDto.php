@@ -59,7 +59,8 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPITypes = [
         'missing_element_type' => '\Aurigma\DesignAtoms\Model\DesignElementType',
         'unprocessed_element_type' => '\Aurigma\DesignAtoms\Model\DesignElementType',
-        'description' => 'string'
+        'description' => 'string',
+        'type' => '\Aurigma\DesignAtoms\Model\ConflictType'
     ];
 
     /**
@@ -72,7 +73,8 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPIFormats = [
         'missing_element_type' => null,
         'unprocessed_element_type' => null,
-        'description' => null
+        'description' => null,
+        'type' => null
     ];
 
     /**
@@ -83,7 +85,8 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
     protected static array $openAPINullables = [
         'missing_element_type' => true,
         'unprocessed_element_type' => true,
-        'description' => true
+        'description' => true,
+        'type' => false
     ];
 
     /**
@@ -174,7 +177,8 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
     protected static $attributeMap = [
         'missing_element_type' => 'missingElementType',
         'unprocessed_element_type' => 'unprocessedElementType',
-        'description' => 'description'
+        'description' => 'description',
+        'type' => 'type'
     ];
 
     /**
@@ -185,7 +189,8 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
     protected static $setters = [
         'missing_element_type' => 'setMissingElementType',
         'unprocessed_element_type' => 'setUnprocessedElementType',
-        'description' => 'setDescription'
+        'description' => 'setDescription',
+        'type' => 'setType'
     ];
 
     /**
@@ -196,7 +201,8 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
     protected static $getters = [
         'missing_element_type' => 'getMissingElementType',
         'unprocessed_element_type' => 'getUnprocessedElementType',
-        'description' => 'getDescription'
+        'description' => 'getDescription',
+        'type' => 'getType'
     ];
 
     /**
@@ -259,6 +265,7 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('missing_element_type', $data ?? [], null);
         $this->setIfExists('unprocessed_element_type', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -401,6 +408,33 @@ class UnprocessableDesignElementDto implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \Aurigma\DesignAtoms\Model\ConflictType|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \Aurigma\DesignAtoms\Model\ConflictType|null $type Coflict type.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

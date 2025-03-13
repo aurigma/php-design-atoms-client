@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * DesignSurfaceItemDto Class Doc Comment
  *
  * @category Class
- * @description Design item parameters.
+ * @description Print-product item description.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -61,8 +61,10 @@ class DesignSurfaceItemDto implements ModelInterface, ArrayAccess, \JsonSerializ
         'id' => 'string',
         'name' => 'string',
         'type' => 'string',
+        'parent_item_id' => 'string',
         'container_id' => 'string',
         'surface_id' => 'string',
+        'index' => 'int',
         'visible' => 'bool'
     ];
 
@@ -77,8 +79,10 @@ class DesignSurfaceItemDto implements ModelInterface, ArrayAccess, \JsonSerializ
         'id' => null,
         'name' => null,
         'type' => null,
+        'parent_item_id' => null,
         'container_id' => null,
         'surface_id' => null,
+        'index' => 'int32',
         'visible' => null
     ];
 
@@ -91,8 +95,10 @@ class DesignSurfaceItemDto implements ModelInterface, ArrayAccess, \JsonSerializ
         'id' => true,
         'name' => true,
         'type' => true,
+        'parent_item_id' => true,
         'container_id' => true,
         'surface_id' => true,
+        'index' => false,
         'visible' => false
     ];
 
@@ -185,8 +191,10 @@ class DesignSurfaceItemDto implements ModelInterface, ArrayAccess, \JsonSerializ
         'id' => 'id',
         'name' => 'name',
         'type' => 'type',
+        'parent_item_id' => 'parentItemId',
         'container_id' => 'containerId',
         'surface_id' => 'surfaceId',
+        'index' => 'index',
         'visible' => 'visible'
     ];
 
@@ -199,8 +207,10 @@ class DesignSurfaceItemDto implements ModelInterface, ArrayAccess, \JsonSerializ
         'id' => 'setId',
         'name' => 'setName',
         'type' => 'setType',
+        'parent_item_id' => 'setParentItemId',
         'container_id' => 'setContainerId',
         'surface_id' => 'setSurfaceId',
+        'index' => 'setIndex',
         'visible' => 'setVisible'
     ];
 
@@ -213,8 +223,10 @@ class DesignSurfaceItemDto implements ModelInterface, ArrayAccess, \JsonSerializ
         'id' => 'getId',
         'name' => 'getName',
         'type' => 'getType',
+        'parent_item_id' => 'getParentItemId',
         'container_id' => 'getContainerId',
         'surface_id' => 'getSurfaceId',
+        'index' => 'getIndex',
         'visible' => 'getVisible'
     ];
 
@@ -278,8 +290,10 @@ class DesignSurfaceItemDto implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('parent_item_id', $data ?? [], null);
         $this->setIfExists('container_id', $data ?? [], null);
         $this->setIfExists('surface_id', $data ?? [], null);
+        $this->setIfExists('index', $data ?? [], null);
         $this->setIfExists('visible', $data ?? [], null);
     }
 
@@ -428,6 +442,40 @@ class DesignSurfaceItemDto implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * Gets parent_item_id
+     *
+     * @return string|null
+     */
+    public function getParentItemId()
+    {
+        return $this->container['parent_item_id'];
+    }
+
+    /**
+     * Sets parent_item_id
+     *
+     * @param string|null $parent_item_id Parent item identifier.
+     *
+     * @return self
+     */
+    public function setParentItemId($parent_item_id)
+    {
+        if (is_null($parent_item_id)) {
+            array_push($this->openAPINullablesSetToNull, 'parent_item_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('parent_item_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['parent_item_id'] = $parent_item_id;
+
+        return $this;
+    }
+
+    /**
      * Gets container_id
      *
      * @return string|null
@@ -491,6 +539,33 @@ class DesignSurfaceItemDto implements ModelInterface, ArrayAccess, \JsonSerializ
             }
         }
         $this->container['surface_id'] = $surface_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets index
+     *
+     * @return int|null
+     */
+    public function getIndex()
+    {
+        return $this->container['index'];
+    }
+
+    /**
+     * Sets index
+     *
+     * @param int|null $index Item index within items list of a surface (0-based).
+     *
+     * @return self
+     */
+    public function setIndex($index)
+    {
+        if (is_null($index)) {
+            throw new \InvalidArgumentException('non-nullable index cannot be null');
+        }
+        $this->container['index'] = $index;
 
         return $this;
     }
