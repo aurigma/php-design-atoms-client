@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ExtractItemImageModelTest Class Doc Comment
  *
  * @category    Class
- * @description Item extraction operation parameters.
+ * @description Image extraction operation parameters.
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -83,6 +83,15 @@ class ExtractItemImageModelTest extends TestCase
      * Test attribute "item"
      */
     public function testPropertyItem()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "format"
+     */
+    public function testPropertyFormat()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -72,6 +72,18 @@ class DesignAtomsServiceApiTest extends TestCase
     }
 
     /**
+     * Test case for designAtomsServiceApplyItemsData
+     *
+     * Applies item data for a specified design file taken from storage..
+     *
+     */
+    public function testDesignAtomsServiceApplyItemsData()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for designAtomsServiceConvertColors
      *
      * Converts colors for print-product item manipulations..

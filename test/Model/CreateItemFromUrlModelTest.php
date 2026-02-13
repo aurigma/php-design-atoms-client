@@ -87,4 +87,40 @@ class CreateItemFromUrlModelTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "palette_uid"
+     */
+    public function testPropertyPaletteUid()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "page_index"
+     */
+    public function testPropertyPageIndex()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "headers"
+     */
+    public function testPropertyHeaders()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "preserve_original_file"
+     */
+    public function testPropertyPreserveOriginalFile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

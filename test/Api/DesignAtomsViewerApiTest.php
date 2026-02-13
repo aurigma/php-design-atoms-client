@@ -194,7 +194,7 @@ class DesignAtomsViewerApiTest extends TestCase
     /**
      * Test case for designAtomsViewerImg
      *
-     * .
+     * Retrieves an image with resized dimensions and additional visual effects based on the provided parameters..
      *
      */
     public function testDesignAtomsViewerImg()

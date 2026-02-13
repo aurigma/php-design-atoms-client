@@ -4,6 +4,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**designAtomsServiceApplyItemsData()**](DesignAtomsServiceApi.md#designAtomsServiceApplyItemsData) | **POST** /api/atoms/v1/designs/{id}/apply-items-data | Applies item data for a specified design file taken from storage. |
 | [**designAtomsServiceConvertColors()**](DesignAtomsServiceApi.md#designAtomsServiceConvertColors) | **POST** /api/atoms/v1/designs/print-product/convert-colors | Converts colors for print-product item manipulations. |
 | [**designAtomsServiceCreateDesign()**](DesignAtomsServiceApi.md#designAtomsServiceCreateDesign) | **POST** /api/atoms/v1/designs | Creates new design file with specified parameters and saves it in storage. |
 | [**designAtomsServiceCreateItem()**](DesignAtomsServiceApi.md#designAtomsServiceCreateItem) | **POST** /api/atoms/v1/designs/model/items | Creates print-product item. |
@@ -31,6 +32,85 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**designAtomsServiceSetEditorMockups()**](DesignAtomsServiceApi.md#designAtomsServiceSetEditorMockups) | **PUT** /api/atoms/v1/designs/{id}/editor-mockups | Sets specified editor-mockups for selected design surfaces. |
 | [**designAtomsServiceSetVariables()**](DesignAtomsServiceApi.md#designAtomsServiceSetVariables) | **PUT** /api/atoms/v1/designs/{id}/variables | Saves variable items values for design file taken from storage. |
 
+
+## `designAtomsServiceApplyItemsData()`
+
+```php
+designAtomsServiceApplyItemsData($id, $private_storage_owner, $tenant_id, $apply_design_items_data_model)
+```
+
+Applies item data for a specified design file taken from storage.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Design identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
+$tenant_id = 56; // int | Tenant ID.
+$apply_design_items_data_model = new \Aurigma\DesignAtoms\Model\ApplyDesignItemsDataModel(); // \Aurigma\DesignAtoms\Model\ApplyDesignItemsDataModel | Design items data.
+
+try {
+    $apiInstance->designAtomsServiceApplyItemsData($id, $private_storage_owner, $tenant_id, $apply_design_items_data_model);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsServiceApi->designAtomsServiceApplyItemsData: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Design identifier. | |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+| **apply_design_items_data_model** | [**\Aurigma\DesignAtoms\Model\ApplyDesignItemsDataModel**](../Model/ApplyDesignItemsDataModel.md)| Design items data. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `designAtomsServiceConvertColors()`
 
@@ -73,7 +153,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $convert_colors_model = new \Aurigma\DesignAtoms\Model\ConvertColorsModel(); // \Aurigma\DesignAtoms\Model\ConvertColorsModel | Convert colors operation parameters.
 
 try {
@@ -88,7 +168,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **convert_colors_model** | [**\Aurigma\DesignAtoms\Model\ConvertColorsModel**](../Model/ConvertColorsModel.md)| Convert colors operation parameters. | [optional] |
 
 ### Return type
@@ -150,7 +230,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     $config
 );
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $create_design_model = new \Aurigma\DesignAtoms\Model\CreateDesignModel(); // \Aurigma\DesignAtoms\Model\CreateDesignModel | Design creation parameters.
 
 try {
@@ -166,7 +246,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **create_design_model** | [**\Aurigma\DesignAtoms\Model\CreateDesignModel**](../Model/CreateDesignModel.md)| Design creation parameters. | [optional] |
 
 ### Return type
@@ -228,7 +308,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     $config
 );
 $item_type = new \Aurigma\DesignAtoms\Model\\Aurigma\DesignAtoms\Model\ItemType(); // \Aurigma\DesignAtoms\Model\ItemType | Desired item type.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $source_type = new \Aurigma\DesignAtoms\Model\ItemSourceType(); // \Aurigma\DesignAtoms\Model\ItemSourceType | Source type.
 $source_id = 'source_id_example'; // string | Source id, used if source type is 'ImageStorage' or 'PrivateImageStorage'.
 $source_owner_id = 'source_owner_id_example'; // string | Source owner id, used if source type is 'PrivateImageStorage'.
@@ -248,7 +328,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **item_type** | [**\Aurigma\DesignAtoms\Model\ItemType**](../Model/.md)| Desired item type. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **source_type** | [**\Aurigma\DesignAtoms\Model\ItemSourceType**](../Model/ItemSourceType.md)| Source type. | [optional] |
 | **source_id** | **string**| Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. | [optional] |
 | **source_owner_id** | **string**| Source owner id, used if source type is &#39;PrivateImageStorage&#39;. | [optional] |
@@ -316,7 +396,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 $design_id = 'design_id_example'; // string | Public design identifier.
 $private_design_id = 'private_design_id_example'; // string | Private design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $apiInstance->designAtomsServiceCreatePrivateDesignFromDesign($design_id, $private_design_id, $private_storage_owner, $tenant_id);
@@ -332,7 +412,7 @@ try {
 | **design_id** | **string**| Public design identifier. | [optional] |
 | **private_design_id** | **string**| Private design identifier. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -395,7 +475,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 $resource_id = 'resource_id_example'; // string | Resource identifier.
 $private_design_id = 'private_design_id_example'; // string | Private design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 0; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $apiInstance->designAtomsServiceCreatePrivateDesignFromResource($resource_id, $private_design_id, $private_storage_owner, $tenant_id);
@@ -411,7 +491,7 @@ try {
 | **resource_id** | **string**| Resource identifier. | [optional] |
 | **private_design_id** | **string**| Private design identifier. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier. | [optional] [default to 0] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -475,7 +555,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $apiInstance->designAtomsServiceDeleteVdpData($id, $private_storage_owner, $tenant_id);
@@ -490,7 +570,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -553,7 +633,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_index = 56; // int | Surface index.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsServiceExtractBackground($id, $surface_index, $private_storage_owner, $tenant_id);
@@ -570,7 +650,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_index** | **int**| Surface index. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -630,7 +710,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $extract_item_image_model = new \Aurigma\DesignAtoms\Model\ExtractItemImageModel(); // \Aurigma\DesignAtoms\Model\ExtractItemImageModel | Extraction parameters.
 
 try {
@@ -645,7 +725,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **extract_item_image_model** | [**\Aurigma\DesignAtoms\Model\ExtractItemImageModel**](../Model/ExtractItemImageModel.md)| Extraction parameters. | [optional] |
 
 ### Return type
@@ -706,7 +786,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $request_body = NULL; // mixed[] | Items to flatten.
 
 try {
@@ -721,7 +801,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **request_body** | [**mixed[]**](../Model/mixed.md)| Items to flatten. | [optional] |
 
 ### Return type
@@ -784,7 +864,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsServiceGetDesignParameters($id, $private_storage_owner, $tenant_id);
@@ -800,7 +880,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -862,7 +942,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsServiceGetVariables($id, $private_storage_owner, $tenant_id);
@@ -878,7 +958,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -940,7 +1020,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsServiceLoadDataSchema($id, $private_storage_owner, $tenant_id);
@@ -956,7 +1036,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1018,7 +1098,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsServiceLoadProduct($id, $private_storage_owner, $tenant_id);
@@ -1034,7 +1114,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1096,7 +1176,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Resource identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsServiceLoadProductFromResource($id, $private_storage_owner, $tenant_id);
@@ -1112,7 +1192,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Resource identifier. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1174,7 +1254,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsServiceLoadToggleSet($id, $private_storage_owner, $tenant_id);
@@ -1190,7 +1270,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1252,7 +1332,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsServiceLoadVdpData($id, $private_storage_owner, $tenant_id);
@@ -1268,7 +1348,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1332,7 +1412,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $patch_type = new \Aurigma\DesignAtoms\Model\ProductPatchType(); // \Aurigma\DesignAtoms\Model\ProductPatchType | Patch operation type.
 $replace_image_item_file_info_item_name = 'replace_image_item_file_info_item_name_example'; // string | Item Name.
 $replace_image_item_file_info_source_file = "/path/to/file.txt"; // \SplFileObject | Patch source file.
@@ -1353,7 +1433,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **patch_type** | [**\Aurigma\DesignAtoms\Model\ProductPatchType**](../Model/ProductPatchType.md)| Patch operation type. | [optional] |
 | **replace_image_item_file_info_item_name** | **string**| Item Name. | [optional] |
 | **replace_image_item_file_info_source_file** | **\SplFileObject****\SplFileObject**| Patch source file. | [optional] |
@@ -1420,7 +1500,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     $config
 );
 $attachment = True; // bool | If set to 'true', file will be provided as an attachment with unique filename supplied  (default value is 'false').
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $render_design_preview_model = new \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel(); // \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel | Render model with preview parameters.
 
 try {
@@ -1436,7 +1516,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **attachment** | **bool**| If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **render_design_preview_model** | [**\Aurigma\DesignAtoms\Model\RenderDesignPreviewModel**](../Model/RenderDesignPreviewModel.md)| Render model with preview parameters. | [optional] |
 
 ### Return type
@@ -1497,7 +1577,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $render_design_preview_to_resource_model = new \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel(); // \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel | Render model with preview parameters.
 
 try {
@@ -1512,7 +1592,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **render_design_preview_to_resource_model** | [**\Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel**](../Model/RenderDesignPreviewToResourceModel.md)| Render model with preview parameters. | [optional] |
 
 ### Return type
@@ -1574,7 +1654,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     $config
 );
 $attachment = True; // bool | If set to 'true', file will be provided as an attachment with unique filename supplied  (default value is 'false').
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $render_design_proof_model = new \Aurigma\DesignAtoms\Model\RenderDesignProofModel(); // \Aurigma\DesignAtoms\Model\RenderDesignProofModel | Render model with proof parameters.
 
 try {
@@ -1590,7 +1670,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **attachment** | **bool**| If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **render_design_proof_model** | [**\Aurigma\DesignAtoms\Model\RenderDesignProofModel**](../Model/RenderDesignProofModel.md)| Render model with proof parameters. | [optional] |
 
 ### Return type
@@ -1651,7 +1731,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $render_design_proof_to_resource_model = new \Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel(); // \Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel | Render model with preview parameters.
 
 try {
@@ -1666,7 +1746,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **render_design_proof_to_resource_model** | [**\Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel**](../Model/RenderDesignProofToResourceModel.md)| Render model with preview parameters. | [optional] |
 
 ### Return type
@@ -1728,7 +1808,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
     $config
 );
 $attachment = True; // bool | If set to 'true', file will be provided as an attachment with unique filename supplied  (default value is 'false').
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $render_product_model = new \Aurigma\DesignAtoms\Model\RenderProductModel(); // \Aurigma\DesignAtoms\Model\RenderProductModel | Preview parameters.
 
 try {
@@ -1744,7 +1824,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **attachment** | **bool**| If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **render_product_model** | [**\Aurigma\DesignAtoms\Model\RenderProductModel**](../Model/RenderProductModel.md)| Preview parameters. | [optional] |
 
 ### Return type
@@ -1807,7 +1887,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Serialized product description.
 
 try {
@@ -1823,7 +1903,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Serialized product description. | [optional] |
 
 ### Return type
@@ -1888,7 +1968,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $vdp_data_model = new \Aurigma\DesignAtoms\Model\VdpDataModel(); // \Aurigma\DesignAtoms\Model\VdpDataModel | Serialized vdp data.
 
 try {
@@ -1904,7 +1984,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **vdp_data_model** | [**\Aurigma\DesignAtoms\Model\VdpDataModel**](../Model/VdpDataModel.md)| Serialized vdp data. | [optional] |
 
 ### Return type
@@ -1967,7 +2047,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $set_editor_mockups_model = new \Aurigma\DesignAtoms\Model\SetEditorMockupsModel(); // \Aurigma\DesignAtoms\Model\SetEditorMockupsModel | Operation parameters.
 
 try {
@@ -1983,7 +2063,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **set_editor_mockups_model** | [**\Aurigma\DesignAtoms\Model\SetEditorMockupsModel**](../Model/SetEditorMockupsModel.md)| Operation parameters. | [optional] |
 
 ### Return type
@@ -2046,7 +2126,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsServiceApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $variables_model = new \Aurigma\DesignAtoms\Model\VariablesModel(); // \Aurigma\DesignAtoms\Model\VariablesModel | Design variable values.
 
 try {
@@ -2062,7 +2142,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **variables_model** | [**\Aurigma\DesignAtoms\Model\VariablesModel**](../Model/VariablesModel.md)| Design variable values. | [optional] |
 
 ### Return type

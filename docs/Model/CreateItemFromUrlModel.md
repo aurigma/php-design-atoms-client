@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **url** | **string** | Source URL. | [optional]
 **palette_uid** | **string** | Target palette UID. | [optional]
+**page_index** | **int** | Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. | [optional]
 **headers** | **array<string,string>** | Headers that will be used to download remote image by URL.  For example, &#x60;Authorization&#x60; header can be placed here to provide access to image. | [optional]
 **preserve_original_file** | **bool** | Indicates if resulting item should store original source file. | [optional]
 

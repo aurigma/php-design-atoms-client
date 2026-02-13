@@ -52,7 +52,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsMockups3dApi(
 );
 $id = 'id_example'; // string | 3D-Mockup identifier.
 $owner_id = 'owner_id_example'; // string | Private mockup owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsMockups3dGetAttributes($id, $owner_id, $tenant_id);
@@ -68,7 +68,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| 3D-Mockup identifier. | |
 | **owner_id** | **string**| Private mockup owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -130,7 +130,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsMockups3dApi(
 );
 $id = 'id_example'; // string | 3D-Mockup identifier.
 $owner_id = 'owner_id_example'; // string | Private mockup owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsMockups3dGetContentAsProtobuf($id, $owner_id, $tenant_id);
@@ -146,7 +146,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| 3D-Mockup identifier. | |
 | **owner_id** | **string**| Private mockup owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -208,7 +208,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsMockups3dApi(
 );
 $id = 'id_example'; // string | 3D-Mockup identifier.
 $owner_id = 'owner_id_example'; // string | Private mockup owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsMockups3dGetGeometryFile($id, $owner_id, $tenant_id);
@@ -224,7 +224,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| 3D-Mockup identifier. | |
 | **owner_id** | **string**| Private mockup owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 

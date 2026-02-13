@@ -35,7 +35,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * ExtractItemImageModel Class Doc Comment
  *
  * @category Class
- * @description Item extraction operation parameters.
+ * @description Image extraction operation parameters.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -58,7 +58,8 @@ class ExtractItemImageModel implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'item' => 'mixed'
+        'item' => 'mixed',
+        'format' => '\Aurigma\DesignAtoms\Model\ImageExtractionFormat'
     ];
 
     /**
@@ -69,7 +70,8 @@ class ExtractItemImageModel implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'item' => null
+        'item' => null,
+        'format' => null
     ];
 
     /**
@@ -78,7 +80,8 @@ class ExtractItemImageModel implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'item' => true
+        'item' => true,
+        'format' => true
     ];
 
     /**
@@ -167,7 +170,8 @@ class ExtractItemImageModel implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'item' => 'item'
+        'item' => 'item',
+        'format' => 'format'
     ];
 
     /**
@@ -176,7 +180,8 @@ class ExtractItemImageModel implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'item' => 'setItem'
+        'item' => 'setItem',
+        'format' => 'setFormat'
     ];
 
     /**
@@ -185,7 +190,8 @@ class ExtractItemImageModel implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'item' => 'getItem'
+        'item' => 'getItem',
+        'format' => 'getFormat'
     ];
 
     /**
@@ -246,6 +252,7 @@ class ExtractItemImageModel implements ModelInterface, ArrayAccess, \JsonSeriali
     public function __construct(array $data = null)
     {
         $this->setIfExists('item', $data ?? [], null);
+        $this->setIfExists('format', $data ?? [], null);
     }
 
     /**
@@ -323,6 +330,40 @@ class ExtractItemImageModel implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['item'] = $item;
+
+        return $this;
+    }
+
+    /**
+     * Gets format
+     *
+     * @return \Aurigma\DesignAtoms\Model\ImageExtractionFormat|null
+     */
+    public function getFormat()
+    {
+        return $this->container['format'];
+    }
+
+    /**
+     * Sets format
+     *
+     * @param \Aurigma\DesignAtoms\Model\ImageExtractionFormat|null $format Extraction format.
+     *
+     * @return self
+     */
+    public function setFormat($format)
+    {
+        if (is_null($format)) {
+            array_push($this->openAPINullablesSetToNull, 'format');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('format', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['format'] = $format;
 
         return $this;
     }

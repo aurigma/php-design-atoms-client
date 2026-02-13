@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**designAtomsViewerGetLicense()**](DesignAtomsViewerApi.md#designAtomsViewerGetLicense) | **GET** /api/atoms/v1/ccviewer/license |  |
 | [**designAtomsViewerGetShapeBounds()**](DesignAtomsViewerApi.md#designAtomsViewerGetShapeBounds) | **POST** /api/atoms/v1/ccviewer/GetShapeBounds |  |
 | [**designAtomsViewerGetWatermarkItems()**](DesignAtomsViewerApi.md#designAtomsViewerGetWatermarkItems) | **POST** /api/atoms/v1/ccviewer/GetWatermarkItems |  |
-| [**designAtomsViewerImg()**](DesignAtomsViewerApi.md#designAtomsViewerImg) | **GET** /api/atoms/v1/ccviewer/img |  |
+| [**designAtomsViewerImg()**](DesignAtomsViewerApi.md#designAtomsViewerImg) | **GET** /api/atoms/v1/ccviewer/img | Retrieves an image with resized dimensions and additional visual effects based on the provided parameters. |
 | [**designAtomsViewerPth()**](DesignAtomsViewerApi.md#designAtomsViewerPth) | **GET** /api/atoms/v1/ccviewer/pth |  |
 | [**designAtomsViewerResource()**](DesignAtomsViewerApi.md#designAtomsViewerResource) | **GET** /api/atoms/v1/ccviewer/resource |  |
 | [**designAtomsViewerSvg()**](DesignAtomsViewerApi.md#designAtomsViewerSvg) | **GET** /api/atoms/v1/ccviewer/svg |  |
@@ -73,7 +73,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $fonts_method_data = new \Aurigma\DesignAtoms\Model\FontsMethodData(); // \Aurigma\DesignAtoms\Model\FontsMethodData
 
 try {
@@ -88,7 +88,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **fonts_method_data** | [**\Aurigma\DesignAtoms\Model\FontsMethodData**](../Model/FontsMethodData.md)|  | [optional] |
 
 ### Return type
@@ -102,7 +102,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `text/css`
+- **Accept**: `text/css`, `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -150,7 +150,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     $config
 );
 $ps_name = 'ps_name_example'; // string
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsViewerFonts($ps_name, $tenant_id);
@@ -165,7 +165,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **ps_name** | **string**|  | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -225,7 +225,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $get_color_preview_request = new \Aurigma\DesignAtoms\Model\GetColorPreviewRequest(); // \Aurigma\DesignAtoms\Model\GetColorPreviewRequest
 
 try {
@@ -240,7 +240,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **get_color_preview_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewRequest**](../Model/GetColorPreviewRequest.md)|  | [optional] |
 
 ### Return type
@@ -301,7 +301,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $get_color_previews_request = new \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest(); // \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest
 
 try {
@@ -316,7 +316,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **get_color_previews_request** | [**\Aurigma\DesignAtoms\Model\GetColorPreviewsRequest**](../Model/GetColorPreviewsRequest.md)|  | [optional] |
 
 ### Return type
@@ -378,7 +378,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     $config
 );
 $font_key = 'font_key_example'; // string
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsViewerGetCssFont($font_key, $tenant_id);
@@ -393,7 +393,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **font_key** | **string**|  | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -453,7 +453,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsViewerGetFallbackFonts($tenant_id);
@@ -467,7 +467,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -527,7 +527,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $get_image_size_request = new \Aurigma\DesignAtoms\Model\GetImageSizeRequest(); // \Aurigma\DesignAtoms\Model\GetImageSizeRequest
 
 try {
@@ -542,7 +542,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **get_image_size_request** | [**\Aurigma\DesignAtoms\Model\GetImageSizeRequest**](../Model/GetImageSizeRequest.md)|  | [optional] |
 
 ### Return type
@@ -603,7 +603,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsViewerGetLicense($tenant_id);
@@ -617,7 +617,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -677,7 +677,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $get_shape_bounds_request = new \Aurigma\DesignAtoms\Model\GetShapeBoundsRequest(); // \Aurigma\DesignAtoms\Model\GetShapeBoundsRequest
 
 try {
@@ -692,7 +692,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **get_shape_bounds_request** | [**\Aurigma\DesignAtoms\Model\GetShapeBoundsRequest**](../Model/GetShapeBoundsRequest.md)|  | [optional] |
 
 ### Return type
@@ -753,7 +753,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed
 
 try {
@@ -768,7 +768,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**|  | [optional] |
 
 ### Return type
@@ -791,10 +791,12 @@ try {
 ## `designAtomsViewerImg()`
 
 ```php
-designAtomsViewerImg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id): \SplFileObject
+designAtomsViewerImg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id): \SplFileObject
 ```
 
+Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
 
+This method accepts query parameters that control the output of the image.
 
 ### Example
 
@@ -829,28 +831,30 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$f = 'f_example'; // string
-$w = 56; // int
-$h = 56; // int
-$cmyk = 'cmyk_example'; // string
-$rgb = 'rgb_example'; // string
-$grayscale = 'grayscale_example'; // string
-$target = 'target_example'; // string
-$sq = True; // bool
-$effect = 'effect_example'; // string
-$kp = True; // bool
-$color = 'color_example'; // string
-$obm = 'obm_example'; // string
-$oo = 3.4; // float
-$alpha_mask = True; // bool
-$page = 56; // int
-$colorize_color = 'colorize_color_example'; // string
-$rw = 3.4; // float
-$rh = 3.4; // float
-$tenant_id = 56; // int | Tenant identifier
+$f = 'f_example'; // string | The identifier of the original image file.
+$w = 56; // int | Target width of the resulting image.
+$h = 56; // int | Target height of the resulting image.
+$cmyk = 'cmyk_example'; // string | Name of the CMYK profile used for color conversion.
+$rgb = 'rgb_example'; // string | Name of the RGB profile used for color conversion.
+$grayscale = 'grayscale_example'; // string | Name of the grayscale profile used to convert into shades of gray.
+$target = 'target_example'; // string | Target color space, one of \"Rgb\", \"Grayscale\", or \"Cmyk\".
+$sq = True; // bool | Indicates that the image is squared.  The default value is \"false\".
+$effect = 'effect_example'; // string | Effect applied to the image.  Possible values: \"None\", \"BlackAndWhite\", \"FlipVertical\", \"FlipHorizontal\", \"Colorize\", \"Grayscale\", or \"BlackAndTransparent\".  The default value is \"None\".
+$kp = True; // bool | Indicates that image proportions should be maintained.  The default value is \"false\".
+$color = 'color_example'; // string | Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it's an empty string.
+$obm = 'obm_example'; // string | Overlay blend mode used for blending colors.  Possible values: \"Normal\", \"Multiply\", \"Screen\", \"Overlay\", \"Darken\", \"Lighten\", \"ColorDodge\",  \"ColorBurn\", \"HardLight\", \"SoftLight\", `Difference\", \"Exclusion\", \"None\", or \"LinearBurn\".  By default, it's an empty string.
+$oo = 3.4; // float | Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \"null\".
+$alpha_mask = True; // bool | Enables alpha mask processing.  The default value is \"false\".
+$page = 56; // int | Page index in a PDF document that needs to be processed.  The default value is \"0\".
+$colorize_color = 'colorize_color_example'; // string | Color applied for the \"Colorize\" image effect.  By default, it's an empty string.
+$rw = 3.4; // float | Rectangle width for area selection.  The default value is \"0\".
+$rh = 3.4; // float | Rectangle height for area selection.  The default value is \"0\".
+$dt = 'dt_example'; // string | Dithering type.
+$da = 3.4; // float | Dithering amount.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
-    $result = $apiInstance->designAtomsViewerImg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
+    $result = $apiInstance->designAtomsViewerImg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsViewerApi->designAtomsViewerImg: ', $e->getMessage(), PHP_EOL;
@@ -861,25 +865,27 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **f** | **string**|  | [optional] |
-| **w** | **int**|  | [optional] |
-| **h** | **int**|  | [optional] |
-| **cmyk** | **string**|  | [optional] |
-| **rgb** | **string**|  | [optional] |
-| **grayscale** | **string**|  | [optional] |
-| **target** | **string**|  | [optional] |
-| **sq** | **bool**|  | [optional] |
-| **effect** | **string**|  | [optional] |
-| **kp** | **bool**|  | [optional] |
-| **color** | **string**|  | [optional] |
-| **obm** | **string**|  | [optional] |
-| **oo** | **float**|  | [optional] |
-| **alpha_mask** | **bool**|  | [optional] |
-| **page** | **int**|  | [optional] |
-| **colorize_color** | **string**|  | [optional] |
-| **rw** | **float**|  | [optional] |
-| **rh** | **float**|  | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **f** | **string**| The identifier of the original image file. | [optional] |
+| **w** | **int**| Target width of the resulting image. | [optional] |
+| **h** | **int**| Target height of the resulting image. | [optional] |
+| **cmyk** | **string**| Name of the CMYK profile used for color conversion. | [optional] |
+| **rgb** | **string**| Name of the RGB profile used for color conversion. | [optional] |
+| **grayscale** | **string**| Name of the grayscale profile used to convert into shades of gray. | [optional] |
+| **target** | **string**| Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. | [optional] |
+| **sq** | **bool**| Indicates that the image is squared.  The default value is \&quot;false\&quot;. | [optional] |
+| **effect** | **string**| Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. | [optional] |
+| **kp** | **bool**| Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. | [optional] |
+| **color** | **string**| Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. | [optional] |
+| **obm** | **string**| Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. | [optional] |
+| **oo** | **float**| Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. | [optional] |
+| **alpha_mask** | **bool**| Enables alpha mask processing.  The default value is \&quot;false\&quot;. | [optional] |
+| **page** | **int**| Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. | [optional] |
+| **colorize_color** | **string**| Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. | [optional] |
+| **rw** | **float**| Rectangle width for area selection.  The default value is \&quot;0\&quot;. | [optional] |
+| **rh** | **float**| Rectangle height for area selection.  The default value is \&quot;0\&quot;. | [optional] |
+| **dt** | **string**| Dithering type. | [optional] |
+| **da** | **float**| Dithering amount. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -940,7 +946,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     $config
 );
 $f = 'f_example'; // string
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsViewerPth($f, $tenant_id);
@@ -955,7 +961,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **f** | **string**|  | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1016,7 +1022,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     $config
 );
 $image = 'image_example'; // string
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsViewerResource($image, $tenant_id);
@@ -1031,7 +1037,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **image** | **string**|  | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1053,7 +1059,7 @@ try {
 ## `designAtomsViewerSvg()`
 
 ```php
-designAtomsViewerSvg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id): \SplFileObject
+designAtomsViewerSvg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id): \SplFileObject
 ```
 
 
@@ -1091,28 +1097,30 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$f = 'f_example'; // string
-$w = 56; // int
-$h = 56; // int
-$cmyk = 'cmyk_example'; // string
-$rgb = 'rgb_example'; // string
-$grayscale = 'grayscale_example'; // string
-$target = 'target_example'; // string
-$sq = True; // bool
-$effect = 'effect_example'; // string
-$kp = True; // bool
-$color = 'color_example'; // string
-$obm = 'obm_example'; // string
-$oo = 3.4; // float
-$alpha_mask = True; // bool
-$page = 56; // int
-$colorize_color = 'colorize_color_example'; // string
-$rw = 3.4; // float
-$rh = 3.4; // float
-$tenant_id = 56; // int | Tenant identifier
+$f = 'f_example'; // string | The identifier of the original image file.
+$w = 56; // int | Target width of the resulting image.
+$h = 56; // int | Target height of the resulting image.
+$cmyk = 'cmyk_example'; // string | Name of the CMYK profile used for color conversion.
+$rgb = 'rgb_example'; // string | Name of the RGB profile used for color conversion.
+$grayscale = 'grayscale_example'; // string | Name of the grayscale profile used to convert into shades of gray.
+$target = 'target_example'; // string | Target color space, one of \"Rgb\", \"Grayscale\", or \"Cmyk\".
+$sq = True; // bool | Indicates that the image is squared.  The default value is \"false\".
+$effect = 'effect_example'; // string | Effect applied to the image.  Possible values: \"None\", \"BlackAndWhite\", \"FlipVertical\", \"FlipHorizontal\", \"Colorize\", \"Grayscale\", or \"BlackAndTransparent\".  The default value is \"None\".
+$kp = True; // bool | Indicates that image proportions should be maintained.  The default value is \"false\".
+$color = 'color_example'; // string | Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it's an empty string.
+$obm = 'obm_example'; // string | Overlay blend mode used for blending colors.  Possible values: \"Normal\", \"Multiply\", \"Screen\", \"Overlay\", \"Darken\", \"Lighten\", \"ColorDodge\",  \"ColorBurn\", \"HardLight\", \"SoftLight\", `Difference\", \"Exclusion\", \"None\", or \"LinearBurn\".  By default, it's an empty string.
+$oo = 3.4; // float | Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \"null\".
+$alpha_mask = True; // bool | Enables alpha mask processing.  The default value is \"false\".
+$page = 56; // int | Page index in a PDF document that needs to be processed.  The default value is \"0\".
+$colorize_color = 'colorize_color_example'; // string | Color applied for the \"Colorize\" image effect.  By default, it's an empty string.
+$rw = 3.4; // float | Rectangle width for area selection.  The default value is \"0\".
+$rh = 3.4; // float | Rectangle height for area selection.  The default value is \"0\".
+$dt = 'dt_example'; // string | Dithering type.
+$da = 3.4; // float | Dithering amount.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
-    $result = $apiInstance->designAtomsViewerSvg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id);
+    $result = $apiInstance->designAtomsViewerSvg($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsViewerApi->designAtomsViewerSvg: ', $e->getMessage(), PHP_EOL;
@@ -1123,25 +1131,27 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **f** | **string**|  | [optional] |
-| **w** | **int**|  | [optional] |
-| **h** | **int**|  | [optional] |
-| **cmyk** | **string**|  | [optional] |
-| **rgb** | **string**|  | [optional] |
-| **grayscale** | **string**|  | [optional] |
-| **target** | **string**|  | [optional] |
-| **sq** | **bool**|  | [optional] |
-| **effect** | **string**|  | [optional] |
-| **kp** | **bool**|  | [optional] |
-| **color** | **string**|  | [optional] |
-| **obm** | **string**|  | [optional] |
-| **oo** | **float**|  | [optional] |
-| **alpha_mask** | **bool**|  | [optional] |
-| **page** | **int**|  | [optional] |
-| **colorize_color** | **string**|  | [optional] |
-| **rw** | **float**|  | [optional] |
-| **rh** | **float**|  | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **f** | **string**| The identifier of the original image file. | [optional] |
+| **w** | **int**| Target width of the resulting image. | [optional] |
+| **h** | **int**| Target height of the resulting image. | [optional] |
+| **cmyk** | **string**| Name of the CMYK profile used for color conversion. | [optional] |
+| **rgb** | **string**| Name of the RGB profile used for color conversion. | [optional] |
+| **grayscale** | **string**| Name of the grayscale profile used to convert into shades of gray. | [optional] |
+| **target** | **string**| Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. | [optional] |
+| **sq** | **bool**| Indicates that the image is squared.  The default value is \&quot;false\&quot;. | [optional] |
+| **effect** | **string**| Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. | [optional] |
+| **kp** | **bool**| Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. | [optional] |
+| **color** | **string**| Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. | [optional] |
+| **obm** | **string**| Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. | [optional] |
+| **oo** | **float**| Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. | [optional] |
+| **alpha_mask** | **bool**| Enables alpha mask processing.  The default value is \&quot;false\&quot;. | [optional] |
+| **page** | **int**| Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. | [optional] |
+| **colorize_color** | **string**| Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. | [optional] |
+| **rw** | **float**| Rectangle width for area selection.  The default value is \&quot;0\&quot;. | [optional] |
+| **rh** | **float**| Rectangle height for area selection.  The default value is \&quot;0\&quot;. | [optional] |
+| **dt** | **string**| Dithering type. | [optional] |
+| **da** | **float**| Dithering amount. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1202,7 +1212,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     $config
 );
 $f = 'f_example'; // string
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsViewerTxt($f, $tenant_id);
@@ -1217,7 +1227,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **f** | **string**|  | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1277,7 +1287,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
 
 try {
@@ -1292,7 +1302,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
@@ -1353,7 +1363,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
 
 try {
@@ -1368,7 +1378,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
@@ -1429,7 +1439,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
 
 try {
@@ -1444,7 +1454,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
@@ -1505,7 +1515,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
 
 try {
@@ -1520,7 +1530,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
@@ -1581,7 +1591,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_colors_request = new \Aurigma\DesignAtoms\Model\UpdateColorsRequest(); // \Aurigma\DesignAtoms\Model\UpdateColorsRequest
 
 try {
@@ -1596,7 +1606,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_colors_request** | [**\Aurigma\DesignAtoms\Model\UpdateColorsRequest**](../Model/UpdateColorsRequest.md)|  | [optional] |
 
 ### Return type
@@ -1657,7 +1667,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $multi_call_request = new \Aurigma\DesignAtoms\Model\MultiCallRequest(); // \Aurigma\DesignAtoms\Model\MultiCallRequest
 
 try {
@@ -1672,7 +1682,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **multi_call_request** | [**\Aurigma\DesignAtoms\Model\MultiCallRequest**](../Model/MultiCallRequest.md)|  | [optional] |
 
 ### Return type
@@ -1733,7 +1743,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
 
 try {
@@ -1748,7 +1758,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
@@ -1809,7 +1819,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_image_handler_request = new \Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest
 
 try {
@@ -1824,7 +1834,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_image_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest**](../Model/UpdateImageHandlerRequest.md)|  | [optional] |
 
 ### Return type
@@ -1885,7 +1895,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
 
 try {
@@ -1900,7 +1910,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
@@ -1961,7 +1971,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
 
 try {
@@ -1976,7 +1986,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type
@@ -2037,7 +2047,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsViewerApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $update_handler_request = new \Aurigma\DesignAtoms\Model\UpdateHandlerRequest(); // \Aurigma\DesignAtoms\Model\UpdateHandlerRequest
 
 try {
@@ -2052,7 +2062,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **update_handler_request** | [**\Aurigma\DesignAtoms\Model\UpdateHandlerRequest**](../Model/UpdateHandlerRequest.md)|  | [optional] |
 
 ### Return type

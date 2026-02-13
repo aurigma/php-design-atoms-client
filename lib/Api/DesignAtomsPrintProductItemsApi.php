@@ -95,6 +95,9 @@ class DesignAtomsPrintProductItemsApi
         'designAtomsPrintProductItemsExtractItemImage' => [
             'application/json',
         ],
+        'designAtomsPrintProductItemsExtractItemImageToResource' => [
+            'application/json',
+        ],
         'designAtomsPrintProductItemsFlattenItems' => [
             'application/json',
         ],
@@ -151,13 +154,13 @@ class DesignAtomsPrintProductItemsApi
      *
      * Apply effects to print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsPrintProductItemsApplyItemEffects($tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'][0])
     {
@@ -170,13 +173,13 @@ class DesignAtomsPrintProductItemsApi
      *
      * Apply effects to print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductItemsApplyItemEffectsWithHttpInfo($tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'][0])
     {
@@ -245,6 +248,33 @@ class DesignAtomsPrintProductItemsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -285,6 +315,14 @@ class DesignAtomsPrintProductItemsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -295,7 +333,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Apply effects to print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
      *
@@ -317,7 +355,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Apply effects to print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
      *
@@ -368,7 +406,7 @@ class DesignAtomsPrintProductItemsApi
     /**
      * Create request for operation 'designAtomsPrintProductItemsApplyItemEffects'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsApplyItemEffects'] to see the possible values for this operation
      *
@@ -489,7 +527,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from input image files.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
@@ -497,7 +535,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto
      */
     public function designAtomsPrintProductItemsBatchCreateItemsFromFile($item_type = null, $tenant_id = null, $source_files = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
     {
@@ -511,7 +549,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from input image files.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
@@ -519,7 +557,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductItemsBatchCreateItemsFromFileWithHttpInfo($item_type = null, $tenant_id = null, $source_files = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromFile'][0])
     {
@@ -588,6 +626,33 @@ class DesignAtomsPrintProductItemsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 404:
                     if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -616,11 +681,11 @@ class DesignAtomsPrintProductItemsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -638,7 +703,7 @@ class DesignAtomsPrintProductItemsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -682,6 +747,14 @@ class DesignAtomsPrintProductItemsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -693,7 +766,7 @@ class DesignAtomsPrintProductItemsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
+                        '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -709,7 +782,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from input image files.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
@@ -734,7 +807,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from input image files.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
@@ -788,7 +861,7 @@ class DesignAtomsPrintProductItemsApi
      * Create request for operation 'designAtomsPrintProductItemsBatchCreateItemsFromFile'
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired print-product items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject[] $source_files List of input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
@@ -936,13 +1009,13 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from the specified image files in storage.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto
      */
     public function designAtomsPrintProductItemsBatchCreateItemsFromStorage($item_type = null, $tenant_id = null, $batch_create_items_from_storage_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'][0])
     {
@@ -956,13 +1029,13 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from the specified image files in storage.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductItemsBatchCreateItemsFromStorageWithHttpInfo($item_type = null, $tenant_id = null, $batch_create_items_from_storage_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'][0])
     {
@@ -1031,6 +1104,33 @@ class DesignAtomsPrintProductItemsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 404:
                     if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1059,11 +1159,11 @@ class DesignAtomsPrintProductItemsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1081,7 +1181,7 @@ class DesignAtomsPrintProductItemsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1125,6 +1225,14 @@ class DesignAtomsPrintProductItemsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1136,7 +1244,7 @@ class DesignAtomsPrintProductItemsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
+                        '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1152,7 +1260,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from the specified image files in storage.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
      *
@@ -1175,7 +1283,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from the specified image files in storage.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
      *
@@ -1227,7 +1335,7 @@ class DesignAtomsPrintProductItemsApi
      * Create request for operation 'designAtomsPrintProductItemsBatchCreateItemsFromStorage'
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromStorageModel $batch_create_items_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromStorage'] to see the possible values for this operation
      *
@@ -1358,13 +1466,13 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from remote web images provided by URLs list.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto
      */
     public function designAtomsPrintProductItemsBatchCreateItemsFromUrl($item_type = null, $tenant_id = null, $batch_create_items_from_url_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'][0])
     {
@@ -1378,13 +1486,13 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from remote web images provided by URLs list.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductItemsBatchCreateItemsFromUrlWithHttpInfo($item_type = null, $tenant_id = null, $batch_create_items_from_url_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'][0])
     {
@@ -1481,11 +1589,11 @@ class DesignAtomsPrintProductItemsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1503,7 +1611,7 @@ class DesignAtomsPrintProductItemsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1558,7 +1666,7 @@ class DesignAtomsPrintProductItemsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
+                        '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1574,7 +1682,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from remote web images provided by URLs list.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
      *
@@ -1597,7 +1705,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates multiple print-product items from remote web images provided by URLs list.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
      *
@@ -1649,7 +1757,7 @@ class DesignAtomsPrintProductItemsApi
      * Create request for operation 'designAtomsPrintProductItemsBatchCreateItemsFromUrl'
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired items type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\BatchCreateItemsFromUrlModel $batch_create_items_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsBatchCreateItemsFromUrl'] to see the possible values for this operation
      *
@@ -1780,19 +1888,20 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from input image file.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto
      */
-    public function designAtomsPrintProductItemsCreateItemFromFile($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFile($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $page_index = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
-        list($response) = $this->designAtomsPrintProductItemsCreateItemFromFileWithHttpInfo($item_type, $tenant_id, $source_file, $palette_uid, $preserve_original_file, $contentType);
+        list($response) = $this->designAtomsPrintProductItemsCreateItemFromFileWithHttpInfo($item_type, $tenant_id, $source_file, $palette_uid, $page_index, $preserve_original_file, $contentType);
         return $response;
     }
 
@@ -1802,19 +1911,20 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from input image file.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsPrintProductItemsCreateItemFromFileWithHttpInfo($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFileWithHttpInfo($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $page_index = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
-        $request = $this->designAtomsPrintProductItemsCreateItemFromFileRequest($item_type, $tenant_id, $source_file, $palette_uid, $preserve_original_file, $contentType);
+        $request = $this->designAtomsPrintProductItemsCreateItemFromFileRequest($item_type, $tenant_id, $source_file, $palette_uid, $page_index, $preserve_original_file, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1879,6 +1989,33 @@ class DesignAtomsPrintProductItemsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 404:
                     if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1907,11 +2044,11 @@ class DesignAtomsPrintProductItemsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1929,7 +2066,7 @@ class DesignAtomsPrintProductItemsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1973,6 +2110,14 @@ class DesignAtomsPrintProductItemsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1984,7 +2129,7 @@ class DesignAtomsPrintProductItemsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
+                        '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2000,18 +2145,19 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from input image file.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductItemsCreateItemFromFileAsync($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFileAsync($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $page_index = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
-        return $this->designAtomsPrintProductItemsCreateItemFromFileAsyncWithHttpInfo($item_type, $tenant_id, $source_file, $palette_uid, $preserve_original_file, $contentType)
+        return $this->designAtomsPrintProductItemsCreateItemFromFileAsyncWithHttpInfo($item_type, $tenant_id, $source_file, $palette_uid, $page_index, $preserve_original_file, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2025,19 +2171,20 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from input image file.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsPrintProductItemsCreateItemFromFileAsyncWithHttpInfo($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFileAsyncWithHttpInfo($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $page_index = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
         $returnType = 'mixed';
-        $request = $this->designAtomsPrintProductItemsCreateItemFromFileRequest($item_type, $tenant_id, $source_file, $palette_uid, $preserve_original_file, $contentType);
+        $request = $this->designAtomsPrintProductItemsCreateItemFromFileRequest($item_type, $tenant_id, $source_file, $palette_uid, $page_index, $preserve_original_file, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2079,17 +2226,19 @@ class DesignAtomsPrintProductItemsApi
      * Create request for operation 'designAtomsPrintProductItemsCreateItemFromFile'
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Input files. (optional)
      * @param  string $palette_uid Target palette UID. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  bool $preserve_original_file Indicates if resulting item should store original source file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsPrintProductItemsCreateItemFromFileRequest($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
+    public function designAtomsPrintProductItemsCreateItemFromFileRequest($item_type = null, $tenant_id = null, $source_file = null, $palette_uid = null, $page_index = null, $preserve_original_file = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromFile'][0])
     {
+
 
 
 
@@ -2140,6 +2289,10 @@ class DesignAtomsPrintProductItemsApi
         // form params
         if ($palette_uid !== null) {
             $formParams['paletteUID'] = ObjectSerializer::toFormValue($palette_uid);
+        }
+        // form params
+        if ($page_index !== null) {
+            $formParams['pageIndex'] = ObjectSerializer::toFormValue($page_index);
         }
         // form params
         if ($preserve_original_file !== null) {
@@ -2227,13 +2380,13 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from image file taken from storage.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto
      */
     public function designAtomsPrintProductItemsCreateItemFromStorage($item_type = null, $tenant_id = null, $create_item_from_storage_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'][0])
     {
@@ -2247,13 +2400,13 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from image file taken from storage.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductItemsCreateItemFromStorageWithHttpInfo($item_type = null, $tenant_id = null, $create_item_from_storage_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'][0])
     {
@@ -2322,6 +2475,33 @@ class DesignAtomsPrintProductItemsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 404:
                     if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2350,11 +2530,11 @@ class DesignAtomsPrintProductItemsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2372,7 +2552,7 @@ class DesignAtomsPrintProductItemsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2416,6 +2596,14 @@ class DesignAtomsPrintProductItemsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -2427,7 +2615,7 @@ class DesignAtomsPrintProductItemsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
+                        '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2443,7 +2631,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from image file taken from storage.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
      *
@@ -2466,7 +2654,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from image file taken from storage.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
      *
@@ -2518,7 +2706,7 @@ class DesignAtomsPrintProductItemsApi
      * Create request for operation 'designAtomsPrintProductItemsCreateItemFromStorage'
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromStorageModel $create_item_from_storage_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromStorage'] to see the possible values for this operation
      *
@@ -2649,13 +2837,13 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from remote web image provided by URL.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto
      */
     public function designAtomsPrintProductItemsCreateItemFromUrl($item_type = null, $tenant_id = null, $create_item_from_url_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'][0])
     {
@@ -2669,13 +2857,13 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from remote web image provided by URL.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductItemsCreateItemFromUrlWithHttpInfo($item_type = null, $tenant_id = null, $create_item_from_url_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'][0])
     {
@@ -2772,11 +2960,11 @@ class DesignAtomsPrintProductItemsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2794,7 +2982,7 @@ class DesignAtomsPrintProductItemsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2849,7 +3037,7 @@ class DesignAtomsPrintProductItemsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
+                        '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2865,7 +3053,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from remote web image provided by URL.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
      *
@@ -2888,7 +3076,7 @@ class DesignAtomsPrintProductItemsApi
      * Creates print-product item from remote web image provided by URL.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
      *
@@ -2940,7 +3128,7 @@ class DesignAtomsPrintProductItemsApi
      * Create request for operation 'designAtomsPrintProductItemsCreateItemFromUrl'
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateItemFromUrlModel $create_item_from_url_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsCreateItemFromUrl'] to see the possible values for this operation
      *
@@ -3070,13 +3258,13 @@ class DesignAtomsPrintProductItemsApi
      *
      * Extracts print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImage'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
     public function designAtomsPrintProductItemsExtractItemImage($tenant_id = null, $extract_item_image_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsExtractItemImage'][0])
     {
@@ -3089,13 +3277,13 @@ class DesignAtomsPrintProductItemsApi
      *
      * Extracts print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImage'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductItemsExtractItemImageWithHttpInfo($tenant_id = null, $extract_item_image_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsExtractItemImage'][0])
     {
@@ -3164,6 +3352,33 @@ class DesignAtomsPrintProductItemsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -3204,6 +3419,14 @@ class DesignAtomsPrintProductItemsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -3214,7 +3437,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Extracts print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImage'] to see the possible values for this operation
      *
@@ -3236,7 +3459,7 @@ class DesignAtomsPrintProductItemsApi
      *
      * Extracts print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImage'] to see the possible values for this operation
      *
@@ -3287,7 +3510,7 @@ class DesignAtomsPrintProductItemsApi
     /**
      * Create request for operation 'designAtomsPrintProductItemsExtractItemImage'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImage'] to see the possible values for this operation
      *
@@ -3321,7 +3544,7 @@ class DesignAtomsPrintProductItemsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/octet-stream', ],
+            ['application/octet-stream', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -3403,18 +3626,390 @@ class DesignAtomsPrintProductItemsApi
     }
 
     /**
+     * Operation designAtomsPrintProductItemsExtractItemImageToResource
+     *
+     * Extracts print-product item image.
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModel $extract_item_image_to_resource_model Extraction parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails
+     */
+    public function designAtomsPrintProductItemsExtractItemImageToResource($tenant_id = null, $extract_item_image_to_resource_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'][0])
+    {
+        list($response) = $this->designAtomsPrintProductItemsExtractItemImageToResourceWithHttpInfo($tenant_id, $extract_item_image_to_resource_model, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation designAtomsPrintProductItemsExtractItemImageToResourceWithHttpInfo
+     *
+     * Extracts print-product item image.
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModel $extract_item_image_to_resource_model Extraction parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsPrintProductItemsExtractItemImageToResourceWithHttpInfo($tenant_id = null, $extract_item_image_to_resource_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'][0])
+    {
+        $request = $this->designAtomsPrintProductItemsExtractItemImageToResourceRequest($tenant_id, $extract_item_image_to_resource_model, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\DesignAtoms\Model\ResourceInfoDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ResourceInfoDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ResourceInfoDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\DesignAtoms\Model\ResourceInfoDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ResourceInfoDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsPrintProductItemsExtractItemImageToResourceAsync
+     *
+     * Extracts print-product item image.
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModel $extract_item_image_to_resource_model Extraction parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductItemsExtractItemImageToResourceAsync($tenant_id = null, $extract_item_image_to_resource_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'][0])
+    {
+        return $this->designAtomsPrintProductItemsExtractItemImageToResourceAsyncWithHttpInfo($tenant_id, $extract_item_image_to_resource_model, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsPrintProductItemsExtractItemImageToResourceAsyncWithHttpInfo
+     *
+     * Extracts print-product item image.
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModel $extract_item_image_to_resource_model Extraction parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsPrintProductItemsExtractItemImageToResourceAsyncWithHttpInfo($tenant_id = null, $extract_item_image_to_resource_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'][0])
+    {
+        $returnType = '\Aurigma\DesignAtoms\Model\ResourceInfoDto';
+        $request = $this->designAtomsPrintProductItemsExtractItemImageToResourceRequest($tenant_id, $extract_item_image_to_resource_model, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsPrintProductItemsExtractItemImageToResource'
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModel $extract_item_image_to_resource_model Extraction parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsPrintProductItemsExtractItemImageToResourceRequest($tenant_id = null, $extract_item_image_to_resource_model = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsExtractItemImageToResource'][0])
+    {
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/print-product/items/extract-image/to-resource';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/octet-stream', 'application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($extract_item_image_to_resource_model)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($extract_item_image_to_resource_model));
+            } else {
+                $httpBody = $extract_item_image_to_resource_model;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsPrintProductItemsFlattenItems
      *
      * Flattens print-product items.
      *
      * @param  string $palette_uid palette_uid (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsPrintProductItemsFlattenItems($palette_uid = null, $tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
     {
@@ -3428,13 +4023,13 @@ class DesignAtomsPrintProductItemsApi
      * Flattens print-product items.
      *
      * @param  string $palette_uid (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductItemsFlattenItemsWithHttpInfo($palette_uid = null, $tenant_id = null, $request_body = null, string $contentType = self::contentTypes['designAtomsPrintProductItemsFlattenItems'][0])
     {
@@ -3503,6 +4098,60 @@ class DesignAtomsPrintProductItemsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Aurigma\DesignAtoms\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -3543,6 +4192,22 @@ class DesignAtomsPrintProductItemsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -3554,7 +4219,7 @@ class DesignAtomsPrintProductItemsApi
      * Flattens print-product items.
      *
      * @param  string $palette_uid (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
      *
@@ -3577,7 +4242,7 @@ class DesignAtomsPrintProductItemsApi
      * Flattens print-product items.
      *
      * @param  string $palette_uid (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
      *
@@ -3629,7 +4294,7 @@ class DesignAtomsPrintProductItemsApi
      * Create request for operation 'designAtomsPrintProductItemsFlattenItems'
      *
      * @param  string $palette_uid (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body List of print-product items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductItemsFlattenItems'] to see the possible values for this operation
      *

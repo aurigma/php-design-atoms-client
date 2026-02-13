@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**designAtomsCompatibilityGetLicense()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetLicense) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/license |  |
 | [**designAtomsCompatibilityGetShapeBounds()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetShapeBounds) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetShapeBounds |  |
 | [**designAtomsCompatibilityGetWatermarkItems()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityGetWatermarkItems) | **POST** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/GetWatermarkItems |  |
-| [**designAtomsCompatibilityImg()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityImg) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/img |  |
+| [**designAtomsCompatibilityImg()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityImg) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/img | Retrieves an image with resized dimensions and additional visual effects based on the provided parameters. |
 | [**designAtomsCompatibilityPth()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityPth) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/pth |  |
 | [**designAtomsCompatibilityResource()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilityResource) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/resource |  |
 | [**designAtomsCompatibilitySvg()**](DesignAtomsCompatibilityApi.md#designAtomsCompatibilitySvg) | **GET** /api/atoms/v1/tenants/{tenantId}/api/ccviewer/svg |  |
@@ -102,7 +102,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `text/css`
+- **Accept**: `text/css`, `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -791,10 +791,12 @@ try {
 ## `designAtomsCompatibilityImg()`
 
 ```php
-designAtomsCompatibilityImg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh): \SplFileObject
+designAtomsCompatibilityImg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da): \SplFileObject
 ```
 
+Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
 
+This method accepts query parameters that control the output of the image.
 
 ### Example
 
@@ -830,27 +832,29 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     $config
 );
 $tenant_id = 56; // int
-$f = 'f_example'; // string
-$w = 56; // int
-$h = 56; // int
-$cmyk = 'cmyk_example'; // string
-$rgb = 'rgb_example'; // string
-$grayscale = 'grayscale_example'; // string
-$target = 'target_example'; // string
-$sq = True; // bool
-$effect = 'effect_example'; // string
-$kp = True; // bool
-$color = 'color_example'; // string
-$obm = 'obm_example'; // string
-$oo = 3.4; // float
-$alpha_mask = True; // bool
-$page = 56; // int
-$colorize_color = 'colorize_color_example'; // string
-$rw = 3.4; // float
-$rh = 3.4; // float
+$f = 'f_example'; // string | The identifier of the original image file.
+$w = 56; // int | Target width of the resulting image.
+$h = 56; // int | Target height of the resulting image.
+$cmyk = 'cmyk_example'; // string | Name of the CMYK profile used for color conversion.
+$rgb = 'rgb_example'; // string | Name of the RGB profile used for color conversion.
+$grayscale = 'grayscale_example'; // string | Name of the grayscale profile used to convert into shades of gray.
+$target = 'target_example'; // string | Target color space, one of \"Rgb\", \"Grayscale\", or \"Cmyk\".
+$sq = True; // bool | Indicates that the image is squared.  The default value is \"false\".
+$effect = 'effect_example'; // string | Effect applied to the image.  Possible values: \"None\", \"BlackAndWhite\", \"FlipVertical\", \"FlipHorizontal\", \"Colorize\", \"Grayscale\", or \"BlackAndTransparent\".  The default value is \"None\".
+$kp = True; // bool | Indicates that image proportions should be maintained.  The default value is \"false\".
+$color = 'color_example'; // string | Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it's an empty string.
+$obm = 'obm_example'; // string | Overlay blend mode used for blending colors.  Possible values: \"Normal\", \"Multiply\", \"Screen\", \"Overlay\", \"Darken\", \"Lighten\", \"ColorDodge\",  \"ColorBurn\", \"HardLight\", \"SoftLight\", `Difference\", \"Exclusion\", \"None\", or \"LinearBurn\".  By default, it's an empty string.
+$oo = 3.4; // float | Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \"null\".
+$alpha_mask = True; // bool | Enables alpha mask processing.  The default value is \"false\".
+$page = 56; // int | Page index in a PDF document that needs to be processed.  The default value is \"0\".
+$colorize_color = 'colorize_color_example'; // string | Color applied for the \"Colorize\" image effect.  By default, it's an empty string.
+$rw = 3.4; // float | Rectangle width for area selection.  The default value is \"0\".
+$rh = 3.4; // float | Rectangle height for area selection.  The default value is \"0\".
+$dt = 'dt_example'; // string | Dithering type.
+$da = 3.4; // float | Dithering amount.
 
 try {
-    $result = $apiInstance->designAtomsCompatibilityImg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh);
+    $result = $apiInstance->designAtomsCompatibilityImg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsCompatibilityApi->designAtomsCompatibilityImg: ', $e->getMessage(), PHP_EOL;
@@ -862,24 +866,26 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **tenant_id** | **int**|  | |
-| **f** | **string**|  | [optional] |
-| **w** | **int**|  | [optional] |
-| **h** | **int**|  | [optional] |
-| **cmyk** | **string**|  | [optional] |
-| **rgb** | **string**|  | [optional] |
-| **grayscale** | **string**|  | [optional] |
-| **target** | **string**|  | [optional] |
-| **sq** | **bool**|  | [optional] |
-| **effect** | **string**|  | [optional] |
-| **kp** | **bool**|  | [optional] |
-| **color** | **string**|  | [optional] |
-| **obm** | **string**|  | [optional] |
-| **oo** | **float**|  | [optional] |
-| **alpha_mask** | **bool**|  | [optional] |
-| **page** | **int**|  | [optional] |
-| **colorize_color** | **string**|  | [optional] |
-| **rw** | **float**|  | [optional] |
-| **rh** | **float**|  | [optional] |
+| **f** | **string**| The identifier of the original image file. | [optional] |
+| **w** | **int**| Target width of the resulting image. | [optional] |
+| **h** | **int**| Target height of the resulting image. | [optional] |
+| **cmyk** | **string**| Name of the CMYK profile used for color conversion. | [optional] |
+| **rgb** | **string**| Name of the RGB profile used for color conversion. | [optional] |
+| **grayscale** | **string**| Name of the grayscale profile used to convert into shades of gray. | [optional] |
+| **target** | **string**| Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. | [optional] |
+| **sq** | **bool**| Indicates that the image is squared.  The default value is \&quot;false\&quot;. | [optional] |
+| **effect** | **string**| Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. | [optional] |
+| **kp** | **bool**| Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. | [optional] |
+| **color** | **string**| Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. | [optional] |
+| **obm** | **string**| Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. | [optional] |
+| **oo** | **float**| Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. | [optional] |
+| **alpha_mask** | **bool**| Enables alpha mask processing.  The default value is \&quot;false\&quot;. | [optional] |
+| **page** | **int**| Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. | [optional] |
+| **colorize_color** | **string**| Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. | [optional] |
+| **rw** | **float**| Rectangle width for area selection.  The default value is \&quot;0\&quot;. | [optional] |
+| **rh** | **float**| Rectangle height for area selection.  The default value is \&quot;0\&quot;. | [optional] |
+| **dt** | **string**| Dithering type. | [optional] |
+| **da** | **float**| Dithering amount. | [optional] |
 
 ### Return type
 
@@ -1053,7 +1059,7 @@ try {
 ## `designAtomsCompatibilitySvg()`
 
 ```php
-designAtomsCompatibilitySvg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh): \SplFileObject
+designAtomsCompatibilitySvg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da): \SplFileObject
 ```
 
 
@@ -1092,27 +1098,29 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsCompatibilityApi(
     $config
 );
 $tenant_id = 56; // int
-$f = 'f_example'; // string
-$w = 56; // int
-$h = 56; // int
-$cmyk = 'cmyk_example'; // string
-$rgb = 'rgb_example'; // string
-$grayscale = 'grayscale_example'; // string
-$target = 'target_example'; // string
-$sq = True; // bool
-$effect = 'effect_example'; // string
-$kp = True; // bool
-$color = 'color_example'; // string
-$obm = 'obm_example'; // string
-$oo = 3.4; // float
-$alpha_mask = True; // bool
-$page = 56; // int
-$colorize_color = 'colorize_color_example'; // string
-$rw = 3.4; // float
-$rh = 3.4; // float
+$f = 'f_example'; // string | The identifier of the original image file.
+$w = 56; // int | Target width of the resulting image.
+$h = 56; // int | Target height of the resulting image.
+$cmyk = 'cmyk_example'; // string | Name of the CMYK profile used for color conversion.
+$rgb = 'rgb_example'; // string | Name of the RGB profile used for color conversion.
+$grayscale = 'grayscale_example'; // string | Name of the grayscale profile used to convert into shades of gray.
+$target = 'target_example'; // string | Target color space, one of \"Rgb\", \"Grayscale\", or \"Cmyk\".
+$sq = True; // bool | Indicates that the image is squared.  The default value is \"false\".
+$effect = 'effect_example'; // string | Effect applied to the image.  Possible values: \"None\", \"BlackAndWhite\", \"FlipVertical\", \"FlipHorizontal\", \"Colorize\", \"Grayscale\", or \"BlackAndTransparent\".  The default value is \"None\".
+$kp = True; // bool | Indicates that image proportions should be maintained.  The default value is \"false\".
+$color = 'color_example'; // string | Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it's an empty string.
+$obm = 'obm_example'; // string | Overlay blend mode used for blending colors.  Possible values: \"Normal\", \"Multiply\", \"Screen\", \"Overlay\", \"Darken\", \"Lighten\", \"ColorDodge\",  \"ColorBurn\", \"HardLight\", \"SoftLight\", `Difference\", \"Exclusion\", \"None\", or \"LinearBurn\".  By default, it's an empty string.
+$oo = 3.4; // float | Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \"null\".
+$alpha_mask = True; // bool | Enables alpha mask processing.  The default value is \"false\".
+$page = 56; // int | Page index in a PDF document that needs to be processed.  The default value is \"0\".
+$colorize_color = 'colorize_color_example'; // string | Color applied for the \"Colorize\" image effect.  By default, it's an empty string.
+$rw = 3.4; // float | Rectangle width for area selection.  The default value is \"0\".
+$rh = 3.4; // float | Rectangle height for area selection.  The default value is \"0\".
+$dt = 'dt_example'; // string | Dithering type.
+$da = 3.4; // float | Dithering amount.
 
 try {
-    $result = $apiInstance->designAtomsCompatibilitySvg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh);
+    $result = $apiInstance->designAtomsCompatibilitySvg($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignAtomsCompatibilityApi->designAtomsCompatibilitySvg: ', $e->getMessage(), PHP_EOL;
@@ -1124,24 +1132,26 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **tenant_id** | **int**|  | |
-| **f** | **string**|  | [optional] |
-| **w** | **int**|  | [optional] |
-| **h** | **int**|  | [optional] |
-| **cmyk** | **string**|  | [optional] |
-| **rgb** | **string**|  | [optional] |
-| **grayscale** | **string**|  | [optional] |
-| **target** | **string**|  | [optional] |
-| **sq** | **bool**|  | [optional] |
-| **effect** | **string**|  | [optional] |
-| **kp** | **bool**|  | [optional] |
-| **color** | **string**|  | [optional] |
-| **obm** | **string**|  | [optional] |
-| **oo** | **float**|  | [optional] |
-| **alpha_mask** | **bool**|  | [optional] |
-| **page** | **int**|  | [optional] |
-| **colorize_color** | **string**|  | [optional] |
-| **rw** | **float**|  | [optional] |
-| **rh** | **float**|  | [optional] |
+| **f** | **string**| The identifier of the original image file. | [optional] |
+| **w** | **int**| Target width of the resulting image. | [optional] |
+| **h** | **int**| Target height of the resulting image. | [optional] |
+| **cmyk** | **string**| Name of the CMYK profile used for color conversion. | [optional] |
+| **rgb** | **string**| Name of the RGB profile used for color conversion. | [optional] |
+| **grayscale** | **string**| Name of the grayscale profile used to convert into shades of gray. | [optional] |
+| **target** | **string**| Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. | [optional] |
+| **sq** | **bool**| Indicates that the image is squared.  The default value is \&quot;false\&quot;. | [optional] |
+| **effect** | **string**| Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. | [optional] |
+| **kp** | **bool**| Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. | [optional] |
+| **color** | **string**| Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. | [optional] |
+| **obm** | **string**| Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. | [optional] |
+| **oo** | **float**| Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. | [optional] |
+| **alpha_mask** | **bool**| Enables alpha mask processing.  The default value is \&quot;false\&quot;. | [optional] |
+| **page** | **int**| Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. | [optional] |
+| **colorize_color** | **string**| Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. | [optional] |
+| **rw** | **float**| Rectangle width for area selection.  The default value is \&quot;0\&quot;. | [optional] |
+| **rh** | **float**| Rectangle height for area selection.  The default value is \&quot;0\&quot;. | [optional] |
+| **dt** | **string**| Dithering type. | [optional] |
+| **da** | **float**| Dithering amount. | [optional] |
 
 ### Return type
 

@@ -114,4 +114,13 @@ class ImagePreviewRenderingConfigTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "page_index"
+     */
+    public function testPropertyPageIndex()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

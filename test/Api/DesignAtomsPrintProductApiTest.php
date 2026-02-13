@@ -72,6 +72,18 @@ class DesignAtomsPrintProductApiTest extends TestCase
     }
 
     /**
+     * Test case for designAtomsPrintProductAddDesignPrintArea
+     *
+     * Inserts a new print-area created by the description at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions..
+     *
+     */
+    public function testDesignAtomsPrintProductAddDesignPrintArea()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for designAtomsPrintProductAddDesignPrintAreaModel
      *
      * Inserts a new print-area provided as a json-serialized model at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions..
@@ -84,9 +96,33 @@ class DesignAtomsPrintProductApiTest extends TestCase
     }
 
     /**
+     * Test case for designAtomsPrintProductAddDesignSurfaceContainerModel
+     *
+     * Inserts a new print-product container provided as a json-serialized model to the certain surface in an existing design file.  Print-product container identifier will be reset by auto-generated value to prevent identifiers collisions..
+     *
+     */
+    public function testDesignAtomsPrintProductAddDesignSurfaceContainerModel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsPrintProductAddDesignSurfaceItemModel
+     *
+     * Inserts a new print-product item provided as a json-serialized model to the specified surface in an existing design file.  Item identifier will be reset by auto-generated value to prevent identifiers collisions..
+     *
+     */
+    public function testDesignAtomsPrintProductAddDesignSurfaceItemModel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for designAtomsPrintProductAddDesignSurfaceModel
      *
-     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions..
+     * Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions..
      *
      */
     public function testDesignAtomsPrintProductAddDesignSurfaceModel()
@@ -114,6 +150,30 @@ class DesignAtomsPrintProductApiTest extends TestCase
      *
      */
     public function testDesignAtomsPrintProductDeleteDesignSurface()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsPrintProductDeleteDesignSurfaceContainer
+     *
+     * Deletes a specified print-product container in an existing design file..
+     *
+     */
+    public function testDesignAtomsPrintProductDeleteDesignSurfaceContainer()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsPrintProductDeleteDesignSurfaceItem
+     *
+     * Deletes a specified print-product item in an existing design file..
+     *
+     */
+    public function testDesignAtomsPrintProductDeleteDesignSurfaceItem()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -156,9 +216,33 @@ class DesignAtomsPrintProductApiTest extends TestCase
     }
 
     /**
+     * Test case for designAtomsPrintProductGetDesignSurfaceContainerModel
+     *
+     * Returns a print-product container of the specified design file as a json-serialized model..
+     *
+     */
+    public function testDesignAtomsPrintProductGetDesignSurfaceContainerModel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsPrintProductGetDesignSurfaceContainers
+     *
+     * Returns a list of print-product container descriptions of the specified design file..
+     *
+     */
+    public function testDesignAtomsPrintProductGetDesignSurfaceContainers()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for designAtomsPrintProductGetDesignSurfaceDownMockup
      *
-     * Returns a down-mockup description of the specified surface in an existing design file..
+     * Returns a down-mockup description of the specified print-product surface in an existing design file..
      *
      */
     public function testDesignAtomsPrintProductGetDesignSurfaceDownMockup()
@@ -170,10 +254,34 @@ class DesignAtomsPrintProductApiTest extends TestCase
     /**
      * Test case for designAtomsPrintProductGetDesignSurfaceDownMockupContent
      *
-     * Returns a content file for down-mockup of the specified surface in an existing design file..
+     * Returns a content file for down-mockup of the specified print-product surface in an existing design file..
      *
      */
     public function testDesignAtomsPrintProductGetDesignSurfaceDownMockupContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsPrintProductGetDesignSurfaceItemModel
+     *
+     * Returns a print-product item of the specified design file as a json-serialized model..
+     *
+     */
+    public function testDesignAtomsPrintProductGetDesignSurfaceItemModel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsPrintProductGetDesignSurfaceItems
+     *
+     * Returns a list of print-product items descriptions of the specified design file..
+     *
+     */
+    public function testDesignAtomsPrintProductGetDesignSurfaceItems()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -194,7 +302,7 @@ class DesignAtomsPrintProductApiTest extends TestCase
     /**
      * Test case for designAtomsPrintProductGetDesignSurfaceUpMockup
      *
-     * Returns an up-mockup description of the specified surface in an existing design file..
+     * Returns an up-mockup description of the specified print-product surface in an existing design file..
      *
      */
     public function testDesignAtomsPrintProductGetDesignSurfaceUpMockup()
@@ -206,7 +314,7 @@ class DesignAtomsPrintProductApiTest extends TestCase
     /**
      * Test case for designAtomsPrintProductGetDesignSurfaceUpMockupContent
      *
-     * Returns a content file for up-mockup of the specified surface in an existing design file..
+     * Returns a content file for up-mockup of the specified print-product surface in an existing design file..
      *
      */
     public function testDesignAtomsPrintProductGetDesignSurfaceUpMockupContent()
@@ -242,10 +350,22 @@ class DesignAtomsPrintProductApiTest extends TestCase
     /**
      * Test case for designAtomsPrintProductReplaceDesignSurfaceModel
      *
-     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All identifiers of a replaced surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions..
+     * Replaces a specified print-product surface in an existing design file with the data provided as a json-serialized surface model.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions..
      *
      */
     public function testDesignAtomsPrintProductReplaceDesignSurfaceModel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsPrintProductUpdateDesignPrintArea
+     *
+     * Updates a specified print-area using a description in an existing design file..
+     *
+     */
+    public function testDesignAtomsPrintProductUpdateDesignPrintArea()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -266,7 +386,7 @@ class DesignAtomsPrintProductApiTest extends TestCase
     /**
      * Test case for designAtomsPrintProductUpdateDesignProductModel
      *
-     * Saves a print-product provided as a json-serialized model to the specified design file..
+     * Updates a print-product provided as a json-serialized model is the specified design file..
      *
      */
     public function testDesignAtomsPrintProductUpdateDesignProductModel()
@@ -276,9 +396,21 @@ class DesignAtomsPrintProductApiTest extends TestCase
     }
 
     /**
+     * Test case for designAtomsPrintProductUpdateDesignSurfaceContainerModel
+     *
+     * Updates a specified print-product container in an existing design file with the data provided as a json-serialized model..
+     *
+     */
+    public function testDesignAtomsPrintProductUpdateDesignSurfaceContainerModel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for designAtomsPrintProductUpdateDesignSurfaceDownMockup
      *
-     * Updates a content file of down-mockup for the specified surface in an existing design file..
+     * Updates a content file of down-mockup for the specified print-product surface in an existing design file..
      *
      */
     public function testDesignAtomsPrintProductUpdateDesignSurfaceDownMockup()
@@ -288,9 +420,21 @@ class DesignAtomsPrintProductApiTest extends TestCase
     }
 
     /**
+     * Test case for designAtomsPrintProductUpdateDesignSurfaceItemModel
+     *
+     * Updates a specified print-product surface item in an existing design file with the data provided as a json-serialized item model..
+     *
+     */
+    public function testDesignAtomsPrintProductUpdateDesignSurfaceItemModel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for designAtomsPrintProductUpdateDesignSurfaceUpMockup
      *
-     * Updates a content file of up-mockup for the specified surface in an existing design..
+     * Updates a content file of up-mockup for the specified print-product surface in an existing design..
      *
      */
     public function testDesignAtomsPrintProductUpdateDesignSurfaceUpMockup()

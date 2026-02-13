@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * SizeDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Design item size.
+ * @description Size of the print-product element.
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

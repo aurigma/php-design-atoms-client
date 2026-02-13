@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * PositionDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Position of item top left point on design surface.
+ * @description Position of the print-product element top left point on surface.
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

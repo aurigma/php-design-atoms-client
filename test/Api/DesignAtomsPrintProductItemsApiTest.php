@@ -72,6 +72,18 @@ class DesignAtomsPrintProductItemsApiTest extends TestCase
     }
 
     /**
+     * Test case for designAtomsPrintProductItemsApplyItemEffects
+     *
+     * Apply effects to print-product item image..
+     *
+     */
+    public function testDesignAtomsPrintProductItemsApplyItemEffects()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for designAtomsPrintProductItemsBatchCreateItemsFromFile
      *
      * Creates multiple print-product items from input image files..
@@ -150,6 +162,18 @@ class DesignAtomsPrintProductItemsApiTest extends TestCase
      *
      */
     public function testDesignAtomsPrintProductItemsExtractItemImage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designAtomsPrintProductItemsExtractItemImageToResource
+     *
+     * Extracts print-product item image..
+     *
+     */
+    public function testDesignAtomsPrintProductItemsExtractItemImageToResource()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

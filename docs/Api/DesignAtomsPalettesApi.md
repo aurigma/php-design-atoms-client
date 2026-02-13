@@ -11,7 +11,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `designAtomsPalettesFindPaletteColor()`
 
 ```php
-designAtomsPalettesFindPaletteColor($palette_uid, $tenant_id, $body): \Aurigma\DesignAtoms\Model\Palette
+designAtomsPalettesFindPaletteColor($palette_uid, $tenant_id, $body): mixed
 ```
 
 Returns a closest color to provided color in a specified palette.
@@ -50,7 +50,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPalettesApi(
     $config
 );
 $palette_uid = 'palette_uid_example'; // string | Palette UID.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Source color.
 
 try {
@@ -66,12 +66,12 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **palette_uid** | **string**| Palette UID. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Source color. | [optional] |
 
 ### Return type
 
-[**\Aurigma\DesignAtoms\Model\Palette**](../Model/Palette.md)
+**mixed**
 
 ### Authorization
 
@@ -129,7 +129,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPalettesApi(
 );
 $id = 'id_example'; // string | Palette identifier.
 $uid = 'uid_example'; // string | Palette UID.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPalettesGetPaletteModel($id, $uid, $tenant_id);
@@ -145,7 +145,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Palette identifier. | [optional] |
 | **uid** | **string**| Palette UID. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 

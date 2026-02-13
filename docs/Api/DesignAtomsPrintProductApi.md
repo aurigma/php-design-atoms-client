@@ -80,7 +80,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $design_print_area_params = new \Aurigma\DesignAtoms\Model\DesignPrintAreaParams(); // \Aurigma\DesignAtoms\Model\DesignPrintAreaParams | Print-area description model.
 
 try {
@@ -97,7 +97,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **design_print_area_params** | [**\Aurigma\DesignAtoms\Model\DesignPrintAreaParams**](../Model/DesignPrintAreaParams.md)| Print-area description model. | [optional] |
 
 ### Return type
@@ -161,7 +161,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Parent surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Json serialized model of a print-area.
 
 try {
@@ -179,7 +179,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Parent surface identifier. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Json serialized model of a print-area. | [optional] |
 
 ### Return type
@@ -246,7 +246,7 @@ $index = 56; // int | Container index within the conatiners list of a surface.
 $top = 3.4; // float | Y axis position.
 $left = 3.4; // float | X axis position.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Json-serialized model of a new print-product container.
 
 try {
@@ -267,7 +267,7 @@ try {
 | **top** | **float**| Y axis position. | [optional] |
 | **left** | **float**| X axis position. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Json-serialized model of a new print-product container. | [optional] |
 
 ### Return type
@@ -334,7 +334,7 @@ $index = 56; // int | Item index within the items list of a container.
 $top = 3.4; // float | Y axis position.
 $left = 3.4; // float | X axis position.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Json-serialized model of a new print-product item.
 
 try {
@@ -355,7 +355,7 @@ try {
 | **top** | **float**| Y axis position. | [optional] |
 | **left** | **float**| X axis position. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Json-serialized model of a new print-product item. | [optional] |
 
 ### Return type
@@ -419,7 +419,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $index = 56; // int | Surface index within the surfaces list of a design.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Json-serialized model of a print-prouduct surface.
 
 try {
@@ -437,7 +437,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **index** | **int**| Surface index within the surfaces list of a design. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Json-serialized model of a print-prouduct surface. | [optional] |
 
 ### Return type
@@ -501,7 +501,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $print_area_id = 'print_area_id_example'; // string | Design print-area identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $apiInstance->designAtomsPrintProductDeleteDesignPrintArea($id, $print_area_id, $private_storage_owner, $tenant_id);
@@ -517,7 +517,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **print_area_id** | **string**| Design print-area identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -580,7 +580,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print-product surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $apiInstance->designAtomsPrintProductDeleteDesignSurface($id, $surface_id, $private_storage_owner, $tenant_id);
@@ -596,7 +596,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print-product surface identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -659,7 +659,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $container_id = 'container_id_example'; // string | Print-product container identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $apiInstance->designAtomsPrintProductDeleteDesignSurfaceContainer($id, $container_id, $private_storage_owner, $tenant_id);
@@ -675,7 +675,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **container_id** | **string**| Print-product container identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -738,7 +738,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $item_id = 'item_id_example'; // string | Print-product item identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $apiInstance->designAtomsPrintProductDeleteDesignSurfaceItem($id, $item_id, $private_storage_owner, $tenant_id);
@@ -754,7 +754,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **item_id** | **string**| Print-product item identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -817,7 +817,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $print_area_id = 'print_area_id_example'; // string | Design print-area identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignPrintAreaModel($id, $print_area_id, $private_storage_owner, $tenant_id);
@@ -834,7 +834,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **print_area_id** | **string**| Design print-area identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -897,7 +897,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignPrintAreas($id, $surface_id, $private_storage_owner, $tenant_id);
@@ -914,7 +914,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**|  | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -976,7 +976,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignProductModel($id, $private_storage_owner, $tenant_id);
@@ -992,7 +992,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1055,7 +1055,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $container_id = 'container_id_example'; // string | Print-product container identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceContainerModel($id, $container_id, $private_storage_owner, $tenant_id);
@@ -1072,7 +1072,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **container_id** | **string**| Print-product container identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1135,7 +1135,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print-product surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceContainers($id, $surface_id, $private_storage_owner, $tenant_id);
@@ -1152,7 +1152,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print-product surface identifier. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1215,7 +1215,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print product surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceDownMockup($id, $surface_id, $private_storage_owner, $tenant_id);
@@ -1232,7 +1232,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print product surface identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1295,7 +1295,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print-product surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceDownMockupContent($id, $surface_id, $private_storage_owner, $tenant_id);
@@ -1312,7 +1312,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print-product surface identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1375,7 +1375,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $item_id = 'item_id_example'; // string | Print-product item identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceItemModel($id, $item_id, $private_storage_owner, $tenant_id);
@@ -1392,7 +1392,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **item_id** | **string**| Print-product item identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1457,7 +1457,7 @@ $surface_id = 'surface_id_example'; // string | Print-product surface identifier
 $container_id = 'container_id_example'; // string | Print-product container identifier.
 $parent_item_id = 'parent_item_id_example'; // string | Print-product item identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceItems($id, $surface_id, $container_id, $parent_item_id, $private_storage_owner, $tenant_id);
@@ -1476,7 +1476,7 @@ try {
 | **container_id** | **string**| Print-product container identifier. | [optional] |
 | **parent_item_id** | **string**| Print-product item identifier. | [optional] |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1539,7 +1539,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceModel($id, $surface_id, $private_storage_owner, $tenant_id);
@@ -1556,7 +1556,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Surface identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1619,7 +1619,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print-product surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceUpMockup($id, $surface_id, $private_storage_owner, $tenant_id);
@@ -1636,7 +1636,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print-product surface identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1699,7 +1699,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print-product surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaceUpMockupContent($id, $surface_id, $private_storage_owner, $tenant_id);
@@ -1716,7 +1716,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print-product surface identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1778,7 +1778,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->designAtomsPrintProductGetDesignSurfaces($id, $private_storage_owner, $tenant_id);
@@ -1794,7 +1794,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -1858,7 +1858,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $patch_type = new \Aurigma\DesignAtoms\Model\ProductPatchType(); // \Aurigma\DesignAtoms\Model\ProductPatchType | Patch operation type.
 $replace_image_item_file_info_item_name = 'replace_image_item_file_info_item_name_example'; // string | Item Name.
 $replace_image_item_file_info_source_file = "/path/to/file.txt"; // \SplFileObject | Patch source file.
@@ -1879,7 +1879,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **patch_type** | [**\Aurigma\DesignAtoms\Model\ProductPatchType**](../Model/ProductPatchType.md)| Patch operation type. | [optional] |
 | **replace_image_item_file_info_item_name** | **string**| Item Name. | [optional] |
 | **replace_image_item_file_info_source_file** | **\SplFileObject****\SplFileObject**| Patch source file. | [optional] |
@@ -1948,7 +1948,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print-product surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Json-serialized model of a print-product surface.
 
 try {
@@ -1966,7 +1966,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print-product surface identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Json-serialized model of a print-product surface. | [optional] |
 
 ### Return type
@@ -2030,7 +2030,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $print_area_id = 'print_area_id_example'; // string | Design print-area identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $design_print_area_params = new \Aurigma\DesignAtoms\Model\DesignPrintAreaParams(); // \Aurigma\DesignAtoms\Model\DesignPrintAreaParams | Print-area description model.
 
 try {
@@ -2048,7 +2048,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **print_area_id** | **string**| Design print-area identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **design_print_area_params** | [**\Aurigma\DesignAtoms\Model\DesignPrintAreaParams**](../Model/DesignPrintAreaParams.md)| Print-area description model. | [optional] |
 
 ### Return type
@@ -2112,7 +2112,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $print_area_id = 'print_area_id_example'; // string | Design print-area identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Json-serialized model of a print-area.
 
 try {
@@ -2130,7 +2130,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **print_area_id** | **string**| Design print-area identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Json-serialized model of a print-area. | [optional] |
 
 ### Return type
@@ -2193,7 +2193,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 );
 $id = 'id_example'; // string | Design identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Json-serialized model of a print-product .
 
 try {
@@ -2209,7 +2209,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Design identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Json-serialized model of a print-product . | [optional] |
 
 ### Return type
@@ -2273,7 +2273,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $container_id = 'container_id_example'; // string | Print-product container identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Json-serialized model of a print-product container.
 
 try {
@@ -2291,7 +2291,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **container_id** | **string**| Print-product container identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Json-serialized model of a print-product container. | [optional] |
 
 ### Return type
@@ -2355,7 +2355,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print-product surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $position_top = 3.4; // float | Y axis position.
 $position_left = 3.4; // float | X axis position.
 $source_file = "/path/to/file.txt"; // \SplFileObject | New mockup file.
@@ -2375,7 +2375,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print-product surface identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **position_top** | **float**| Y axis position. | [optional] |
 | **position_left** | **float**| X axis position. | [optional] |
 | **source_file** | **\SplFileObject****\SplFileObject**| New mockup file. | [optional] |
@@ -2441,7 +2441,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $item_id = 'item_id_example'; // string | Print-product item identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $body = NULL; // mixed | Json-serialized model of a print-product item.
 
 try {
@@ -2459,7 +2459,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **item_id** | **string**| Print-product item identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **body** | **mixed**| Json-serialized model of a print-product item. | [optional] |
 
 ### Return type
@@ -2523,7 +2523,7 @@ $apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
 $id = 'id_example'; // string | Design identifier.
 $surface_id = 'surface_id_example'; // string | Print-product surface identifier.
 $private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant ID.
 $position_top = 3.4; // float | Y axis position.
 $position_left = 3.4; // float | X axis position.
 $source_file = "/path/to/file.txt"; // \SplFileObject | New mockup file.
@@ -2543,7 +2543,7 @@ try {
 | **id** | **string**| Design identifier. | |
 | **surface_id** | **string**| Print-product surface identifier. | |
 | **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **position_top** | **float**| Y axis position. | [optional] |
 | **position_left** | **float**| X axis position. | [optional] |
 | **source_file** | **\SplFileObject****\SplFileObject**| New mockup file. | [optional] |

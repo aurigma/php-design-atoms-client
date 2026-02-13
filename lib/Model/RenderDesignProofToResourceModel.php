@@ -57,7 +57,7 @@ class RenderDesignProofToResourceModel implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'proof_resource_params' => '\Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams',
+        'proof_resource_params' => '\Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModelPreviewResourceParams',
         'overwrite_existing_resource' => 'bool',
         'design_id' => 'string',
         'owner_id' => 'string',
@@ -327,7 +327,7 @@ class RenderDesignProofToResourceModel implements ModelInterface, ArrayAccess, \
     /**
      * Gets proof_resource_params
      *
-     * @return \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams|null
+     * @return \Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModelPreviewResourceParams|null
      */
     public function getProofResourceParams()
     {
@@ -337,7 +337,7 @@ class RenderDesignProofToResourceModel implements ModelInterface, ArrayAccess, \
     /**
      * Sets proof_resource_params
      *
-     * @param \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams|null $proof_resource_params proof_resource_params
+     * @param \Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModelPreviewResourceParams|null $proof_resource_params proof_resource_params
      *
      * @return self
      */

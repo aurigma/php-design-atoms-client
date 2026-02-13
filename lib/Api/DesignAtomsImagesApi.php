@@ -143,13 +143,13 @@ class DesignAtomsImagesApi
      * Renders a preview of an image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreview'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsImagesRenderImagePreview($attachment = null, $tenant_id = null, $render_image_preview_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreview'][0])
     {
@@ -163,13 +163,13 @@ class DesignAtomsImagesApi
      * Renders a preview of an image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreview'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsImagesRenderImagePreviewWithHttpInfo($attachment = null, $tenant_id = null, $render_image_preview_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreview'][0])
     {
@@ -265,6 +265,33 @@ class DesignAtomsImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -313,6 +340,14 @@ class DesignAtomsImagesApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -324,7 +359,7 @@ class DesignAtomsImagesApi
      * Renders a preview of an image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreview'] to see the possible values for this operation
      *
@@ -347,7 +382,7 @@ class DesignAtomsImagesApi
      * Renders a preview of an image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreview'] to see the possible values for this operation
      *
@@ -399,7 +434,7 @@ class DesignAtomsImagesApi
      * Create request for operation 'designAtomsImagesRenderImagePreview'
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewModel $render_image_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreview'] to see the possible values for this operation
      *
@@ -530,7 +565,7 @@ class DesignAtomsImagesApi
      * Renders a preview of an uploaded image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Source file. (optional)
      * @param  string $mockup_owner_id Mockup owner identifier. (optional)
      * @param  string $mockup_id Mockup identifier. (optional)
@@ -538,15 +573,16 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
-    public function designAtomsImagesRenderImagePreviewFromFile($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
+    public function designAtomsImagesRenderImagePreviewFromFile($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
     {
-        list($response) = $this->designAtomsImagesRenderImagePreviewFromFileWithHttpInfo($attachment, $tenant_id, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $contentType);
+        list($response) = $this->designAtomsImagesRenderImagePreviewFromFileWithHttpInfo($attachment, $tenant_id, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $page_index, $contentType);
         return $response;
     }
 
@@ -556,7 +592,7 @@ class DesignAtomsImagesApi
      * Renders a preview of an uploaded image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Source file. (optional)
      * @param  string $mockup_owner_id Mockup owner identifier. (optional)
      * @param  string $mockup_id Mockup identifier. (optional)
@@ -564,15 +600,16 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsImagesRenderImagePreviewFromFileWithHttpInfo($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
+    public function designAtomsImagesRenderImagePreviewFromFileWithHttpInfo($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
     {
-        $request = $this->designAtomsImagesRenderImagePreviewFromFileRequest($attachment, $tenant_id, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $contentType);
+        $request = $this->designAtomsImagesRenderImagePreviewFromFileRequest($attachment, $tenant_id, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $page_index, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -664,6 +701,33 @@ class DesignAtomsImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -712,6 +776,14 @@ class DesignAtomsImagesApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -723,7 +795,7 @@ class DesignAtomsImagesApi
      * Renders a preview of an uploaded image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Source file. (optional)
      * @param  string $mockup_owner_id Mockup owner identifier. (optional)
      * @param  string $mockup_id Mockup identifier. (optional)
@@ -731,14 +803,15 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsImagesRenderImagePreviewFromFileAsync($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
+    public function designAtomsImagesRenderImagePreviewFromFileAsync($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
     {
-        return $this->designAtomsImagesRenderImagePreviewFromFileAsyncWithHttpInfo($attachment, $tenant_id, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $contentType)
+        return $this->designAtomsImagesRenderImagePreviewFromFileAsyncWithHttpInfo($attachment, $tenant_id, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $page_index, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -752,7 +825,7 @@ class DesignAtomsImagesApi
      * Renders a preview of an uploaded image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Source file. (optional)
      * @param  string $mockup_owner_id Mockup owner identifier. (optional)
      * @param  string $mockup_id Mockup identifier. (optional)
@@ -760,15 +833,16 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsImagesRenderImagePreviewFromFileAsyncWithHttpInfo($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
+    public function designAtomsImagesRenderImagePreviewFromFileAsyncWithHttpInfo($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
     {
         $returnType = '\SplFileObject';
-        $request = $this->designAtomsImagesRenderImagePreviewFromFileRequest($attachment, $tenant_id, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $contentType);
+        $request = $this->designAtomsImagesRenderImagePreviewFromFileRequest($attachment, $tenant_id, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $page_index, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -810,7 +884,7 @@ class DesignAtomsImagesApi
      * Create request for operation 'designAtomsImagesRenderImagePreviewFromFile'
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $source_file Source file. (optional)
      * @param  string $mockup_owner_id Mockup owner identifier. (optional)
      * @param  string $mockup_id Mockup identifier. (optional)
@@ -818,13 +892,15 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsImagesRenderImagePreviewFromFileRequest($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
+    public function designAtomsImagesRenderImagePreviewFromFileRequest($attachment = null, $tenant_id = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFile'][0])
     {
+
 
 
 
@@ -899,6 +975,10 @@ class DesignAtomsImagesApi
         // form params
         if ($fit_mode !== null) {
             $formParams['fitMode'] = ObjectSerializer::toFormValue($fit_mode);
+        }
+        // form params
+        if ($page_index !== null) {
+            $formParams['pageIndex'] = ObjectSerializer::toFormValue($page_index);
         }
 
         $headers = $this->headerSelector->selectHeaders(
@@ -981,7 +1061,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of an uploaded image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $resource_owner_id Preview resource owner identifier. (optional)
      * @param  string $resource_namespace Preview resource namespace. (optional)
      * @param  string $resource_name Preview resource name. (optional)
@@ -996,15 +1076,16 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
-    public function designAtomsImagesRenderImagePreviewFromFileToResource($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
+    public function designAtomsImagesRenderImagePreviewFromFileToResource($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
     {
-        list($response) = $this->designAtomsImagesRenderImagePreviewFromFileToResourceWithHttpInfo($tenant_id, $resource_owner_id, $resource_namespace, $resource_name, $resource_source_id, $resource_type, $anonymous_access, $overwrite_existing_resource, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $contentType);
+        list($response) = $this->designAtomsImagesRenderImagePreviewFromFileToResourceWithHttpInfo($tenant_id, $resource_owner_id, $resource_namespace, $resource_name, $resource_source_id, $resource_type, $anonymous_access, $overwrite_existing_resource, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $page_index, $contentType);
         return $response;
     }
 
@@ -1013,7 +1094,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of an uploaded image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $resource_owner_id Preview resource owner identifier. (optional)
      * @param  string $resource_namespace Preview resource namespace. (optional)
      * @param  string $resource_name Preview resource name. (optional)
@@ -1028,15 +1109,16 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\DesignAtoms\Model\ResourceInfoDto|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsImagesRenderImagePreviewFromFileToResourceWithHttpInfo($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
+    public function designAtomsImagesRenderImagePreviewFromFileToResourceWithHttpInfo($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
     {
-        $request = $this->designAtomsImagesRenderImagePreviewFromFileToResourceRequest($tenant_id, $resource_owner_id, $resource_namespace, $resource_name, $resource_source_id, $resource_type, $anonymous_access, $overwrite_existing_resource, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $contentType);
+        $request = $this->designAtomsImagesRenderImagePreviewFromFileToResourceRequest($tenant_id, $resource_owner_id, $resource_namespace, $resource_name, $resource_source_id, $resource_type, $anonymous_access, $overwrite_existing_resource, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $page_index, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1221,7 +1303,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of an uploaded image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $resource_owner_id Preview resource owner identifier. (optional)
      * @param  string $resource_namespace Preview resource namespace. (optional)
      * @param  string $resource_name Preview resource name. (optional)
@@ -1236,14 +1318,15 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsImagesRenderImagePreviewFromFileToResourceAsync($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
+    public function designAtomsImagesRenderImagePreviewFromFileToResourceAsync($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
     {
-        return $this->designAtomsImagesRenderImagePreviewFromFileToResourceAsyncWithHttpInfo($tenant_id, $resource_owner_id, $resource_namespace, $resource_name, $resource_source_id, $resource_type, $anonymous_access, $overwrite_existing_resource, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $contentType)
+        return $this->designAtomsImagesRenderImagePreviewFromFileToResourceAsyncWithHttpInfo($tenant_id, $resource_owner_id, $resource_namespace, $resource_name, $resource_source_id, $resource_type, $anonymous_access, $overwrite_existing_resource, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $page_index, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1256,7 +1339,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of an uploaded image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $resource_owner_id Preview resource owner identifier. (optional)
      * @param  string $resource_namespace Preview resource namespace. (optional)
      * @param  string $resource_name Preview resource name. (optional)
@@ -1271,15 +1354,16 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsImagesRenderImagePreviewFromFileToResourceAsyncWithHttpInfo($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
+    public function designAtomsImagesRenderImagePreviewFromFileToResourceAsyncWithHttpInfo($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
     {
         $returnType = '\Aurigma\DesignAtoms\Model\ResourceInfoDto';
-        $request = $this->designAtomsImagesRenderImagePreviewFromFileToResourceRequest($tenant_id, $resource_owner_id, $resource_namespace, $resource_name, $resource_source_id, $resource_type, $anonymous_access, $overwrite_existing_resource, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $contentType);
+        $request = $this->designAtomsImagesRenderImagePreviewFromFileToResourceRequest($tenant_id, $resource_owner_id, $resource_namespace, $resource_name, $resource_source_id, $resource_type, $anonymous_access, $overwrite_existing_resource, $source_file, $mockup_owner_id, $mockup_id, $width, $height, $file_format, $fit_mode, $page_index, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1320,7 +1404,7 @@ class DesignAtomsImagesApi
     /**
      * Create request for operation 'designAtomsImagesRenderImagePreviewFromFileToResource'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $resource_owner_id Preview resource owner identifier. (optional)
      * @param  string $resource_namespace Preview resource namespace. (optional)
      * @param  string $resource_name Preview resource name. (optional)
@@ -1335,13 +1419,15 @@ class DesignAtomsImagesApi
      * @param  int $height Image preview height. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFormat $file_format Image preview file format. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ImagePreviewFitMode $fit_mode Image preview fit mode. (optional)
+     * @param  int $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsImagesRenderImagePreviewFromFileToResourceRequest($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
+    public function designAtomsImagesRenderImagePreviewFromFileToResourceRequest($tenant_id = null, $resource_owner_id = null, $resource_namespace = null, $resource_name = null, $resource_source_id = null, $resource_type = null, $anonymous_access = null, $overwrite_existing_resource = null, $source_file = null, $mockup_owner_id = null, $mockup_id = null, $width = null, $height = null, $file_format = null, $fit_mode = null, $page_index = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromFileToResource'][0])
     {
+
 
 
 
@@ -1442,6 +1528,10 @@ class DesignAtomsImagesApi
         if ($fit_mode !== null) {
             $formParams['fitMode'] = ObjectSerializer::toFormValue($fit_mode);
         }
+        // form params
+        if ($page_index !== null) {
+            $formParams['pageIndex'] = ObjectSerializer::toFormValue($page_index);
+        }
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -1524,13 +1614,13 @@ class DesignAtomsImagesApi
      * Renders a preview of a web image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModel $render_image_preview_from_url_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrl'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsImagesRenderImagePreviewFromUrl($attachment = null, $tenant_id = null, $render_image_preview_from_url_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromUrl'][0])
     {
@@ -1544,13 +1634,13 @@ class DesignAtomsImagesApi
      * Renders a preview of a web image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModel $render_image_preview_from_url_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrl'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsImagesRenderImagePreviewFromUrlWithHttpInfo($attachment = null, $tenant_id = null, $render_image_preview_from_url_model = null, string $contentType = self::contentTypes['designAtomsImagesRenderImagePreviewFromUrl'][0])
     {
@@ -1646,6 +1736,33 @@ class DesignAtomsImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\SplFileObject';
@@ -1694,6 +1811,14 @@ class DesignAtomsImagesApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -1705,7 +1830,7 @@ class DesignAtomsImagesApi
      * Renders a preview of a web image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModel $render_image_preview_from_url_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrl'] to see the possible values for this operation
      *
@@ -1728,7 +1853,7 @@ class DesignAtomsImagesApi
      * Renders a preview of a web image with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModel $render_image_preview_from_url_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrl'] to see the possible values for this operation
      *
@@ -1780,7 +1905,7 @@ class DesignAtomsImagesApi
      * Create request for operation 'designAtomsImagesRenderImagePreviewFromUrl'
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlModel $render_image_preview_from_url_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrl'] to see the possible values for this operation
      *
@@ -1910,7 +2035,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of a web image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlToResourceModel $render_image_preview_from_url_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrlToResource'] to see the possible values for this operation
      *
@@ -1929,7 +2054,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of a web image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlToResourceModel $render_image_preview_from_url_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrlToResource'] to see the possible values for this operation
      *
@@ -2124,7 +2249,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of a web image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlToResourceModel $render_image_preview_from_url_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrlToResource'] to see the possible values for this operation
      *
@@ -2146,7 +2271,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of a web image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlToResourceModel $render_image_preview_from_url_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrlToResource'] to see the possible values for this operation
      *
@@ -2197,7 +2322,7 @@ class DesignAtomsImagesApi
     /**
      * Create request for operation 'designAtomsImagesRenderImagePreviewFromUrlToResource'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewFromUrlToResourceModel $render_image_preview_from_url_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewFromUrlToResource'] to see the possible values for this operation
      *
@@ -2317,7 +2442,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of an image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewToResourceModel $render_image_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewToResource'] to see the possible values for this operation
      *
@@ -2336,7 +2461,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of an image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewToResourceModel $render_image_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewToResource'] to see the possible values for this operation
      *
@@ -2531,7 +2656,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of an image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewToResourceModel $render_image_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewToResource'] to see the possible values for this operation
      *
@@ -2553,7 +2678,7 @@ class DesignAtomsImagesApi
      *
      * Renders a preview of an image with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewToResourceModel $render_image_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewToResource'] to see the possible values for this operation
      *
@@ -2604,7 +2729,7 @@ class DesignAtomsImagesApi
     /**
      * Create request for operation 'designAtomsImagesRenderImagePreviewToResource'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderImagePreviewToResourceModel $render_image_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsImagesRenderImagePreviewToResource'] to see the possible values for this operation
      *

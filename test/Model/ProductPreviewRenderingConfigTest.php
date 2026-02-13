@@ -89,6 +89,15 @@ class ProductPreviewRenderingConfigTest extends TestCase
     }
 
     /**
+     * Test attribute "stub"
+     */
+    public function testPropertyStub()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "width"
      */
     public function testPropertyWidth()

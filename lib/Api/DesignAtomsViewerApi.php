@@ -200,7 +200,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerCssFonts
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\FontsMethodData $fonts_method_data fonts_method_data (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerCssFonts'] to see the possible values for this operation
      *
@@ -217,7 +217,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerCssFontsWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\FontsMethodData $fonts_method_data (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerCssFonts'] to see the possible values for this operation
      *
@@ -340,7 +340,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerCssFontsAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\FontsMethodData $fonts_method_data (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerCssFonts'] to see the possible values for this operation
      *
@@ -360,7 +360,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerCssFontsAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\FontsMethodData $fonts_method_data (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerCssFonts'] to see the possible values for this operation
      *
@@ -411,7 +411,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerCssFonts'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\FontsMethodData $fonts_method_data (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerCssFonts'] to see the possible values for this operation
      *
@@ -445,7 +445,7 @@ class DesignAtomsViewerApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/css', ],
+            ['text/css', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -530,7 +530,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerFonts
      *
      * @param  string $ps_name ps_name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerFonts'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -547,7 +547,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerFontsWithHttpInfo
      *
      * @param  string $ps_name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerFonts'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -705,7 +705,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerFontsAsync
      *
      * @param  string $ps_name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerFonts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -725,7 +725,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerFontsAsyncWithHttpInfo
      *
      * @param  string $ps_name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerFonts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -776,7 +776,7 @@ class DesignAtomsViewerApi
      * Create request for operation 'designAtomsViewerFonts'
      *
      * @param  string $ps_name (required)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerFonts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -900,7 +900,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetColorPreview
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request get_color_preview_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreview'] to see the possible values for this operation
      *
@@ -917,7 +917,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetColorPreviewWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreview'] to see the possible values for this operation
      *
@@ -1075,7 +1075,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetColorPreviewAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreview'] to see the possible values for this operation
      *
@@ -1095,7 +1095,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetColorPreviewAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreview'] to see the possible values for this operation
      *
@@ -1146,7 +1146,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerGetColorPreview'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewRequest $get_color_preview_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreview'] to see the possible values for this operation
      *
@@ -1264,7 +1264,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetColorPreviews
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request get_color_previews_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreviews'] to see the possible values for this operation
      *
@@ -1281,7 +1281,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetColorPreviewsWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreviews'] to see the possible values for this operation
      *
@@ -1439,7 +1439,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetColorPreviewsAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreviews'] to see the possible values for this operation
      *
@@ -1459,7 +1459,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetColorPreviewsAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreviews'] to see the possible values for this operation
      *
@@ -1510,7 +1510,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerGetColorPreviews'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetColorPreviewsRequest $get_color_previews_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetColorPreviews'] to see the possible values for this operation
      *
@@ -1629,7 +1629,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerGetCssFont
      *
      * @param  string $font_key font_key (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetCssFont'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1646,7 +1646,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerGetCssFontWithHttpInfo
      *
      * @param  string $font_key (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetCssFont'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1804,7 +1804,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerGetCssFontAsync
      *
      * @param  string $font_key (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetCssFont'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1824,7 +1824,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerGetCssFontAsyncWithHttpInfo
      *
      * @param  string $font_key (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetCssFont'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1875,7 +1875,7 @@ class DesignAtomsViewerApi
      * Create request for operation 'designAtomsViewerGetCssFont'
      *
      * @param  string $font_key (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetCssFont'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1994,7 +1994,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetFallbackFonts
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetFallbackFonts'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2010,7 +2010,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetFallbackFontsWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetFallbackFonts'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2132,7 +2132,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetFallbackFontsAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetFallbackFonts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2151,7 +2151,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetFallbackFontsAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetFallbackFonts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2201,7 +2201,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerGetFallbackFonts'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetFallbackFonts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2310,7 +2310,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetImageSize
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetImageSizeRequest $get_image_size_request get_image_size_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetImageSize'] to see the possible values for this operation
      *
@@ -2327,7 +2327,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetImageSizeWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetImageSizeRequest $get_image_size_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetImageSize'] to see the possible values for this operation
      *
@@ -2450,7 +2450,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetImageSizeAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetImageSizeRequest $get_image_size_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetImageSize'] to see the possible values for this operation
      *
@@ -2470,7 +2470,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetImageSizeAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetImageSizeRequest $get_image_size_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetImageSize'] to see the possible values for this operation
      *
@@ -2521,7 +2521,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerGetImageSize'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetImageSizeRequest $get_image_size_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetImageSize'] to see the possible values for this operation
      *
@@ -2639,7 +2639,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetLicense
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetLicense'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2655,7 +2655,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetLicenseWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetLicense'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2777,7 +2777,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetLicenseAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetLicense'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2796,7 +2796,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetLicenseAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetLicense'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2846,7 +2846,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerGetLicense'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetLicense'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2955,7 +2955,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetShapeBounds
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetShapeBoundsRequest $get_shape_bounds_request get_shape_bounds_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetShapeBounds'] to see the possible values for this operation
      *
@@ -2972,7 +2972,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetShapeBoundsWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetShapeBoundsRequest $get_shape_bounds_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetShapeBounds'] to see the possible values for this operation
      *
@@ -3095,7 +3095,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetShapeBoundsAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetShapeBoundsRequest $get_shape_bounds_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetShapeBounds'] to see the possible values for this operation
      *
@@ -3115,7 +3115,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetShapeBoundsAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetShapeBoundsRequest $get_shape_bounds_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetShapeBounds'] to see the possible values for this operation
      *
@@ -3166,7 +3166,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerGetShapeBounds'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\GetShapeBoundsRequest $get_shape_bounds_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetShapeBounds'] to see the possible values for this operation
      *
@@ -3284,7 +3284,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetWatermarkItems
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetWatermarkItems'] to see the possible values for this operation
      *
@@ -3301,7 +3301,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetWatermarkItemsWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetWatermarkItems'] to see the possible values for this operation
      *
@@ -3424,7 +3424,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetWatermarkItemsAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetWatermarkItems'] to see the possible values for this operation
      *
@@ -3444,7 +3444,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerGetWatermarkItemsAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetWatermarkItems'] to see the possible values for this operation
      *
@@ -3495,7 +3495,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerGetWatermarkItems'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerGetWatermarkItems'] to see the possible values for this operation
      *
@@ -3613,68 +3613,76 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerImg
      *
-     * @param  string $f f (optional)
-     * @param  int $w w (optional)
-     * @param  int $h h (optional)
-     * @param  string $cmyk cmyk (optional)
-     * @param  string $rgb rgb (optional)
-     * @param  string $grayscale grayscale (optional)
-     * @param  string $target target (optional)
-     * @param  bool $sq sq (optional)
-     * @param  string $effect effect (optional)
-     * @param  bool $kp kp (optional)
-     * @param  string $color color (optional)
-     * @param  string $obm obm (optional)
-     * @param  float $oo oo (optional)
-     * @param  bool $alpha_mask alpha_mask (optional)
-     * @param  int $page page (optional)
-     * @param  string $colorize_color colorize_color (optional)
-     * @param  float $rw rw (optional)
-     * @param  float $rh rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
+     *
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerImg'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsViewerImg($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
+    public function designAtomsViewerImg($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
     {
-        list($response) = $this->designAtomsViewerImgWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id, $contentType);
+        list($response) = $this->designAtomsViewerImgWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id, $contentType);
         return $response;
     }
 
     /**
      * Operation designAtomsViewerImgWithHttpInfo
      *
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
+     *
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerImg'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsViewerImgWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
+    public function designAtomsViewerImgWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
     {
-        $request = $this->designAtomsViewerImgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id, $contentType);
+        $request = $this->designAtomsViewerImgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3822,33 +3830,37 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerImgAsync
      *
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
+     *
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerImg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsViewerImgAsync($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
+    public function designAtomsViewerImgAsync($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
     {
-        return $this->designAtomsViewerImgAsyncWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id, $contentType)
+        return $this->designAtomsViewerImgAsyncWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3859,34 +3871,38 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerImgAsyncWithHttpInfo
      *
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
+     *
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerImg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsViewerImgAsyncWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
+    public function designAtomsViewerImgAsyncWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
     {
         $returnType = '\SplFileObject';
-        $request = $this->designAtomsViewerImgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id, $contentType);
+        $request = $this->designAtomsViewerImgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3927,32 +3943,36 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerImg'
      *
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerImg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsViewerImgRequest($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
+    public function designAtomsViewerImgRequest($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerImg'][0])
     {
+
+
 
 
 
@@ -4145,6 +4165,24 @@ class DesignAtomsViewerApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $dt,
+            'dt', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $da,
+            'da', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $tenant_id,
             'tenantId', // param base name
             'integer', // openApiType
@@ -4235,7 +4273,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerPth
      *
      * @param  string $f f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerPth'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4252,7 +4290,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerPthWithHttpInfo
      *
      * @param  string $f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerPth'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4410,7 +4448,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerPthAsync
      *
      * @param  string $f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerPth'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4430,7 +4468,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerPthAsyncWithHttpInfo
      *
      * @param  string $f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerPth'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4481,7 +4519,7 @@ class DesignAtomsViewerApi
      * Create request for operation 'designAtomsViewerPth'
      *
      * @param  string $f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerPth'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4601,7 +4639,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerResource
      *
      * @param  string $image image (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4618,7 +4656,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerResourceWithHttpInfo
      *
      * @param  string $image (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4776,7 +4814,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerResourceAsync
      *
      * @param  string $image (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4796,7 +4834,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerResourceAsyncWithHttpInfo
      *
      * @param  string $image (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4847,7 +4885,7 @@ class DesignAtomsViewerApi
      * Create request for operation 'designAtomsViewerResource'
      *
      * @param  string $image (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4966,68 +5004,72 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerSvg
      *
-     * @param  string $f f (optional)
-     * @param  int $w w (optional)
-     * @param  int $h h (optional)
-     * @param  string $cmyk cmyk (optional)
-     * @param  string $rgb rgb (optional)
-     * @param  string $grayscale grayscale (optional)
-     * @param  string $target target (optional)
-     * @param  bool $sq sq (optional)
-     * @param  string $effect effect (optional)
-     * @param  bool $kp kp (optional)
-     * @param  string $color color (optional)
-     * @param  string $obm obm (optional)
-     * @param  float $oo oo (optional)
-     * @param  bool $alpha_mask alpha_mask (optional)
-     * @param  int $page page (optional)
-     * @param  string $colorize_color colorize_color (optional)
-     * @param  float $rw rw (optional)
-     * @param  float $rh rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerSvg'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsViewerSvg($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
+    public function designAtomsViewerSvg($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
     {
-        list($response) = $this->designAtomsViewerSvgWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id, $contentType);
+        list($response) = $this->designAtomsViewerSvgWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id, $contentType);
         return $response;
     }
 
     /**
      * Operation designAtomsViewerSvgWithHttpInfo
      *
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerSvg'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsViewerSvgWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
+    public function designAtomsViewerSvgWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
     {
-        $request = $this->designAtomsViewerSvgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id, $contentType);
+        $request = $this->designAtomsViewerSvgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5175,33 +5217,35 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerSvgAsync
      *
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerSvg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsViewerSvgAsync($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
+    public function designAtomsViewerSvgAsync($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
     {
-        return $this->designAtomsViewerSvgAsyncWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id, $contentType)
+        return $this->designAtomsViewerSvgAsyncWithHttpInfo($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5212,34 +5256,36 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerSvgAsyncWithHttpInfo
      *
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerSvg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsViewerSvgAsyncWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
+    public function designAtomsViewerSvgAsyncWithHttpInfo($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
     {
         $returnType = '\SplFileObject';
-        $request = $this->designAtomsViewerSvgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $tenant_id, $contentType);
+        $request = $this->designAtomsViewerSvgRequest($f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5280,32 +5326,36 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerSvg'
      *
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerSvg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsViewerSvgRequest($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
+    public function designAtomsViewerSvgRequest($f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsViewerSvg'][0])
     {
+
+
 
 
 
@@ -5498,6 +5548,24 @@ class DesignAtomsViewerApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $dt,
+            'dt', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $da,
+            'da', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $tenant_id,
             'tenantId', // param base name
             'integer', // openApiType
@@ -5588,7 +5656,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerTxt
      *
      * @param  string $f f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerTxt'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5605,7 +5673,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerTxtWithHttpInfo
      *
      * @param  string $f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerTxt'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5763,7 +5831,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerTxtAsync
      *
      * @param  string $f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerTxt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5783,7 +5851,7 @@ class DesignAtomsViewerApi
      * Operation designAtomsViewerTxtAsyncWithHttpInfo
      *
      * @param  string $f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerTxt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5834,7 +5902,7 @@ class DesignAtomsViewerApi
      * Create request for operation 'designAtomsViewerTxt'
      *
      * @param  string $f (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerTxt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5953,7 +6021,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateArchedTextItemHandler
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateArchedTextItemHandler'] to see the possible values for this operation
      *
@@ -5970,7 +6038,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateArchedTextItemHandlerWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateArchedTextItemHandler'] to see the possible values for this operation
      *
@@ -6093,7 +6161,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateArchedTextItemHandlerAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateArchedTextItemHandler'] to see the possible values for this operation
      *
@@ -6113,7 +6181,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateArchedTextItemHandlerAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateArchedTextItemHandler'] to see the possible values for this operation
      *
@@ -6164,7 +6232,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdateArchedTextItemHandler'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateArchedTextItemHandler'] to see the possible values for this operation
      *
@@ -6282,7 +6350,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateAutoScaledTextItemHandler
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateAutoScaledTextItemHandler'] to see the possible values for this operation
      *
@@ -6299,7 +6367,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateAutoScaledTextItemHandlerWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateAutoScaledTextItemHandler'] to see the possible values for this operation
      *
@@ -6422,7 +6490,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateAutoScaledTextItemHandlerAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateAutoScaledTextItemHandler'] to see the possible values for this operation
      *
@@ -6442,7 +6510,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateAutoScaledTextItemHandlerAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateAutoScaledTextItemHandler'] to see the possible values for this operation
      *
@@ -6493,7 +6561,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdateAutoScaledTextItemHandler'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateAutoScaledTextItemHandler'] to see the possible values for this operation
      *
@@ -6611,7 +6679,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateBarcodeItemHandler
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBarcodeItemHandler'] to see the possible values for this operation
      *
@@ -6628,7 +6696,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateBarcodeItemHandlerWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBarcodeItemHandler'] to see the possible values for this operation
      *
@@ -6751,7 +6819,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateBarcodeItemHandlerAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBarcodeItemHandler'] to see the possible values for this operation
      *
@@ -6771,7 +6839,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateBarcodeItemHandlerAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBarcodeItemHandler'] to see the possible values for this operation
      *
@@ -6822,7 +6890,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdateBarcodeItemHandler'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBarcodeItemHandler'] to see the possible values for this operation
      *
@@ -6940,7 +7008,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateBoundedTextItemHandler
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -6957,7 +7025,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateBoundedTextItemHandlerWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -7080,7 +7148,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateBoundedTextItemHandlerAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -7100,7 +7168,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateBoundedTextItemHandlerAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -7151,7 +7219,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdateBoundedTextItemHandler'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -7269,7 +7337,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateByColorData
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateColorsRequest $update_colors_request update_colors_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByColorData'] to see the possible values for this operation
      *
@@ -7286,7 +7354,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateByColorDataWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateColorsRequest $update_colors_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByColorData'] to see the possible values for this operation
      *
@@ -7409,7 +7477,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateByColorDataAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateColorsRequest $update_colors_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByColorData'] to see the possible values for this operation
      *
@@ -7429,7 +7497,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateByColorDataAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateColorsRequest $update_colors_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByColorData'] to see the possible values for this operation
      *
@@ -7480,7 +7548,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdateByColorData'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateColorsRequest $update_colors_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByColorData'] to see the possible values for this operation
      *
@@ -7598,7 +7666,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateByMultiCallRequest
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\MultiCallRequest $multi_call_request multi_call_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByMultiCallRequest'] to see the possible values for this operation
      *
@@ -7615,7 +7683,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateByMultiCallRequestWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\MultiCallRequest $multi_call_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByMultiCallRequest'] to see the possible values for this operation
      *
@@ -7738,7 +7806,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateByMultiCallRequestAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\MultiCallRequest $multi_call_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByMultiCallRequest'] to see the possible values for this operation
      *
@@ -7758,7 +7826,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateByMultiCallRequestAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\MultiCallRequest $multi_call_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByMultiCallRequest'] to see the possible values for this operation
      *
@@ -7809,7 +7877,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdateByMultiCallRequest'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\MultiCallRequest $multi_call_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateByMultiCallRequest'] to see the possible values for this operation
      *
@@ -7927,7 +7995,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateCurvedTextItemHandler
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateCurvedTextItemHandler'] to see the possible values for this operation
      *
@@ -7944,7 +8012,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateCurvedTextItemHandlerWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateCurvedTextItemHandler'] to see the possible values for this operation
      *
@@ -8067,7 +8135,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateCurvedTextItemHandlerAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateCurvedTextItemHandler'] to see the possible values for this operation
      *
@@ -8087,7 +8155,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateCurvedTextItemHandlerAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateCurvedTextItemHandler'] to see the possible values for this operation
      *
@@ -8138,7 +8206,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdateCurvedTextItemHandler'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateCurvedTextItemHandler'] to see the possible values for this operation
      *
@@ -8256,7 +8324,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateImageItemHandler
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest $update_image_handler_request update_image_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateImageItemHandler'] to see the possible values for this operation
      *
@@ -8273,7 +8341,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateImageItemHandlerWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest $update_image_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateImageItemHandler'] to see the possible values for this operation
      *
@@ -8396,7 +8464,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateImageItemHandlerAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest $update_image_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateImageItemHandler'] to see the possible values for this operation
      *
@@ -8416,7 +8484,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateImageItemHandlerAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest $update_image_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateImageItemHandler'] to see the possible values for this operation
      *
@@ -8467,7 +8535,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdateImageItemHandler'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateImageHandlerRequest $update_image_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateImageItemHandler'] to see the possible values for this operation
      *
@@ -8585,7 +8653,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdatePathBoundedTextItemHandler
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePathBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -8602,7 +8670,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdatePathBoundedTextItemHandlerWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePathBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -8725,7 +8793,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdatePathBoundedTextItemHandlerAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePathBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -8745,7 +8813,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdatePathBoundedTextItemHandlerAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePathBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -8796,7 +8864,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdatePathBoundedTextItemHandler'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePathBoundedTextItemHandler'] to see the possible values for this operation
      *
@@ -8914,7 +8982,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdatePlainTextItemHandler
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePlainTextItemHandler'] to see the possible values for this operation
      *
@@ -8931,7 +8999,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdatePlainTextItemHandlerWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePlainTextItemHandler'] to see the possible values for this operation
      *
@@ -9054,7 +9122,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdatePlainTextItemHandlerAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePlainTextItemHandler'] to see the possible values for this operation
      *
@@ -9074,7 +9142,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdatePlainTextItemHandlerAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePlainTextItemHandler'] to see the possible values for this operation
      *
@@ -9125,7 +9193,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdatePlainTextItemHandler'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdatePlainTextItemHandler'] to see the possible values for this operation
      *
@@ -9243,7 +9311,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateShapeItemHandler
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateShapeItemHandler'] to see the possible values for this operation
      *
@@ -9260,7 +9328,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateShapeItemHandlerWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateShapeItemHandler'] to see the possible values for this operation
      *
@@ -9383,7 +9451,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateShapeItemHandlerAsync
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateShapeItemHandler'] to see the possible values for this operation
      *
@@ -9403,7 +9471,7 @@ class DesignAtomsViewerApi
     /**
      * Operation designAtomsViewerUpdateShapeItemHandlerAsyncWithHttpInfo
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateShapeItemHandler'] to see the possible values for this operation
      *
@@ -9454,7 +9522,7 @@ class DesignAtomsViewerApi
     /**
      * Create request for operation 'designAtomsViewerUpdateShapeItemHandler'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\UpdateHandlerRequest $update_handler_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsViewerUpdateShapeItemHandler'] to see the possible values for this operation
      *

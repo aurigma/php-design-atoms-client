@@ -60,6 +60,7 @@ class CreateItemFromUrlModel implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $openAPITypes = [
         'url' => 'string',
         'palette_uid' => 'string',
+        'page_index' => 'int',
         'headers' => 'array<string,string>',
         'preserve_original_file' => 'bool'
     ];
@@ -74,6 +75,7 @@ class CreateItemFromUrlModel implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $openAPIFormats = [
         'url' => null,
         'palette_uid' => null,
+        'page_index' => 'int32',
         'headers' => null,
         'preserve_original_file' => null
     ];
@@ -86,6 +88,7 @@ class CreateItemFromUrlModel implements ModelInterface, ArrayAccess, \JsonSerial
     protected static array $openAPINullables = [
         'url' => true,
         'palette_uid' => true,
+        'page_index' => true,
         'headers' => true,
         'preserve_original_file' => true
     ];
@@ -178,6 +181,7 @@ class CreateItemFromUrlModel implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $attributeMap = [
         'url' => 'url',
         'palette_uid' => 'paletteUID',
+        'page_index' => 'pageIndex',
         'headers' => 'headers',
         'preserve_original_file' => 'preserveOriginalFile'
     ];
@@ -190,6 +194,7 @@ class CreateItemFromUrlModel implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $setters = [
         'url' => 'setUrl',
         'palette_uid' => 'setPaletteUid',
+        'page_index' => 'setPageIndex',
         'headers' => 'setHeaders',
         'preserve_original_file' => 'setPreserveOriginalFile'
     ];
@@ -202,6 +207,7 @@ class CreateItemFromUrlModel implements ModelInterface, ArrayAccess, \JsonSerial
     protected static $getters = [
         'url' => 'getUrl',
         'palette_uid' => 'getPaletteUid',
+        'page_index' => 'getPageIndex',
         'headers' => 'getHeaders',
         'preserve_original_file' => 'getPreserveOriginalFile'
     ];
@@ -265,6 +271,7 @@ class CreateItemFromUrlModel implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('palette_uid', $data ?? [], null);
+        $this->setIfExists('page_index', $data ?? [], null);
         $this->setIfExists('headers', $data ?? [], null);
         $this->setIfExists('preserve_original_file', $data ?? [], null);
     }
@@ -375,6 +382,40 @@ class CreateItemFromUrlModel implements ModelInterface, ArrayAccess, \JsonSerial
             }
         }
         $this->container['palette_uid'] = $palette_uid;
+
+        return $this;
+    }
+
+    /**
+     * Gets page_index
+     *
+     * @return int|null
+     */
+    public function getPageIndex()
+    {
+        return $this->container['page_index'];
+    }
+
+    /**
+     * Sets page_index
+     *
+     * @param int|null $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default.
+     *
+     * @return self
+     */
+    public function setPageIndex($page_index)
+    {
+        if (is_null($page_index)) {
+            array_push($this->openAPINullablesSetToNull, 'page_index');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('page_index', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['page_index'] = $page_index;
 
         return $this;
     }

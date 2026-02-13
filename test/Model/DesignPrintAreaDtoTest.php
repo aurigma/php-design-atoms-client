@@ -123,4 +123,22 @@ class DesignPrintAreaDtoTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "bleed"
+     */
+    public function testPropertyBleed()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "slug"
+     */
+    public function testPropertySlug()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

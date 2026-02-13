@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**preview_resource_params** | [**\Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams**](RenderDesignPreviewToResourceModelPreviewResourceParams.md) |  | [optional]
+**preview_resource_params** | [**\Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModelPreviewResourceParams**](ExtractItemImageToResourceModelPreviewResourceParams.md) |  | [optional]
 **overwrite_existing_resource** | **bool** | Flag that indicates if an existing resource should be overwritten. | [optional]
 **image_url** | **string** | External image URL. | [optional]
 **image_id** | **string** | Storage image identifier. | [optional]

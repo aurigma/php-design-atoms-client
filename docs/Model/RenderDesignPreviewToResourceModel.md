@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**preview_resource_params** | [**\Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams**](RenderDesignPreviewToResourceModelPreviewResourceParams.md) |  | [optional]
+**preview_resource_params** | [**\Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModelPreviewResourceParams**](ExtractItemImageToResourceModelPreviewResourceParams.md) |  | [optional]
 **overwrite_existing_resource** | **bool** | Flag that indicates if an existing resource should be overwritten. | [optional]
 **design_id** | **string** | Design identifier.  Used to get design file from public or private storage. | [optional]
 **mockup_id** | **string** | Mockup identifier.  Used to get mockup file from public storage. | [optional]

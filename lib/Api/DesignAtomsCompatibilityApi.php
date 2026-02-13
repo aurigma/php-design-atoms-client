@@ -450,7 +450,7 @@ class DesignAtomsCompatibilityApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/css', ],
+            ['text/css', 'application/json', ],
             $contentType,
             $multipart
         );
@@ -3663,68 +3663,76 @@ class DesignAtomsCompatibilityApi
     /**
      * Operation designAtomsCompatibilityImg
      *
+     * Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
+     *
      * @param  int $tenant_id tenant_id (required)
-     * @param  string $f f (optional)
-     * @param  int $w w (optional)
-     * @param  int $h h (optional)
-     * @param  string $cmyk cmyk (optional)
-     * @param  string $rgb rgb (optional)
-     * @param  string $grayscale grayscale (optional)
-     * @param  string $target target (optional)
-     * @param  bool $sq sq (optional)
-     * @param  string $effect effect (optional)
-     * @param  bool $kp kp (optional)
-     * @param  string $color color (optional)
-     * @param  string $obm obm (optional)
-     * @param  float $oo oo (optional)
-     * @param  bool $alpha_mask alpha_mask (optional)
-     * @param  int $page page (optional)
-     * @param  string $colorize_color colorize_color (optional)
-     * @param  float $rw rw (optional)
-     * @param  float $rh rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilityImg'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsCompatibilityImg($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
+    public function designAtomsCompatibilityImg($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
     {
-        list($response) = $this->designAtomsCompatibilityImgWithHttpInfo($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $contentType);
+        list($response) = $this->designAtomsCompatibilityImgWithHttpInfo($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $contentType);
         return $response;
     }
 
     /**
      * Operation designAtomsCompatibilityImgWithHttpInfo
      *
+     * Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
+     *
      * @param  int $tenant_id (required)
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilityImg'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsCompatibilityImgWithHttpInfo($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
+    public function designAtomsCompatibilityImgWithHttpInfo($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
     {
-        $request = $this->designAtomsCompatibilityImgRequest($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $contentType);
+        $request = $this->designAtomsCompatibilityImgRequest($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3872,33 +3880,37 @@ class DesignAtomsCompatibilityApi
     /**
      * Operation designAtomsCompatibilityImgAsync
      *
+     * Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
+     *
      * @param  int $tenant_id (required)
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilityImg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsCompatibilityImgAsync($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
+    public function designAtomsCompatibilityImgAsync($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
     {
-        return $this->designAtomsCompatibilityImgAsyncWithHttpInfo($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $contentType)
+        return $this->designAtomsCompatibilityImgAsyncWithHttpInfo($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3909,34 +3921,38 @@ class DesignAtomsCompatibilityApi
     /**
      * Operation designAtomsCompatibilityImgAsyncWithHttpInfo
      *
+     * Retrieves an image with resized dimensions and additional visual effects based on the provided parameters.
+     *
      * @param  int $tenant_id (required)
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilityImg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsCompatibilityImgAsyncWithHttpInfo($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
+    public function designAtomsCompatibilityImgAsyncWithHttpInfo($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
     {
         $returnType = '\SplFileObject';
-        $request = $this->designAtomsCompatibilityImgRequest($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $contentType);
+        $request = $this->designAtomsCompatibilityImgRequest($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3978,30 +3994,32 @@ class DesignAtomsCompatibilityApi
      * Create request for operation 'designAtomsCompatibilityImg'
      *
      * @param  int $tenant_id (required)
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilityImg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsCompatibilityImgRequest($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
+    public function designAtomsCompatibilityImgRequest($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilityImg'][0])
     {
 
         // verify the required parameter 'tenant_id' is set
@@ -4010,6 +4028,8 @@ class DesignAtomsCompatibilityApi
                 'Missing the required parameter $tenant_id when calling designAtomsCompatibilityImg'
             );
         }
+
+
 
 
 
@@ -4194,6 +4214,24 @@ class DesignAtomsCompatibilityApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $rh,
             'rh', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $dt,
+            'dt', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $da,
+            'da', // param base name
             'number', // openApiType
             'form', // style
             true, // explode
@@ -5032,33 +5070,35 @@ class DesignAtomsCompatibilityApi
      * Operation designAtomsCompatibilitySvg
      *
      * @param  int $tenant_id tenant_id (required)
-     * @param  string $f f (optional)
-     * @param  int $w w (optional)
-     * @param  int $h h (optional)
-     * @param  string $cmyk cmyk (optional)
-     * @param  string $rgb rgb (optional)
-     * @param  string $grayscale grayscale (optional)
-     * @param  string $target target (optional)
-     * @param  bool $sq sq (optional)
-     * @param  string $effect effect (optional)
-     * @param  bool $kp kp (optional)
-     * @param  string $color color (optional)
-     * @param  string $obm obm (optional)
-     * @param  float $oo oo (optional)
-     * @param  bool $alpha_mask alpha_mask (optional)
-     * @param  int $page page (optional)
-     * @param  string $colorize_color colorize_color (optional)
-     * @param  float $rw rw (optional)
-     * @param  float $rh rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilitySvg'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails
      */
-    public function designAtomsCompatibilitySvg($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
+    public function designAtomsCompatibilitySvg($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
     {
-        list($response) = $this->designAtomsCompatibilitySvgWithHttpInfo($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $contentType);
+        list($response) = $this->designAtomsCompatibilitySvgWithHttpInfo($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $contentType);
         return $response;
     }
 
@@ -5066,33 +5106,35 @@ class DesignAtomsCompatibilityApi
      * Operation designAtomsCompatibilitySvgWithHttpInfo
      *
      * @param  int $tenant_id (required)
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilitySvg'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designAtomsCompatibilitySvgWithHttpInfo($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
+    public function designAtomsCompatibilitySvgWithHttpInfo($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
     {
-        $request = $this->designAtomsCompatibilitySvgRequest($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $contentType);
+        $request = $this->designAtomsCompatibilitySvgRequest($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5241,32 +5283,34 @@ class DesignAtomsCompatibilityApi
      * Operation designAtomsCompatibilitySvgAsync
      *
      * @param  int $tenant_id (required)
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilitySvg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsCompatibilitySvgAsync($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
+    public function designAtomsCompatibilitySvgAsync($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
     {
-        return $this->designAtomsCompatibilitySvgAsyncWithHttpInfo($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $contentType)
+        return $this->designAtomsCompatibilitySvgAsyncWithHttpInfo($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5278,33 +5322,35 @@ class DesignAtomsCompatibilityApi
      * Operation designAtomsCompatibilitySvgAsyncWithHttpInfo
      *
      * @param  int $tenant_id (required)
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilitySvg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designAtomsCompatibilitySvgAsyncWithHttpInfo($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
+    public function designAtomsCompatibilitySvgAsyncWithHttpInfo($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
     {
         $returnType = '\SplFileObject';
-        $request = $this->designAtomsCompatibilitySvgRequest($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $contentType);
+        $request = $this->designAtomsCompatibilitySvgRequest($tenant_id, $f, $w, $h, $cmyk, $rgb, $grayscale, $target, $sq, $effect, $kp, $color, $obm, $oo, $alpha_mask, $page, $colorize_color, $rw, $rh, $dt, $da, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5346,30 +5392,32 @@ class DesignAtomsCompatibilityApi
      * Create request for operation 'designAtomsCompatibilitySvg'
      *
      * @param  int $tenant_id (required)
-     * @param  string $f (optional)
-     * @param  int $w (optional)
-     * @param  int $h (optional)
-     * @param  string $cmyk (optional)
-     * @param  string $rgb (optional)
-     * @param  string $grayscale (optional)
-     * @param  string $target (optional)
-     * @param  bool $sq (optional)
-     * @param  string $effect (optional)
-     * @param  bool $kp (optional)
-     * @param  string $color (optional)
-     * @param  string $obm (optional)
-     * @param  float $oo (optional)
-     * @param  bool $alpha_mask (optional)
-     * @param  int $page (optional)
-     * @param  string $colorize_color (optional)
-     * @param  float $rw (optional)
-     * @param  float $rh (optional)
+     * @param  string $f The identifier of the original image file. (optional)
+     * @param  int $w Target width of the resulting image. (optional)
+     * @param  int $h Target height of the resulting image. (optional)
+     * @param  string $cmyk Name of the CMYK profile used for color conversion. (optional)
+     * @param  string $rgb Name of the RGB profile used for color conversion. (optional)
+     * @param  string $grayscale Name of the grayscale profile used to convert into shades of gray. (optional)
+     * @param  string $target Target color space, one of \&quot;Rgb\&quot;, \&quot;Grayscale\&quot;, or \&quot;Cmyk\&quot;. (optional)
+     * @param  bool $sq Indicates that the image is squared.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $effect Effect applied to the image.  Possible values: \&quot;None\&quot;, \&quot;BlackAndWhite\&quot;, \&quot;FlipVertical\&quot;, \&quot;FlipHorizontal\&quot;, \&quot;Colorize\&quot;, \&quot;Grayscale\&quot;, or \&quot;BlackAndTransparent\&quot;.  The default value is \&quot;None\&quot;. (optional)
+     * @param  bool $kp Indicates that image proportions should be maintained.  The default value is \&quot;false\&quot;. (optional)
+     * @param  string $color Overlay color in the RGB, RGBA, CMYK, or CMYKA format.  By default, it&#39;s an empty string. (optional)
+     * @param  string $obm Overlay blend mode used for blending colors.  Possible values: \&quot;Normal\&quot;, \&quot;Multiply\&quot;, \&quot;Screen\&quot;, \&quot;Overlay\&quot;, \&quot;Darken\&quot;, \&quot;Lighten\&quot;, \&quot;ColorDodge\&quot;,  \&quot;ColorBurn\&quot;, \&quot;HardLight\&quot;, \&quot;SoftLight\&quot;, &#x60;Difference\&quot;, \&quot;Exclusion\&quot;, \&quot;None\&quot;, or \&quot;LinearBurn\&quot;.  By default, it&#39;s an empty string. (optional)
+     * @param  float $oo Opacity level of the overlaid layer, in the range [0.0, 1.0].  The default value is \&quot;null\&quot;. (optional)
+     * @param  bool $alpha_mask Enables alpha mask processing.  The default value is \&quot;false\&quot;. (optional)
+     * @param  int $page Page index in a PDF document that needs to be processed.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $colorize_color Color applied for the \&quot;Colorize\&quot; image effect.  By default, it&#39;s an empty string. (optional)
+     * @param  float $rw Rectangle width for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  float $rh Rectangle height for area selection.  The default value is \&quot;0\&quot;. (optional)
+     * @param  string $dt Dithering type. (optional)
+     * @param  float $da Dithering amount. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsCompatibilitySvg'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designAtomsCompatibilitySvgRequest($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
+    public function designAtomsCompatibilitySvgRequest($tenant_id, $f = null, $w = null, $h = null, $cmyk = null, $rgb = null, $grayscale = null, $target = null, $sq = null, $effect = null, $kp = null, $color = null, $obm = null, $oo = null, $alpha_mask = null, $page = null, $colorize_color = null, $rw = null, $rh = null, $dt = null, $da = null, string $contentType = self::contentTypes['designAtomsCompatibilitySvg'][0])
     {
 
         // verify the required parameter 'tenant_id' is set
@@ -5378,6 +5426,8 @@ class DesignAtomsCompatibilityApi
                 'Missing the required parameter $tenant_id when calling designAtomsCompatibilitySvg'
             );
         }
+
+
 
 
 
@@ -5562,6 +5612,24 @@ class DesignAtomsCompatibilityApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $rh,
             'rh', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $dt,
+            'dt', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $da,
+            'da', // param base name
             'number', // openApiType
             'form', // style
             true, // explode

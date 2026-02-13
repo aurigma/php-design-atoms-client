@@ -58,7 +58,7 @@ class RenderImagePreviewFromUrlToResourceModel implements ModelInterface, ArrayA
       * @var string[]
       */
     protected static $openAPITypes = [
-        'preview_resource_params' => '\Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams',
+        'preview_resource_params' => '\Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModelPreviewResourceParams',
         'overwrite_existing_resource' => 'bool',
         'image_url' => 'string',
         'mockup_owner_id' => 'string',
@@ -335,7 +335,7 @@ class RenderImagePreviewFromUrlToResourceModel implements ModelInterface, ArrayA
     /**
      * Gets preview_resource_params
      *
-     * @return \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams|null
+     * @return \Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModelPreviewResourceParams|null
      */
     public function getPreviewResourceParams()
     {
@@ -345,7 +345,7 @@ class RenderImagePreviewFromUrlToResourceModel implements ModelInterface, ArrayA
     /**
      * Sets preview_resource_params
      *
-     * @param \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModelPreviewResourceParams|null $preview_resource_params preview_resource_params
+     * @param \Aurigma\DesignAtoms\Model\ExtractItemImageToResourceModelPreviewResourceParams|null $preview_resource_params preview_resource_params
      *
      * @return self
      */

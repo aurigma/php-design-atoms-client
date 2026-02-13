@@ -114,4 +114,13 @@ class RenderImagePreviewFromUrlModelTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "headers"
+     */
+    public function testPropertyHeaders()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

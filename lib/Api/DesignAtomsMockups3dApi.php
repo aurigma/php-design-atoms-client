@@ -135,7 +135,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetAttributes'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -155,7 +155,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetAttributes'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -351,7 +351,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetAttributes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -374,7 +374,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetAttributes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -426,7 +426,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetAttributes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -564,7 +564,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetContentAsProtobuf'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -584,7 +584,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetContentAsProtobuf'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -780,7 +780,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetContentAsProtobuf'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -803,7 +803,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetContentAsProtobuf'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -855,7 +855,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetContentAsProtobuf'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -993,7 +993,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetGeometryFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1013,7 +1013,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetGeometryFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1209,7 +1209,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetGeometryFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1232,7 +1232,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetGeometryFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1284,7 +1284,7 @@ class DesignAtomsMockups3dApi
      *
      * @param  string $id 3D-Mockup identifier. (required)
      * @param  string $owner_id Private mockup owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsMockups3dGetGeometryFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

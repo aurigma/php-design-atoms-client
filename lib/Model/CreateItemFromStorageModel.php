@@ -61,6 +61,7 @@ class CreateItemFromStorageModel implements ModelInterface, ArrayAccess, \JsonSe
         'source_owner_id' => 'string',
         'source_id' => 'string',
         'palette_uid' => 'string',
+        'page_index' => 'int',
         'preserve_original_file' => 'bool'
     ];
 
@@ -75,6 +76,7 @@ class CreateItemFromStorageModel implements ModelInterface, ArrayAccess, \JsonSe
         'source_owner_id' => null,
         'source_id' => null,
         'palette_uid' => null,
+        'page_index' => 'int32',
         'preserve_original_file' => null
     ];
 
@@ -87,6 +89,7 @@ class CreateItemFromStorageModel implements ModelInterface, ArrayAccess, \JsonSe
         'source_owner_id' => true,
         'source_id' => true,
         'palette_uid' => true,
+        'page_index' => true,
         'preserve_original_file' => true
     ];
 
@@ -179,6 +182,7 @@ class CreateItemFromStorageModel implements ModelInterface, ArrayAccess, \JsonSe
         'source_owner_id' => 'sourceOwnerId',
         'source_id' => 'sourceId',
         'palette_uid' => 'paletteUID',
+        'page_index' => 'pageIndex',
         'preserve_original_file' => 'preserveOriginalFile'
     ];
 
@@ -191,6 +195,7 @@ class CreateItemFromStorageModel implements ModelInterface, ArrayAccess, \JsonSe
         'source_owner_id' => 'setSourceOwnerId',
         'source_id' => 'setSourceId',
         'palette_uid' => 'setPaletteUid',
+        'page_index' => 'setPageIndex',
         'preserve_original_file' => 'setPreserveOriginalFile'
     ];
 
@@ -203,6 +208,7 @@ class CreateItemFromStorageModel implements ModelInterface, ArrayAccess, \JsonSe
         'source_owner_id' => 'getSourceOwnerId',
         'source_id' => 'getSourceId',
         'palette_uid' => 'getPaletteUid',
+        'page_index' => 'getPageIndex',
         'preserve_original_file' => 'getPreserveOriginalFile'
     ];
 
@@ -266,6 +272,7 @@ class CreateItemFromStorageModel implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('source_owner_id', $data ?? [], null);
         $this->setIfExists('source_id', $data ?? [], null);
         $this->setIfExists('palette_uid', $data ?? [], null);
+        $this->setIfExists('page_index', $data ?? [], null);
         $this->setIfExists('preserve_original_file', $data ?? [], null);
     }
 
@@ -409,6 +416,40 @@ class CreateItemFromStorageModel implements ModelInterface, ArrayAccess, \JsonSe
             }
         }
         $this->container['palette_uid'] = $palette_uid;
+
+        return $this;
+    }
+
+    /**
+     * Gets page_index
+     *
+     * @return int|null
+     */
+    public function getPageIndex()
+    {
+        return $this->container['page_index'];
+    }
+
+    /**
+     * Sets page_index
+     *
+     * @param int|null $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default.
+     *
+     * @return self
+     */
+    public function setPageIndex($page_index)
+    {
+        if (is_null($page_index)) {
+            array_push($this->openAPINullablesSetToNull, 'page_index');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('page_index', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['page_index'] = $page_index;
 
         return $this;
     }

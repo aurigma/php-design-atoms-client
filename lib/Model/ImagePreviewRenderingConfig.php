@@ -61,7 +61,8 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
         'width' => 'int',
         'height' => 'int',
         'file_format' => '\Aurigma\DesignAtoms\Model\ImagePreviewFormat',
-        'fit_mode' => '\Aurigma\DesignAtoms\Model\ImagePreviewFitMode'
+        'fit_mode' => '\Aurigma\DesignAtoms\Model\ImagePreviewFitMode',
+        'page_index' => 'int'
     ];
 
     /**
@@ -75,7 +76,8 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
         'width' => 'int32',
         'height' => 'int32',
         'file_format' => null,
-        'fit_mode' => null
+        'fit_mode' => null,
+        'page_index' => 'int32'
     ];
 
     /**
@@ -87,7 +89,8 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
         'width' => false,
         'height' => false,
         'file_format' => true,
-        'fit_mode' => true
+        'fit_mode' => true,
+        'page_index' => true
     ];
 
     /**
@@ -179,7 +182,8 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
         'width' => 'width',
         'height' => 'height',
         'file_format' => 'fileFormat',
-        'fit_mode' => 'fitMode'
+        'fit_mode' => 'fitMode',
+        'page_index' => 'pageIndex'
     ];
 
     /**
@@ -191,7 +195,8 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
         'width' => 'setWidth',
         'height' => 'setHeight',
         'file_format' => 'setFileFormat',
-        'fit_mode' => 'setFitMode'
+        'fit_mode' => 'setFitMode',
+        'page_index' => 'setPageIndex'
     ];
 
     /**
@@ -203,7 +208,8 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
         'width' => 'getWidth',
         'height' => 'getHeight',
         'file_format' => 'getFileFormat',
-        'fit_mode' => 'getFitMode'
+        'fit_mode' => 'getFitMode',
+        'page_index' => 'getPageIndex'
     ];
 
     /**
@@ -267,6 +273,7 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('height', $data ?? [], null);
         $this->setIfExists('file_format', $data ?? [], null);
         $this->setIfExists('fit_mode', $data ?? [], null);
+        $this->setIfExists('page_index', $data ?? [], null);
     }
 
     /**
@@ -429,6 +436,40 @@ class ImagePreviewRenderingConfig implements ModelInterface, ArrayAccess, \JsonS
             }
         }
         $this->container['fit_mode'] = $fit_mode;
+
+        return $this;
+    }
+
+    /**
+     * Gets page_index
+     *
+     * @return int|null
+     */
+    public function getPageIndex()
+    {
+        return $this->container['page_index'];
+    }
+
+    /**
+     * Sets page_index
+     *
+     * @param int|null $page_index Index of image page (applies to multi-page image formats only, e.g. PDF and TIFF).  Zero by default.
+     *
+     * @return self
+     */
+    public function setPageIndex($page_index)
+    {
+        if (is_null($page_index)) {
+            array_push($this->openAPINullablesSetToNull, 'page_index');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('page_index', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['page_index'] = $page_index;
 
         return $this;
     }

@@ -131,13 +131,13 @@ class DesignAtomsPalettesApi
      * Returns a closest color to provided color in a specified palette.
      *
      * @param  string $palette_uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Source color. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesFindPaletteColor'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\Palette|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsPalettesFindPaletteColor($palette_uid = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPalettesFindPaletteColor'][0])
     {
@@ -151,13 +151,13 @@ class DesignAtomsPalettesApi
      * Returns a closest color to provided color in a specified palette.
      *
      * @param  string $palette_uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Source color. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesFindPaletteColor'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\Palette|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPalettesFindPaletteColorWithHttpInfo($palette_uid = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPalettesFindPaletteColor'][0])
     {
@@ -200,11 +200,11 @@ class DesignAtomsPalettesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Aurigma\DesignAtoms\Model\Palette' === '\SplFileObject') {
+                    if ('mixed' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\Palette' !== 'string') {
+                        if ('mixed' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -222,7 +222,7 @@ class DesignAtomsPalettesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\Palette', []),
+                        ObjectSerializer::deserialize($content, 'mixed', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -309,7 +309,7 @@ class DesignAtomsPalettesApi
                     ];
             }
 
-            $returnType = '\Aurigma\DesignAtoms\Model\Palette';
+            $returnType = 'mixed';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -342,7 +342,7 @@ class DesignAtomsPalettesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\Palette',
+                        'mixed',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -382,7 +382,7 @@ class DesignAtomsPalettesApi
      * Returns a closest color to provided color in a specified palette.
      *
      * @param  string $palette_uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Source color. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesFindPaletteColor'] to see the possible values for this operation
      *
@@ -405,7 +405,7 @@ class DesignAtomsPalettesApi
      * Returns a closest color to provided color in a specified palette.
      *
      * @param  string $palette_uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Source color. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesFindPaletteColor'] to see the possible values for this operation
      *
@@ -414,7 +414,7 @@ class DesignAtomsPalettesApi
      */
     public function designAtomsPalettesFindPaletteColorAsyncWithHttpInfo($palette_uid = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPalettesFindPaletteColor'][0])
     {
-        $returnType = '\Aurigma\DesignAtoms\Model\Palette';
+        $returnType = 'mixed';
         $request = $this->designAtomsPalettesFindPaletteColorRequest($palette_uid, $tenant_id, $body, $contentType);
 
         return $this->client
@@ -457,7 +457,7 @@ class DesignAtomsPalettesApi
      * Create request for operation 'designAtomsPalettesFindPaletteColor'
      *
      * @param  string $palette_uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Source color. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesFindPaletteColor'] to see the possible values for this operation
      *
@@ -589,7 +589,7 @@ class DesignAtomsPalettesApi
      *
      * @param  string $id Palette identifier. (optional)
      * @param  string $uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesGetPaletteModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -609,7 +609,7 @@ class DesignAtomsPalettesApi
      *
      * @param  string $id Palette identifier. (optional)
      * @param  string $uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesGetPaletteModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -840,7 +840,7 @@ class DesignAtomsPalettesApi
      *
      * @param  string $id Palette identifier. (optional)
      * @param  string $uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesGetPaletteModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -863,7 +863,7 @@ class DesignAtomsPalettesApi
      *
      * @param  string $id Palette identifier. (optional)
      * @param  string $uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesGetPaletteModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -915,7 +915,7 @@ class DesignAtomsPalettesApi
      *
      * @param  string $id Palette identifier. (optional)
      * @param  string $uid Palette UID. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPalettesGetPaletteModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

@@ -59,6 +59,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
       */
     protected static $openAPITypes = [
         'surface_index' => 'int',
+        'stub' => 'bool',
         'width' => 'int',
         'height' => 'int',
         'file_format' => '\Aurigma\DesignAtoms\Model\ProductPreviewFormat'
@@ -73,6 +74,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
       */
     protected static $openAPIFormats = [
         'surface_index' => 'int32',
+        'stub' => null,
         'width' => 'int32',
         'height' => 'int32',
         'file_format' => null
@@ -85,6 +87,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
       */
     protected static array $openAPINullables = [
         'surface_index' => true,
+        'stub' => true,
         'width' => false,
         'height' => false,
         'file_format' => true
@@ -177,6 +180,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
      */
     protected static $attributeMap = [
         'surface_index' => 'surfaceIndex',
+        'stub' => 'stub',
         'width' => 'width',
         'height' => 'height',
         'file_format' => 'fileFormat'
@@ -189,6 +193,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
      */
     protected static $setters = [
         'surface_index' => 'setSurfaceIndex',
+        'stub' => 'setStub',
         'width' => 'setWidth',
         'height' => 'setHeight',
         'file_format' => 'setFileFormat'
@@ -201,6 +206,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
      */
     protected static $getters = [
         'surface_index' => 'getSurfaceIndex',
+        'stub' => 'getStub',
         'width' => 'getWidth',
         'height' => 'getHeight',
         'file_format' => 'getFileFormat'
@@ -264,6 +270,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
     public function __construct(array $data = null)
     {
         $this->setIfExists('surface_index', $data ?? [], null);
+        $this->setIfExists('stub', $data ?? [], null);
         $this->setIfExists('width', $data ?? [], null);
         $this->setIfExists('height', $data ?? [], null);
         $this->setIfExists('file_format', $data ?? [], null);
@@ -324,7 +331,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
     /**
      * Sets surface_index
      *
-     * @param int|null $surface_index surface_index
+     * @param int|null $surface_index Surface index.
      *
      * @return self
      */
@@ -346,6 +353,40 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
     }
 
     /**
+     * Gets stub
+     *
+     * @return bool|null
+     */
+    public function getStub()
+    {
+        return $this->container['stub'];
+    }
+
+    /**
+     * Sets stub
+     *
+     * @param bool|null $stub Indicates whether to show stub content for preview image.
+     *
+     * @return self
+     */
+    public function setStub($stub)
+    {
+        if (is_null($stub)) {
+            array_push($this->openAPINullablesSetToNull, 'stub');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('stub', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['stub'] = $stub;
+
+        return $this;
+    }
+
+    /**
      * Gets width
      *
      * @return int|null
@@ -358,7 +399,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
     /**
      * Sets width
      *
-     * @param int|null $width width
+     * @param int|null $width Preview image width.
      *
      * @return self
      */
@@ -385,7 +426,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
     /**
      * Sets height
      *
-     * @param int|null $height height
+     * @param int|null $height Preview image height.
      *
      * @return self
      */
@@ -412,7 +453,7 @@ class RenderDesignPreviewModelRenderingConfig implements ModelInterface, ArrayAc
     /**
      * Sets file_format
      *
-     * @param \Aurigma\DesignAtoms\Model\ProductPreviewFormat|null $file_format file_format
+     * @param \Aurigma\DesignAtoms\Model\ProductPreviewFormat|null $file_format Preview image file format.
      *
      * @return self
      */

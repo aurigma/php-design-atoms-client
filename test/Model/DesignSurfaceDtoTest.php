@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * DesignSurfaceDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Design surface parameters.
+ * @description Print-product surface description.
  * @package     Aurigma\DesignAtoms
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

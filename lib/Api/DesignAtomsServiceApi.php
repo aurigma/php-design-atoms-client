@@ -71,6 +71,9 @@ class DesignAtomsServiceApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'designAtomsServiceApplyItemsData' => [
+            'application/json',
+        ],
         'designAtomsServiceConvertColors' => [
             'application/json',
         ],
@@ -198,11 +201,321 @@ class DesignAtomsServiceApi
     }
 
     /**
+     * Operation designAtomsServiceApplyItemsData
+     *
+     * Applies item data for a specified design file taken from storage.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ApplyDesignItemsDataModel $apply_design_items_data_model Design items data. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceApplyItemsData'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function designAtomsServiceApplyItemsData($id, $private_storage_owner = null, $tenant_id = null, $apply_design_items_data_model = null, string $contentType = self::contentTypes['designAtomsServiceApplyItemsData'][0])
+    {
+        $this->designAtomsServiceApplyItemsDataWithHttpInfo($id, $private_storage_owner, $tenant_id, $apply_design_items_data_model, $contentType);
+    }
+
+    /**
+     * Operation designAtomsServiceApplyItemsDataWithHttpInfo
+     *
+     * Applies item data for a specified design file taken from storage.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ApplyDesignItemsDataModel $apply_design_items_data_model Design items data. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceApplyItemsData'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designAtomsServiceApplyItemsDataWithHttpInfo($id, $private_storage_owner = null, $tenant_id = null, $apply_design_items_data_model = null, string $contentType = self::contentTypes['designAtomsServiceApplyItemsData'][0])
+    {
+        $request = $this->designAtomsServiceApplyItemsDataRequest($id, $private_storage_owner, $tenant_id, $apply_design_items_data_model, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designAtomsServiceApplyItemsDataAsync
+     *
+     * Applies item data for a specified design file taken from storage.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ApplyDesignItemsDataModel $apply_design_items_data_model Design items data. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceApplyItemsData'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceApplyItemsDataAsync($id, $private_storage_owner = null, $tenant_id = null, $apply_design_items_data_model = null, string $contentType = self::contentTypes['designAtomsServiceApplyItemsData'][0])
+    {
+        return $this->designAtomsServiceApplyItemsDataAsyncWithHttpInfo($id, $private_storage_owner, $tenant_id, $apply_design_items_data_model, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designAtomsServiceApplyItemsDataAsyncWithHttpInfo
+     *
+     * Applies item data for a specified design file taken from storage.
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ApplyDesignItemsDataModel $apply_design_items_data_model Design items data. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceApplyItemsData'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designAtomsServiceApplyItemsDataAsyncWithHttpInfo($id, $private_storage_owner = null, $tenant_id = null, $apply_design_items_data_model = null, string $contentType = self::contentTypes['designAtomsServiceApplyItemsData'][0])
+    {
+        $returnType = '';
+        $request = $this->designAtomsServiceApplyItemsDataRequest($id, $private_storage_owner, $tenant_id, $apply_design_items_data_model, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designAtomsServiceApplyItemsData'
+     *
+     * @param  string $id Design identifier. (required)
+     * @param  string $private_storage_owner Private storage owner identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\DesignAtoms\Model\ApplyDesignItemsDataModel $apply_design_items_data_model Design items data. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceApplyItemsData'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designAtomsServiceApplyItemsDataRequest($id, $private_storage_owner = null, $tenant_id = null, $apply_design_items_data_model = null, string $contentType = self::contentTypes['designAtomsServiceApplyItemsData'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling designAtomsServiceApplyItemsData'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/api/atoms/v1/designs/{id}/apply-items-data';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $private_storage_owner,
+            'privateStorageOwner', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($apply_design_items_data_model)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($apply_design_items_data_model));
+            } else {
+                $httpBody = $apply_design_items_data_model;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation designAtomsServiceConvertColors
      *
      * Converts colors for print-product item manipulations.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ConvertColorsModel $convert_colors_model Convert colors operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceConvertColors'] to see the possible values for this operation
      *
@@ -221,7 +534,7 @@ class DesignAtomsServiceApi
      *
      * Converts colors for print-product item manipulations.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ConvertColorsModel $convert_colors_model Convert colors operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceConvertColors'] to see the possible values for this operation
      *
@@ -381,7 +694,7 @@ class DesignAtomsServiceApi
      *
      * Converts colors for print-product item manipulations.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ConvertColorsModel $convert_colors_model Convert colors operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceConvertColors'] to see the possible values for this operation
      *
@@ -403,7 +716,7 @@ class DesignAtomsServiceApi
      *
      * Converts colors for print-product item manipulations.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ConvertColorsModel $convert_colors_model Convert colors operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceConvertColors'] to see the possible values for this operation
      *
@@ -454,7 +767,7 @@ class DesignAtomsServiceApi
     /**
      * Create request for operation 'designAtomsServiceConvertColors'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ConvertColorsModel $convert_colors_model Convert colors operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceConvertColors'] to see the possible values for this operation
      *
@@ -575,7 +888,7 @@ class DesignAtomsServiceApi
      * Creates new design file with specified parameters and saves it in storage.
      *
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateDesignModel $create_design_model Design creation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreateDesign'] to see the possible values for this operation
      *
@@ -595,7 +908,7 @@ class DesignAtomsServiceApi
      * Creates new design file with specified parameters and saves it in storage.
      *
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateDesignModel $create_design_model Design creation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreateDesign'] to see the possible values for this operation
      *
@@ -756,7 +1069,7 @@ class DesignAtomsServiceApi
      * Creates new design file with specified parameters and saves it in storage.
      *
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateDesignModel $create_design_model Design creation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreateDesign'] to see the possible values for this operation
      *
@@ -779,7 +1092,7 @@ class DesignAtomsServiceApi
      * Creates new design file with specified parameters and saves it in storage.
      *
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateDesignModel $create_design_model Design creation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreateDesign'] to see the possible values for this operation
      *
@@ -831,7 +1144,7 @@ class DesignAtomsServiceApi
      * Create request for operation 'designAtomsServiceCreateDesign'
      *
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\CreateDesignModel $create_design_model Design creation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreateDesign'] to see the possible values for this operation
      *
@@ -962,7 +1275,7 @@ class DesignAtomsServiceApi
      * Creates print-product item.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
@@ -987,7 +1300,7 @@ class DesignAtomsServiceApi
      * Creates print-product item.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
@@ -1153,7 +1466,7 @@ class DesignAtomsServiceApi
      * Creates print-product item.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
@@ -1181,7 +1494,7 @@ class DesignAtomsServiceApi
      * Creates print-product item.
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
@@ -1238,7 +1551,7 @@ class DesignAtomsServiceApi
      * Create request for operation 'designAtomsServiceCreateItem'
      *
      * @param  \Aurigma\DesignAtoms\Model\ItemType $item_type Desired item type. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ItemSourceType $source_type Source type. (optional)
      * @param  string $source_id Source id, used if source type is &#39;ImageStorage&#39; or &#39;PrivateImageStorage&#39;. (optional)
      * @param  string $source_owner_id Source owner id, used if source type is &#39;PrivateImageStorage&#39;. (optional)
@@ -1401,7 +1714,7 @@ class DesignAtomsServiceApi
      * @param  string $design_id Public design identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromDesign'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1422,7 +1735,7 @@ class DesignAtomsServiceApi
      * @param  string $design_id Public design identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromDesign'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1486,7 +1799,7 @@ class DesignAtomsServiceApi
      * @param  string $design_id Public design identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromDesign'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1511,7 +1824,7 @@ class DesignAtomsServiceApi
      * @param  string $design_id Public design identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromDesign'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1552,7 +1865,7 @@ class DesignAtomsServiceApi
      * @param  string $design_id Public design identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromDesign'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1697,7 +2010,7 @@ class DesignAtomsServiceApi
      * @param  string $resource_id Resource identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional, default to 0)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1705,7 +2018,7 @@ class DesignAtomsServiceApi
      * @return void
      * @deprecated
      */
-    public function designAtomsServiceCreatePrivateDesignFromResource($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = 0, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
+    public function designAtomsServiceCreatePrivateDesignFromResource($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
     {
         $this->designAtomsServiceCreatePrivateDesignFromResourceWithHttpInfo($resource_id, $private_design_id, $private_storage_owner, $tenant_id, $contentType);
     }
@@ -1718,7 +2031,7 @@ class DesignAtomsServiceApi
      * @param  string $resource_id Resource identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional, default to 0)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1726,7 +2039,7 @@ class DesignAtomsServiceApi
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function designAtomsServiceCreatePrivateDesignFromResourceWithHttpInfo($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = 0, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
+    public function designAtomsServiceCreatePrivateDesignFromResourceWithHttpInfo($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
     {
         $request = $this->designAtomsServiceCreatePrivateDesignFromResourceRequest($resource_id, $private_design_id, $private_storage_owner, $tenant_id, $contentType);
 
@@ -1782,14 +2095,14 @@ class DesignAtomsServiceApi
      * @param  string $resource_id Resource identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional, default to 0)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function designAtomsServiceCreatePrivateDesignFromResourceAsync($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = 0, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
+    public function designAtomsServiceCreatePrivateDesignFromResourceAsync($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
     {
         return $this->designAtomsServiceCreatePrivateDesignFromResourceAsyncWithHttpInfo($resource_id, $private_design_id, $private_storage_owner, $tenant_id, $contentType)
             ->then(
@@ -1807,14 +2120,14 @@ class DesignAtomsServiceApi
      * @param  string $resource_id Resource identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional, default to 0)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function designAtomsServiceCreatePrivateDesignFromResourceAsyncWithHttpInfo($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = 0, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
+    public function designAtomsServiceCreatePrivateDesignFromResourceAsyncWithHttpInfo($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
     {
         $returnType = '';
         $request = $this->designAtomsServiceCreatePrivateDesignFromResourceRequest($resource_id, $private_design_id, $private_storage_owner, $tenant_id, $contentType);
@@ -1848,14 +2161,14 @@ class DesignAtomsServiceApi
      * @param  string $resource_id Resource identifier. (optional)
      * @param  string $private_design_id Private design identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional, default to 0)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function designAtomsServiceCreatePrivateDesignFromResourceRequest($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = 0, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
+    public function designAtomsServiceCreatePrivateDesignFromResourceRequest($resource_id = null, $private_design_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceCreatePrivateDesignFromResource'][0])
     {
 
 
@@ -1992,7 +2305,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceDeleteVdpData'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2011,7 +2324,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceDeleteVdpData'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2081,7 +2394,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceDeleteVdpData'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2104,7 +2417,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceDeleteVdpData'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2143,7 +2456,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceDeleteVdpData'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2282,12 +2595,12 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  int $surface_index Surface index. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractBackground'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
+     * @return \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto
      */
     public function designAtomsServiceExtractBackground($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceExtractBackground'][0])
     {
@@ -2303,12 +2616,12 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  int $surface_index Surface index. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractBackground'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \SplFileObject|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceExtractBackgroundWithHttpInfo($id, $surface_index = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceExtractBackground'][0])
     {
@@ -2405,11 +2718,11 @@ class DesignAtomsServiceApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2427,7 +2740,7 @@ class DesignAtomsServiceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2482,7 +2795,7 @@ class DesignAtomsServiceApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
+                        '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2500,7 +2813,7 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  int $surface_index Surface index. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractBackground'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2524,7 +2837,7 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  int $surface_index Surface index. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractBackground'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2577,7 +2890,7 @@ class DesignAtomsServiceApi
      * @param  string $id Design identifier. (required)
      * @param  int $surface_index Surface index. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractBackground'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2723,7 +3036,7 @@ class DesignAtomsServiceApi
      *
      * Extracts print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractItemImage'] to see the possible values for this operation
      *
@@ -2743,7 +3056,7 @@ class DesignAtomsServiceApi
      *
      * Extracts print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractItemImage'] to see the possible values for this operation
      *
@@ -2869,7 +3182,7 @@ class DesignAtomsServiceApi
      *
      * Extracts print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractItemImage'] to see the possible values for this operation
      *
@@ -2892,7 +3205,7 @@ class DesignAtomsServiceApi
      *
      * Extracts print-product item image.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractItemImage'] to see the possible values for this operation
      *
@@ -2944,7 +3257,7 @@ class DesignAtomsServiceApi
     /**
      * Create request for operation 'designAtomsServiceExtractItemImage'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ExtractItemImageModel $extract_item_image_model Extraction parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceExtractItemImage'] to see the possible values for this operation
      *
@@ -3065,7 +3378,7 @@ class DesignAtomsServiceApi
      *
      * Flattens print-product items.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body Items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceFlattenItems'] to see the possible values for this operation
      *
@@ -3085,7 +3398,7 @@ class DesignAtomsServiceApi
      *
      * Flattens print-product items.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body Items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceFlattenItems'] to see the possible values for this operation
      *
@@ -3211,7 +3524,7 @@ class DesignAtomsServiceApi
      *
      * Flattens print-product items.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body Items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceFlattenItems'] to see the possible values for this operation
      *
@@ -3234,7 +3547,7 @@ class DesignAtomsServiceApi
      *
      * Flattens print-product items.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body Items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceFlattenItems'] to see the possible values for this operation
      *
@@ -3286,7 +3599,7 @@ class DesignAtomsServiceApi
     /**
      * Create request for operation 'designAtomsServiceFlattenItems'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed[] $request_body Items to flatten. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceFlattenItems'] to see the possible values for this operation
      *
@@ -3409,7 +3722,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetDesignParameters'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3429,7 +3742,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetDesignParameters'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3590,7 +3903,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetDesignParameters'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3613,7 +3926,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetDesignParameters'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3665,7 +3978,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetDesignParameters'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3803,7 +4116,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetVariables'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3823,7 +4136,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetVariables'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3984,7 +4297,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetVariables'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4007,7 +4320,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetVariables'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4059,7 +4372,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceGetVariables'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4197,7 +4510,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadDataSchema'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4217,7 +4530,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadDataSchema'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4413,7 +4726,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadDataSchema'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4436,7 +4749,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadDataSchema'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4488,7 +4801,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadDataSchema'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4626,7 +4939,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProduct'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4647,7 +4960,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProduct'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4809,7 +5122,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProduct'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4833,7 +5146,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProduct'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4886,7 +5199,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProduct'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5025,12 +5338,12 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Resource identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProductFromResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto
      */
     public function designAtomsServiceLoadProductFromResource($id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadProductFromResource'][0])
     {
@@ -5045,12 +5358,12 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Resource identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProductFromResource'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsServiceLoadProductFromResourceWithHttpInfo($id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsServiceLoadProductFromResource'][0])
     {
@@ -5147,11 +5460,11 @@ class DesignAtomsServiceApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' === '\SplFileObject') {
+                    if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto' !== 'string') {
+                        if ('\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5169,7 +5482,7 @@ class DesignAtomsServiceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5224,7 +5537,7 @@ class DesignAtomsServiceApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\DesignAtoms\Model\UnprocessableDesignElementDto',
+                        '\Aurigma\DesignAtoms\Model\DesignElementProcessingConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5241,7 +5554,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Resource identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProductFromResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5264,7 +5577,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Resource identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProductFromResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5316,7 +5629,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Resource identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadProductFromResource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5449,7 +5762,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadToggleSet'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5469,7 +5782,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadToggleSet'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5665,7 +5978,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadToggleSet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5688,7 +6001,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadToggleSet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5740,7 +6053,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadToggleSet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5878,7 +6191,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadVdpData'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5898,7 +6211,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadVdpData'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6094,7 +6407,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadVdpData'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6117,7 +6430,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadVdpData'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6169,7 +6482,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceLoadVdpData'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6307,7 +6620,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -6333,7 +6646,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -6410,7 +6723,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -6440,7 +6753,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -6486,7 +6799,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -6676,7 +6989,7 @@ class DesignAtomsServiceApi
      * Renders a design preview with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreview'] to see the possible values for this operation
      *
@@ -6696,7 +7009,7 @@ class DesignAtomsServiceApi
      * Renders a design preview with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreview'] to see the possible values for this operation
      *
@@ -6822,7 +7135,7 @@ class DesignAtomsServiceApi
      * Renders a design preview with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreview'] to see the possible values for this operation
      *
@@ -6845,7 +7158,7 @@ class DesignAtomsServiceApi
      * Renders a design preview with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreview'] to see the possible values for this operation
      *
@@ -6897,7 +7210,7 @@ class DesignAtomsServiceApi
      * Create request for operation 'designAtomsServiceRenderDesignPreview'
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewModel $render_design_preview_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreview'] to see the possible values for this operation
      *
@@ -7027,7 +7340,7 @@ class DesignAtomsServiceApi
      *
      * Renders a design preview with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel $render_design_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreviewToResource'] to see the possible values for this operation
      *
@@ -7046,7 +7359,7 @@ class DesignAtomsServiceApi
      *
      * Renders a design preview with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel $render_design_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreviewToResource'] to see the possible values for this operation
      *
@@ -7241,7 +7554,7 @@ class DesignAtomsServiceApi
      *
      * Renders a design preview with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel $render_design_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreviewToResource'] to see the possible values for this operation
      *
@@ -7263,7 +7576,7 @@ class DesignAtomsServiceApi
      *
      * Renders a design preview with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel $render_design_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreviewToResource'] to see the possible values for this operation
      *
@@ -7314,7 +7627,7 @@ class DesignAtomsServiceApi
     /**
      * Create request for operation 'designAtomsServiceRenderDesignPreviewToResource'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignPreviewToResourceModel $render_design_preview_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignPreviewToResource'] to see the possible values for this operation
      *
@@ -7435,7 +7748,7 @@ class DesignAtomsServiceApi
      * Renders a design proof with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProof'] to see the possible values for this operation
      *
@@ -7455,7 +7768,7 @@ class DesignAtomsServiceApi
      * Renders a design proof with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProof'] to see the possible values for this operation
      *
@@ -7616,7 +7929,7 @@ class DesignAtomsServiceApi
      * Renders a design proof with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProof'] to see the possible values for this operation
      *
@@ -7639,7 +7952,7 @@ class DesignAtomsServiceApi
      * Renders a design proof with the specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProof'] to see the possible values for this operation
      *
@@ -7691,7 +8004,7 @@ class DesignAtomsServiceApi
      * Create request for operation 'designAtomsServiceRenderDesignProof'
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofModel $render_design_proof_model Render model with proof parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProof'] to see the possible values for this operation
      *
@@ -7821,7 +8134,7 @@ class DesignAtomsServiceApi
      *
      * Renders a design proof with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel $render_design_proof_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProofToResource'] to see the possible values for this operation
      *
@@ -7840,7 +8153,7 @@ class DesignAtomsServiceApi
      *
      * Renders a design proof with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel $render_design_proof_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProofToResource'] to see the possible values for this operation
      *
@@ -8000,7 +8313,7 @@ class DesignAtomsServiceApi
      *
      * Renders a design proof with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel $render_design_proof_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProofToResource'] to see the possible values for this operation
      *
@@ -8022,7 +8335,7 @@ class DesignAtomsServiceApi
      *
      * Renders a design proof with the specified parameters and saves rendering result as resource.
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel $render_design_proof_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProofToResource'] to see the possible values for this operation
      *
@@ -8073,7 +8386,7 @@ class DesignAtomsServiceApi
     /**
      * Create request for operation 'designAtomsServiceRenderDesignProofToResource'
      *
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderDesignProofToResourceModel $render_design_proof_to_resource_model Render model with preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderDesignProofToResource'] to see the possible values for this operation
      *
@@ -8194,7 +8507,7 @@ class DesignAtomsServiceApi
      * Renders a product proof image with specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderProduct'] to see the possible values for this operation
      *
@@ -8214,7 +8527,7 @@ class DesignAtomsServiceApi
      * Renders a product proof image with specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderProduct'] to see the possible values for this operation
      *
@@ -8340,7 +8653,7 @@ class DesignAtomsServiceApi
      * Renders a product proof image with specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderProduct'] to see the possible values for this operation
      *
@@ -8363,7 +8676,7 @@ class DesignAtomsServiceApi
      * Renders a product proof image with specified parameters.
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderProduct'] to see the possible values for this operation
      *
@@ -8415,7 +8728,7 @@ class DesignAtomsServiceApi
      * Create request for operation 'designAtomsServiceRenderProduct'
      *
      * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with unique filename supplied  (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\RenderProductModel $render_product_model Preview parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceRenderProduct'] to see the possible values for this operation
      *
@@ -8547,7 +8860,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Serialized product description. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveProduct'] to see the possible values for this operation
      *
@@ -8568,7 +8881,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Serialized product description. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveProduct'] to see the possible values for this operation
      *
@@ -8640,7 +8953,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Serialized product description. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveProduct'] to see the possible values for this operation
      *
@@ -8665,7 +8978,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Serialized product description. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveProduct'] to see the possible values for this operation
      *
@@ -8706,7 +9019,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Serialized product description. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveProduct'] to see the possible values for this operation
      *
@@ -8854,7 +9167,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveVdpData'] to see the possible values for this operation
      *
@@ -8874,7 +9187,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveVdpData'] to see the possible values for this operation
      *
@@ -8945,7 +9258,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveVdpData'] to see the possible values for this operation
      *
@@ -8969,7 +9282,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveVdpData'] to see the possible values for this operation
      *
@@ -9009,7 +9322,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VdpDataModel $vdp_data_model Serialized vdp data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSaveVdpData'] to see the possible values for this operation
      *
@@ -9156,7 +9469,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\SetEditorMockupsModel $set_editor_mockups_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetEditorMockups'] to see the possible values for this operation
      *
@@ -9176,7 +9489,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\SetEditorMockupsModel $set_editor_mockups_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetEditorMockups'] to see the possible values for this operation
      *
@@ -9255,7 +9568,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\SetEditorMockupsModel $set_editor_mockups_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetEditorMockups'] to see the possible values for this operation
      *
@@ -9279,7 +9592,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\SetEditorMockupsModel $set_editor_mockups_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetEditorMockups'] to see the possible values for this operation
      *
@@ -9319,7 +9632,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\SetEditorMockupsModel $set_editor_mockups_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetEditorMockups'] to see the possible values for this operation
      *
@@ -9466,7 +9779,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetVariables'] to see the possible values for this operation
      *
@@ -9486,7 +9799,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetVariables'] to see the possible values for this operation
      *
@@ -9565,7 +9878,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetVariables'] to see the possible values for this operation
      *
@@ -9589,7 +9902,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetVariables'] to see the possible values for this operation
      *
@@ -9629,7 +9942,7 @@ class DesignAtomsServiceApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\VariablesModel $variables_model Design variable values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsServiceSetVariables'] to see the possible values for this operation
      *

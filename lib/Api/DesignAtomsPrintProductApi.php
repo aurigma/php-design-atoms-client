@@ -219,13 +219,13 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsPrintProductAddDesignPrintArea($id, $private_storage_owner = null, $tenant_id = null, $design_print_area_params = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignPrintArea'][0])
     {
@@ -240,13 +240,13 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductAddDesignPrintAreaWithHttpInfo($id, $private_storage_owner = null, $tenant_id = null, $design_print_area_params = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignPrintArea'][0])
     {
@@ -369,6 +369,33 @@ class DesignAtomsPrintProductApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -425,6 +452,14 @@ class DesignAtomsPrintProductApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -437,7 +472,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
      *
@@ -461,7 +496,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
      *
@@ -514,7 +549,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintArea'] to see the possible values for this operation
      *
@@ -662,13 +697,13 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsPrintProductAddDesignPrintAreaModel($id, $surface_id = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'][0])
     {
@@ -684,13 +719,13 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductAddDesignPrintAreaModelWithHttpInfo($id, $surface_id = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'][0])
     {
@@ -813,6 +848,33 @@ class DesignAtomsPrintProductApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -869,6 +931,14 @@ class DesignAtomsPrintProductApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -882,7 +952,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
@@ -907,7 +977,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
@@ -961,7 +1031,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Parent surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignPrintAreaModel'] to see the possible values for this operation
      *
@@ -1122,13 +1192,13 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsPrintProductAddDesignSurfaceContainerModel($id, $surface_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'][0])
     {
@@ -1147,13 +1217,13 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductAddDesignSurfaceContainerModelWithHttpInfo($id, $surface_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'][0])
     {
@@ -1276,6 +1346,33 @@ class DesignAtomsPrintProductApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -1332,6 +1429,14 @@ class DesignAtomsPrintProductApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -1348,7 +1453,7 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
      *
@@ -1376,7 +1481,7 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
      *
@@ -1433,7 +1538,7 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceContainerModel'] to see the possible values for this operation
      *
@@ -1624,13 +1729,13 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsPrintProductAddDesignSurfaceItemModel($id, $container_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'][0])
     {
@@ -1649,13 +1754,13 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductAddDesignSurfaceItemModelWithHttpInfo($id, $container_id = null, $index = null, $top = null, $left = null, $private_storage_owner = null, $tenant_id = null, $body = null, string $contentType = self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'][0])
     {
@@ -1778,6 +1883,33 @@ class DesignAtomsPrintProductApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = 'mixed';
@@ -1834,6 +1966,14 @@ class DesignAtomsPrintProductApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -1850,7 +1990,7 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
      *
@@ -1878,7 +2018,7 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
      *
@@ -1935,7 +2075,7 @@ class DesignAtomsPrintProductApi
      * @param  float $top Y axis position. (optional)
      * @param  float $left X axis position. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a new print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceItemModel'] to see the possible values for this operation
      *
@@ -2123,7 +2263,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  int $index Surface index within the surfaces list of a design. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -2145,7 +2285,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  int $index Surface index within the surfaces list of a design. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -2343,7 +2483,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  int $index Surface index within the surfaces list of a design. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -2368,7 +2508,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  int $index Surface index within the surfaces list of a design. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -2422,7 +2562,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  int $index Surface index within the surfaces list of a design. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-prouduct surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductAddDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -2580,7 +2720,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignPrintArea'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2600,7 +2740,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignPrintArea'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2679,7 +2819,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignPrintArea'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2703,7 +2843,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignPrintArea'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2743,7 +2883,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignPrintArea'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2897,7 +3037,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2917,7 +3057,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2996,7 +3136,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3020,7 +3160,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3060,7 +3200,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurface'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3214,7 +3354,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3234,7 +3374,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3313,7 +3453,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3337,7 +3477,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3377,7 +3517,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceContainer'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3531,7 +3671,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3551,7 +3691,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3630,7 +3770,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3654,7 +3794,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3694,7 +3834,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductDeleteDesignSurfaceItem'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3848,7 +3988,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3869,7 +4009,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4066,7 +4206,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4090,7 +4230,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4143,7 +4283,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreaModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4297,7 +4437,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id surface_id (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreas'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4318,7 +4458,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreas'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4480,7 +4620,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreas'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4504,7 +4644,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreas'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4557,7 +4697,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignPrintAreas'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4705,7 +4845,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignProductModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4725,7 +4865,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignProductModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4886,7 +5026,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignProductModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4909,7 +5049,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignProductModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4961,7 +5101,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignProductModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5100,7 +5240,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5121,7 +5261,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5318,7 +5458,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5342,7 +5482,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5395,7 +5535,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainerModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5549,12 +5689,12 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]|\Aurigma\DesignAtoms\Model\ProblemDetails
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto
      */
     public function designAtomsPrintProductGetDesignSurfaceContainers($id, $surface_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'][0])
     {
@@ -5570,12 +5710,12 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]|\Aurigma\DesignAtoms\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]|\Aurigma\DesignAtoms\Model\ProblemDetails|\Aurigma\DesignAtoms\Model\GeneralConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function designAtomsPrintProductGetDesignSurfaceContainersWithHttpInfo($id, $surface_id = null, $private_storage_owner = null, $tenant_id = null, string $contentType = self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'][0])
     {
@@ -5671,6 +5811,33 @@ class DesignAtomsPrintProductApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 409:
+                    if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\DesignAtoms\Model\GeneralConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\DesignAtoms\Model\GeneralConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto[]';
@@ -5719,6 +5886,14 @@ class DesignAtomsPrintProductApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\DesignAtoms\Model\GeneralConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -5732,7 +5907,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5756,7 +5931,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5809,7 +5984,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceContainers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5958,7 +6133,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5979,7 +6154,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6211,7 +6386,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6235,7 +6410,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6288,7 +6463,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6442,7 +6617,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6463,7 +6638,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6695,7 +6870,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6719,7 +6894,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6772,7 +6947,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceDownMockupContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6926,7 +7101,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6947,7 +7122,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -7144,7 +7319,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7168,7 +7343,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7221,7 +7396,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItemModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7377,7 +7552,7 @@ class DesignAtomsPrintProductApi
      * @param  string $container_id Print-product container identifier. (optional)
      * @param  string $parent_item_id Print-product item identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -7400,7 +7575,7 @@ class DesignAtomsPrintProductApi
      * @param  string $container_id Print-product container identifier. (optional)
      * @param  string $parent_item_id Print-product item identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -7564,7 +7739,7 @@ class DesignAtomsPrintProductApi
      * @param  string $container_id Print-product container identifier. (optional)
      * @param  string $parent_item_id Print-product item identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7590,7 +7765,7 @@ class DesignAtomsPrintProductApi
      * @param  string $container_id Print-product container identifier. (optional)
      * @param  string $parent_item_id Print-product item identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7645,7 +7820,7 @@ class DesignAtomsPrintProductApi
      * @param  string $container_id Print-product container identifier. (optional)
      * @param  string $parent_item_id Print-product item identifier. (optional)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceItems'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7814,7 +7989,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -7835,7 +8010,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -8032,7 +8207,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8056,7 +8231,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8109,7 +8284,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceModel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8263,7 +8438,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -8284,7 +8459,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -8516,7 +8691,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8540,7 +8715,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8593,7 +8768,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8747,7 +8922,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -8768,7 +8943,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -9000,7 +9175,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -9024,7 +9199,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -9077,7 +9252,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaceUpMockupContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -9230,7 +9405,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaces'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -9250,7 +9425,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaces'] to see the possible values for this operation
      *
      * @throws \Aurigma\DesignAtoms\ApiException on non-2xx response or if the response body is not in the expected format
@@ -9411,7 +9586,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaces'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -9434,7 +9609,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaces'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -9486,7 +9661,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductGetDesignSurfaces'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -9624,7 +9799,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -9649,7 +9824,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -9725,7 +9900,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -9754,7 +9929,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -9799,7 +9974,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\ProductPatchType $patch_type Patch operation type. (optional)
      * @param  string $replace_image_item_file_info_item_name Item Name. (optional)
      * @param  \SplFileObject $replace_image_item_file_info_source_file Patch source file. (optional)
@@ -9990,7 +10165,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -10012,7 +10187,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -10245,7 +10420,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -10270,7 +10445,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -10324,7 +10499,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product surface. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductReplaceDesignSurfaceModel'] to see the possible values for this operation
      *
@@ -10487,7 +10662,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
      *
@@ -10509,7 +10684,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
      *
@@ -10742,7 +10917,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
      *
@@ -10767,7 +10942,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
      *
@@ -10821,7 +10996,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\DesignAtoms\Model\DesignPrintAreaParams $design_print_area_params Print-area description model. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintArea'] to see the possible values for this operation
      *
@@ -10984,7 +11159,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
@@ -11006,7 +11181,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
@@ -11239,7 +11414,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
@@ -11264,7 +11439,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
@@ -11318,7 +11493,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $print_area_id Design print-area identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-area. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignPrintAreaModel'] to see the possible values for this operation
      *
@@ -11480,7 +11655,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
@@ -11500,7 +11675,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
@@ -11571,7 +11746,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
@@ -11595,7 +11770,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
@@ -11635,7 +11810,7 @@ class DesignAtomsPrintProductApi
      *
      * @param  string $id Design identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product . (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignProductModel'] to see the possible values for this operation
      *
@@ -11783,7 +11958,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
      *
@@ -11805,7 +11980,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
      *
@@ -12038,7 +12213,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
      *
@@ -12063,7 +12238,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
      *
@@ -12117,7 +12292,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $container_id Print-product container identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product container. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceContainerModel'] to see the possible values for this operation
      *
@@ -12280,7 +12455,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
@@ -12304,7 +12479,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
@@ -12539,7 +12714,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
@@ -12566,7 +12741,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
@@ -12622,7 +12797,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
@@ -12802,7 +12977,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
      *
@@ -12824,7 +12999,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
      *
@@ -13057,7 +13232,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
      *
@@ -13082,7 +13257,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
      *
@@ -13136,7 +13311,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $item_id Print-product item identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  mixed $body Json-serialized model of a print-product item. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['designAtomsPrintProductUpdateDesignSurfaceItemModel'] to see the possible values for this operation
      *
@@ -13299,7 +13474,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
@@ -13323,7 +13498,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
@@ -13558,7 +13733,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
@@ -13585,7 +13760,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
@@ -13641,7 +13816,7 @@ class DesignAtomsPrintProductApi
      * @param  string $id Design identifier. (required)
      * @param  string $surface_id Print-product surface identifier. (required)
      * @param  string $private_storage_owner Private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  float $position_top Y axis position. (optional)
      * @param  float $position_left X axis position. (optional)
      * @param  \SplFileObject $source_file New mockup file. (optional)
