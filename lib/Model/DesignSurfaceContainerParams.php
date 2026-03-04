@@ -1,6 +1,6 @@
 <?php
 /**
- * DesignSurfaceContainerDto
+ * DesignSurfaceContainerParams
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * DesignSurfaceContainerDto Class Doc Comment
+ * DesignSurfaceContainerParams Class Doc Comment
  *
  * @category Class
  * @description Print-product container description.
@@ -41,7 +41,7 @@ use \Aurigma\DesignAtoms\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class DesignSurfaceContainerParams implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DesignSurfaceContainerDto';
+    protected static $openAPIModelName = 'DesignSurfaceContainerParams';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,17 +58,14 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
         'name' => 'string',
-        'surface_id' => 'string',
-        'index' => 'int',
-        'size' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoSize',
-        'position' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoPosition',
+        'size' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsSize',
+        'position' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsPosition',
         'mode' => '\Aurigma\DesignAtoms\Model\ContainerPrintingMode',
-        'constraints' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoConstraints',
-        'limited_color_settings' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoLimitedColorSettings',
-        'full_color_settings' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoFullColorSettings',
-        'colorless_settings' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoColorlessSettings'
+        'constraints' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsConstraints',
+        'limited_color_settings' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsLimitedColorSettings',
+        'full_color_settings' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsFullColorSettings',
+        'colorless_settings' => '\Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsColorlessSettings'
     ];
 
     /**
@@ -79,10 +76,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
         'name' => null,
-        'surface_id' => null,
-        'index' => 'int32',
         'size' => null,
         'position' => null,
         'mode' => null,
@@ -98,10 +92,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => true,
         'name' => true,
-        'surface_id' => true,
-        'index' => false,
         'size' => true,
         'position' => true,
         'mode' => false,
@@ -197,10 +188,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
         'name' => 'name',
-        'surface_id' => 'surfaceId',
-        'index' => 'index',
         'size' => 'size',
         'position' => 'position',
         'mode' => 'mode',
@@ -216,10 +204,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
         'name' => 'setName',
-        'surface_id' => 'setSurfaceId',
-        'index' => 'setIndex',
         'size' => 'setSize',
         'position' => 'setPosition',
         'mode' => 'setMode',
@@ -235,10 +220,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
         'name' => 'getName',
-        'surface_id' => 'getSurfaceId',
-        'index' => 'getIndex',
         'size' => 'getSize',
         'position' => 'getPosition',
         'mode' => 'getMode',
@@ -305,10 +287,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('surface_id', $data ?? [], null);
-        $this->setIfExists('index', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('position', $data ?? [], null);
         $this->setIfExists('mode', $data ?? [], null);
@@ -361,40 +340,6 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string|null $id Container identifier.
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string|null
@@ -429,70 +374,9 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Gets surface_id
-     *
-     * @return string|null
-     */
-    public function getSurfaceId()
-    {
-        return $this->container['surface_id'];
-    }
-
-    /**
-     * Sets surface_id
-     *
-     * @param string|null $surface_id Parent surface identifier.
-     *
-     * @return self
-     */
-    public function setSurfaceId($surface_id)
-    {
-        if (is_null($surface_id)) {
-            array_push($this->openAPINullablesSetToNull, 'surface_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('surface_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['surface_id'] = $surface_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets index
-     *
-     * @return int|null
-     */
-    public function getIndex()
-    {
-        return $this->container['index'];
-    }
-
-    /**
-     * Sets index
-     *
-     * @param int|null $index Container index within containers list of a surface (0-based).
-     *
-     * @return self
-     */
-    public function setIndex($index)
-    {
-        if (is_null($index)) {
-            throw new \InvalidArgumentException('non-nullable index cannot be null');
-        }
-        $this->container['index'] = $index;
-
-        return $this;
-    }
-
-    /**
      * Gets size
      *
-     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoSize|null
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsSize|null
      */
     public function getSize()
     {
@@ -502,7 +386,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets size
      *
-     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoSize|null $size size
+     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsSize|null $size size
      *
      * @return self
      */
@@ -526,7 +410,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets position
      *
-     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoPosition|null
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsPosition|null
      */
     public function getPosition()
     {
@@ -536,7 +420,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets position
      *
-     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoPosition|null $position position
+     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsPosition|null $position position
      *
      * @return self
      */
@@ -587,7 +471,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets constraints
      *
-     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoConstraints|null
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsConstraints|null
      */
     public function getConstraints()
     {
@@ -597,7 +481,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets constraints
      *
-     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoConstraints|null $constraints constraints
+     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsConstraints|null $constraints constraints
      *
      * @return self
      */
@@ -621,7 +505,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets limited_color_settings
      *
-     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoLimitedColorSettings|null
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsLimitedColorSettings|null
      */
     public function getLimitedColorSettings()
     {
@@ -631,7 +515,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets limited_color_settings
      *
-     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoLimitedColorSettings|null $limited_color_settings limited_color_settings
+     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsLimitedColorSettings|null $limited_color_settings limited_color_settings
      *
      * @return self
      */
@@ -655,7 +539,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets full_color_settings
      *
-     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoFullColorSettings|null
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsFullColorSettings|null
      */
     public function getFullColorSettings()
     {
@@ -665,7 +549,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets full_color_settings
      *
-     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoFullColorSettings|null $full_color_settings full_color_settings
+     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsFullColorSettings|null $full_color_settings full_color_settings
      *
      * @return self
      */
@@ -689,7 +573,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets colorless_settings
      *
-     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoColorlessSettings|null
+     * @return \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsColorlessSettings|null
      */
     public function getColorlessSettings()
     {
@@ -699,7 +583,7 @@ class DesignSurfaceContainerDto implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets colorless_settings
      *
-     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDtoColorlessSettings|null $colorless_settings colorless_settings
+     * @param \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParamsColorlessSettings|null $colorless_settings colorless_settings
      *
      * @return self
      */

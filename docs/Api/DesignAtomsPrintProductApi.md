@@ -6,6 +6,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**designAtomsPrintProductAddDesignPrintArea()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductAddDesignPrintArea) | **POST** /api/atoms/v1/designs/{id}/print-product/print-areas | Inserts a new print-area created by the description at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions. |
 | [**designAtomsPrintProductAddDesignPrintAreaModel()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductAddDesignPrintAreaModel) | **POST** /api/atoms/v1/designs/{id}/print-product/print-areas/model | Inserts a new print-area provided as a json-serialized model at the specified position in an existing design file.  Print-area identifier will be reset by auto-generated value to prevent identifiers collisions. |
+| [**designAtomsPrintProductAddDesignSurfaceContainer()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductAddDesignSurfaceContainer) | **POST** /api/atoms/v1/designs/{id}/print-product/containers | Returns a list of print-product container descriptions of the specified design file. |
 | [**designAtomsPrintProductAddDesignSurfaceContainerModel()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductAddDesignSurfaceContainerModel) | **POST** /api/atoms/v1/designs/{id}/print-product/containers/model | Inserts a new print-product container provided as a json-serialized model to the certain surface in an existing design file.  Print-product container identifier will be reset by auto-generated value to prevent identifiers collisions. |
 | [**designAtomsPrintProductAddDesignSurfaceItemModel()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductAddDesignSurfaceItemModel) | **POST** /api/atoms/v1/designs/{id}/print-product/items/model | Inserts a new print-product item provided as a json-serialized model to the specified surface in an existing design file.  Item identifier will be reset by auto-generated value to prevent identifiers collisions. |
 | [**designAtomsPrintProductAddDesignSurfaceModel()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductAddDesignSurfaceModel) | **POST** /api/atoms/v1/designs/{id}/print-product/surfaces/model | Inserts a new surface provided as a json-serialized model at the specified position in an existing design file.  All design elements identifiers within the surface (including surface identifier) will be reset by auto-generated values to prevent identifiers collisions. |
@@ -31,6 +32,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**designAtomsPrintProductUpdateDesignPrintArea()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductUpdateDesignPrintArea) | **PUT** /api/atoms/v1/designs/{id}/print-product/print-areas/{printAreaId} | Updates a specified print-area using a description in an existing design file. |
 | [**designAtomsPrintProductUpdateDesignPrintAreaModel()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductUpdateDesignPrintAreaModel) | **PUT** /api/atoms/v1/designs/{id}/print-product/print-areas/{printAreaId}/model | Updates a specified print-area in an existing design file with the data provided as a json-serialized print-area model. |
 | [**designAtomsPrintProductUpdateDesignProductModel()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductUpdateDesignProductModel) | **PUT** /api/atoms/v1/designs/{id}/print-product/model | Updates a print-product provided as a json-serialized model is the specified design file. |
+| [**designAtomsPrintProductUpdateDesignSurfaceContainer()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductUpdateDesignSurfaceContainer) | **PUT** /api/atoms/v1/designs/{id}/print-product/containers/{containerId} | Returns a list of print-product container descriptions of the specified design file. |
 | [**designAtomsPrintProductUpdateDesignSurfaceContainerModel()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductUpdateDesignSurfaceContainerModel) | **PUT** /api/atoms/v1/designs/{id}/print-product/containers/{containerId}/model | Updates a specified print-product container in an existing design file with the data provided as a json-serialized model. |
 | [**designAtomsPrintProductUpdateDesignSurfaceDownMockup()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductUpdateDesignSurfaceDownMockup) | **PATCH** /api/atoms/v1/designs/{id}/print-product/surfaces/{surfaceId}/mockup-down | Updates a content file of down-mockup for the specified print-product surface in an existing design file. |
 | [**designAtomsPrintProductUpdateDesignSurfaceItemModel()**](DesignAtomsPrintProductApi.md#designAtomsPrintProductUpdateDesignSurfaceItemModel) | **PUT** /api/atoms/v1/designs/{id}/print-product/items/{itemId}/model | Updates a specified print-product surface item in an existing design file with the data provided as a json-serialized item model. |
@@ -185,6 +187,90 @@ try {
 ### Return type
 
 **mixed**
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsPrintProductAddDesignSurfaceContainer()`
+
+```php
+designAtomsPrintProductAddDesignSurfaceContainer($id, $index, $surface_id, $private_storage_owner, $tenant_id, $design_surface_container_params): \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto
+```
+
+Returns a list of print-product container descriptions of the specified design file.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Design identifier.
+$index = 56; // int
+$surface_id = 'surface_id_example'; // string | Print-product surface identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
+$tenant_id = 56; // int | Tenant ID.
+$design_surface_container_params = new \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParams(); // \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParams
+
+try {
+    $result = $apiInstance->designAtomsPrintProductAddDesignSurfaceContainer($id, $index, $surface_id, $private_storage_owner, $tenant_id, $design_surface_container_params);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsPrintProductApi->designAtomsPrintProductAddDesignSurfaceContainer: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Design identifier. | |
+| **index** | **int**|  | [optional] |
+| **surface_id** | **string**| Print-product surface identifier. | [optional] |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+| **design_surface_container_params** | [**\Aurigma\DesignAtoms\Model\DesignSurfaceContainerParams**](../Model/DesignSurfaceContainerParams.md)|  | [optional] |
+
+### Return type
+
+[**\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto**](../Model/DesignSurfaceContainerDto.md)
 
 ### Authorization
 
@@ -2215,6 +2301,90 @@ try {
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designAtomsPrintProductUpdateDesignSurfaceContainer()`
+
+```php
+designAtomsPrintProductUpdateDesignSurfaceContainer($id, $container_id, $surface_id, $private_storage_owner, $tenant_id, $design_surface_container_params): \Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto
+```
+
+Returns a list of print-product container descriptions of the specified design file.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\DesignAtoms\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\DesignAtoms\Api\DesignAtomsPrintProductApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Design identifier.
+$container_id = 'container_id_example'; // string
+$surface_id = 'surface_id_example'; // string | Print-product surface identifier.
+$private_storage_owner = 'private_storage_owner_example'; // string | Private storage owner identifier.
+$tenant_id = 56; // int | Tenant ID.
+$design_surface_container_params = new \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParams(); // \Aurigma\DesignAtoms\Model\DesignSurfaceContainerParams
+
+try {
+    $result = $apiInstance->designAtomsPrintProductUpdateDesignSurfaceContainer($id, $container_id, $surface_id, $private_storage_owner, $tenant_id, $design_surface_container_params);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignAtomsPrintProductApi->designAtomsPrintProductUpdateDesignSurfaceContainer: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Design identifier. | |
+| **container_id** | **string**|  | |
+| **surface_id** | **string**| Print-product surface identifier. | [optional] |
+| **private_storage_owner** | **string**| Private storage owner identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+| **design_surface_container_params** | [**\Aurigma\DesignAtoms\Model\DesignSurfaceContainerParams**](../Model/DesignSurfaceContainerParams.md)|  | [optional] |
+
+### Return type
+
+[**\Aurigma\DesignAtoms\Model\DesignSurfaceContainerDto**](../Model/DesignSurfaceContainerDto.md)
 
 ### Authorization
 

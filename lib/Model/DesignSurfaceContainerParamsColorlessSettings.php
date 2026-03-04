@@ -1,6 +1,6 @@
 <?php
 /**
- * DesignPrintAreaDto
+ * DesignSurfaceContainerParamsColorlessSettings
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * DesignPrintAreaDto Class Doc Comment
+ * DesignSurfaceContainerParamsColorlessSettings Class Doc Comment
  *
  * @category Class
- * @description Design print area parameters.
+ * @description Colorless container settings. If container mode is not &#39;Colorless&#39;, null value will be provided.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class DesignSurfaceContainerParamsColorlessSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DesignPrintAreaDto';
+    protected static $openAPIModelName = 'DesignSurfaceContainerParams_colorlessSettings';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,14 +58,12 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'name' => 'string',
-        'surface_id' => 'string',
-        'size' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSize',
-        'position' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoPosition',
-        'bleed' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoBleed',
-        'slug' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSlug',
-        'shape' => 'string'
+        'format' => '\Aurigma\DesignAtoms\Model\ColorlessContainerFormat',
+        'dither' => '\Aurigma\DesignAtoms\Model\ColorlessContainerDitherType',
+        'display_type' => '\Aurigma\DesignAtoms\Model\ColorlessContainerDisplayType',
+        'dither_amount' => 'float',
+        'display_color' => 'string',
+        'output_color' => 'string'
     ];
 
     /**
@@ -76,14 +74,12 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'name' => null,
-        'surface_id' => null,
-        'size' => null,
-        'position' => null,
-        'bleed' => null,
-        'slug' => null,
-        'shape' => null
+        'format' => null,
+        'dither' => null,
+        'display_type' => null,
+        'dither_amount' => 'float',
+        'display_color' => null,
+        'output_color' => null
     ];
 
     /**
@@ -92,14 +88,12 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => true,
-        'name' => true,
-        'surface_id' => true,
-        'size' => true,
-        'position' => true,
-        'bleed' => true,
-        'slug' => true,
-        'shape' => true
+        'format' => false,
+        'dither' => false,
+        'display_type' => false,
+        'dither_amount' => false,
+        'display_color' => true,
+        'output_color' => true
     ];
 
     /**
@@ -188,14 +182,12 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'surface_id' => 'surfaceId',
-        'size' => 'size',
-        'position' => 'position',
-        'bleed' => 'bleed',
-        'slug' => 'slug',
-        'shape' => 'shape'
+        'format' => 'format',
+        'dither' => 'dither',
+        'display_type' => 'displayType',
+        'dither_amount' => 'ditherAmount',
+        'display_color' => 'displayColor',
+        'output_color' => 'outputColor'
     ];
 
     /**
@@ -204,14 +196,12 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
-        'surface_id' => 'setSurfaceId',
-        'size' => 'setSize',
-        'position' => 'setPosition',
-        'bleed' => 'setBleed',
-        'slug' => 'setSlug',
-        'shape' => 'setShape'
+        'format' => 'setFormat',
+        'dither' => 'setDither',
+        'display_type' => 'setDisplayType',
+        'dither_amount' => 'setDitherAmount',
+        'display_color' => 'setDisplayColor',
+        'output_color' => 'setOutputColor'
     ];
 
     /**
@@ -220,14 +210,12 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
-        'surface_id' => 'getSurfaceId',
-        'size' => 'getSize',
-        'position' => 'getPosition',
-        'bleed' => 'getBleed',
-        'slug' => 'getSlug',
-        'shape' => 'getShape'
+        'format' => 'getFormat',
+        'dither' => 'getDither',
+        'display_type' => 'getDisplayType',
+        'dither_amount' => 'getDitherAmount',
+        'display_color' => 'getDisplayColor',
+        'output_color' => 'getOutputColor'
     ];
 
     /**
@@ -287,14 +275,12 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('surface_id', $data ?? [], null);
-        $this->setIfExists('size', $data ?? [], null);
-        $this->setIfExists('position', $data ?? [], null);
-        $this->setIfExists('bleed', $data ?? [], null);
-        $this->setIfExists('slug', $data ?? [], null);
-        $this->setIfExists('shape', $data ?? [], null);
+        $this->setIfExists('format', $data ?? [], null);
+        $this->setIfExists('dither', $data ?? [], null);
+        $this->setIfExists('display_type', $data ?? [], null);
+        $this->setIfExists('dither_amount', $data ?? [], null);
+        $this->setIfExists('display_color', $data ?? [], null);
+        $this->setIfExists('output_color', $data ?? [], null);
     }
 
     /**
@@ -340,273 +326,177 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets id
+     * Gets format
+     *
+     * @return \Aurigma\DesignAtoms\Model\ColorlessContainerFormat|null
+     */
+    public function getFormat()
+    {
+        return $this->container['format'];
+    }
+
+    /**
+     * Sets format
+     *
+     * @param \Aurigma\DesignAtoms\Model\ColorlessContainerFormat|null $format Container format.
+     *
+     * @return self
+     */
+    public function setFormat($format)
+    {
+        if (is_null($format)) {
+            throw new \InvalidArgumentException('non-nullable format cannot be null');
+        }
+        $this->container['format'] = $format;
+
+        return $this;
+    }
+
+    /**
+     * Gets dither
+     *
+     * @return \Aurigma\DesignAtoms\Model\ColorlessContainerDitherType|null
+     */
+    public function getDither()
+    {
+        return $this->container['dither'];
+    }
+
+    /**
+     * Sets dither
+     *
+     * @param \Aurigma\DesignAtoms\Model\ColorlessContainerDitherType|null $dither Container dither type.
+     *
+     * @return self
+     */
+    public function setDither($dither)
+    {
+        if (is_null($dither)) {
+            throw new \InvalidArgumentException('non-nullable dither cannot be null');
+        }
+        $this->container['dither'] = $dither;
+
+        return $this;
+    }
+
+    /**
+     * Gets display_type
+     *
+     * @return \Aurigma\DesignAtoms\Model\ColorlessContainerDisplayType|null
+     */
+    public function getDisplayType()
+    {
+        return $this->container['display_type'];
+    }
+
+    /**
+     * Sets display_type
+     *
+     * @param \Aurigma\DesignAtoms\Model\ColorlessContainerDisplayType|null $display_type Container display type.
+     *
+     * @return self
+     */
+    public function setDisplayType($display_type)
+    {
+        if (is_null($display_type)) {
+            throw new \InvalidArgumentException('non-nullable display_type cannot be null');
+        }
+        $this->container['display_type'] = $display_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets dither_amount
+     *
+     * @return float|null
+     */
+    public function getDitherAmount()
+    {
+        return $this->container['dither_amount'];
+    }
+
+    /**
+     * Sets dither_amount
+     *
+     * @param float|null $dither_amount Container dither amount.
+     *
+     * @return self
+     */
+    public function setDitherAmount($dither_amount)
+    {
+        if (is_null($dither_amount)) {
+            throw new \InvalidArgumentException('non-nullable dither_amount cannot be null');
+        }
+        $this->container['dither_amount'] = $dither_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets display_color
      *
      * @return string|null
      */
-    public function getId()
+    public function getDisplayColor()
     {
-        return $this->container['id'];
+        return $this->container['display_color'];
     }
 
     /**
-     * Sets id
+     * Sets display_color
      *
-     * @param string|null $id Print area identifier.
+     * @param string|null $display_color Display color.
      *
      * @return self
      */
-    public function setId($id)
+    public function setDisplayColor($display_color)
     {
-        if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
+        if (is_null($display_color)) {
+            array_push($this->openAPINullablesSetToNull, 'display_color');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
+            $index = array_search('display_color', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['id'] = $id;
+        $this->container['display_color'] = $display_color;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets output_color
      *
      * @return string|null
      */
-    public function getName()
+    public function getOutputColor()
     {
-        return $this->container['name'];
+        return $this->container['output_color'];
     }
 
     /**
-     * Sets name
+     * Sets output_color
      *
-     * @param string|null $name Print area name.
+     * @param string|null $output_color Output color.
      *
      * @return self
      */
-    public function setName($name)
+    public function setOutputColor($output_color)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
+        if (is_null($output_color)) {
+            array_push($this->openAPINullablesSetToNull, 'output_color');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
+            $index = array_search('output_color', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets surface_id
-     *
-     * @return string|null
-     */
-    public function getSurfaceId()
-    {
-        return $this->container['surface_id'];
-    }
-
-    /**
-     * Sets surface_id
-     *
-     * @param string|null $surface_id Parent surface identifier.
-     *
-     * @return self
-     */
-    public function setSurfaceId($surface_id)
-    {
-        if (is_null($surface_id)) {
-            array_push($this->openAPINullablesSetToNull, 'surface_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('surface_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['surface_id'] = $surface_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets size
-     *
-     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSize|null
-     */
-    public function getSize()
-    {
-        return $this->container['size'];
-    }
-
-    /**
-     * Sets size
-     *
-     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSize|null $size size
-     *
-     * @return self
-     */
-    public function setSize($size)
-    {
-        if (is_null($size)) {
-            array_push($this->openAPINullablesSetToNull, 'size');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('size', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['size'] = $size;
-
-        return $this;
-    }
-
-    /**
-     * Gets position
-     *
-     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoPosition|null
-     */
-    public function getPosition()
-    {
-        return $this->container['position'];
-    }
-
-    /**
-     * Sets position
-     *
-     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoPosition|null $position position
-     *
-     * @return self
-     */
-    public function setPosition($position)
-    {
-        if (is_null($position)) {
-            array_push($this->openAPINullablesSetToNull, 'position');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('position', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['position'] = $position;
-
-        return $this;
-    }
-
-    /**
-     * Gets bleed
-     *
-     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoBleed|null
-     */
-    public function getBleed()
-    {
-        return $this->container['bleed'];
-    }
-
-    /**
-     * Sets bleed
-     *
-     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoBleed|null $bleed bleed
-     *
-     * @return self
-     */
-    public function setBleed($bleed)
-    {
-        if (is_null($bleed)) {
-            array_push($this->openAPINullablesSetToNull, 'bleed');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('bleed', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['bleed'] = $bleed;
-
-        return $this;
-    }
-
-    /**
-     * Gets slug
-     *
-     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSlug|null
-     */
-    public function getSlug()
-    {
-        return $this->container['slug'];
-    }
-
-    /**
-     * Sets slug
-     *
-     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSlug|null $slug slug
-     *
-     * @return self
-     */
-    public function setSlug($slug)
-    {
-        if (is_null($slug)) {
-            array_push($this->openAPINullablesSetToNull, 'slug');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slug', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['slug'] = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Gets shape
-     *
-     * @return string|null
-     */
-    public function getShape()
-    {
-        return $this->container['shape'];
-    }
-
-    /**
-     * Sets shape
-     *
-     * @param string|null $shape Print area shape. Usually content of svg path that describes print area shape is provided.
-     *
-     * @return self
-     */
-    public function setShape($shape)
-    {
-        if (is_null($shape)) {
-            array_push($this->openAPINullablesSetToNull, 'shape');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('shape', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['shape'] = $shape;
+        $this->container['output_color'] = $output_color;
 
         return $this;
     }

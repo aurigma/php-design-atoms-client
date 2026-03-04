@@ -1,6 +1,6 @@
 <?php
 /**
- * DesignPrintAreaDto
+ * ContainerConstraintsParams
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \Aurigma\DesignAtoms\ObjectSerializer;
 
 /**
- * DesignPrintAreaDto Class Doc Comment
+ * ContainerConstraintsParams Class Doc Comment
  *
  * @category Class
- * @description Design print area parameters.
+ * @description Container constraints parameters.
  * @package  Aurigma\DesignAtoms
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerConstraintsParams implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DesignPrintAreaDto';
+    protected static $openAPIModelName = 'ContainerConstraintsParams';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,14 +58,10 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'name' => 'string',
-        'surface_id' => 'string',
-        'size' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSize',
-        'position' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoPosition',
-        'bleed' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoBleed',
-        'slug' => '\Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSlug',
-        'shape' => 'string'
+        'allow_raster_objects' => 'bool',
+        'target_resolution' => 'float',
+        'min_font_size' => 'float',
+        'max_artwork_size' => '\Aurigma\DesignAtoms\Model\ContainerConstraintsParamsMaxArtworkSize'
     ];
 
     /**
@@ -76,14 +72,10 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'name' => null,
-        'surface_id' => null,
-        'size' => null,
-        'position' => null,
-        'bleed' => null,
-        'slug' => null,
-        'shape' => null
+        'allow_raster_objects' => null,
+        'target_resolution' => 'float',
+        'min_font_size' => 'float',
+        'max_artwork_size' => null
     ];
 
     /**
@@ -92,14 +84,10 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => true,
-        'name' => true,
-        'surface_id' => true,
-        'size' => true,
-        'position' => true,
-        'bleed' => true,
-        'slug' => true,
-        'shape' => true
+        'allow_raster_objects' => false,
+        'target_resolution' => false,
+        'min_font_size' => false,
+        'max_artwork_size' => true
     ];
 
     /**
@@ -188,14 +176,10 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'surface_id' => 'surfaceId',
-        'size' => 'size',
-        'position' => 'position',
-        'bleed' => 'bleed',
-        'slug' => 'slug',
-        'shape' => 'shape'
+        'allow_raster_objects' => 'allowRasterObjects',
+        'target_resolution' => 'targetResolution',
+        'min_font_size' => 'minFontSize',
+        'max_artwork_size' => 'maxArtworkSize'
     ];
 
     /**
@@ -204,14 +188,10 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
-        'surface_id' => 'setSurfaceId',
-        'size' => 'setSize',
-        'position' => 'setPosition',
-        'bleed' => 'setBleed',
-        'slug' => 'setSlug',
-        'shape' => 'setShape'
+        'allow_raster_objects' => 'setAllowRasterObjects',
+        'target_resolution' => 'setTargetResolution',
+        'min_font_size' => 'setMinFontSize',
+        'max_artwork_size' => 'setMaxArtworkSize'
     ];
 
     /**
@@ -220,14 +200,10 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
-        'surface_id' => 'getSurfaceId',
-        'size' => 'getSize',
-        'position' => 'getPosition',
-        'bleed' => 'getBleed',
-        'slug' => 'getSlug',
-        'shape' => 'getShape'
+        'allow_raster_objects' => 'getAllowRasterObjects',
+        'target_resolution' => 'getTargetResolution',
+        'min_font_size' => 'getMinFontSize',
+        'max_artwork_size' => 'getMaxArtworkSize'
     ];
 
     /**
@@ -287,14 +263,10 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('surface_id', $data ?? [], null);
-        $this->setIfExists('size', $data ?? [], null);
-        $this->setIfExists('position', $data ?? [], null);
-        $this->setIfExists('bleed', $data ?? [], null);
-        $this->setIfExists('slug', $data ?? [], null);
-        $this->setIfExists('shape', $data ?? [], null);
+        $this->setIfExists('allow_raster_objects', $data ?? [], null);
+        $this->setIfExists('target_resolution', $data ?? [], null);
+        $this->setIfExists('min_font_size', $data ?? [], null);
+        $this->setIfExists('max_artwork_size', $data ?? [], null);
     }
 
     /**
@@ -340,273 +312,116 @@ class DesignPrintAreaDto implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets id
+     * Gets allow_raster_objects
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getId()
+    public function getAllowRasterObjects()
     {
-        return $this->container['id'];
+        return $this->container['allow_raster_objects'];
     }
 
     /**
-     * Sets id
+     * Sets allow_raster_objects
      *
-     * @param string|null $id Print area identifier.
+     * @param bool|null $allow_raster_objects Boolean flag indicates if raster images are allowed to be placed in container.
      *
      * @return self
      */
-    public function setId($id)
+    public function setAllowRasterObjects($allow_raster_objects)
     {
-        if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($allow_raster_objects)) {
+            throw new \InvalidArgumentException('non-nullable allow_raster_objects cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['allow_raster_objects'] = $allow_raster_objects;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets target_resolution
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getName()
+    public function getTargetResolution()
     {
-        return $this->container['name'];
+        return $this->container['target_resolution'];
     }
 
     /**
-     * Sets name
+     * Sets target_resolution
      *
-     * @param string|null $name Print area name.
+     * @param float|null $target_resolution Target hi-res print file DPI.
      *
      * @return self
      */
-    public function setName($name)
+    public function setTargetResolution($target_resolution)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($target_resolution)) {
+            throw new \InvalidArgumentException('non-nullable target_resolution cannot be null');
         }
-        $this->container['name'] = $name;
+        $this->container['target_resolution'] = $target_resolution;
 
         return $this;
     }
 
     /**
-     * Gets surface_id
+     * Gets min_font_size
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getSurfaceId()
+    public function getMinFontSize()
     {
-        return $this->container['surface_id'];
+        return $this->container['min_font_size'];
     }
 
     /**
-     * Sets surface_id
+     * Sets min_font_size
      *
-     * @param string|null $surface_id Parent surface identifier.
+     * @param float|null $min_font_size Minimal font size for text objects placed in container.
      *
      * @return self
      */
-    public function setSurfaceId($surface_id)
+    public function setMinFontSize($min_font_size)
     {
-        if (is_null($surface_id)) {
-            array_push($this->openAPINullablesSetToNull, 'surface_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('surface_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($min_font_size)) {
+            throw new \InvalidArgumentException('non-nullable min_font_size cannot be null');
         }
-        $this->container['surface_id'] = $surface_id;
+        $this->container['min_font_size'] = $min_font_size;
 
         return $this;
     }
 
     /**
-     * Gets size
+     * Gets max_artwork_size
      *
-     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSize|null
+     * @return \Aurigma\DesignAtoms\Model\ContainerConstraintsParamsMaxArtworkSize|null
      */
-    public function getSize()
+    public function getMaxArtworkSize()
     {
-        return $this->container['size'];
+        return $this->container['max_artwork_size'];
     }
 
     /**
-     * Sets size
+     * Sets max_artwork_size
      *
-     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSize|null $size size
+     * @param \Aurigma\DesignAtoms\Model\ContainerConstraintsParamsMaxArtworkSize|null $max_artwork_size max_artwork_size
      *
      * @return self
      */
-    public function setSize($size)
+    public function setMaxArtworkSize($max_artwork_size)
     {
-        if (is_null($size)) {
-            array_push($this->openAPINullablesSetToNull, 'size');
+        if (is_null($max_artwork_size)) {
+            array_push($this->openAPINullablesSetToNull, 'max_artwork_size');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('size', $nullablesSetToNull);
+            $index = array_search('max_artwork_size', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['size'] = $size;
-
-        return $this;
-    }
-
-    /**
-     * Gets position
-     *
-     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoPosition|null
-     */
-    public function getPosition()
-    {
-        return $this->container['position'];
-    }
-
-    /**
-     * Sets position
-     *
-     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoPosition|null $position position
-     *
-     * @return self
-     */
-    public function setPosition($position)
-    {
-        if (is_null($position)) {
-            array_push($this->openAPINullablesSetToNull, 'position');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('position', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['position'] = $position;
-
-        return $this;
-    }
-
-    /**
-     * Gets bleed
-     *
-     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoBleed|null
-     */
-    public function getBleed()
-    {
-        return $this->container['bleed'];
-    }
-
-    /**
-     * Sets bleed
-     *
-     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoBleed|null $bleed bleed
-     *
-     * @return self
-     */
-    public function setBleed($bleed)
-    {
-        if (is_null($bleed)) {
-            array_push($this->openAPINullablesSetToNull, 'bleed');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('bleed', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['bleed'] = $bleed;
-
-        return $this;
-    }
-
-    /**
-     * Gets slug
-     *
-     * @return \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSlug|null
-     */
-    public function getSlug()
-    {
-        return $this->container['slug'];
-    }
-
-    /**
-     * Sets slug
-     *
-     * @param \Aurigma\DesignAtoms\Model\DesignPrintAreaDtoSlug|null $slug slug
-     *
-     * @return self
-     */
-    public function setSlug($slug)
-    {
-        if (is_null($slug)) {
-            array_push($this->openAPINullablesSetToNull, 'slug');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('slug', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['slug'] = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Gets shape
-     *
-     * @return string|null
-     */
-    public function getShape()
-    {
-        return $this->container['shape'];
-    }
-
-    /**
-     * Sets shape
-     *
-     * @param string|null $shape Print area shape. Usually content of svg path that describes print area shape is provided.
-     *
-     * @return self
-     */
-    public function setShape($shape)
-    {
-        if (is_null($shape)) {
-            array_push($this->openAPINullablesSetToNull, 'shape');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('shape', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['shape'] = $shape;
+        $this->container['max_artwork_size'] = $max_artwork_size;
 
         return $this;
     }
